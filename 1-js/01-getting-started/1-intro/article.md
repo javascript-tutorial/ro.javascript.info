@@ -6,7 +6,11 @@ Să vedem ce e atât de special la JavaScript, ce putem realiza cu el și ce alt
 
 *JavaScript* a fost creat inițial pentru *"a da viață paginilor"*.
 
+<<<<<<< HEAD
 În acest limbaj programele sunt numite *script-uri*(scripts). Acestea pot fi scrise direct în HTML și executate în mod automat pe măsură ce pagina se încarcă.
+=======
+The programs in this language are called *scripts*. They can be written right in a web page's HTML and run automatically as the page loads.
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
 Script-urile sunt furnizate și executate ca și text simplu. Ele nu au nevoie de pregătire specială sau de compilare pentru a rula.
 
@@ -70,7 +74,11 @@ Exemplele acestor restricții sunt:
     Există mijloace prin care se poate interacționa cu camera/microfonul sau alte dispozitive, dar ele necesită permisiunea explicită a utilizatorului. Așadar o pagină pe care este activat JavaScript-ul nu ar putea activa o cameră web în mod viclean, și să privească împrejurimile și să trimită informații către [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
 - În general, diferite tab-uri/ferestre nu știu nimic unele despre celelalte. Câteodată acestea știu, de exemplu când o fereastră folosește JavaScript pentru a deschide cealaltă fereastră. Dar chiar și în acest caz, JavaScript nu poate accesa cealaltă fereastră dacă ambele ferestre vin de pe site-uri diferite (de la un domeniu, protocol sau port diferit).
 
+<<<<<<< HEAD
     Acest lucru se numește "Same Origin Policy"(politica aceleiași origini). Pentru a lucra în jurul acesteia, *ambele pagini* trebuie să conțină un cod special JavaScript care să administreze schimbul de date.
+=======
+    This is called the "Same Origin Policy". To work around that, *both pages* must agree for data exchange and contain a special JavaScript code that handles it. We'll cover that in the tutorial.
+>>>>>>> 08734734021aa128c13da2382fe8fa062677bb9f
 
     Limitarea este din nou pentru siguranța utilizatorului. O pagină de la `http://anysite.com` pe care un utilizator a deschis-o nu trebuie să poată accesa alt tab al browser-ului cu URL-ul `http://gmail.com` și să fure informații de acolo.
 - JavaScript poate cu ușurință să comunice pe net către server, de unde a venit pagina curentă. Dar abilitatea sa de a primi date de la alte site-uri/domenii este infirmată. Deși posibil, acesta necesită acord explicit(exprimat prin headere HTTP) din partea serverului de la distanță. Din nou, acestea sunt limitări de securitate.
