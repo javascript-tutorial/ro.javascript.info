@@ -1,20 +1,20 @@
-To precisely match the functionality of `switch`, the `if` must use a strict comparison `'==='`.
+Pentru a obține exact funcționalitatea instrucțiunii `switch`, `if` trebuie să folosească operatorul de egalitate strictă `'==='`.
 
-For given strings though, a simple `'=='` works too.
+Pentru șirurile date, merge și egalitatea simplă `'=='`.
 
 ```js no-beautify
-if(browser == 'Edge') {
-  alert("You've got the Edge!");
+if (browser == 'Edge') {
+  alert("Folosiți Edge!");
 } else if (browser == 'Chrome'
  || browser == 'Firefox'
  || browser == 'Safari'
  || browser == 'Opera') {
-  alert( 'Okay we support these browsers too' );
+  alert( 'OK, suportăm și aceste browsere' );
 } else {
-  alert( 'We hope that this page looks ok!' );
+  alert( 'Sperăm că această pagină arată bine!' );
 }
 ```
 
-Please note: the construct `browser == 'Chrome' || browser == 'Firefox' …` is split into multiple lines for better readability.
+Observație: expresia `browser == 'Chrome' || browser == 'Firefox' …` este împărțită pe mai multe linii pentru a îmbunătăți lizibilitatea.
 
-But the `switch` construct is still cleaner and more descriptive.
+Totuși, construcția care folosește `switch` este mai curată și mai descriptivă.
