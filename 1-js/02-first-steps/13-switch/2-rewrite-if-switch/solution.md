@@ -23,4 +23,4 @@ switch (a) {
 
 Observație: instrucțiunea `break` de la sfârșit nu este necesară, dar putem să o adăugăm pentru a pregăti codul pentru viitor.
 
-În viitor este posibil că vom dori să mai adăugăm încă un `case`, de exemplu `case 4`. Dacă uităm să adăugăm un `break` înaintea lui, la sfârșitul blocului `case 3`, vom obține o eroare. Deci avem un fel de auto-asigurare.
+În viitor este posibil să vrem să mai adăugăm încă un `case`, de exemplu `case 4`. Dacă uităm să adăugăm un `break` înaintea lui, la sfârșitul blocului `case 3`, vom obține o eroare. Deci avem un fel de auto-asigurare.
