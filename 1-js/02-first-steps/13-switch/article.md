@@ -137,9 +137,9 @@ switch (a) {
 }
 ```
 
-Acum atât `3` cât și `5` arată același mesaj.
+Acum, atât `3` cât și `5` arată același mesaj.
 
-Posibilitatea de a ȚgrupaȚ cazuri este un efect secundar al modului în care funcționează `switch/case` fără `break`. Execuția blocului `case 3` începe de la linia marcată `(*)` și continuă în `case 5`, pentru că nu există niciun `break`.
+Posibilitatea de a "grupa" cazuri este un efect secundar al modului în care funcționează `switch/case` fără `break`. Execuția blocului `case 3` începe de la linia marcată `(*)` și continuă în `case 5`, pentru că nu există niciun `break`.
 
 ## Tipul contează
 
