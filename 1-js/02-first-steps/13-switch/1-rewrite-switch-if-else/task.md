@@ -2,25 +2,25 @@ importance: 5
 
 ---
 
-# Rewrite the "switch" into an "if"
+# Rescrieți instrucțiunea "switch" folosind "if"
 
-Write the code using `if..else` which would correspond to the following `switch`:
+Folosind `if..else`, scrieți codul care ar corespunde următorului `switch`:
 
 ```js
 switch (browser) {
   case 'Edge':
-    alert( "You've got the Edge!" );
+    alert( "Folosiți Edge!" );
     break;
 
   case 'Chrome':
   case 'Firefox':
   case 'Safari':
   case 'Opera':
-    alert( 'Okay we support these browsers too' );
+    alert( 'OK, suportăm și aceste browsere' );
     break;
 
   default:
-    alert( 'We hope that this page looks ok!' );
+    alert( 'Sperăm că această pagină arată bine!' );
 }
 ```
 
