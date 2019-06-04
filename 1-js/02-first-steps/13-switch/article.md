@@ -1,14 +1,14 @@
-# The "switch" statement
+# Instrucțiunea "switch"
 
-A `switch` statement can replace multiple `if` checks.
+O instrucțiune `switch` poate înlocui mai multe teste `if`.
 
-It gives a more descriptive way to compare a value with multiple variants.
+Reprezintă un mod mai descriptiv de a compara o valoare cu mai multe variante.
 
-## The syntax
+## Sintaxă
 
-The `switch` has one or more `case` blocks and an optional default.
+Instrucțiunea `switch` are unul sau mai multe blocuri `case` și un bloc opțional `default`.
 
-It looks like this:
+Ea arată în felul următor:
 
 ```js no-beautify
 switch(x) {
@@ -26,71 +26,71 @@ switch(x) {
 }
 ```
 
-- The value of `x` is checked for a strict equality to the value from the first `case` (that is, `value1`) then to the second (`value2`) and so on.
-- If the equality is found, `switch` starts to execute the code starting from the corresponding `case`, until the nearest `break` (or until the end of `switch`).
-- If no case is matched then the `default` code is executed (if it exists).
+- Valoarea variabilei `x` este comparată prin egalitate strictă cu valoarea din primul `case` (adică, `value1`), apoi cu a doua valoare (`value2`) și așa mai departe.
+- Dacă găsește egalitate într-unul din cazuri, `switch` începe să execute codul începând cu `case` corespunzător, până la cel mai apropiat `break` (sau până la sfârșitul instrucțiunii `switch`).
+- Dacă niciun caz nu satisface egalitatea, codul din blocul `default` este executat, dacă acest bloc există.
 
-## An example
+## Un exemplu
 
-An example of `switch` (the executed code is highlighted):
-
-```js run
-let a = 2 + 2;
-
-switch (a) {
-  case 3:
-    alert( 'Too small' );
-    break;
-*!*
-  case 4:
-    alert( 'Exactly!' );
-    break;
-*/!*
-  case 5:
-    alert( 'Too large' );
-    break;
-  default:
-    alert( "I don't know such values" );
-}
-```
-
-Here the `switch` starts to compare `a` from the first `case` variant that is `3`. The match fails.
-
-Then `4`. That's a match, so the execution starts from `case 4` until the nearest `break`.
-
-**If there is no `break` then the execution continues with the next `case` without any checks.**
-
-An example without `break`:
+Un exemplu de `switch` (codul executat este evidențiat):
 
 ```js run
 let a = 2 + 2;
 
 switch (a) {
   case 3:
-    alert( 'Too small' );
+    alert( 'Prea mic' );
+    break;
 *!*
   case 4:
-    alert( 'Exactly!' );
+    alert( 'Exact!' );
+    break;
+*/!*
   case 5:
-    alert( 'Too big' );
+    alert( 'Prea mare' );
+    break;
   default:
-    alert( "I don't know such values" );
+    alert( "Nu știu astfel de valori" );
+}
+```
+
+Aici, `switch` începe să compare `a` cu valoarea din primul `case`, adică `3`. Egalitatea nu este îndeplinită.
+
+Urmează `4`. Acesta se potrivește, deci execuția începe de la `case 4` până la cel mai apropiat `break`.
+
+**Dacă instrucțiunea `break` lipsește, execuția continuă cu următorul bloc `case` fără a mai face vreo verificare.**
+
+Un exemplu fără `break`:
+
+```js run
+let a = 2 + 2;
+
+switch (a) {
+  case 3:
+    alert( 'Prea mic' );
+*!*
+  case 4:
+    alert( 'Exact!' );
+  case 5:
+    alert( 'Prea mare' );
+  default:
+    alert( "Nu știu astfel de valori" );
 */!*
 }
 ```
 
-In the example above we'll see sequential execution of three `alert`s:
+În exemplul de mai sus vom vedea execuția în secvență a trei `alert`:
 
 ```js
-alert( 'Exactly!' );
-alert( 'Too big' );
-alert( "I don't know such values" );
+alert( 'Exact!' );
+alert( 'Prea mare' );
+alert( "Nu știu astfel de valori" );
 ```
 
-````smart header="Any expression can be a `switch/case` argument"
-Both `switch` and `case` allow arbitrary expressions.
+````smart header="Orice expresie poate fi un argument pentru `switch/case`"
+Atât `switch`, cât și `case` permit expresii arbitrare.
 
-For example:
+De exemplu:
 
 ```js run
 let a = "1";
@@ -99,74 +99,74 @@ let b = 0;
 switch (+a) {
 *!*
   case b + 1:
-    alert("this runs, because +a is 1, exactly equals b+1");
+    alert("acesta merge, deoarece +a este 1, exact cât este și b+1");
     break;
 */!*
 
   default:
-    alert("this doesn't run");
+    alert("asta nu merge");
 }
 ```
-Here `+a` gives `1`, that's compared with `b + 1` in `case`, and the corresponding code is executed.
+Aici, `+a` este evaluat la `1`, care este comparat cu `b + 1` în `case` și codul corespunzător este executat.
 ````
 
-## Grouping of "case"
+## Grupări de "case"
 
-Several variants of `case` which share the same code can be grouped.
+Mai multe instrucțiuni `case` care partajează același cod pot fi grupate.
 
-For example, if we want the same code to run for `case 3` and `case 5`:
+De exemplu, dacă vrem să executăm același cod pentru `case 3` și `case 5`:
 
 ```js run no-beautify
 let a = 2 + 2;
 
 switch (a) {
   case 4:
-    alert('Right!');
+    alert('Corect!');
     break;
 
 *!*
-  case 3:                    // (*) grouped two cases
+  case 3:                    // (*) douș cazuri grupate
   case 5:
-    alert('Wrong!');
-    alert("Why don't you take a math class?");
+    alert('Greșit!');
+    alert("De ce nu urmezi un curs de matematică?");
     break;
 */!*
 
   default:
-    alert('The result is strange. Really.');
+    alert('Acest rezultat e ciudat. Pe bune.');
 }
 ```
 
-Now both `3` and `5` show the same message.
+Acum atât `3` cât și `5` arată același mesaj.
 
-The ability to "group" cases is a side-effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+Posibilitatea de a ȚgrupaȚ cazuri este un efect secundar al modului în care funcționează `switch/case` fără `break`. Execuția blocului `case 3` începe de la linia marcată `(*)` și continuă în `case 5`, pentru că nu există niciun `break`.
 
-## Type matters
+## Tipul contează
 
-Let's emphasize that the equality check is always strict. The values must be of the same type to match.
+Să accentuăm faptul că egalitatea este întotdeauna strictă. Valorile trebuie să fie de același tip pentru a avea o potrivire.
 
-For example, let's consider the code:
+De exemplu, să considerăm codul:
 
 ```js run
-let arg = prompt("Enter a value?");
+let arg = prompt("Introduceți o valoare?");
 switch (arg) {
   case '0':
   case '1':
-    alert( 'One or zero' );
+    alert( 'Unu sau zero' );
     break;
 
   case '2':
-    alert( 'Two' );
+    alert( 'Doi' );
     break;
 
   case 3:
-    alert( 'Never executes!' );
+    alert( 'Nu se execută niciodată!' );
     break;
   default:
-    alert( 'An unknown value' );
+    alert( 'Valoare necunoscută' );
 }
 ```
 
-1. For `0`, `1`, the first `alert` runs.
-2. For `2` the second `alert` runs.
-3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execute.
+1. Pentru `0`, `1`, primul `alert` este executat.
+2. Pentru `2` se execută al doilea `alert`.
+3. Dar pentru `3`, rezultatul instrucțiunii `prompt` este șirul `"3"`, care nu este strict egal `===` cu numărul `3`, deci am obținut cod mort pentru `case 3`! Blocul `default` va fi executat în acest caz.
