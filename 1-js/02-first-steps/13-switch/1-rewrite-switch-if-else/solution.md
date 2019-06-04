@@ -1,9 +1,9 @@
-Pentru a obține exact funcționalitatea instrucțiunii `switch`, `if` trebuie să folosească operatorul de egalitate exactă `'==='`.
+Pentru a obține exact funcționalitatea instrucțiunii `switch`, `if` trebuie să folosească operatorul de egalitate strictă `'==='`.
 
 Pentru șirurile date, merge și egalitatea simplă `'=='`.
 
 ```js no-beautify
-if(browser == 'Edge') {
+if (browser == 'Edge') {
   alert("Folosiți Edge!");
 } else if (browser == 'Chrome'
  || browser == 'Firefox'
