@@ -125,7 +125,7 @@ switch (a) {
     break;
 
 *!*
-  case 3:                    // (*) douș cazuri grupate
+  case 3:                    // (*) două cazuri grupate
   case 5:
     alert('Greșit!');
     alert("De ce nu urmezi un curs de matematică?");
