@@ -14,13 +14,13 @@ Uneltele de dezvoltare sunt foarte puternice; ele au multe facilități. Pentru 
 
 Deschideți pagina [bug.html](bug.html).
 
-în codul JavaScript de pe pagină este o eroare. Este ascunsă ochiului vizitatorilor, deci hai să deschidem uneltele de dezvoltare pentru a o vedea.
+În codul JavaScript de pe pagină este o eroare. Este ascunsă ochiului vizitatorilor, deci hai să deschidem uneltele de dezvoltare pentru a o vedea.
 
 Apăsați tasta `key:F12` sau, dacă folosiți un Mac, apăsați tastele `key:Cmd+Opt+J`.
 
 Uneltele de dezvoltare se vor deschide cu tabul Console deschis implicit.
 
-Arăta similar cu:
+Arată similar cu:
 
 ![chrome](chrome.png)
 
@@ -38,7 +38,7 @@ Pentru moment putem vedea erorile și asta e suficient pentru început. Vom reve
 
 Multe alte browsere folosesc tasta `key:F12` pentru a deschide uneltele de dezvoltare.
 
-Aspectul și funcționarea lor sunt oarecum similare. Odată ce ați învațat să folosiți uneltele într-un browser (puteți începe cu Chrome), puteți face ușor trecerea la alt browser.
+Aspectul și funcționarea lor sunt oarecum similare. Odată ce ați învățat să folosiți uneltele într-un browser (puteți începe cu Chrome), puteți face ușor trecerea la alt browser.
 
 ## Safari
 
