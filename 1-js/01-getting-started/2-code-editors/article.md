@@ -12,6 +12,7 @@ Un IDE încarcă proiectul (pot fi mai multe fișiere), permite navigarea între
 
 Dacă nu ai selectat până acum un IDE, uită-te la următoarele variante:
 
+<<<<<<< HEAD
 - [WebStorm](http://www.jetbrains.com/webstorm/) pentru dezvoltare frontend și alte editoare ale aceleiași companii dacă ai nevoide de limbaje adiționale (plătit).
 - [Netbeans](http://netbeans.org/) (plătit).
 
@@ -20,6 +21,14 @@ Toate IDE-urile sunt cross-platform.
 Pentru Windows există de asemenea un editor "Visual Studio", a nu se confunda cu "Visual Studio Code". "Visual Studio" este un editor doar pentru Windows, plătit dar puternic, foarte potrivit pentru platforma .NET. O versiune gratuită al lui este [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
 Multe IDE-uri sunt plătite dar au o perioadă de încercare. Costul lor este în mod normal neglijabil, în comparație cu salariul unui dezvoltator calificat, așa că doar alege unul potrivit pentru tine.
+=======
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [WebStorm](http://www.jetbrains.com/webstorm/) (cross-platform, paid).
+
+For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. It's also good at JavaScript. There's also a free version [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+
+Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+>>>>>>> 027933531e121650120f7e8385f691de99af12d2
 
 ## Editoare de categorie ușoară
 
@@ -33,12 +42,17 @@ Diferența majoră dintre un editor de "categorie ușoară" și un "IDE" este c�
 
 Următoarele opțiuni merită atenția ta:
 
+<<<<<<< HEAD
 - [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, gratuit) de asemenea are multe feature-uri de tip IDE.
 - [Atom](https://atom.io/) (cross-platform, gratuit).
+=======
+- [Atom](https://atom.io/) (cross-platform, free).
+>>>>>>> 027933531e121650120f7e8385f691de99af12d2
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, gratuit).
 - [Vim](http://www.vim.org/) și [Emacs](https://www.gnu.org/software/emacs/) sunt de asemenea utile dacă știi cum să le folosești.
 
+<<<<<<< HEAD
 ## Favoritele mele
 
 Preferința personală a autorului este de a avea atât un IDE pentru proiecte cât și un editor de categorie ușoară pentru editare de fișiere rapidă și ușoară.
@@ -49,6 +63,9 @@ Eu folosesc:
 - Pe post de editor de categorie ușoară -- [Sublime Text](http://www.sublimetext.com) sau [Atom](https://atom.io/).
 
 ## Să nu ne certăm
+=======
+## Let's not argue
+>>>>>>> 027933531e121650120f7e8385f691de99af12d2
 
 Editoarele din lista de mai sus sunt cele pe care fie eu sau prietenii mei, pe care îi consider dezvoltatori buni, le-am folosit pentru un timp îndelungat și suntem mulțumiți de ele.
 
