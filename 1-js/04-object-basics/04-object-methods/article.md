@@ -15,7 +15,7 @@ Actions are represented in JavaScript by functions in properties.
 
 ## Method examples
 
-For the start, let's teach the `user` to say hello:
+For a start, let's teach the `user` to say hello:
 
 ```js run
 let user = {
@@ -257,11 +257,11 @@ user.hi(); // John (the simple call works)
 */!*
 ```
 
-On the last line there is a ternary operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
+On the last line there is a conditinal operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
 
-The method is immediately called with parentheses `()`. But it doesn't work right!
+Then the method is immediately called with parentheses `()`. But it doesn't work right!
 
-You can see that the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
+As you can see, the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
 
 This works (object dot method):
 ```js
@@ -306,7 +306,7 @@ The Reference Type is a "specification type". We can't explicitly use it, but it
 The value of Reference Type is a three-value combination `(base, name, strict)`, where:
 
 - `base` is the object.
-- `name` is the property.
+- `name` is the property name.
 - `strict` is true if `use strict` is in effect.
 
 The result of a property access `user.hi` is not a function, but a value of Reference Type. For `user.hi` in strict mode it is:
@@ -317,6 +317,8 @@ The result of a property access `user.hi` is not a function, but a value of Refe
 ```
 
 When parentheses `()` are called on the Reference Type, they receive the full information about the object and its method, and can set the right `this` (`=user` in this case).
+
+Reference type is a special "intermediary" internal type, with the purpose to pass information from dot `.` to calling parentheses `()`.
 
 Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "loses" `this`.
 
@@ -351,7 +353,7 @@ That's a special feature of arrow functions, it's useful when we actually do not
 
 The value of `this` is defined at run-time.
 - When a function is declared, it may use `this`, but that `this` has no value until the function is called.
-- That function can be copied between objects.
+- A function can be copied between objects.
 - When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
 
 Please note that arrow functions are special: they have no `this`. When `this` is accessed inside an arrow function, it is taken from outside.
