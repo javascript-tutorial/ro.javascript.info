@@ -95,7 +95,7 @@ Asta e ceea ce face JavaScript unic. De aceea este cea mai răspândită unealt�
 Pe parcursul planificării învățării unei noi tehnologii este benefic să verifici perspectivele acesteia. Așa că să trecem la trendurile moderne care includ noi limbaje și abilități ale browser-ului.
 
 
-## Limbaje "pe" JavaScript
+## Limbaje "peste" JavaScript
 
 Sintaxa JavaScript-ului nu se potrivește cerințelor fiecăruia. Persoane diferite vor diferite feature-uri.
 
@@ -107,20 +107,12 @@ Uneltele moderne fac transpilarea foarte rapidă și transparentă, permițând 
 
 Exemple de astfel de limbaje:
 
-<<<<<<< HEAD
-- [CoffeeScript](http://coffeescript.org/) este un "zahăr sintactic" pentru JavaScript, el introduce sintaxă mai scurtă, permițând scrierea de cod mai clar și mai precis. De obicei este îndrăgit de către dezvoltatorii Ruby.
+- [CoffeeScript](http://coffeescript.org/) este un "zahăr sintactic" pentru JavaScript, el introduce sintaxă mai scurtă, permițând scrierea de cod mai clar și mai precis. De obicei dezvoltatorii Ruby îl plac.
 - [TypeScript](http://www.typescriptlang.org/) este concentrat pe adăugarea de "tipizare strictă de date", pentru a simplifica dezvoltarea și suportul sistemelor complexe. Este dezvoltat de Microsoft.
+- [Flow](http://flow.org/) adaugă tipizarea datelor, dar într-un mod diferit. Dezvoltate de Facebook.
 - [Dart](https://www.dartlang.org/) este un limbaj standalone care are propriul său motor care rulează în medii non-browser(precum aplicațiile mobile). A fost oferit inițial de către Google ca și un înlocuitor pentru JavaScript, dar de acum browserele necesită ca acesta să fie transpilat în JavaScript la fel ca cele de mai sus.
 
 Există mai multe. Desigur, chiar dacă folosim unul dintre aceste limbaje, ar trebui de asemenea să știm JavaScript, pentru a înțelege cu adevărat ce facem.
-=======
-- [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
-- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
-- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
-- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
-
-There are more. Of course, even if we use one of transpiled languages, we should also know JavaScript to really understand what we're doing.
->>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
 ## Rezumat
 
