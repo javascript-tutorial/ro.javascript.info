@@ -75,7 +75,7 @@ Exemplele acestor restricții sunt:
     Limitarea este din nou pentru siguranța utilizatorului. O pagină de la `http://anysite.com` pe care un utilizator a deschis-o nu trebuie să poată accesa alt tab al browser-ului cu URL-ul `http://gmail.com` și să fure informații de acolo.
 - JavaScript poate cu ușurință să comunice pe net către server, de unde a venit pagina curentă. Dar abilitatea sa de a primi date de la alte site-uri/domenii este infirmată. Deși posibil, acesta necesită acord explicit(exprimat prin headere HTTP) din partea serverului de la distanță. Din nou, acestea sunt limitări de securitate.
 
-![](limitations.png)
+![](limitations.svg)
 
 Astfel de limite nu există dacă JavaScript este folosit în afara browser-ului, de exemplu pe un server. Browserele moderne permit de asemenea instalarea plugin-urilor/extensiilor care pot cere extinderea permisiunilor.
 
@@ -92,8 +92,12 @@ JavaScript este singura tehnologie browser care combină aceste 3 lucruri.
 
 Asta e ceea ce face JavaScript unic. De aceea este cea mai răspândită unealtă pentru crearea de interfețe pentru browser.
 
+<<<<<<< HEAD
 Pe parcursul planificării învățării unei noi tehnologii este benefic să verifici perspectivele acesteia. Așa că să trecem la trendurile moderne care includ noi limbaje și abilități ale browser-ului.
 
+=======
+That said, JavaScript also allows to create servers, mobile applications, etc.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ## Limbaje "peste" JavaScript
 
