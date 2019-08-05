@@ -50,11 +50,19 @@ Deschideți preferințele (Preferences) și mergeți în secțiunea de setări a
 
 Acum, cu tastele `key:Cmd+Opt+C` puteți afișa sau ascunde consola. De asemenea, în meniul principal a apărut opțiunea "Develop". Are multe comenzi și opțiuni.
 
+<<<<<<< HEAD
 ## Date de intrare pe mai multe linii
 
 În mod obișnuit, când introducem o linie de cod în consolă și apoi apăsăm `key:Enter`, codul se execută.
 
 Pentru a introduce mai multe linii, apăsați `key:Shift+Enter`.
+=======
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ## Concluzii
 

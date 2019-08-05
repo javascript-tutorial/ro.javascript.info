@@ -92,8 +92,12 @@ JavaScript este singura tehnologie browser care combină aceste 3 lucruri.
 
 Asta e ceea ce face JavaScript unic. De aceea este cea mai răspândită unealtă pentru crearea de interfețe pentru browser.
 
+<<<<<<< HEAD
 Pe parcursul planificării învățării unei noi tehnologii este benefic să verifici perspectivele acesteia. Așa că să trecem la trendurile moderne care includ noi limbaje și abilități ale browser-ului.
 
+=======
+That said, JavaScript also allows to create servers, mobile applications, etc.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ## Limbaje "peste" JavaScript
 
