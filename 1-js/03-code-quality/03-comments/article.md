@@ -2,13 +2,13 @@
 
 După cum știm din capitolul <info:structure>, comentariile pot fi pe o singură linie: începând cu `//` sau pe mai multe linii: `/* ... */`.
 
-Noi le folosim în mod obișnuit pentru a descrie cum și de ce codul funcționează. 
+Noi le folosim în mod obișnuit pentru a descrie cum și de ce funcționează codul. 
 
 La prima vedere, scrierea comentariilor pare a fi evidentă, dar adeseori începătorii în programare fac greșeli. 
 
 ## Comentarii rele
 
-Începătorii tind să utilizeze comentariile pentru a explica "ce se întâmplă în cod". Ceva de genul: 
+Începătorii tind să utilizeze comentariile pentru a explica "ce se întâmplă în cod". Ceva de genul ăsta: 
 
 ```js
 // Acest cod va face asta (...) și asta (...)
@@ -63,7 +63,7 @@ function isPrime(n) {
 }
 ```
 
-Acum putem înțelege codul mult mai ușor. Funcția în sine a devenit comentariul. Acest tip de cod se numește *autodescriptiv*.
+Acum putem înțelege codul mult mai ușor. Funcția însăși a devenit comentariul. Acest tip de cod se numește *autodescriptiv*.
 
 ### Sfat: crează funcții
 
@@ -87,7 +87,7 @@ for(let t = 0; t < 3; t++) {
 
 // ...
 ```
-O variantă mai bună ar fi să îl separi în funcții precum:
+Atunci ar putea exista o variantă mai bune de a-l refactoriza în funcții, precum:
 
 ```js
 addWhiskey(glass);
@@ -108,24 +108,24 @@ function addJuice(container) {
 }
 ```
 
-Încă o dată, însuși funcțiile ne spun ce se întâmplă. Nu e nimic de comentat. De asemenea, structura codului este mai bună când este împărțită. Este clar ce face fiecare funcție, ce primește și ce returnează. 
+Încă o dată, însăși funcțiile ne spun ce se întâmplă. Nu e nimic de comentat. De asemenea, structura codului este mai bună când este împărțită. Este clar ce face fiecare funcție, ce primește și ce returnează. 
 
-În realitate, nu putem evita în totalitate comentariile "explicative". Există algoritmi complecși. Și există și "încercări" deștepte cu scopul optimizării. Dar în general ar trebui să încercăm să păstrăm codul simplu și autodescriptiv.
+În realitate, nu putem evita în totalitate comentariile "explicative". Există algoritmi complecși. Și există și "ajustări" deștepte cu scopul optimizării. Dar în general ar trebui să încercăm să păstrăm codul simplu și autodescriptiv.
 
 ## Comentarii bune
 
 Deci, comentarii explicative sunt de obicei rele. Ce comentarii sunt bune?
 
 Descrierea arhitecturii
-: Oferă o vedere de ansamblu asupra componentelor, cum interacționează, care este ordinea de control în diverse situații... Pe scurt -- ochiul de vultur al codului. Există o diagramă specială a limbajului [UML](https://ro.wikipedia.org/wiki/Unified_Modeling_Language) pentru diagrame de nivel înalt. Se merită studiul acestora.
+: Oferă o vedere de ansamblu asupra componentelor, cum interacționează, care este ordinea de control în diverse situații... Pe scurt -- ochiul de vultur al codului. Există un limbaj-diagramă special [UML](https://ro.wikipedia.org/wiki/Unified_Modeling_Language) pentru diagrame de nivel înalt. Cu siguranță merită studiate.
 
 Documentarea utilizării unei funcții
-: Există o sintaxă specială [JSDoc](http://en.wikipedia.org/wiki/JSDoc) pentru a scrie documentația unei funcții: utilizare, parametri, valoare returnată.
+: Există o sintaxă specială [JSDoc](http://en.wikipedia.org/wiki/JSDoc) pentru pentru a documenta funcțiile: utilizare, parametri, valoare returnată.
 
     De exemplu:
     ```js
     /**
-     * Returnează x șa puterea n.
+     * Returnează x la puterea n.
      *
      * @param {number} x Numărul ridicat la putere.
      * @param {number} n Puterea, trebuie să fie un număr natural.
@@ -138,7 +138,7 @@ Documentarea utilizării unei funcții
     Comentariile de acest tip ne permit să înțelegem scopul funcției și să o folosim în modul corect fără a ne uita în codul ei.
 
     
-    Apropo, multe editoare precum [WebStorm](https://www.jetbrains.com/webstorm/) le pot înțelege la fel de bine și să le folosească pentru a asigura autocompletare și verificărri automate ale codului.
+    Apropo, multe editoare precum [WebStorm](https://www.jetbrains.com/webstorm/) le pot înțelege la fel de bine și să le folosească pentru a asigura autocompletare și verificări automate ale codului.
     
     De asemenea, sunt și unelte precum [JSDoc 3](https://github.com/jsdoc3/jsdoc) care pot genera documentație HTML din comentarii. Poți citi mai multe informații despre JSDoc la <http://usejsdoc.org/>
 
@@ -150,12 +150,12 @@ De ce este rezolvată sarcina în modul acesta?
     Fără asemenea comentarii următoarea situație este posibilă:
     1. Tu (sau colegul tău) deschizi codul scris acum ceva timp, și vezi că este "suboptimizat".
     2. Te gândești: "Ce stupid am fost atunci, și cât de deștept sunt acum", și rescrii codul folosind varianta "mult mai evidentă și corectă".
-    3. ...Impulsul de a rescrie codul a fost bun. Dar în continuarea dezvoltării observi că "cea mai evidentă soluție" este actualmente insuficientă. Îți amintești cu greu de ce, deoarece ai testat-o acum mult timp. Te întorci la varianta corectă, dar timpul a fost pierdut.
+    3. ...Impulsul de a rescrie codul a fost bun. Dar în continuarea dezvoltării observi că "cea mai evidentă soluție" este defapt insuficientă. Îți amintești cu greu de ce, deoarece ai testat-o acum mult timp. Te întorci la varianta corectă, dar timpul a fost pierdut.
     
     Comentariile care explică soluția sunt foarte importante. Te ajută să continui dezvoltarea în direcția cea bună. 
 
-Orice caracteristică subtilă a codului? Unde este folosită?
-: În cazul în care codul are ceva subtil sau neintuitiv, atunci este necesară comentarea.
+Orice caracteristici folosite ale codului ? Unde sunt folosite ?
+: În cazul în care codul are ceva subtil sau contraintuitiv, atunci este necesară comentarea.
 
 ## Rezumat
 
