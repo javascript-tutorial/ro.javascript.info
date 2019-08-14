@@ -87,7 +87,7 @@ for(let t = 0; t < 3; t++) {
 
 // ...
 ```
-Atunci ar putea exista o variantă mai bune de a-l refactoriza în funcții, precum:
+Atunci ar putea exista o variantă mai bună de a-l refactoriza în funcții, precum:
 
 ```js
 addWhiskey(glass);
