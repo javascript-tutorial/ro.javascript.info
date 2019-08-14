@@ -1,30 +1,29 @@
-# Comments
+# Comentarii
 
-As we know from the chapter <info:structure>, comments can be single-line: starting with `//` and multiline: `/* ... */`.
+După cum știm din capitolul <info:structure>, comentariile pot fi pe o singură linie: începând cu `//` sau pe mai multe linii: `/* ... */`.
 
-We normally use them to describe how and why the code works.
+Noi le folosim în mod obișnuit pentru a descrie cum și de ce funcționează codul. 
 
-At first sight, commenting might be obvious, but novices in programming usually get it wrong.
+La prima vedere, scrierea comentariilor pare a fi evidentă, dar adeseori începătorii în programare fac greșeli. 
 
-## Bad comments
+## Comentarii rele
 
-Novices tend to use comments to explain "what is going on in the code". Like this:
+Începătorii tind să utilizeze comentariile pentru a explica "ce se întâmplă în cod". Ceva de genul ăsta: 
 
 ```js
-// This code will do this thing (...) and that thing (...)
-// ...and who knows what else...
-very;
+// Acest cod va face asta (...) și asta (...)
+// ...și cine mai știe ce...
+cod;
+foarte;
 complex;
-code;
 ```
+Dar în codul profesional, numărul de comentarii așa "explicative" ar trebui să fie minim. Serios, codul ar trebui să fie ușor de înțeles și fără ele.
 
-But in good code, the amount of such "explanatory" comments should be minimal. Seriously, the code should be easy to understand without them.
+Există o regulă importantă despre acest lucru: "în cazul în care codul ește atât de confuz încât necesită un comentariu, atunci ar trebui să fie rescris în schimb".
 
-There's a great rule about that: "if the code is so unclear that it requires a comment, then maybe it should be rewritten instead".
+### Sfat: separarea funcțiilor
 
-### Recipe: factor out functions
-
-Sometimes it's beneficial to replace a code piece with a function, like here:
+Uneori este benefic să înlocuiești o bucată de cod cu o funcție, ca aici:
 
 ```js
 function showPrimes(n) {
@@ -32,7 +31,7 @@ function showPrimes(n) {
   for (let i = 2; i < n; i++) {
 
 *!*
-    // check if i is a prime number
+    // verifică dacă i este un număr prim
     for (let j = 2; j < i; j++) {
       if (i % j == 0) continue nextPrime;
     }
@@ -43,8 +42,7 @@ function showPrimes(n) {
 }
 ```
 
-The better variant, with a factored out function `isPrime`:
-
+Varianta mai bună, cu o funcție separată `isPrime`
 
 ```js
 function showPrimes(n) {
@@ -65,21 +63,21 @@ function isPrime(n) {
 }
 ```
 
-Now we can understand the code easily. The function itself becomes the comment. Such code is called *self-descriptive*.
+Acum putem înțelege codul mult mai ușor. Funcția însăși a devenit comentariul. Acest tip de cod se numește *autodescriptiv*.
 
-### Recipe: create functions
+### Sfat: crează funcții
 
-And if we have a long "code sheet" like this:
+Și dacă avem o lungă "listă de coduri" precum:
 
 ```js
-// here we add whiskey
+// aici adăugăm whiskey
 for(let i = 0; i < 10; i++) {
   let drop = getWhiskey();
   smell(drop);
   add(drop, glass);
 }
 
-// here we add juice
+// aici adăugăm suc
 for(let t = 0; t < 3; t++) {
   let tomato = getTomato();
   examine(tomato);
@@ -89,8 +87,7 @@ for(let t = 0; t < 3; t++) {
 
 // ...
 ```
-
-Then it might be a better variant to refactor it into functions like:
+Atunci ar putea exista o variantă mai bune de a-l refactoriza în funcții, precum:
 
 ```js
 addWhiskey(glass);
@@ -111,70 +108,70 @@ function addJuice(container) {
 }
 ```
 
-Once again, functions themselves tell what's going on. There's nothing to comment. And also the code structure is better when split. It's clear what every function does, what it takes and what it returns.
+Încă o dată, însăși funcțiile ne spun ce se întâmplă. Nu e nimic de comentat. De asemenea, structura codului este mai bună când este împărțită. Este clar ce face fiecare funcție, ce primește și ce returnează. 
 
-In reality, we can't totally avoid "explanatory" comments. There are complex algorithms. And there are smart "tweaks" for purposes of optimization. But generally we should try to keep the code simple and self-descriptive.
+În realitate, nu putem evita în totalitate comentariile "explicative". Există algoritmi complecși. Și există și "ajustări" deștepte cu scopul optimizării. Dar în general ar trebui să încercăm să păstrăm codul simplu și autodescriptiv.
 
-## Good comments
+## Comentarii bune
 
-So, explanatory comments are usually bad. Which comments are good?
+Deci, comentarii explicative sunt de obicei rele. Ce comentarii sunt bune?
 
-Describe the architecture
-: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special diagram language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) for high-level architecture diagrams. Definitely worth studying.
+Descrierea arhitecturii
+: Oferă o vedere de ansamblu asupra componentelor, cum interacționează, care este ordinea de control în diverse situații... Pe scurt -- ochiul de vultur al codului. Există un limbaj-diagramă special [UML](https://ro.wikipedia.org/wiki/Unified_Modeling_Language) pentru diagrame de nivel înalt. Cu siguranță merită studiate.
 
-Document a function usage
-: There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
+Documentarea utilizării unei funcții
+: Există o sintaxă specială [JSDoc](http://en.wikipedia.org/wiki/JSDoc) pentru pentru a documenta funcțiile: utilizare, parametri, valoare returnată.
 
-    For instance:
+    De exemplu:
     ```js
     /**
-     * Returns x raised to the n-th power.
+     * Returnează x la puterea n.
      *
-     * @param {number} x The number to raise.
-     * @param {number} n The power, must be a natural number.
-     * @return {number} x raised to the n-th power.
+     * @param {number} x Numărul ridicat la putere.
+     * @param {number} n Puterea, trebuie să fie un număr natural.
+     * @return {number} x ridicat la puterea n.
      */
     function pow(x, n) {
       ...
     }
     ```
+    Comentariile de acest tip ne permit să înțelegem scopul funcției și să o folosim în modul corect fără a ne uita în codul ei.
 
-    Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+    
+    Apropo, multe editoare precum [WebStorm](https://www.jetbrains.com/webstorm/) le pot înțelege la fel de bine și să le folosească pentru a asigura autocompletare și verificări automate ale codului.
+    
+    De asemenea, sunt și unelte precum [JSDoc 3](https://github.com/jsdoc3/jsdoc) care pot genera documentație HTML din comentarii. Poți citi mai multe informații despre JSDoc la <http://usejsdoc.org/>
 
-    By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+De ce este rezolvată sarcina în modul acesta?
+: Ce este scris este important. Dar ce *nu* este scris s-ar putea să fie mult mai important pentru a înțelege ce se îmtâmplă. De ce este sarcina rezolvată în felul acesta? Codul nu oferă nici un răspuns.
+  
+    Dacă sunt multe moduri de a rezolva sarcina, de ce tocmai acesta? În special când nu este chiar cel mai evident. 
 
-    Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+    Fără asemenea comentarii următoarea situație este posibilă:
+    1. Tu (sau colegul tău) deschizi codul scris acum ceva timp, și vezi că este "suboptimizat".
+    2. Te gândești: "Ce stupid am fost atunci, și cât de deștept sunt acum", și rescrii codul folosind varianta "mult mai evidentă și corectă".
+    3. ...Impulsul de a rescrie codul a fost bun. Dar în continuarea dezvoltării observi că "cea mai evidentă soluție" este defapt insuficientă. Îți amintești cu greu de ce, deoarece ai testat-o acum mult timp. Te întorci la varianta corectă, dar timpul a fost pierdut.
+    
+    Comentariile care explică soluția sunt foarte importante. Te ajută să continui dezvoltarea în direcția cea bună. 
 
-Why is the task solved this way?
-: What's written is important. But what's *not* written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
+Orice caracteristici folosite ale codului ? Unde sunt folosite ?
+: În cazul în care codul are ceva subtil sau contraintuitiv, atunci este necesară comentarea.
 
-    If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
+## Rezumat
 
-    Without such comments the following situation is possible:
-    1. You (or your colleague) open the code written some time ago, and see that it's "suboptimal".
-    2. You think: "How stupid I was then, and how much smarter I'm now", and rewrite using the "more obvious and correct" variant.
-    3. ...The urge to rewrite was good. But in the process you see that the "more obvious" solution is actually lacking. You even dimly remember why, because you already tried it long ago. You revert to the correct variant, but the time was wasted.
+Un semn important al unui dezvoltator bun sunt comentariile: prezența lor și chiar absența. 
 
-    Comments that explain the solution are very important. They help to continue development the right way.
+Comentariile bune ne permit să păstrăm codul organizat, să ne întoarcem la el după un timp și să îl folosim mult mai eficient.
 
-Any subtle features of the code? Where they are used?
-: If the code has anything subtle and counter-intuitive, it's definitely worth commenting.
+**Folosește comentariile pentru:**
 
-## Summary
+- Arhitectura per total, o vedere de ansamblu a acesteia.
+- Utilizarea funcțiilor.
+- Soluții importante, în special când nu sunt imediat evidente.
 
-An important sign of a good developer is comments: their presence and even their absence.
+**Evită comentariile pentru:**
 
-Good comments allow us to maintain the code well, come back to it after a delay and use it more effectively.
+- Pentru a descrie "cum funcționează codul" și "ce face".
+- Folosește-le doar dacă este imposibil să faci codul atât de simplu și autodescriptiv încât comentariile să nu mai fie necesare.
 
-**Comment this:**
-
-- Overall architecture, high-level view.
-- Function usage.
-- Important solutions, especially when not immediately obvious.
-
-**Avoid comments:**
-
-- That tell "how code works" and "what it does".
-- Put them only if it's impossible to make the code so simple and self-descriptive that it doesn't require those.
-
-Comments are also used for auto-documenting tools like JSDoc3: they read them and generate HTML-docs (or docs in another format).
+Comentariile sunt de asemenea folosite pentru unelte de autodocumentare precum JSDoc3: acestea le citesc și generează documentații HTML (sau documentații în alt format).
