@@ -4,7 +4,11 @@ După cum știm din capitolul <info:structure>, comentariile pot fi pe o singur�
 
 Noi le folosim în mod obișnuit pentru a descrie cum și de ce funcționează codul. 
 
+<<<<<<< HEAD
 La prima vedere, scrierea comentariilor pare a fi evidentă, dar adeseori începătorii în programare fac greșeli. 
+=======
+At first sight, commenting might be obvious, but novices in programming often use them wrongly.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ## Comentarii rele
 
@@ -116,11 +120,19 @@ function addJuice(container) {
 
 Deci, comentarii explicative sunt de obicei rele. Ce comentarii sunt bune?
 
+<<<<<<< HEAD
 Descrierea arhitecturii
 : Oferă o vedere de ansamblu asupra componentelor, cum interacționează, care este ordinea de control în diverse situații... Pe scurt -- ochiul de vultur al codului. Există un limbaj-diagramă special [UML](https://ro.wikipedia.org/wiki/Unified_Modeling_Language) pentru diagrame de nivel înalt. Cu siguranță merită studiate.
 
 Documentarea utilizării unei funcții
 : Există o sintaxă specială [JSDoc](http://en.wikipedia.org/wiki/JSDoc) pentru pentru a documenta funcțiile: utilizare, parametri, valoare returnată.
+=======
+Describe the architecture
+: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) to build high-level architecture diagrams explaining the code. Definitely worth studying.
+
+Document function parameters and usage
+: There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
     De exemplu:
     ```js

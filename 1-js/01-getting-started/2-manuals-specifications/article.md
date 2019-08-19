@@ -24,9 +24,13 @@ De asemenea, dacă programezi pentru browser, atunci sunt și alte specificații
     Deși, adeseori cel mai bine este să cauți pe internet. Doar folosește "MDN [term]" în query, e.g. <https://google.com/search?q=MDN+parseInt> pentru a căuta funcția `parseInt`.
 
 
+<<<<<<< HEAD
 - **MSDN** – manual de la Microsoft cu o multitudine de informații, inclusiv JavaScript (adeseori menționat ca JScript). Dacă cineva are nevoie de ceva specific pentru Internet Explorer, cel mai bine este să vadă: <http://msdn.microsoft.com/>.
     
     De asemenea, putem căuta pe internet fraze de genul "RegExp MSDN" or "RegExp MSDN jscript".
+=======
+- **MSDN** – Microsoft manual with a lot of information, including JavaScript (often referred to as JScript). If one needs something specific to Internet Explorer, better go there: <http://msdn.microsoft.com/>.
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ## Tabele de compatibilitate
 
