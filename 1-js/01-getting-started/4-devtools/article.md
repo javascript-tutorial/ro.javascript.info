@@ -50,11 +50,13 @@ Deschideți preferințele (Preferences) și mergeți în secțiunea de setări a
 
 Acum, cu tastele `key:Cmd+Opt+C` puteți afișa sau ascunde consola. De asemenea, în meniul principal a apărut opțiunea "Develop". Are multe comenzi și opțiuni.
 
+```smart header="Multi-line input"
 În mod obișnuit, când introducem o linie de cod în consolă și apoi apăsăm `key:Enter`, codul se execută.
 
-Pentru a introduce mai multe linii, apăsați `key:Shift+Enter`.
+Pentru a introduce mai multe linii, apăsați `key:Shift+Enter`. În acest fel oricine poate insera fragmente lungi de cod JavaScript.
+```
 
-## Concluzii
+## Rezumat
 
 - Uneltele de dezvoltare ne permit să vedem erori, să executăm comenzi, să evaluăm variabile și multe altele.
 - Ele pot fi deschise cu tasta `key:F12` în majoritatea browserelor, pe Windows. Chrome pentru Mac folosește `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (dar trebuie întâi activat).
