@@ -68,7 +68,7 @@ So, what exactly is a `class`? That's not an entirely new language-level entity,
 
 Let's unveil any magic and see what a class really is. That'll help in understanding many complex aspects.
 
-In JavaScript, a class is a kind of a function.
+In JavaScript, a class is a kind of function.
 
 Here, take a look:
 
@@ -89,7 +89,7 @@ What `class User {...}` construct really does is:
 1. Creates a function named `User`, that becomes the result of the class declaration. The function code is taken from the `constructor` method (assumed empty if we don't write such method).
 2. Stores class methods, such as `sayHi`, in `User.prototype`.
 
-Afterwards, for `new User` objects, when we call a method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
+After `new User` object is created, when we call its method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
 
 We can illustrate the result of `class User` declaration as:
 
@@ -142,11 +142,11 @@ user.sayHi();
 
 The result of this definition is about the same. So, there are indeed reasons why `class` can be considered a syntax sugar to define a constructor together with its prototype methods.
 
-Although, there are important differences.
+Still, there are important differences.
 
 1. First, a function created by `class` is labelled by a special internal property `[[FunctionKind]]:"classConstructor"`. So it's not entirely the same as creating it manually.
 
-    Unlike a regular function, a class constructor must be called with `new`:
+    And unlike a regular function, a class constructor must be called with `new`:
 
     ```js run
     class User {
@@ -179,7 +179,7 @@ Besides, `class` syntax brings many other features that we'll explore later.
 
 ## Class Expression
 
-Just like functions, classes can be defined inside another expression, passed around, returned, assigned etc.
+Just like functions, classes can be defined inside another expression, passed around, returned, assigned, etc.
 
 Here's an example of a class expression:
 
@@ -231,7 +231,7 @@ new User().sayHi(); // Hello
 
 ## Getters/setters, other shorthands
 
-Just like literal objects, classes may include getters/setters, generators, computed properties etc.
+Just like literal objects, classes may include getters/setters, computed properties etc.
 
 Here's an example for `user.name` implemented using `get/set`:
 
@@ -298,8 +298,6 @@ class User {
 new User().sayHi();
 ```
 
-For a generator method, similarly, prepend it with `*`.
-
 ## Class properties
 
 ```warn header="Old browsers may need a polyfill"
@@ -322,7 +320,7 @@ class User {
 new User().sayHi();
 ```
 
-The property `name` is not placed into `User.prototype`. Instead, it is created by `new` before calling constructor, it's the property of the object itself.
+The property `name` is not placed into `User.prototype`. Instead, it is created by `new` before calling the constructor, it's a property of the object itself.
 
 ## Summary
 
@@ -346,6 +344,6 @@ class MyClass {
 }
 ```
 
-`MyClass` is technically a function (the one that we provide as `constructor`), while methods, getters and settors are written to `MyClass.prototype`.
+`MyClass` is technically a function (the one that we provide as `constructor`), while methods, getters and setters are written to `MyClass.prototype`.
 
 In the next chapters we'll learn more about classes, including inheritance and other features.
