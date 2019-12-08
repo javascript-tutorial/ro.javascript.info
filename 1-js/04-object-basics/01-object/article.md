@@ -1,60 +1,60 @@
 
-# Objects
+# Obiecte
 
-As we know from the chapter <info:types>, there are seven data types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+Așa cum știm din capitolul <info:types>, în JavaScript există șapte tipuri de date. Șase dintre ele sunt denumite "primitive", pentru că ele conțin numai un singur lucru (fie un string, un număr sau altceva).
 
-In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+În contrast, obiectele sunt folosite pentru a stoca colecții indexate de date diferite si alte entități complexe. În JavaScript, obiectele pătrund în aproape toate aspectele limbajului. De aceea trebuie să ințelegem obiectele înainte de a intra mai adânc în altă parte.
 
-An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
+Un obiect poate fi creat folosind acoladele `{…}` cu o listă opțională de *proprietăți*. O proprietate este o pereche "cheie: valoare", unde `cheie` este un string (denumit si "numele proprietății"), iar `valoare` poate fi orice.
 
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
+Ne putem imagina un obiect ca fiind un dosar ce conține documente semnate. Fiecare bucățică de informație este stocată în dosarul ei după `cheie`. Este ușor să găsești un document după nume sau să adaugi/îndepărtezi un document.
 
 ![](object.svg)
 
-An empty object ("empty cabinet") can be created using one of two syntaxes:
+Un obiect gol ("dosar gol") poate fi creat folosind una dintre următoarele sintaxe:
 
 ```js
-let user = new Object(); // "object constructor" syntax
-let user = {};  // "object literal" syntax
+let user = new Object(); // sintaxa "constructor obiect"
+let user = {};  // sintaxa "obiect literal"
 ```
 
 ![](object-user-empty.svg)
 
-Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
+Uzual se folosesc acoladele `{...}`. Această declarație este denumită  *obiect literal*.
 
-## Literals and properties
+## Literalele și proprietățile
 
-We can immediately put some properties into `{...}` as "key: value" pairs:
+Putem pune imediat câteva proprietăți în `{...}` ca și perechi "cheie: valoare":
 
 ```js
-let user = {     // an object
-  name: "John",  // by key "name" store value "John"
-  age: 30        // by key "age" store value 30
+let user = {     // un obiect
+  name: "John",  // după cheia "name" stocăm valoarea "John"
+  age: 30        // dupa cheia "age" stocăm valoarea 30
 };
 ```
 
-A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
+O proprietate are o cheie (denumită și "nume" sau "identificator") înainte de semnul două puncte `":"` și o valoare la dreapta semnului.
 
-In the `user` object, there are two properties:
+În obiectul `user`, există două proprietăți:
 
-1. The first property has the name `"name"` and the value `"John"`.
-2. The second one has the name `"age"` and the value `30`.
+1. Prima proprietate are numele `"name"` și valoarea `"John"`.
+2. A doua are numele `"age"` și valoarea `30`.
 
-The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+Obiectul rezultat `user` poate fi imaginat ca un dosar cu două documente marcate cu "name" respectiv "age".
 
 ![user object](object-user.svg)
 
-We can add, remove and read files from it any time.
+Putem adăuga, șterge sau citi documente din dosar la orice moment.
 
-Property values are accessible using the dot notation:
+Valorile proprietăților sunt accesibile folosind notația cu punct.
 
 ```js
-// get property values of the object:
+// citește valorile proprietăților obiectului:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-The value can be of any type. Let's add a boolean one:
+Valoarea poate avea orice tip. Să adăugăm una de tip `boolean`:
 
 ```js
 user.isAdmin = true;
@@ -62,7 +62,7 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
-To remove a property, we can use `delete` operator:
+Pentru a șterge o proprietate, putem folosi operatorul `delete`:
 
 ```js
 delete user.age;
@@ -70,40 +70,40 @@ delete user.age;
 
 ![user object 3](object-user-delete.svg)
 
-We can also use multiword property names, but then they must be quoted:
+Putem folosi de asemenea mai multe cuvinte ca și nume ale proprietăților, dar acestea trebuie sa fie între ghilimele:
 
 ```js
 let user = {
   name: "John",
   age: 30,
-  "likes birds": true  // multiword property name must be quoted
+  "likes birds": true  // numele proprietăților formate din mai multe cuvinte trebuie să fie între ghilimele
 };
 ```
 
 ![](object-user-props.svg)
 
 
-The last property in the list may end with a comma:
+Ultima proprietate din listă se poate termina cu virgulă:
 ```js
 let user = {
   name: "John",
   age: 30*!*,*/!*
 }
 ```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
+Aceasta se numește virgulă "de sfârșit" sau "agățatoare". In felul acesta este mai ușor de adăugat/șters/mutat în jurul proprietăților, deoarece toate liniile vor fi  asemănătoare.
 
-## Square brackets
+## Paranteze pătrate
 
-For multiword properties, the dot access doesn't work:
+Accesul la proprietățile formate din mai multe cuvinte nu se poate face cu punct:
 
 ```js run
-// this would give a syntax error
+// aceasta va genera o erroare de sintaxă
 user.likes birds = true
 ```
 
-That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+Asta deorece cheia trebuie să fie un identificator valid pentru o variabilă, adică: fără spații și alte limitări.
 
-There's an alternative "square bracket notation" that works with any string:
+Există ca alternativă "notația parantezelor pătrate" care funcționează cu orice fel de șir de caractere:
 
 ```js run
 let user = {};
@@ -118,20 +118,20 @@ alert(user["likes birds"]); // true
 delete user["likes birds"];
 ```
 
-Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
+Acum totul este în regulă. De remarcat că șirul de caractere este citat corespunzător (oricare dintre semnele pentru ghilimele se accepta).
 
-Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
+Cu parantezele pătrate se poate obține numele proprietății ca rezultat al unei expresii -- as opposed to a literal string -- dintr-o variabilă:
 
 ```js
 let key = "likes birds";
 
-// same as user["likes birds"] = true;
+// la fel ca user["likes birds"] = true;
 user[key] = true;
 ```
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
+Aici, variabila `key` poate fi calculată la timpul rulării sau poate depinde de datele introduse de utilizatori. Dupa aceea o putem folosi pentru a accesa proprietatea. Acest lucru ne oferă o flexibilitate mărită.
 
-For instance:
+De exemplu:
 
 ```js run
 let user = {
@@ -145,7 +145,7 @@ let key = prompt("What do you want to know about the user?", "name");
 alert( user[key] ); // John (if enter "name")
 ```
 
-The dot notation cannot be used in a similar way:
+Notația cu punct nu poate fi folosită în același mod:
 
 ```js run
 let user = {
@@ -157,40 +157,40 @@ let key = "name";
 alert( user.key ) // undefined
 ```
 
-### Computed properties
+### Proprietăți calculate
 
-We can use square brackets in an object literal. That's called *computed properties*.
+Putem folosi parantezele pătrate intr-un obiect literal. Asta se numește *proprietate calculată*.
 
-For instance:
+De exemplu:
 
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 
 let bag = {
 *!*
-  [fruit]: 5, // the name of the property is taken from the variable fruit
+  [fruit]: 5, // numele proprietații este luat din variabila fruit
 */!*
 };
 
 alert( bag.apple ); // 5 if fruit="apple"
 ```
 
-The meaning of a computed property is simple: `[fruit]` means that the property name should be taken from `fruit`.
+Semnificația unei proprietăți calculate este simplă: `[fruit]` inseamnă că numele proprietății trebuie obținut din `fruit`.
 
-So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
+Deci, daca un vizitator introduce `"apple"`, `bag` va deveni `{apple: 5}`.
 
-Essentially, that works the same as:
+În principiu, are aceeași funcționalitate ca și:
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 let bag = {};
 
-// take property name from the fruit variable
+// obține numele proprietății din variabila fruit
 bag[fruit] = 5;
 ```
 
-...But looks nicer.
+...Dar arată mai bine.
 
-We can use more complex expressions inside square brackets:
+Putem folosi expresii mai complexe între parantezele pătrate:
 
 ```js
 let fruit = 'apple';
@@ -199,16 +199,16 @@ let bag = {
 };
 ```
 
-Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+Parantezele pătrate sunt mult mai puternice decât notația cu punct. Ele permit orice fel de nume și de variabile pentru proprietăți, dar sunt mai dificil de scris.
 
-So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+Deci, de cele mai multe ori, când numele proprietăților sunt cunoscute și simple se folosește punctul, iar daca avem nevoie de ceva mai complex, trecem la parantezele pătrate.
 
 
 
-````smart header="Reserved words are allowed as property names"
-A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+````smart header="Cuvintele rezervate sunt permise ca nume de proprietăți"
+O variabilă nu poate avea un nume identic cu unul dintre cuvintele rezervate limbajului precum "for", "let", "return" etc.
 
-But for an object property, there's no such restriction. Any name is fine:
+În schimb, pentru o proprietate a unui obiect nu există o astfel de restricție. Orice nume este bun:
 
 ```js run
 let obj = {
@@ -220,31 +220,31 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
-Basically, any name is allowed, but there's a special one: `"__proto__"` that gets special treatment for historical reasons. For instance, we can't set it to a non-object value:
+Practic, orice nume este permis, însă există unul special: `"__proto__"` care primește un tratament preferențial din motive istorice. De exemplu, nu îl putem seta la o valoare non-obiect:
 
 ```js run
 let obj = {};
 obj.__proto__ = 5;
-alert(obj.__proto__); // [object Object], didn't work as intended
+alert(obj.__proto__); // [object Object], nu a funcționat cum ne-am așteptat
 ```
 
-As we see from the code, the assignment to a primitive `5` is ignored.
+După cum vedem din cod, atribuirea către o primitivă `5` este ignorată.
 
-That can become a source of bugs and even vulnerabilities if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
+Acest lucru poate deveni o sursă de bug-uri și chiar vulnerabilități dacă intenționăm să stocăm perechi cheie-valoare arbitrare într-un obiect și să permitem unui vizitator să specifice cheile.
 
-In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+În acest caz vizitatorul poate alege `__proto__` ca și cheie, iar logica de atribuire va fi stricată (după cum se arată mai sus).
 
-There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+Există o modalitate, pe care o vom acoperi mai târziu, de a face obiectele să trateze `__proto__` ca pe o proprietate obișnuită, dar mai întâi trebuie să știm mai multe despre obiecte.
 
-There's also another data structure [Map](info:map-set), that we'll learn in the chapter <info:map-set>, which supports arbitrary keys.
+Există, de asemenea, o altă structură de date [Map](info:map-set), pe care o vom învăța în capitolul <info:map-set>, care acceptă chei arbitrare.
 ````
 
 
-## Property value shorthand
+## Prescurtare (shorthand) pentru valoarea proprietății
 
-In real code we often use existing variables as values for property names.
+În cod real folosim des variabile existente ca valori pentru numele proprietăților.
 
-For instance:
+De exemplu:
 
 ```js run
 function makeUser(name, age) {
@@ -259,60 +259,60 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
+În exemplul de mai sus, proprietățile au aceleași nume ca variabilele. Cazul de utilizare al creării unei proprietăți dintr-o variabilă este atât de comun, încât există un *shorthand al valorii proprietății* pentru a o face mai scurtă.
 
-Instead of `name:name` we can just write `name`, like this:
+In loc de `name:name` putem scrie doar `name`, după cum urmeză:
 
 ```js
 function makeUser(name, age) {
 *!*
   return {
-    name, // same as name: name
-    age   // same as age: age
+    name, // la fel ca name: name
+    age   // la fel ca age: age
     // ...
   };
 */!*
 }
 ```
 
-We can use both normal properties and shorthands in the same object:
+Putem folosi atât proprietăți normale, cât și shorthand-uri în același obiect:
 
 ```js
 let user = {
-  name,  // same as name:name
+  name,  // la fel ca name:name
   age: 30
 };
 ```
 
-## Existence check
+## Verificarea existenței
 
-A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
+O caracteristică notabilă a obiectelor este posibilitatea accesării oricărei proprietăți. Nu va fi nicio eroare dacă proprietatea nu există! Accesarea unei proprietăți inexistente doar returnează `undefined`. Oferă un mod foarte comun de a testa dacă proprietatea există -- de a o obține și a o compara cu undefined:
 
 ```js run
 let user = {};
 
-alert( user.noSuchProperty === undefined ); // true means "no such property"
+alert( user.noSuchProperty === undefined ); // true înseamna "nu există proprietatea"
 ```
 
-There also exists a special operator `"in"` to check for the existence of a property.
+Există, de asemenea, un operator special `"in"` pentru a verifica existența unei proprietăți.
 
-The syntax is:
+Sintaxa este:
 ```js
 "key" in object
 ```
 
-For instance:
+De exemplu:
 
 ```js run
 let user = { name: "John", age: 30 };
 
-alert( "age" in user ); // true, user.age exists
-alert( "blabla" in user ); // false, user.blabla doesn't exist
+alert( "age" in user ); // true, user.age există
+alert( "blabla" in user ); // false, user.blabla nu există
 ```
 
-Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
+Luați aminte că, la stânga operatorului `in` trebuie sa fie un *nume de proprietate*. Usual este un sir caractere între ghilimele.
 
-If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
+Daca omitem ghilimelele, asta ar însemna că o variabilă care conține de fapt numele va fi testată. De exemplu:
 
 ```js run
 let user = { age: 30 };
