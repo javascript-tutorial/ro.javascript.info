@@ -480,7 +480,7 @@ Obiectele nu sunt așa.
 
 **O variabilă nu stochează obiectul în sine, ci "adresa lui în memorie", cu alte cuvinte "o referință" la el.**
 
-Mai jos este imaginea pentru obiectul:
+Mai jos este imaginea obiectului:
 
 ```js
 let user = {
@@ -530,13 +530,13 @@ Operatorii de egalitate `==` și egalitate strictă `===` funcționează la fel 
 
 **Două obiecte sunt egale numai dacă ele reprezintă același obiect.**
 
-De exemplu, dacă două variabile referă același obiect, acestea sunt egale:
+De exemplu, dacă două variabile fac referire la același obiect, acestea sunt egale:
 
 ```js run
 let a = {};
 let b = a; // copiază referința
 
-alert( a == b ); // true, ambele variabile referă același obiect
+alert( a == b ); // true, ambele variabile fac referire la același obiect
 alert( a === b ); // true
 ```
 
@@ -569,9 +569,9 @@ user.age = 25; // (*)
 alert(user.age); // 25
 ```
 
-Poate părea că linia `(*)` va genera o eroare, dar nu, nu este absolut nicio problemă. Asta deoarece `const` fixează doar valoare lui `user` în sine. Iar aici `user` stochează referința către același obiect tot timpul. Linia `(*)` este *în interiorul* obiectului, și nu realocă `user`-ul.
+Poate părea că linia `(*)` va genera o eroare, dar nu, nu este absolut nicio problemă. Asta deoarece `const` fixează doar valoarea lui `user` în sine. Iar aici `user` stochează referința către același obiect tot timpul. Linia `(*)` este *în interiorul* obiectului, și nu realocă `user`-ul.
 
-Atribuirea `const` va genera o eroare dacă încercăm să-i alocăm altceva, de exemplu:
+Atribuirea `const` va genera o eroare dacă încercăm să-i atribuim altceva, de exemplu:
 
 ```js run
 const user = {
@@ -579,7 +579,7 @@ const user = {
 };
 
 *!*
-// Eroare (nu putem realoca user)
+// Eroare (nu putem reatribui user)
 */!*
 user = {
   name: "Pete"
@@ -590,7 +590,7 @@ user = {
 
 ## Clonarea și contopirea, Object.assign
 
-Așadar, copierea unei variabile obiect crează o referință în plus la același obiect.
+Așadar, copierea unei variabile obiect creează o referință în plus la același obiect.
 
 Dar dacă avem nevoie să duplicăm un obiect? Să creăm o copie independentă, o clonă?
 
@@ -709,7 +709,7 @@ user.sizes.width++;       // modifică o proprietate într-un loc
 alert(clone.sizes.width); // 51, vedem rezultatul în altă parte
 ```
 
-Pentru a rezolva problema, ar trebui să folosim bucla de clonare care fiecare valoare a `user[key]` iar dacă este un obiect să replicheze și structura acestuia. Acest proces se numește "clonare profundă".
+Pentru a rezolva problema, ar trebui să folosim bucla de clonare care examinează fiecare valoare a lui `user[key]` iar dacă este un obiect să replicheze și structura acestuia. Acest proces se numește "clonare profundă".
 
 Există un algoritm standard pentru clonarea profundă care gestionează cazul de mai sus și cazuri mai complexe, numit [Algoritm de clonare structurată](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). Pentru a nu reinventa roata, putem folosi o implementare deja funcțională în librăria JavaScript [lodash](https://lodash.com), metoda se numește [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
@@ -720,7 +720,7 @@ Există un algoritm standard pentru clonarea profundă care gestionează cazul d
 Obiectele sunt tablouri asociative cu mai multe caracteristici speciale.
 
 Ele stochează proprietăți (perechi cheie-valoare), unde:
-- Cheile proprietății trebuie să fie șiruri sau simboluri (de obicei șiruri).
+- Proprietățile chei trebuie să fie șiruri sau simboluri (de obicei șiruri).
 - Valorile pot fi de orice tip.
 
 Pentru a accesa o proprietate putem folosi:
