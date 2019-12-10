@@ -741,8 +741,8 @@ Ceea ce am învățat în acest capitol se numește "obiect simplu", sau doar `O
 Există multe alte feluri de obiecte în JavaScript:
 
 - `Array` pentru a stoca colecții ordonate de date,
-- `Date` pentru a stoca informații despre dată și oră,
-- `Error` pentru a stoca informațiile pentru erori.
+- `Date` pentru a stoca informații despre dată și timp,
+- `Error` pentru a stoca informațiile despre erori.
 - ...Și așa mai departe.
 
 Obiectele au caracteristicile lor speciale pe care le vom studia mai târziu. Câteodată oamenii spun ceva de genul "Array type" sau "Date type", dar formal ele nu sunt tipuri proprii , ci aparțin unui singur tip de date "object", pe care îl extind în diferite moduri.
