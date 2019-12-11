@@ -4,6 +4,6 @@ importance: 5
 
 # Rewrite to class
 
-The `Clock` class is written in functional style. Rewrite it the "class" syntax.
+Clasa `Clock` este scrisă în stil funcțional. Rescrie-o la sintaxa "class".
 
-P.S. The clock ticks in the console, open it to see.
+P.S. Ceasul ticăie în consolă, deschide-o ca să vezi.
