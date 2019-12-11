@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Sum object properties
+# Însumați proprietățile obiectului
 
-We have an object storing salaries of our team:
+Avem un obiect care stochează salariile persoanelor din echipa noastră:
 
 ```js
 let salaries = {
@@ -14,6 +14,6 @@ let salaries = {
 }
 ```
 
-Write the code to sum all salaries and store in the variable `sum`. Should be `390` in the example above.
+Scrieți codul pentru a însuma toate salariile și salvați suma în variabila `sum`. Rezultatul din exemplul de mai sus ar trebui să fie `390`.
 
-If `salaries` is empty, then the result must be `0`.
+Dacă obiectul `salaries` este gol, atunci rezultatul trebuie să fie `0`.

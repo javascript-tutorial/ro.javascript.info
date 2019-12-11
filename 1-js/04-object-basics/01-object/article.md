@@ -1,60 +1,60 @@
 
-# Objects
+# Obiecte
 
-As we know from the chapter <info:types>, there are seven data types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+Așa cum știm din capitolul <info:types>, în JavaScript există șapte tipuri de date. Șase dintre ele sunt denumite "primitive", pentru că ele conțin numai un singur lucru (fie un string, un număr sau altceva).
 
-In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+În contrast, obiectele sunt folosite pentru a stoca colecții indexate de date diferite si alte entități complexe. În JavaScript, obiectele pătrund în aproape toate aspectele limbajului. De aceea trebuie să ințelegem obiectele înainte de a intra mai adânc în altă parte.
 
-An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
+Un obiect poate fi creat folosind acoladele `{…}` cu o listă opțională de *proprietăți*. O proprietate este o pereche "cheie: valoare", unde `cheie` este un string (denumit si "numele proprietății"), iar `valoare` poate fi orice.
 
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
+Ne putem imagina un obiect ca fiind un sertar ce conține dosare semnate. Fiecare bucățică de informație este stocată în sertarul ei după `cheie`. Este ușor să găsești un dosar după nume sau să adaugi/îndepărtezi unul.
 
 ![](object.svg)
 
-An empty object ("empty cabinet") can be created using one of two syntaxes:
+Un obiect gol ("sertar gol") poate fi creat folosind una dintre următoarele sintaxe:
 
 ```js
-let user = new Object(); // "object constructor" syntax
-let user = {};  // "object literal" syntax
+let user = new Object(); // sintaxa "constructor obiect"
+let user = {};  // sintaxa "obiect literal"
 ```
 
 ![](object-user-empty.svg)
 
-Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
+Uzual se folosesc acoladele `{...}`. Această declarație este denumită  *obiect literal*.
 
-## Literals and properties
+## Literalele și proprietățile
 
-We can immediately put some properties into `{...}` as "key: value" pairs:
+Putem pune imediat câteva proprietăți în `{...}` ca și perechi "cheie: valoare":
 
 ```js
-let user = {     // an object
-  name: "John",  // by key "name" store value "John"
-  age: 30        // by key "age" store value 30
+let user = {     // un obiect
+  name: "John",  // după cheia "name" stocăm valoarea "John"
+  age: 30        // dupa cheia "age" stocăm valoarea 30
 };
 ```
 
-A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
+O proprietate are o cheie (denumită și "nume" sau "identificator") înainte de semnul două puncte `":"` și o valoare la dreapta semnului.
 
-In the `user` object, there are two properties:
+În obiectul `user`, există două proprietăți:
 
-1. The first property has the name `"name"` and the value `"John"`.
-2. The second one has the name `"age"` and the value `30`.
+1. Prima proprietate are numele `"name"` și valoarea `"John"`.
+2. A doua are numele `"age"` și valoarea `30`.
 
-The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+Obiectul rezultat `user` poate fi imaginat ca un sertar cu două dosare marcate cu "name" respectiv "age".
 
 ![user object](object-user.svg)
 
-We can add, remove and read files from it any time.
+Putem adăuga, șterge sau citi dosare din sertar la orice moment.
 
-Property values are accessible using the dot notation:
+Valorile proprietăților sunt accesibile folosind notația cu punct.
 
 ```js
-// get property values of the object:
+// citește valorile proprietăților obiectului:
 alert( user.name ); // John
 alert( user.age ); // 30
 ```
 
-The value can be of any type. Let's add a boolean one:
+Valoarea poate avea orice tip. Să adăugăm una de tip `boolean`:
 
 ```js
 user.isAdmin = true;
@@ -62,7 +62,7 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
-To remove a property, we can use `delete` operator:
+Pentru a șterge o proprietate, putem folosi operatorul `delete`:
 
 ```js
 delete user.age;
@@ -70,40 +70,40 @@ delete user.age;
 
 ![user object 3](object-user-delete.svg)
 
-We can also use multiword property names, but then they must be quoted:
+Putem folosi de asemenea mai multe cuvinte ca și nume ale proprietăților, dar acestea trebuie sa fie între ghilimele:
 
 ```js
 let user = {
   name: "John",
   age: 30,
-  "likes birds": true  // multiword property name must be quoted
+  "likes birds": true  // numele proprietăților formate din mai multe cuvinte trebuie să fie între ghilimele
 };
 ```
 
 ![](object-user-props.svg)
 
 
-The last property in the list may end with a comma:
+Ultima proprietate din listă se poate termina cu virgulă:
 ```js
 let user = {
   name: "John",
   age: 30*!*,*/!*
 }
 ```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
+Aceasta se numește virgulă "de sfârșit" sau "agățatoare". In felul acesta este mai ușor de adăugat/șters/mutat în jurul proprietăților, deoarece toate liniile vor fi  asemănătoare.
 
-## Square brackets
+## Paranteze pătrate
 
-For multiword properties, the dot access doesn't work:
+Accesul la proprietățile formate din mai multe cuvinte nu se poate face cu punct:
 
 ```js run
-// this would give a syntax error
+// aceasta va genera o erroare de sintaxă
 user.likes birds = true
 ```
 
-That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+Asta deorece cheia trebuie să fie un identificator valid pentru o variabilă, adică: fără spații și alte limitări.
 
-There's an alternative "square bracket notation" that works with any string:
+Există ca alternativă "notația parantezelor pătrate" care funcționează cu orice fel de șir de caractere:
 
 ```js run
 let user = {};
@@ -118,20 +118,20 @@ alert(user["likes birds"]); // true
 delete user["likes birds"];
 ```
 
-Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
+Acum totul este în regulă. De remarcat că șirul de caractere este citat corespunzător (oricare dintre semnele pentru ghilimele se accepta).
 
-Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
+Cu parantezele pătrate se poate obține numele proprietății ca rezultat al unei expresii -- as opposed to a literal string -- dintr-o variabilă:
 
 ```js
 let key = "likes birds";
 
-// same as user["likes birds"] = true;
+// la fel ca user["likes birds"] = true;
 user[key] = true;
 ```
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
+Aici, variabila `key` poate fi calculată la timpul rulării sau poate depinde de datele introduse de utilizatori. Dupa aceea o putem folosi pentru a accesa proprietatea. Acest lucru ne oferă o flexibilitate mărită.
 
-For instance:
+De exemplu:
 
 ```js run
 let user = {
@@ -145,7 +145,7 @@ let key = prompt("What do you want to know about the user?", "name");
 alert( user[key] ); // John (if enter "name")
 ```
 
-The dot notation cannot be used in a similar way:
+Notația cu punct nu poate fi folosită în același mod:
 
 ```js run
 let user = {
@@ -157,40 +157,40 @@ let key = "name";
 alert( user.key ) // undefined
 ```
 
-### Computed properties
+### Proprietăți calculate
 
-We can use square brackets in an object literal. That's called *computed properties*.
+Putem folosi parantezele pătrate intr-un obiect literal. Asta se numește *proprietate calculată*.
 
-For instance:
+De exemplu:
 
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 
 let bag = {
 *!*
-  [fruit]: 5, // the name of the property is taken from the variable fruit
+  [fruit]: 5, // numele proprietații este luat din variabila fruit
 */!*
 };
 
 alert( bag.apple ); // 5 if fruit="apple"
 ```
 
-The meaning of a computed property is simple: `[fruit]` means that the property name should be taken from `fruit`.
+Semnificația unei proprietăți calculate este simplă: `[fruit]` inseamnă că numele proprietății trebuie obținut din `fruit`.
 
-So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
+Deci, daca un vizitator introduce `"apple"`, `bag` va deveni `{apple: 5}`.
 
-Essentially, that works the same as:
+În principiu, are aceeași funcționalitate ca și:
 ```js run
 let fruit = prompt("Which fruit to buy?", "apple");
 let bag = {};
 
-// take property name from the fruit variable
+// obține numele proprietății din variabila fruit
 bag[fruit] = 5;
 ```
 
-...But looks nicer.
+...Dar arată mai bine.
 
-We can use more complex expressions inside square brackets:
+Putem folosi expresii mai complexe între parantezele pătrate:
 
 ```js
 let fruit = 'apple';
@@ -199,16 +199,16 @@ let bag = {
 };
 ```
 
-Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+Parantezele pătrate sunt mult mai puternice decât notația cu punct. Ele permit orice fel de nume și de variabile pentru proprietăți, dar sunt mai dificil de scris.
 
-So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+Deci, de cele mai multe ori, când numele proprietăților sunt cunoscute și simple se folosește punctul, iar daca avem nevoie de ceva mai complex, trecem la parantezele pătrate.
 
 
 
-````smart header="Reserved words are allowed as property names"
-A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+````smart header="Cuvintele rezervate sunt permise ca nume de proprietăți"
+O variabilă nu poate avea un nume identic cu unul dintre cuvintele rezervate limbajului precum "for", "let", "return" etc.
 
-But for an object property, there's no such restriction. Any name is fine:
+În schimb, pentru o proprietate a unui obiect nu există o astfel de restricție. Orice nume este bun:
 
 ```js run
 let obj = {
@@ -220,31 +220,31 @@ let obj = {
 alert( obj.for + obj.let + obj.return );  // 6
 ```
 
-Basically, any name is allowed, but there's a special one: `"__proto__"` that gets special treatment for historical reasons. For instance, we can't set it to a non-object value:
+Practic, orice nume este permis, însă există unul special: `"__proto__"` care primește un tratament preferențial din motive istorice. De exemplu, nu îl putem seta la o valoare non-obiect:
 
 ```js run
 let obj = {};
 obj.__proto__ = 5;
-alert(obj.__proto__); // [object Object], didn't work as intended
+alert(obj.__proto__); // [object Object], nu a funcționat cum ne-am așteptat
 ```
 
-As we see from the code, the assignment to a primitive `5` is ignored.
+După cum vedem din cod, atribuirea către o primitivă `5` este ignorată.
 
-That can become a source of bugs and even vulnerabilities if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
+Acest lucru poate deveni o sursă de bug-uri și chiar vulnerabilități dacă intenționăm să stocăm perechi cheie-valoare arbitrare într-un obiect și să permitem unui vizitator să specifice cheile.
 
-In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+În acest caz vizitatorul poate alege `__proto__` ca și cheie, iar logica de atribuire va fi stricată (după cum se arată mai sus).
 
-There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+Există o modalitate, pe care o vom acoperi mai târziu, de a face obiectele să trateze `__proto__` ca pe o proprietate obișnuită, dar mai întâi trebuie să știm mai multe despre obiecte.
 
-There's also another data structure [Map](info:map-set), that we'll learn in the chapter <info:map-set>, which supports arbitrary keys.
+Există, de asemenea, o altă structură de date [Map](info:map-set), pe care o vom învăța în capitolul <info:map-set>, care acceptă chei arbitrare.
 ````
 
 
-## Property value shorthand
+## Prescurtare (shorthand) pentru valoarea proprietății
 
-In real code we often use existing variables as values for property names.
+În cod real folosim des variabile existente ca valori pentru numele proprietăților.
 
-For instance:
+De exemplu:
 
 ```js run
 function makeUser(name, age) {
@@ -259,102 +259,102 @@ let user = makeUser("John", 30);
 alert(user.name); // John
 ```
 
-In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
+În exemplul de mai sus, proprietățile au aceleași nume ca variabilele. Cazul de utilizare al creării unei proprietăți dintr-o variabilă este atât de comun, încât există un *shorthand al valorii proprietății* pentru a o face mai scurtă.
 
-Instead of `name:name` we can just write `name`, like this:
+In loc de `name:name` putem scrie doar `name`, după cum urmeză:
 
 ```js
 function makeUser(name, age) {
 *!*
   return {
-    name, // same as name: name
-    age   // same as age: age
+    name, // la fel ca name: name
+    age   // la fel ca age: age
     // ...
   };
 */!*
 }
 ```
 
-We can use both normal properties and shorthands in the same object:
+Putem folosi atât proprietăți normale, cât și shorthand-uri în același obiect:
 
 ```js
 let user = {
-  name,  // same as name:name
+  name,  // la fel ca name:name
   age: 30
 };
 ```
 
-## Existence check
+## Verificarea existenței
 
-A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
+O caracteristică notabilă a obiectelor este posibilitatea accesării oricărei proprietăți. Nu va fi nicio eroare dacă proprietatea nu există! Accesarea unei proprietăți inexistente doar returnează `undefined`. Oferă un mod foarte comun de a testa dacă proprietatea există -- de a o obține și a o compara cu undefined:
 
 ```js run
 let user = {};
 
-alert( user.noSuchProperty === undefined ); // true means "no such property"
+alert( user.noSuchProperty === undefined ); // true înseamna "nu există proprietatea"
 ```
 
-There also exists a special operator `"in"` to check for the existence of a property.
+Există, de asemenea, un operator special `"in"` pentru a verifica existența unei proprietăți.
 
-The syntax is:
+Sintaxa este:
 ```js
 "key" in object
 ```
 
-For instance:
+De exemplu:
 
 ```js run
 let user = { name: "John", age: 30 };
 
-alert( "age" in user ); // true, user.age exists
-alert( "blabla" in user ); // false, user.blabla doesn't exist
+alert( "age" in user ); // true, user.age există
+alert( "blabla" in user ); // false, user.blabla nu există
 ```
 
-Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
+Luați aminte că, la stânga operatorului `in` trebuie sa fie un *nume de proprietate*. Uzual numele este un șir de caractere între ghilimele.
 
-If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
+Dacă omitem ghilimelele, asta ar însemna că o variabilă care conține de fapt numele va fi testată. De exemplu:
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
-alert( *!*key*/!* in user ); // true, takes the name from key and checks for such property
+alert( *!*key*/!* in user ); // true, obține numele din key și verifică dacă există această proprietate
 ```
 
-````smart header="Using \"in\" for properties that store `undefined`"
-Usually, the strict comparison `"=== undefined"` check the property existance just fine. But there's a special case when it fails, but `"in"` works correctly.
+````smart header="Folosirea lui \"in\" pentru proprietăți care conțin `undefined`"
+În mod normal, comparația strictă `"=== undefined"` verifică existența proprietății foarte bine. Există însă un caz unde eșuează, cu toate că operatorul `"in"` funcționează corect.
 
-It's when an object property exists, but stores `undefined`:
+Se întâmplă atunci când proprietatea există, dar conține `undefined`:
 
 ```js run
 let obj = {
   test: undefined
 };
 
-alert( obj.test ); // it's undefined, so - no such property?
+alert( obj.test ); // este ”undefined”, deci - nu există proprietatea?
 
-alert( "test" in obj ); // true, the property does exist!
+alert( "test" in obj ); // true, proprietatea există!
 ```
 
 
-In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+In codul de mai sus, proprietatea `obj.test` tehnic există. Deci operatorul `in` funcționează corespunzător.
 
-Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+Situații de genul ăsta apar foarte rar, deoarece `undefined` nu este asignat în mod normal. Cel mai des folosim `null` pentru "unknown" sau valori "empty". Prin urmare operatorul `in` este un element exotic în codul nostru.
 ````
 
-## The "for..in" loop
+## Bucla "for..in"
 
-To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we studied before.
+Pentru a traversa toate cheile unui obiect, există o formă specială de buclă: `for..in`. Aceasta este complet diferită de construcția buclei `for(;;)` pe care am studiat-o anterior.
 
-The syntax:
+Sintaxa:
 
 ```js
 for (key in object) {
-  // executes the body for each key among object properties
+  // execută conținutul pentru fiecare cheie aparținând proprietăților obiectului
 }
 ```
 
-For instance, let's output all properties of `user`:
+De exemplu, să afișăm toate proprietățile `user`-ului:
 
 ```js run
 let user = {
@@ -364,25 +364,25 @@ let user = {
 };
 
 for (let key in user) {
-  // keys
+  // chei
   alert( key );  // name, age, isAdmin
-  // values for the keys
+  // valorile cheilor
   alert( user[key] ); // John, 30, true
 }
 ```
 
-Note that all "for" constructs allow us to declare the looping variable inside the loop, like `let key` here.
+De remarcat, ca pentru construcțiile "for", ne este permis să declarăm variabila de buclă în interiorul buclei, precum `let key` de aici.
 
-Also, we could use another variable name here instead of `key`. For instance, `"for (let prop in obj)"` is also widely used.
+De asemenea, putem folosi alt nume pentru variabila noastră, în loc de `key`. De exemplu, declarația `"for (let prop in obj)"` este de și ea des folosită.
 
 
-### Ordered like an object
+### Ordonarea ca un obiect
 
-Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
+Sunt obiectele ordonate? Cu alte cuvinte, dacă traversăm un obiect, obținem toate proprietățile în aceeași ordine în care au fost adăugate? Ne putem baza pe asta?
 
-The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
+Răspunsul scurt este: "ordonate intr-o manieră specială": proprietățile de tip integer sunt sortate, celelalte apar în ordinea creării. Detaliile urmează.
 
-As an example, let's consider an object with the phone codes:
+Ca și exemplu, să considerăm un obiect ce conține prefixe telefonice:
 
 ```js run
 let codes = {
@@ -400,48 +400,48 @@ for (let code in codes) {
 */!*
 ```
 
-The object may be used to suggest a list of options to the user. If we're making a site mainly for German audience then we probably want `49` to be the first.
+Obiectul poate fi folosit pentru a sugera o listă de opțiuni utilizatorilor. Dacă construim un site pentru audiență germană, atunci probabil dorim ca `49` să fie primul.
 
-But if we run the code, we see a totally different picture:
+Dar dacă rulăm codul, vedem o cu totul altă imagine:
 
-- USA (1) goes first
-- then Switzerland (41) and so on.
+- USA (1) este primul
+- apoi Switzerland (41) și așa mai departe.
 
-The phone codes go in the ascending sorted order, because they are integers. So we see `1, 41, 44, 49`.
+Prefixele sunt sortate in ordine crescătoare, deoarece sunt de tip integer. Deci vedem `1, 41, 44, 49`.
 
-````smart header="Integer properties? What's that?"
-The "integer property" term here means a string that can be converted to-and-from an integer without a change.
+````smart header="Proprietăți tip Integer? Ce-i aia?"
+Termenul "Proprietate integer" de aici, semnifică un string care poate fi convertit în-și-din integer fără nicio modificare.
 
-So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
+Deci, "49" este un nume de proprietate de tip integer, deoarece când este transformat într-un integer și înapoi, el rămâne neschimbat. Dar "+49" și "1.2" nu:
 
 ```js run
-// Math.trunc is a built-in function that removes the decimal part
-alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
-alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
-alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+// Math.trunc este o funcție încorporată în limbaj care îndepărtează partea zecimală
+alert( String(Math.trunc(Number("49"))) ); // "49", la fel, proprietate de tip integer
+alert( String(Math.trunc(Number("+49"))) ); // "49", nu este la fel ca "+49" ⇒ proprietatea nu este de tip integer
+alert( String(Math.trunc(Number("1.2"))) ); // "1", nu este la fel ca "1.2" ⇒ proprietatea nu este de tip integer
 ```
 ````
 
-...On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
+...Pe de altă parte, dacă cheile nu sunt de tip integer, atunci ele sunt listate în ordinea creării, de exemplu:
 
 ```js run
 let user = {
   name: "John",
   surname: "Smith"
 };
-user.age = 25; // add one more
+user.age = 25; // adaugă incă o proprietate
 
 *!*
-// non-integer properties are listed in the creation order
+// proprietățile non-integer sunt listate în ordinea creării
 */!*
 for (let prop in user) {
   alert( prop ); // name, surname, age
 }
 ```
 
-So, to fix the issue with the phone codes, we can "cheat" by making the codes non-integer. Adding a plus `"+"` sign before each code is enough.
+Deci pentru a rezolva problema cu prefixele telefonice, putem "trișa" transformând prefixele în non-integer. Adăugarea semnului plus `"+"` înainte de fiecare prefix este suficientă.
 
-Like this:
+Cam așa:
 
 ```js run
 let codes = {
@@ -457,30 +457,30 @@ for (let code in codes) {
 }
 ```
 
-Now it works as intended.
+Acum funcționează cum trebuie.
 
-## Copying by reference
+## Copierea prin referință
 
-One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
+Una dintre diferențele fundamentale dintre obiecte și primitive este că obiectele sunt stocate și copiate "după referință".
 
-Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
+Valorile primitivelor: șiruri, numere, booleane -- sunt atribuite / copiate ca "valoare întreagă".
 
-For instance:
+De exemplu:
 
 ```js
 let message = "Hello!";
 let phrase = message;
 ```
 
-As a result we have two independent variables, each one is storing the string `"Hello!"`.
+Ca rezultat avem două variabile independente, fiecare dintre ele stochează șirul `"Hello!"`.
 
 ![](variable-copy-value.svg)
 
-Objects are not like that.
+Obiectele nu sunt așa.
 
-**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
+**O variabilă nu stochează obiectul în sine, ci "adresa lui în memorie", cu alte cuvinte "o referință" la el.**
 
-Here's the picture for the object:
+Mai jos este imaginea obiectului:
 
 ```js
 let user = {
@@ -490,25 +490,25 @@ let user = {
 
 ![](variable-contains-reference.svg)
 
-Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
+Aici, obiectul este stocat undeva în memorie, iar variabila `user` are o "referință" la el.
 
-**When an object variable is copied -- the reference is copied, the object is not duplicated.**
+**Când o variabilă obiect este copiată -- referința este copiată, obiectul nu este duplicat.**
 
-If we imagine an object as a cabinet, then a variable is a key to it. Copying a variable duplicates the key, but not the cabinet itself.
+Dacă ne imaginăm obiectul ca un sertar, atunci variabila este o cheie pentru sertar. Copierea unei variabile duplică cheia, dar nu sertarul în sine.
 
-For instance:
+De exemplu:
 
 ```js no-beautify
 let user = { name: "John" };
 
-let admin = user; // copy the reference
+let admin = user; // copiază referința
 ```
 
-Now we have two variables, each one with the reference to the same object:
+Acum avem două variabile, fiecare dintre ele cu referință la același obiect:
 
 ![](variable-copy-reference.svg)
 
-We can use any variable to access the cabinet and modify its contents:
+Putem utiliza oricare dintre variabile pentru a accesa sertarul și a-i modifica conținutul:
 
 ```js run
 let user = { name: 'John' };
@@ -516,46 +516,46 @@ let user = { name: 'John' };
 let admin = user;
 
 *!*
-admin.name = 'Pete'; // changed by the "admin" reference
+admin.name = 'Pete'; // modificat de referința "admin"
 */!*
 
-alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
+alert(*!*user.name*/!*); // 'Pete', modificările sunt văzute prin referința "user"
 ```
 
-The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
+Exemplul de mai sus demonstrează ca există doar un obiect. Ca și cum am avea un sertar cu două chei și folosim una dintre ele (`admin`) să-l deschidem. Apoi, dacă mai târziu folosim cealaltă cheie (`user`) putem vedea modificările.
 
-### Comparison by reference
+### Compararea prin referință
 
-The equality `==` and strict equality `===` operators for objects work exactly the same.
+Operatorii de egalitate `==` și egalitate strictă `===` funcționează la fel și pentru obiecte.
 
-**Two objects are equal only if they are the same object.**
+**Două obiecte sunt egale numai dacă ele reprezintă același obiect.**
 
-For instance, if two variables reference the same object, they are equal:
+De exemplu, dacă două variabile fac referire la același obiect, acestea sunt egale:
 
 ```js run
 let a = {};
-let b = a; // copy the reference
+let b = a; // copiază referința
 
-alert( a == b ); // true, both variables reference the same object
+alert( a == b ); // true, ambele variabile fac referire la același obiect
 alert( a === b ); // true
 ```
 
-And here two independent objects are not equal, even though both are empty:
+Iar aici, două obiecte independente nu sunt egale, deși ambele sunt goale:
 
 ```js run
 let a = {};
-let b = {}; // two independent objects
+let b = {}; // două obiecte independente
 
 alert( a == b ); // false
 ```
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
+Pentru comparații de genul `obj1 > obj2` sau pentru o comparație contra unei primitive `obj == 5`, obiectele sunt convertite la primitive. Vom studia cum funcționează conversia obiectelor în curând, dar pentru a spune adevărul, asemenea comparații rareori sunt necesare si de obicei sunt un rezultat al unei greșeli de programare.
 
-### Const object
+### Obiectul declarat const
 
-An object declared as `const` *can* be changed.
+Un obiect declarat cu `const` *poate* fi modificat.
 
-For instance:
+De exemplu:
 
 ```js run
 const user = {
@@ -569,9 +569,9 @@ user.age = 25; // (*)
 alert(user.age); // 25
 ```
 
-It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes only value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
+Poate părea că linia `(*)` va genera o eroare, dar nu, nu este absolut nicio problemă. Asta deoarece `const` fixează doar valoarea lui `user` în sine. Iar aici `user` stochează referința către același obiect tot timpul. Linia `(*)` este *în interiorul* obiectului, și nu realocă `user`-ul.
 
-The `const` would give an error if we try to set `user` to something else, for instance:
+Atribuirea `const` va genera o eroare dacă încercăm să-i atribuim altceva, de exemplu:
 
 ```js run
 const user = {
@@ -579,26 +579,26 @@ const user = {
 };
 
 *!*
-// Error (can't reassign user)
+// Eroare (nu putem reatribui user)
 */!*
 user = {
   name: "Pete"
 };
 ```
 
-...But what if we want to make constant object properties? So that `user.age = 25` would give an error. That's possible too. We'll cover it in the chapter <info:property-descriptors>.
+...Dar dacă am încerca să declarăm constantă o proprietate a obiectului? Astfel încât `user.age = 25` să genereze o eroare. Se poate și asta. Aceste aspecte le vom acoperi în capitolul <info:property-descriptors>.
 
-## Cloning and merging, Object.assign
+## Clonarea și contopirea, Object.assign
 
-So, copying an object variable creates one more reference to the same object.
+Așadar, copierea unei variabile obiect creează o referință în plus la același obiect.
 
-But what if we need to duplicate an object? Create an independent copy, a clone?
+Dar dacă avem nevoie să duplicăm un obiect? Să creăm o copie independentă, o clonă?
 
-That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. Actually, that's rarely needed. Copying by reference is good most of the time.
+Bineințeles că se poate, dar este nițel mai dificil, deoarece nu există o funcție incorporată în JavaScript care să facă acest lucru. De fapt, nu prea se folosește. Copierea prin referință este bună de cele mai multe ori.
 
-But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
+Dar dacă ne dorim cu adevărat asta, atunci trebuie să creăm un obiect nou și să reproducem structura celui existent, prin iterarea proprietăților sale și copierea acestora la nivel primitiv.
 
-Like this:
+Cum ar fi:
 
 ```js run
 let user = {
@@ -607,7 +607,7 @@ let user = {
 };
 
 *!*
-let clone = {}; // the new empty object
+let clone = {}; // un nou obiect gol
 
 // let's copy all user properties into it
 for (let key in user) {
@@ -615,24 +615,24 @@ for (let key in user) {
 }
 */!*
 
-// now clone is a fully independent clone
-clone.name = "Pete"; // changed the data in it
+// acum clone este o clona independentă
+clone.name = "Pete"; // am modificat valoarea lui name
 
-alert( user.name ); // still John in the original object
+alert( user.name ); // tot John a rămas în obiectul original
 ```
 
-Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
+De asemenea, putem utiliza metoda [Object.assign](mdn:js/Object/assign) pentru asta.
 
-The syntax is:
+Sintaxa este:
 
 ```js
 Object.assign(dest, [src1, src2, src3...])
 ```
 
-- Arguments `dest`, and `src1, ..., srcN` (can be as many as needed) are objects.
-- It copies the properties of all objects `src1, ..., srcN` into `dest`. In other words, properties of all arguments starting from the 2nd are copied into the 1st. Then it returns `dest`.
+- Argumentele `dest`, și `src1, ..., srcN` (pot fi oricâte avem nevoie) sunt obiecte.
+- Copiază proprietățile tuturor obiectelor `src1, ..., srcN` în obiectul destinație `dest`. Cu alte cuvinte, proprietățile tuturor argumentelor furnizate de la al doilea încolo sunt copiate în primul. După aceea returnează `dest`.
 
-For instance, we can use it to merge several objects into one:
+De exemplu, putem folosi această metodă pentru a contopi mai multe obiecte într-unul singur.
 ```js
 let user = { name: "John" };
 
@@ -640,25 +640,25 @@ let permissions1 = { canView: true };
 let permissions2 = { canEdit: true };
 
 *!*
-// copies all properties from permissions1 and permissions2 into user
+// copiază toate proprietățile din permissions1 și permissions2 în user
 Object.assign(user, permissions1, permissions2);
 */!*
 
-// now user = { name: "John", canView: true, canEdit: true }
+// acum user = { name: "John", canView: true, canEdit: true }
 ```
 
-If the receiving object (`user`) already has the same named property, it will be overwritten:
+Dacă obiectul receptor (`user`) are deja aceeași proprietate, aceasta va fi rescrisă:
 
 ```js
 let user = { name: "John" };
 
-// overwrite name, add isAdmin
+// rescrie name, adaugă isAdmin
 Object.assign(user, { name: "Pete", isAdmin: true });
 
-// now user = { name: "Pete", isAdmin: true }
+// acum user = { name: "Pete", isAdmin: true }
 ```
 
-We also can use `Object.assign` to replace the loop for simple cloning:
+Putem folosi `Object.assign` pentru a înlocui bucla pentru clonare simplă:
 
 ```js
 let user = {
@@ -671,11 +671,11 @@ let clone = Object.assign({}, user);
 */!*
 ```
 
-It copies all properties of `user` into the empty object and returns it. Actually, the same as the loop, but shorter.
+Copiază toate proprietățile obiectului `user` într-un obiect gol și apoi îl returnează. De fapt, la fel ca bucla, dar mai scurt.
 
-Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
+Până acum am presupus că toate proprietățile obiectului `user` sunt primitive. Însă proprietățile pot fi referințe către alte obiecte. Ce facem cu ele?
 
-Like this:
+De exemplu:
 ```js run
 let user = {
   name: "John",
@@ -688,9 +688,9 @@ let user = {
 alert( user.sizes.height ); // 182
 ```
 
-Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` is an object, it will be copied by reference. So `clone` and `user` will share the same sizes:
+Acum nu mai este suficient să copiem `clone.sizes = user.sizes`, pentru că `user.sizes` este un obiect, și va fi copiat după referință. Deci `clone` și `user` vor partaja același obiect sizes:
 
-Like this:
+Așa:
 ```js run
 let user = {
   name: "John",
@@ -702,49 +702,49 @@ let user = {
 
 let clone = Object.assign({}, user);
 
-alert( user.sizes === clone.sizes ); // true, same object
+alert( user.sizes === clone.sizes ); // true, același obiect
 
-// user and clone share sizes
-user.sizes.width++;       // change a property from one place
-alert(clone.sizes.width); // 51, see the result from the other one
+// user și clone partajează sizes
+user.sizes.width++;       // modifică o proprietate într-un loc
+alert(clone.sizes.width); // 51, vedem rezultatul în altă parte
 ```
 
-To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
+Pentru a rezolva problema, ar trebui să folosim bucla de clonare care examinează fiecare valoare a lui `user[key]` iar dacă este un obiect să replicheze și structura acestuia. Acest proces se numește "clonare profundă".
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+Există un algoritm standard pentru clonarea profundă care gestionează cazul de mai sus și cazuri mai complexe, numit [Algoritm de clonare structurată](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). Pentru a nu reinventa roata, putem folosi o implementare deja funcțională în librăria JavaScript [lodash](https://lodash.com), metoda se numește [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 
 
-## Summary
+## Rezumat
 
-Objects are associative arrays with several special features.
+Obiectele sunt tablouri asociative cu mai multe caracteristici speciale.
 
-They store properties (key-value pairs), where:
-- Property keys must be strings or symbols (usually strings).
-- Values can be of any type.
+Ele stochează proprietăți (perechi cheie-valoare), unde:
+- Proprietățile chei trebuie să fie șiruri sau simboluri (de obicei șiruri).
+- Valorile pot fi de orice tip.
 
-To access a property, we can use:
-- The dot notation: `obj.property`.
-- Square brackets notation `obj["property"]`. Square brackets allow to take the key from a variable, like `obj[varWithKey]`.
+Pentru a accesa o proprietate putem folosi:
+- Notația cu punct: `obj.property`.
+- Notația cu paranteze pătrate `obj["property"]`. Parantezele pătrate permit preluarea cheii dintr-o variabilă, precum `obj[varWithKey]`.
 
-Additional operators:
-- To delete a property: `delete obj.prop`.
-- To check if a property with the given key exists: `"key" in obj`.
-- To iterate over an object: `for (let key in obj)` loop.
+Operatori adiționali:
+- Pentru a șterge o proprietate: `delete obj.prop`.
+- Pentru a verifica dacă o proprietate cu o anumită cheie exista: `"key" in obj`.
+- Pentru a itera asupra unui obiect: bucla `for (let key in obj)`.
 
-Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object. All operations via copied references (like adding/removing properties) are performed on the same single object.
+Obiectele sunt alocate și copiate prin referință. Cu alte cuvinte, o variabilă nu stochează valoarea obiectului, ci o "referință" (adresă în memorie) pentru valoare. Prin copierea unei asemenea variabile sau prin trecerea ei ca argument al unei funcții, se copiază acea referință, nu și obiectul. Toate operațiunile via referințe copiate (precum adăugare/ștergere proprietăți) sunt efectuate pe același obiect.
 
-To make a "real copy" (a clone) we can use `Object.assign` or  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+Pentru a face o "copie reală" (o clonă) putem folosi `Object.assign` sau  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
-What we've studied in this chapter is called a "plain object", or just `Object`.
+Ceea ce am învățat în acest capitol se numește "obiect simplu", sau doar `Object`.
 
-There are many other kinds of objects in JavaScript:
+Există multe alte feluri de obiecte în JavaScript:
 
-- `Array` to store ordered data collections,
-- `Date` to store the information about the date and time,
-- `Error` to store the information about an error.
-- ...And so on.
+- `Array` pentru a stoca colecții ordonate de date,
+- `Date` pentru a stoca informații despre dată și timp,
+- `Error` pentru a stoca informațiile despre erori.
+- ...Și așa mai departe.
 
-They have their special features that we'll study later. Sometimes people say something like "Array type" or "Date type", but formally they are not types of their own, but belong to a single "object" data type. And they extend it in various ways.
+Obiectele au caracteristicile lor speciale pe care le vom studia mai târziu. Câteodată oamenii spun ceva de genul "Array type" sau "Date type", dar formal ele nu sunt tipuri proprii , ci aparțin unui singur tip de date "object", pe care îl extind în diferite moduri.
 
-Objects in JavaScript are very powerful. Here we've just scratched the surface of a topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
+Obiectele în JavaScript sunt foarte puternice. Aici am atins doar suprafața unui subiect care este cu adevărat imens. Vom lucra îndeaproape cu obiectele și vom învăța mai multe despre ele în alte părți ale tutorialului.

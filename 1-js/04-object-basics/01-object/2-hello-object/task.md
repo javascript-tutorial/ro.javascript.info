@@ -2,13 +2,12 @@ importance: 5
 
 ---
 
-# Hello, object
+# Salut, obiect
 
-Write the code, one line for each action:
+Scrieți codul, câte o linie pentru fiecare acțiune:
 
-1. Create an empty object `user`.
-2. Add the property `name` with the value `John`.
-3. Add the property `surname` with the value `Smith`.
-4. Change the value of the `name` to `Pete`.
-5. Remove the property `name` from the object.
-
+1. Crează un obiect gol `user`.
+2. Adaugă proprietatea `name` cu valoarea `John`.
+3. Adaugă proprietatea `surname` cu valoarea `Smith`.
+4. Modifică valoare proprietății `name` în `Pete`.
+5. Șterge proprietatea `name` din obiect.

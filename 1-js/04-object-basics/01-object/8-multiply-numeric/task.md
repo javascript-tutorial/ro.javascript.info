@@ -2,14 +2,14 @@ importance: 3
 
 ---
 
-# Multiply numeric properties by 2
+# Multiplicați proprietățile numerice cu 2
 
-Create a function `multiplyNumeric(obj)` that multiplies all numeric properties of `obj` by `2`.
+Creați o funcție `multiplyNumeric(obj)` care multiplică fiecare proprietate a `obj` cu `2`.
 
 For instance:
 
 ```js
-// before the call
+// înainte de apelare
 let menu = {
   width: 200,
   height: 300,
@@ -18,7 +18,7 @@ let menu = {
 
 multiplyNumeric(menu);
 
-// after the call
+// după apelare
 menu = {
   width: 400,
   height: 600,
@@ -26,8 +26,6 @@ menu = {
 };
 ```
 
-Please note that `multiplyNumeric` does not need to return anything. It should modify the object in-place.
+Vă rugăm să remarcați că `multiplyNumeric` nu are nevoie să returneze ceva. Ar trebui să modifice obiectul pe loc.
 
-P.S. Use `typeof` to check for a number here.
-
-
+P.S. Folosiți `typeof` pentru a verifica dacă este un număr.
