@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Rewrite to class
+# Rescrie la "class"
 
 Clasa `Clock` este scrisă în stil funcțional. Rescrie-o la sintaxa "class".
 
