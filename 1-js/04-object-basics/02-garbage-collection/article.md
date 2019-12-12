@@ -1,38 +1,38 @@
-# Garbage collection
+# Colectarea reziduurilor
 
-Memory management in JavaScript is performed automatically and invisibly to us. We create primitives, objects, functions... All that takes memory.
+Gestionarea memoriei în JavaScript este realizată automat și invizibil pentru noi. Creăm primitive, obiecte, funcții... Toate acestea ocupă spațiu în memorie.
 
-What happens when something is not needed any more? How does the JavaScript engine discover it and clean it up?
+Ce se întâmplă când nu mai este nevoie de ceva? Cum îl descoperă și îl curăță motorul limbajului Javascript?
 
-## Reachability
+## Accesibilitatea
 
-The main concept of memory management in JavaScript is *reachability*.
+Conceptul de bază al gestionării memoriei în JavaScript este *accesibilitatea*.
 
-Simply put, "reachable" values are those that are accessible or usable somehow. They are guaranteed to be stored in memory.
+Simplu spus, valorile "accesibile" sunt acelea care sunt abordabile sau folosibile în vreun fel. Ele sunt garantate a fi salvate în memorie.
 
-1. There's a base set of inherently reachable values, that cannot be deleted for obvious reasons.
+1. Există un set de bază de valori intrinseci accesibile, care nu pot fi șterse, din motive evidente.
 
-    For instance:
+    De exemplu:
 
-    - Local variables and parameters of the current function.
-    - Variables and parameters for other functions on the current chain of nested calls.
-    - Global variables.
-    - (there are some other, internal ones as well)
+    - Variabile locale și parametri ai funcției curente.
+    - Variabile și parametri ai altor funcții din lanțul curent de apeluri imbricate.
+    - Variabile globale.
+    - (mai sunt și altele, cele interne, de asemenea)
 
-    These values are called *roots*.
+    Aceste valori se numesc *rădăcini*.
 
-2. Any other value is considered reachable if it's reachable from a root by a reference or by a chain of references.
+2. Orice altă valoare este considerată accesibilă dacă este accesibilă dintr-o rădăcină printr-o referință sau printr-un lanț de referințe.
 
-    For instance, if there's an object in a local variable, and that object has a property referencing another object, that object is considered reachable. And those that it references are also reachable. Detailed examples to follow.
+    De exemplu, dacă există un obiect într-o variabilă locală și acel obiect are o proprietate care face referire la alt obiect, acel obiect este considerat accesibil. Iar cele la care face referire sunt, de asemenea, accesibile. Urmează exemple detaliate.
 
-There's a background process in the JavaScript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that have become unreachable.
+În motorul limbajului Javascript există un proces de fundal care se numește [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). El monitorizează toate obiectele și le șterge pe cele care au devenit inaccesibile.
 
-## A simple example
+## Un exemplu simplu
 
-Here's the simplest example:
+Iată cel mai simplu exemplu:
 
 ```js
-// user has a reference to the object
+// user are o referință către obiect
 let user = {
   name: "John"
 };
@@ -40,9 +40,9 @@ let user = {
 
 ![](memory-user-john.svg)
 
-Here the arrow depicts an object reference. The global variable `"user"` references the object `{name: "John"}` (we'll call it John for brevity). The `"name"` property of John stores a primitive, so it's painted inside the object.
+Aici săgeata desemnează o referință a obiectului. Variabila globală `"user"` face referire la obiectul `{name: "John"}` (îl vom numi John pentru laconicitate). Proprietatea `"name"` a lui John stochează o primitivă, astfel încât este desenat în interiorul obiectului.
 
-If the value of `user` is overwritten, the reference is lost:
+Dacă valoarea `user`-ului este rescrisă, referința este pierdută:
 
 ```js
 user = null;
@@ -50,14 +50,14 @@ user = null;
 
 ![](memory-user-john-lost.svg)
 
-Now John becomes unreachable. There's no way to access it, no references to it. Garbage collector will junk the data and free the memory.
+Acum John devine inaccesibil. Nu există nicio modalitate pentru a-l accesa, nicio referință la el. Garbage collector va elimina datele și va elibera memoria.
 
-## Two references
+## Două referințe
 
-Now let's imagine we copied the reference from `user` to `admin`:
+Acum să ne imaginăm că am copiat referința de la `user` la `admin`:
 
 ```js
-// user has a reference to the object
+// user are o referință către obiect
 let user = {
   name: "John"
 };
@@ -69,16 +69,16 @@ let admin = user;
 
 ![](memory-user-john-admin.svg)
 
-Now if we do the same:
+Acum dacă procedăm la fel:
 ```js
 user = null;
 ```
 
-...Then the object is still reachable via `admin` global variable, so it's in memory. If we overwrite `admin` too, then it can be removed.
+...Atunci obiectul este încă accesibil prin intermediul variabilei globale `admin`, deci este în memorie. Dacă rescriem și `admin`, atunci poate fi indepărtat.
 
-## Interlinked objects
+## Obiecte interconectate
 
-Now a more complex example. The family:
+Acum un exemplu mai complex. Familia:
 
 ```js
 function marry(man, woman) {
@@ -98,15 +98,15 @@ let family = marry({
 });
 ```
 
-Function `marry` "marries" two objects by giving them references to each other and returns a new object that contains them both.
+Funcția `marry` "căsătorește" două obiecte oferindu-le reciproc referințe și returnează un obiect nou care le conține pe amândouă.
 
-The resulting memory structure:
+Structura memoriei rezultate:
 
 ![](family.svg)
 
-As of now, all objects are reachable.
+Începând de acum, toate obiectele sunt accesibile.
 
-Now let's remove two references:
+Acum să eliminăm două referințe:
 
 ```js
 delete family.father;
@@ -115,98 +115,98 @@ delete family.mother.husband;
 
 ![](family-delete-refs.svg)
 
-It's not enough to delete only one of these two references, because all objects would still be reachable.
+Nu este suficient să ștergem doar una dintre aceste două referințe, pentru că toate obiectele ar fi încă accesibile.
 
-But if we delete both, then we can see that John has no incoming reference any more:
+Însă dacă le ștergem pe amândouă, putem observa că John nu mai are nicio referință de intrare:
 
 ![](family-no-father.svg)
 
-Outgoing references do not matter. Only incoming ones can make an object reachable. So, John is now unreachable and will be removed from the memory with all its data that also became unaccessible.
+Referințele de ieșire nu contează. Doar cele de intrare pot face un obiect accesibil. Așadar, John este acum inaccesibil și va fi eliminat din memorie cu toate datele asociate, care vor deveni, de asemenea, inaccesibile.
 
-After garbage collection:
+După colectarea reziduurilor:
 
 ![](family-no-father-2.svg)
 
-## Unreachable island
+## Insula inaccesibilă
 
-It is possible that the whole island of interlinked objects becomes unreachable and is removed from the memory.
+Este posibil ca toată insula cu obiectele interconectate să devină inaccesibilă și să fie eliminată din memorie.
 
-The source object is the same as above. Then:
+Obiectul sursă este la fel ca mai sus. Apoi:
 
 ```js
 family = null;
 ```
 
-The in-memory picture becomes:
+Imaginea din memorie devine:
 
 ![](family-no-family.svg)
 
-This example demonstrates how important the concept of reachability is.
+Acest exemplu demonstrează cât de important este conceptul de accesibilitate.
 
-It's obvious that John and Ann are still linked, both have incoming references. But that's not enough.
+Este evident că John și Ann sunt încă legate, amăndouă au referințe de intrare. Dar nu este suficient.
 
-The former `"family"` object has been unlinked from the root, there's no reference to it any more, so the whole island becomes unreachable and will be removed.
+Fostul obiect `"family"` a fost deconectat de la rădăcină, nu mai există nicio referință la el, deci întreaga insulă devine iaccesibilă și va fi eliminată.
 
-## Internal algorithms
+## Algoritmi interni
 
-The basic garbage collection algorithm is called "mark-and-sweep".
+Algoritmul de bază de colectare a reziduurilor este denumit "mark-and-sweep" (în traducere literală "marchează-și-mătură").
 
-The following "garbage collection" steps are regularly performed:
+Următorii pași ai "colectării reziduurilor" sunt efectuați regulat:
 
-- The garbage collector takes roots and "marks" (remembers) them.
-- Then it visits and "marks" all references from them.
-- Then it visits marked objects and marks *their* references. All visited objects are remembered, so as not to visit the same object twice in the future.
-- ...And so on until there are unvisited references (reachable from the roots).
-- All objects except marked ones are removed.
+- "Garbage collector" ia rădăcinile și le "marchează" (le memorează).
+- Apoi vizitează toate referințele dinspre ele.
+- Apoi parcurge obiectele marcate și însemnează referințele *lor*. Toate obiectele vizitate sunt memorate pentru a nu vizita același obiect de două ori în viitor.
+- ...Și așa mai departe până când nu există referințe nevizitate (accesibil din rădăcini).
+- Toate obiectele, cu excepția celor marcate, sunt eliminate.
 
-For instance, let our object structure look like this:
+De exemplu, să presupunem că structura obiectului nostru arată așa:
 
 ![](garbage-collection-1.svg)
 
-We can clearly see an "unreachable island" to the right side. Now let's see how "mark-and-sweep" garbage collector deals with it.
+Putem vedea foarte clar o "insulă inaccesibilă" în partea dreaptă. Acum să vedem cum se ocupă colectorul de reziduuri de "mark-and-sweep".
 
-The first step marks the roots:
+Primul pas marchează rădăcinile:
 
 ![](garbage-collection-2.svg)
 
-Then their references are marked:
+Apoi sunt marcate referințele lor:
 
 ![](garbage-collection-3.svg)
 
-...And their references, while possible:
+...Și referințele acestora, atât cât este posibil:
 
 ![](garbage-collection-4.svg)
 
-Now the objects that could not be visited in the process are considered unreachable and will be removed:
+Acum, obiectele care nu au putut fi vizitate pe parcursul procesului sunt considerate inaccesibile și vor fi eliminate:
 
 ![](garbage-collection-5.svg)
 
-That's the concept of how garbage collection works.
+Acesta este conceptul de funcționare a colectării reziduurilor.
 
-JavaScript engines apply many optimizations to make it run faster and not affect the execution.
+Motoarele limbajului JavaScript aplică numeroase optimizări pentru a-l face să ruleze mai rapid și să nu afecteze execuția.
 
-Some of the optimizations:
+Câteva dintre optimizări:
 
-- **Generational collection** -- objects are split into two sets: "new ones" and "old ones". Many  objects appear, do their job and die fast, they can be cleaned up aggressively. Those that survive for long enough, become "old" and are examined less often.
-- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine tries to split the garbage collection into pieces. Then the pieces are executed one by one, separately. That requires some extra bookkeeping between them to track changes, but we have many tiny delays instead of a big one.
-- **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
+- **Colectare generațională** -- obiectele sunt împărțite în două seturi: "cele noi" și "cele vechi". Multe obiecte apar, își fac treaba și mor repede, pot fi curățate agresiv. Cele care supraviețuiesc suficient de mult devin "vechi" și sunt examinate mai rar.
+- **Colectare incrementală** -- dacă există multe obiecte și încercăm să parcurgem simultan întregul set obiect, poate dura mai mult și poate introduce întârzieri vizibile în execuție. Astfel încât, motorul încearcă să împartă în bucăți colectarea reziduurilor. Apoi bucățile sunt executate separat, una câte una. Asta necesită o mai bună contabilitate între ele pentru a urmări modificările, dar avem mai multe întarzieri micuțe în loc de una mare.
+- **Colectare în timp-inactiv** -- colectorul de reziduuri încercă să ruleze numai în timp de procesorul este inactiv, pentru a reduce posibilul efect asupra execuției.
 
-There are other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so going deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
+Există și alte optimzări și modele ale algoritmilor de colectare a reziduurilor. Oricât de mult mi-ar plăcea să le descriu aici. trebuie să mă abțin, întrucât diferite motoare implementează ajustări și tehnici diferite. Și, ceea ce este și mai important, lucrurile se schimbă pe măsură ce motoarele se dezvoltă, deci aprofundarea "în avans", fără o nevoie reală, probabil că nu merită acest lucru. Cu excepția cazului în care, bineînțeles, este o chestiune de interes pur, atunci vor fi câteva link-uri pentru voi mai jos.
 
-## Summary
+## Rezumat
 
-The main things to know:
+Lucrurile principale de știut:
 
-- Garbage collection is performed automatically. We cannot force or prevent it.
-- Objects are retained in memory while they are reachable.
-- Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole.
+- Colectarea reziduurilor se face automat. Nu o putem forța sau preveni.
+- Obiectele sunt menținute în memorie atât timp cât sunt accesibile.
+- A fi referențiat nu este același lucru cu a fi accesibil (dintr-o rădăcină): un pachet de obiecte interconectate poate deveni inaccesibil în ansamblu.
 
-Modern engines implement advanced algorithms of garbage collection.
+Motoarele moderne implementează algoritmi avansați de colectare a reziduurilor.
 
-A general book "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones et al) covers some of them.
+O carte generală "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones et al) acoperă câteva dintre ele.
 
-If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
+Dacă sunteți familiari cu programarea low-level, informații detaliate despre V8 garbage collector se află în articolul [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
-[V8 blog](https://v8.dev/) also publishes articles about changes in memory management from time to time. Naturally, to learn the garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](http://mrale.ph) who worked as one of V8 engineers. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
+[V8 blog](https://v8.dev/) publică, deasemenea, articole din timp în timp despre schimbările din gestionarea memoriei. Desigur, pentru a învăța colectarea reziduurilor, ar fi bine să vă pregătiți învățând despre structurile interne ale V8-ului în general și să citiți blogul lui [Vyacheslav Egorov](http://mrale.ph) care a lucrat ca unul dintre inginerii V8-ului. Spun: "V8", deoarece este cel mai bine acoperit cu articole din internet. Pentru alte motoare, multe abordări sunt similare, dar colectarea reziduurilor diferă în multe aspecte.
 
-In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.  
+Cunoașterea în profunzime a motoarelor este folositoare atunci când aveți nevoie de optimizări low-level. Ar fi înțelept să planificați acest lucru ca pas următor după ce vă familiarizați cu limbajul.
