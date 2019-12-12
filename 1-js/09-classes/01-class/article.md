@@ -2,7 +2,7 @@
 # Sintaxă de bază a claselor
 
 ```quote author="Wikipedia"
-In programarea orientată obiect, o clasă este un code template pentru crearea de obiecte, pentru a furniza valori inițiale variabileleor membre ale clasei și de a implementa comportamentul acesteia(funcții membre și metode).
+In programarea orientată obiect, o clasă este un program extensibil code-template pentru crearea de obiecte, pentru a furniza valori inițiale variabilelor membre ale clasei și de a implementa comportamentul acesteia(funcții membre și metode).
 ```
 
 În practică, avem destul de des nevoia de a crea multe obiecte de același tip, precum useri, bunuri sau orice altceva.
