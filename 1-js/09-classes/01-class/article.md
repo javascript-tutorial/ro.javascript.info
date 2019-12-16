@@ -66,7 +66,7 @@ Notația de aici nu trebuie să fie confundată cu object literals. În cadrul u
 
 Deci, ce exact este o `clasă`? Nu este o entitate cu totul nouă la nivel de limbaj, așa cum s-ar putea crede.
 
-Haideți să dezvăluim magia ei și să vedem cu adevărat despre ce este o clasă. O să începem să înțelegem multe aspecte complexe ale acesteia.
+Haideți să dezvăluim magia ei și să vedem cu adevărat ce este defapt o clasă. Asta ne va ajuta să-i înțelegem multe aspecte complexe.
 
 În JavaScript, o clasă este un fel de funcție.
 
