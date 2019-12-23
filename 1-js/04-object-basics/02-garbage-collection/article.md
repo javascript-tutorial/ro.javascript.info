@@ -163,7 +163,7 @@ De exemplu, să presupunem că structura obiectului nostru arată așa:
 
 ![](garbage-collection-1.svg)
 
-Putem vedea foarte clar o "insulă inaccesibilă" în partea dreaptă. Acum să vedem cum se ocupă colectorul de reziduuri de "mark-and-sweep".
+Putem vedea foarte clar o "insulă inaccesibilă" în partea dreaptă. Acum să vedem cum se ocupă colectorul de reziduuri "mark-and-sweep" de aceasta.
 
 Primul pas marchează rădăcinile:
 
