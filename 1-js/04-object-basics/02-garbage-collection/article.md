@@ -40,7 +40,7 @@ let user = {
 
 ![](memory-user-john.svg)
 
-Aici săgeata desemnează o referință a obiectului. Variabila globală `"user"` face referire la obiectul `{name: "John"}` (îl vom numi John pentru laconicitate). Proprietatea `"name"` a lui John stochează o primitivă, astfel încât este desenat în interiorul obiectului.
+Aici săgeata desemnează o referință a obiectului. Variabila globală `"user"` face referire la obiectul `{name: "John"}` (îl vom numi John pentru simplitate). Proprietatea `"name"` a lui John stochează o primitivă, astfel încât este desenat în interiorul obiectului.
 
 Dacă valoarea `user`-ului este rescrisă, referința este pierdută:
 
