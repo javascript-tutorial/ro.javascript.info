@@ -1,7 +1,7 @@
 
 # Tipul simbol ("symbol")
 
-Conform specificațiilor, cheile proprietății obiectului pot fi fie de tip șir ("string"), fie de tip simbol ("symbol"). Nu numere, nu booleane, doar șiruri sau simboluri, aceste două tipuri.
+Conform specificațiilor, cheile proprietății obiectului pot fi fie de tip șir ("string"), fie de tip simbol ("symbol"). Nu numere, nu booleene, doar șiruri sau simboluri, aceste două tipuri.
 
 Până acum am folosit doar șiruri. Acum să vedem ce avantaje ne oferă simbolurile.
 
@@ -23,7 +23,7 @@ După creare, putem aloca o descriere simbolului (mai numită și nume de simbol
 let id = Symbol("id");
 ```
 
-Simbolurile sunt garantate a fi unice. Chiar dacă creeăm mai multe simboluri cu aceeași descriere, ele reprezintă valori diferite. Descrierea este doar o etichetă care nu afectează nimic.
+Simbolurile sunt garantate a fi unice. Chiar dacă creăm mai multe simboluri cu aceeași descriere, ele reprezintă valori diferite. Descrierea este doar o etichetă care nu afectează nimic.
 
 De exemplu, mai jos sunt două simboluri cu aceeași descriere -- ele nu sunt egale:
 
@@ -36,7 +36,7 @@ alert(id1 == id2); // false
 */!*
 ```
 
-Dacă sunteți familiari cu Ruby sau alt limbaj de programare ce are de asemenea vre-un soi de "simboluri" -- nu vă lăsați păcălit. Simbolurile JavaScript sunt diferite.
+Dacă sunteți familiari cu Ruby sau alt limbaj de programare ce are de asemenea orice fel de "simboluri" -- nu vă lăsați păcălit. Simbolurile JavaScript sunt diferite.
 
 ````warn header="Simbolurile nu se auto-convertesc la un șir"
 Cele mai multe valori în JavaScript suportă conversie implicită la un șir. De exemplu, putem `alert`-a aproape orice valoare și va funcționa. Simbolurile sunt speciale. Ele nu se auto-convertesc.
@@ -72,7 +72,7 @@ alert(id.description); // id
 
 ## Proprietăți "ascunse"
 
-Simbolurile ne permit să creeăm proprietăți ascunse ale unui obiect, pe care nicio bucată de cod le poate accesa sau rescrie accidental.
+Simbolurile ne permit să creăm proprietăți ascunse ale unui obiect, pe care nicio bucată de cod nu le poate accesa sau rescrie accidental.
 
 De exemplu, dacă lucrăm cu obiecte `user`, ce fac parte din cod extern, am dori să le adăugăm identificatori.
 
@@ -92,7 +92,7 @@ alert( user[id] ); // putem accesa informația folosind simbolul ca și cheie
 
 Care sunt avantajele folosirii `Symbol("id")` față de un șir `"id"`?
 
-Deoarece obiectele `user` aparțin altui cod, și acel cod lucrează de asemenea cu acestea, nu ar trebui să adăugăm niciun câmp la ele. Este nesigur. Insă un simbol nu poate fi accesat accidental, codul extern, probabil, nici nu-l va vedea, deci pesemne este în regulă să o facem.
+Deoarece obiectele `user` aparțin altui cod, și acel cod lucrează de asemenea cu acestea, nu ar trebui să adăugăm niciun câmp la ele. Este nesigur. Însă un simbol nu poate fi accesat accidental, codul extern, probabil, nici nu-l va vedea, deci pesemne este în regulă să o facem.
 
 De asemenea, imaginațivă că un alt script dorește să aibă propriul său identificator în interiorul obiectului `user`, pentru propriile sale scopuri. Poate fi o altă librărie JavaScript, astfel că script-urile nu știu unul de existența celuilalt.
 
@@ -200,7 +200,7 @@ După cum am văzut, în mod normal toate simbolurile sunt diferite, chiar dacă
 
 Pentru a realiza acest lucru, există un *registru global de simboluri*. Putem crea simboluri în el și le putem accesa mai târziu, și garantează că accesări repetate după același nume returnează fix același simbol.
 
-Pentru a citi (creea dacă nu există) un simbol din registru, folosiți `Symbol.for(key)`.
+Pentru a citi (crea dacă nu există) un simbol din registru, folosiți `Symbol.for(key)`.
 
 Acest apel verifică registrul global, și dacă există un simbol descris ca și cheie, atunci îl returnează, în caz contrar, creează un nou simbol `Symbol(key)` și îl stochează în registru după `cheia` dată.
 
@@ -284,7 +284,7 @@ Simbolurile sunt întotdeauna valori diferite, chiar dacă au același nume. Dac
 Simbolurile au două cazuri principale de folosire:
 
 1. Proprietăți "ascunse" ale unui obiect.
-    Dacă vrem să adăugăm o proprietate într-un obiect care "aparține" altui script sau librarie, putem crea un simbol și îl putem folosi ca și proprietate cheie. O proprietate simbolică nu apare în `for..in`, motiv pentru care, nu va fi procesată accidental împreună cu alte proprietăți. De asemenea, nu va fi acesată direct, deoarece un alt script nu va avea simbolul nostru. În concluzie, proprietatea va fi protejată împotriva folosirii sau rescrierii accidentale.
+    Dacă vrem să adăugăm o proprietate într-un obiect care "aparține" altui script sau librărie, putem crea un simbol și îl putem folosi ca și proprietate cheie. O proprietate simbolică nu apare în `for..in`, motiv pentru care, nu va fi procesată accidental împreună cu alte proprietăți. De asemenea, nu va fi accesată direct, deoarece un alt script nu va avea simbolul nostru. În concluzie, proprietatea va fi protejată împotriva folosirii sau rescrierii accidentale.
 
     Deci, putem ascunde "după cortină", în obiecte, ceva de care avem nevoie, dar alții nu ar trebui să vadă, folosind proprietăți simbol.
 
