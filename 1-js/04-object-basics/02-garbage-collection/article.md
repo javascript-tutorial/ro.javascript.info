@@ -153,11 +153,19 @@ Algoritmul de bază de colectare a reziduurilor este denumit "mark-and-sweep" (�
 
 Următorii pași ai "colectării reziduurilor" sunt efectuați regulat:
 
+<<<<<<< HEAD
 - "Garbage collector" ia rădăcinile și le "marchează" (le memorează).
 - Apoi vizitează toate referințele dinspre ele.
 - Apoi parcurge obiectele marcate și însemnează referințele *lor*. Toate obiectele vizitate sunt memorate pentru a nu vizita același obiect de două ori în viitor.
 - ...Și așa mai departe până când nu există referințe nevizitate (accesibil din rădăcini).
 - Toate obiectele, cu excepția celor marcate, sunt eliminate.
+=======
+- The garbage collector takes roots and "marks" (remembers) them.
+- Then it visits and "marks" all references from them.
+- Then it visits marked objects and marks *their* references. All visited objects are remembered, so as not to visit the same object twice in the future.
+- ...And so on until every reachable (from the roots) references are visited.
+- All objects except marked ones are removed.
+>>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
 
 De exemplu, să presupunem că structura obiectului nostru arată așa:
 
@@ -181,9 +189,15 @@ Acum, obiectele care nu au putut fi vizitate pe parcursul procesului sunt consid
 
 ![](garbage-collection-5.svg)
 
+<<<<<<< HEAD
 Acesta este conceptul de funcționare a colectării reziduurilor.
 
 Motoarele limbajului JavaScript aplică numeroase optimizări pentru a-l face să ruleze mai rapid și să nu afecteze execuția.
+=======
+We can also imagine the process as spilling a huge bucket of paint from the roots, that flows through all references and marks all reachable objects. The unmarked ones are then removed.
+
+That's the concept of how garbage collection works. JavaScript engines apply many optimizations to make it run faster and not affect the execution.
+>>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
 
 Câteva dintre optimizări:
 
@@ -191,7 +205,11 @@ Câteva dintre optimizări:
 - **Colectare incrementală** -- dacă există multe obiecte și încercăm să parcurgem simultan întregul set obiect, poate dura mai mult și poate introduce întârzieri vizibile în execuție. Astfel încât, motorul încearcă să împartă în bucăți colectarea reziduurilor. Apoi bucățile sunt executate separat, una câte una. Asta necesită o mai bună contabilitate între ele pentru a urmări modificările, dar avem mai multe întârzieri micuțe în loc de una mare.
 - **Colectare în timp-inactiv** -- colectorul de reziduuri încearcă să ruleze numai în timp ce procesorul este inactiv, pentru a reduce posibilul efect asupra execuției.
 
+<<<<<<< HEAD
 Există și alte optimzări și modele ale algoritmilor de colectare a reziduurilor. Oricât de mult mi-ar plăcea să le descriu aici. trebuie să mă abțin, întrucât diferite motoare implementează ajustări și tehnici diferite. Și, ceea ce este și mai important, lucrurile se schimbă pe măsură ce motoarele se dezvoltă, deci aprofundarea "în avans", fără o nevoie reală, probabil că nu merită acest lucru. Cu excepția cazului în care, bineînțeles, este o chestiune de interes pur, atunci vor fi câteva link-uri pentru voi mai jos.
+=======
+There exist other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so studying deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
+>>>>>>> 28ed5a3f7df9e015cf81c126423c76c9408d7117
 
 ## Rezumat
 
