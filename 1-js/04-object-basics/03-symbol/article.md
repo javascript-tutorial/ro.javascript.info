@@ -41,7 +41,7 @@ Dacă sunteți familiari cu Ruby sau alt limbaj de programare ce are de asemenea
 ````warn header="Simbolurile nu se auto-convertesc la un șir"
 Cele mai multe valori în JavaScript suportă conversie implicită la un șir. De exemplu, putem `alert`-a aproape orice valoare și va funcționa. Simbolurile sunt speciale. Ele nu se auto-convertesc.
 
-De exemplu, următoare instrucțiune `alert` va genera o eroare:
+De exemplu, următoarea instrucțiune `alert` va genera o eroare:
 
 ```js run
 let id = Symbol("id");
