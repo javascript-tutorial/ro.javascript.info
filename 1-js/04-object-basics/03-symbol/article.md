@@ -94,7 +94,7 @@ Care sunt avantajele folosirii `Symbol("id")` față de un șir `"id"`?
 
 Deoarece obiectele `user` aparțin altui cod, și acel cod lucrează de asemenea cu acestea, nu ar trebui să adăugăm niciun câmp la ele. Este nesigur. Însă un simbol nu poate fi accesat accidental, codul extern, probabil, nici nu-l va vedea, deci pesemne este în regulă să o facem.
 
-De asemenea, imaginațivă că un alt script dorește să aibă propriul său identificator în interiorul obiectului `user`, pentru propriile sale scopuri. Poate fi o altă librărie JavaScript, astfel că script-urile nu știu unul de existența celuilalt.
+De asemenea, imaginați-vă că un alt script dorește să aibă propriul său identificator în interiorul obiectului `user`, pentru propriile sale scopuri. Poate fi o altă librărie JavaScript, astfel că script-urile nu știu unul de existența celuilalt.
 
 Apoi acel script își poate crea propriul `Symbol("id")`, ca aici:
 
@@ -284,10 +284,10 @@ Simbolurile sunt întotdeauna valori diferite, chiar dacă au același nume. Dac
 Simbolurile au două cazuri principale de folosire:
 
 1. Proprietăți "ascunse" ale unui obiect.
-    Dacă vrem să adăugăm o proprietate într-un obiect care "aparține" altui script sau librărie, putem crea un simbol și îl putem folosi ca și proprietate cheie. O proprietate simbolică nu apare în `for..in`, motiv pentru care, nu va fi procesată accidental împreună cu alte proprietăți. De asemenea, nu va fi accesată direct, deoarece un alt script nu va avea simbolul nostru. În concluzie, proprietatea va fi protejată împotriva folosirii sau rescrierii accidentale.
+    Dacă vrem să adăugăm o proprietate într-un obiect care "aparține" altui script sau biblioteci, putem crea un simbol și îl putem folosi ca și proprietate cheie. O proprietate simbolică nu apare în `for..in`, motiv pentru care, nu va fi procesată accidental împreună cu alte proprietăți. De asemenea, nu va fi accesată direct, deoarece un alt script nu va avea simbolul nostru. În concluzie, proprietatea va fi protejată împotriva folosirii sau rescrierii accidentale.
 
     Deci, putem ascunde "după cortină", în obiecte, ceva de care avem nevoie, dar alții nu ar trebui să vadă, folosind proprietăți simbol.
 
 2. Există multe simboluri sistem folosite de JavaScript care sunt accesibile prin `Symbol.*`. Le putem folosi pentru a altera comportamente incluse în limbaj. De exemplu, mai târziu în tutorial vom folosi `Symbol.iterator` pentru [iterables](info:iterable), `Symbol.toPrimitive` pentru a configura [object-to-primitive conversion](info:object-toprimitive) ș.a.m.d.
 
-Tehnic, simbolurile nu sunt 100% ascunse. Există metode ale limbajului JavaScript [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) care ne permit sa accesăm toate simbolurile. Mai există o metodă numită [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) care returnează  *toate* cheile unui obiect incluzându-le și pe cele simbol. Deci ele nu sunt ascunse cu adevărat. Dar cele mai multe librării, funcții incluse în limbaj și construcții de sintaxă nu folosesc aceste metode.
+Tehnic, simbolurile nu sunt 100% ascunse. Există metode ale limbajului JavaScript [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) care ne permit sa accesăm toate simbolurile. Mai există o metodă numită [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) care returnează  *toate* cheile unui obiect incluzându-le și pe cele simbol. Deci ele nu sunt ascunse cu adevărat. Dar cele mai multe biblioteci, funcții incluse în limbaj și construcții de sintaxă nu folosesc aceste metode.
