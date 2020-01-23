@@ -1,31 +1,31 @@
 
-# Symbol type
+# Tipul simbol ("symbol")
 
-By specification, object property keys may be either of string type, or of symbol type. Not numbers, not booleans, only strings or symbols, these two types.
+Conform specificațiilor, cheile proprietății obiectului pot fi fie de tip șir ("string"), fie de tip simbol ("symbol"). Nu numere, nu booleene, doar șiruri sau simboluri, aceste două tipuri.
 
-Till now we've been using only strings. Now let's see the benefits that symbols can give us.
+Până acum am folosit doar șiruri. Acum să vedem ce avantaje ne oferă simbolurile.
 
-## Symbols
+## Simboluri
 
-A "symbol" represents a unique identifier.
+Un "symbol" reprezintă un identificator unic.
 
-A value of this type can be created using `Symbol()`:
+O valoare de acest tip poate fi creată folosind `Symbol()`:
 
 ```js
-// id is a new symbol
+// id-ul noului simbol
 let id = Symbol();
 ```
 
-Upon creation, we can give symbol a description (also called a symbol name), mostly useful for debugging purposes:
+După creare, putem aloca o descriere simbolului (mai numită și nume de simbol), folositoare îndeosebi pentru scopuri de depanare:
 
 ```js run
-// id is a symbol with the description "id"
+// id este un simbol cu descrierea "id"
 let id = Symbol("id");
 ```
 
-Symbols are guaranteed to be unique. Even if we create many symbols with the same description, they are different values. The description is just a label that doesn't affect anything.
+Simbolurile sunt garantate a fi unice. Chiar dacă creăm mai multe simboluri cu aceeași descriere, ele reprezintă valori diferite. Descrierea este doar o etichetă care nu afectează nimic.
 
-For instance, here are two symbols with the same description -- they are not equal:
+De exemplu, mai jos sunt două simboluri cu aceeași descriere -- ele nu sunt egale:
 
 ```js run
 let id1 = Symbol("id");
@@ -36,12 +36,12 @@ alert(id1 == id2); // false
 */!*
 ```
 
-If you are familiar with Ruby or another language that also has some sort of "symbols" -- please don't be misguided. JavaScript symbols are different.
+Dacă sunteți familiari cu Ruby sau alt limbaj de programare ce are de asemenea orice fel de "simboluri" -- nu vă lăsați păcălit. Simbolurile JavaScript sunt diferite.
 
-````warn header="Symbols don't auto-convert to a string"
-Most values in JavaScript support implicit conversion to a string. For instance, we can `alert` almost any value, and it will work. Symbols are special. They don't auto-convert.
+````warn header="Simbolurile nu se auto-convertesc la un șir"
+Cele mai multe valori în JavaScript suportă conversie implicită la un șir. De exemplu, putem `alert`-a aproape orice valoare și va funcționa. Simbolurile sunt speciale. Ele nu se auto-convertesc.
 
-For instance, this `alert` will show an error:
+De exemplu, următoarea instrucțiune `alert` va genera o eroare:
 
 ```js run
 let id = Symbol("id");
@@ -50,17 +50,17 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 */!*
 ```
 
-That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not occasionally convert one into another.
+Aceasta este "protecția limbajului" ("language guard") împotriva stricăciunilor, deoarece șirurile și simbolurile sunt fundamental diferite și nu ar trebui convertite ocazional dintr-unul în altul.
 
-If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
+Dacă vrem neapărat să afișăm un simbol, trebuie să apelăm explicit metoda `.toString()` a acestuia, ca aici:
 ```js run
 let id = Symbol("id");
 *!*
-alert(id.toString()); // Symbol(id), now it works
+alert(id.toString()); // Symbol(id), acum funcționează
 */!*
 ```
 
-Or get `symbol.description` property to show the description only:
+Sau să obținem proprietatea `symbol.description` pentru a afișa numai descrierea:
 ```js run
 let id = Symbol("id");
 *!*
@@ -70,16 +70,16 @@ alert(id.description); // id
 
 ````
 
-## "Hidden" properties
+## Proprietăți "ascunse"
 
-Symbols allow us to create "hidden" properties of an object, that no other part of code can occasionally access or overwrite.
+Simbolurile ne permit să creăm proprietăți ascunse ale unui obiect, pe care nicio bucată de cod nu le poate accesa sau rescrie accidental.
 
-For instance, if we're working with `user` objects, that belong to a third-party code. We'd like to add identifiers to them.
+De exemplu, dacă lucrăm cu obiecte `user`, ce fac parte din cod extern, am dori să le adăugăm identificatori.
 
-Let's use a symbol key for it:
+Să folosim o cheie simbol pentru asta:
 
 ```js run
-let user = { // belongs to another code
+let user = { // aparține altui cod
   name: "John"
 };
 
@@ -87,16 +87,16 @@ let id = Symbol("id");
 
 user[id] = 1;
 
-alert( user[id] ); // we can access the data using the symbol as the key
+alert( user[id] ); // putem accesa informația folosind simbolul ca și cheie
 ```
 
-What's the benefit of using `Symbol("id")` over a string `"id"`?
+Care sunt avantajele folosirii `Symbol("id")` față de un șir `"id"`?
 
-As `user` objects belongs to another code, and that code also works with them, we shouldn't just add any fields to it. That's unsafe. But a symbol cannot be accessed occasionally, the third-party code probably won't even see it, so it's probably all right to do.
+Deoarece obiectele `user` aparțin altui cod, și acel cod lucrează de asemenea cu acestea, nu ar trebui să adăugăm niciun câmp la ele. Este nesigur. Însă un simbol nu poate fi accesat accidental, codul extern, probabil, nici nu-l va vedea, deci pesemne este în regulă să o facem.
 
-Also, imagine that another script wants to have its own identifier inside `user`, for its own purposes. That may be another JavaScript library, so that the scripts are completely unaware of each other.
+De asemenea, imaginați-vă că un alt script dorește să aibă propriul său identificator în interiorul obiectului `user`, pentru propriile sale scopuri. Poate fi o altă librărie JavaScript, astfel că script-urile nu știu unul de existența celuilalt.
 
-Then that script can create its own `Symbol("id")`, like this:
+Apoi acel script își poate crea propriul `Symbol("id")`, ca aici:
 
 ```js
 // ...
@@ -105,27 +105,27 @@ let id = Symbol("id");
 user[id] = "Their id value";
 ```
 
-There will be no conflict between our and their identifiers, because symbols are always different, even if they have the same name.
+Nu va exista niciun conflict între identificatorul nostru și al lor, deoarece simbolurile sunt întotdeauna diferite, chiar dacă au același nume.
 
-...But if we used a string `"id"` instead of a symbol for the same purpose, then there *would* be a conflict:
+...Însă, dacă am folosi un șir `"id"` în loc de un simbol pentru același scop, atunci *va* exista un conflict:
 
 ```js run
 let user = { name: "John" };
 
-// Our script uses "id" property
+// Script-ul nostru folosește proprietatea "id"
 user.id = "Our id value";
 
-// ...Another script also wants "id" for its purposes...
+// ...Alt script dorește "id" pentru scopurile sale...
 
 user.id = "Their id value"
-// Boom! overwritten by another script!
+// Boom! rescris de alt script!
 ```
 
-### Symbols in a literal
+### Simboluri într-un literal
 
-If we want to use a symbol in an object literal `{...}`, we need square brackets around it.
+Dacă vrem să folosim un simbol într-un obiect literal `{...}`, avem nevoie de paranteze pătrate în jurul lui.
 
-Like this:
+Ca aici:
 
 ```js
 let id = Symbol("id");
@@ -133,17 +133,17 @@ let id = Symbol("id");
 let user = {
   name: "John",
 *!*
-  [id]: 123 // not "id: 123"
+  [id]: 123 // nu "id: 123"
 */!*
 };
 ```
-That's because we need the value from the variable `id` as the key, not the string "id".
+Asta deoarece avem nevoie de valoarea din variabila `id` ca și cheie, nu de șirul "id".
 
-### Symbols are skipped by for..in
+### Simbolurile sunt ignorate de bucla for..in
 
-Symbolic properties do not participate in `for..in` loop.
+Proprietățile simboluri nu participă în bucla `for..in`.
 
-For instance:
+De exemplu:
 
 ```js run
 let id = Symbol("id");
@@ -154,16 +154,16 @@ let user = {
 };
 
 *!*
-for (let key in user) alert(key); // name, age (no symbols)
+for (let key in user) alert(key); // name, age (niciun simbol)
 */!*
 
-// the direct access by the symbol works
+// accesul direct către simbol funcționează
 alert( "Direct: " + user[id] );
 ```
 
-`Object.keys(user)` also ignores them. That's a part of the general "hiding symbolic properties" principle. If another script or a library loops over our object, it won't unexpectedly access a symbolic property.
+`Object.keys(user)` le ignoră, de asemenea. Aceasta este o parte a principiului general "ascunderea proprietăților simbol". Dacă un alt script sau librărie iterează asupra obiectului, nu va accesa neașteptat o proprietate simbol.
 
-In contrast, [Object.assign](mdn:js/Object/assign) copies both string and symbol properties:
+În contrast, metoda [Object.assign](mdn:js/Object/assign) copiază proprietățile de ambele tipuri, șir și simbol:
 
 ```js run
 let id = Symbol("id");
@@ -176,118 +176,118 @@ let clone = Object.assign({}, user);
 alert( clone[id] ); // 123
 ```
 
-There's no paradox here. That's by design. The idea is that when we clone an object or merge objects, we usually want *all* properties to be copied (including symbols like `id`).
+Nu este niciun paradox aici. Așa este construit. Ideea este că, atunci când clonăm un obiect sau contopim obiecte, în mod normal vrem ca *toate* proprietățile să fie copiate (incluzând simboluri precum `id`).
 
-````smart header="Property keys of other types are coerced to strings"
-We can only use strings or symbols as keys in objects. Other types are converted to strings.
+````smart header="Proprietățile cheie de alte tipuri sunt forțate la șiruri"
+Putem folosi doar șiruri sau simboluri ca și chei în obiecte. Alte tipuri sunt convertite la șiruri.
 
-For instance, a number `0` becomes a string `"0"` when used as a property key:
+De exemplu, un număr `0` devine un șir `"0"` când este folosit ca și proprietate cheie:
 
 ```js run
 let obj = {
-  0: "test" // same as "0": "test"
+  0: "test" // identic cu "0": "test"
 };
 
-// both alerts access the same property (the number 0 is converted to string "0")
+// ambele alerte accesează aceeași proprietate (numărul 0 este convertit la șirul "0")
 alert( obj["0"] ); // test
-alert( obj[0] ); // test (same property)
+alert( obj[0] ); // test (aceeași proprietate)
 ```
 ````
 
-## Global symbols
+## Simboluri globale
 
-As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities. For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
+După cum am văzut, în mod normal toate simbolurile sunt diferite, chiar dacă au același nume. Însă câteodată dorim ca simbolurile numite identic să fie aceleași entități. De exemplu, diferite părți ale aplicației noastre doresc să acceseze simbolul `"id"` care să însemne exact aceeași proprietate.
 
-To achieve that, there exists a *global symbol registry*. We can create symbols in it and access them later, and it guarantees that repeated accesses by the same name return exactly the same symbol.
+Pentru a realiza acest lucru, există un *registru global de simboluri*. Putem crea simboluri în el și le putem accesa mai târziu, și garantează că accesări repetate după același nume returnează fix același simbol.
 
-In order to read (create if absent) a symbol from the registry, use `Symbol.for(key)`.
+Pentru a citi (crea dacă nu există) un simbol din registru, folosiți `Symbol.for(key)`.
 
-That call checks the global registry, and if there's a symbol described as `key`, then returns it, otherwise creates a new symbol `Symbol(key)` and stores it in the registry by the given `key`.
+Acest apel verifică registrul global, și dacă există un simbol descris ca și cheie, atunci îl returnează, în caz contrar, creează un nou simbol `Symbol(key)` și îl stochează în registru după `cheia` dată.
 
-For instance:
+De exemplu:
 
 ```js run
-// read from the global registry
-let id = Symbol.for("id"); // if the symbol did not exist, it is created
+// citește din registrul global
+let id = Symbol.for("id"); // dacă simbolul nu există, îl creează
 
-// read it again (maybe from another part of the code)
+// citește din nou (poate din altă parte a codului)
 let idAgain = Symbol.for("id");
 
-// the same symbol
+// același simbol
 alert( id === idAgain ); // true
 ```
 
-Symbols inside the registry are called *global symbols*. If we want an application-wide symbol, accessible everywhere in the code -- that's what they are for.
+Simbolurile din interiorul registrului sunt denumite *simboluri globale*. Dacă dorim un simbol pentru toată aplicația, accesibil peste tot în cod - pentru asta sunt folosite.
 
-```smart header="That sounds like Ruby"
-In some programming languages, like Ruby, there's a single symbol per name.
+```smart header="Asta seamănă cu Ruby"
+În unele limbaje de programare, precum Ruby, există un singur simbol pentru un nume.
 
-In JavaScript, as we can see, that's right for global symbols.
+În JavaScript, după cum putem vedea, acest fapt este adevărat pentru simbolurile globale.
 ```
 
 ### Symbol.keyFor
 
-For global symbols, not only `Symbol.for(key)` returns a symbol by name, but there's a reverse call: `Symbol.keyFor(sym)`, that does the reverse: returns a name by a global symbol.
+Pentru simbolurile globale, nu numai `Symbol.for(key)` returnează un simbol după nume, dar există și un apel invers: `Symbol.keyFor(sym)`, care face reversul: returnează un nume după un simbol global.
 
-For instance:
+De exemplu:
 
 ```js run
-// get symbol by name
+// accesează simbolul după nume
 let sym = Symbol.for("name");
 let sym2 = Symbol.for("id");
 
-// get name by symbol
+// accesează numele după simbol
 alert( Symbol.keyFor(sym) ); // name
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
-The `Symbol.keyFor` internally uses the global symbol registry to look up the key for the symbol. So it doesn't work for non-global symbols. If the symbol is not global, it won't be able to find it and return `undefined`.
+Metoda `Symbol.keyFor` folosește intern registrul global de simboluri pentru a căuta cheia simbolului. Deci nu funcționează pentru simboluri non-globale. Dacă simbolul nu este global, nu îl va putea găsi și va returna `undefined`.
 
-That said, any symbols have `description` property.
+Acestea fiind spuse, orice simbol poate avea proprietatea `description`.
 
-For instance:
+De exemplu:
 
 ```js run
 let globalSymbol = Symbol.for("name");
 let localSymbol = Symbol("name");
 
-alert( Symbol.keyFor(globalSymbol) ); // name, global symbol
-alert( Symbol.keyFor(localSymbol) ); // undefined, not global
+alert( Symbol.keyFor(globalSymbol) ); // name, simbol global
+alert( Symbol.keyFor(localSymbol) ); // undefined, non global
 
 alert( localSymbol.description ); // name
 ```
 
-## System symbols
+## Simboluri sistem
 
-There exist many "system" symbols that JavaScript uses internally, and we can use them to fine-tune various aspects of our objects.
+Există multe simboluri "sistem" pe care JavaScript le folosește intern, și pe care le putem folosi pentru a regla fin diverse aspecte ale obiectelor noastre.
 
-They are listed in the specification in the [Well-known symbols](https://tc39.github.io/ecma262/#sec-well-known-symbols) table:
+Ele sunt listate în specificațiile din tabelul [Well-known symbols](https://tc39.github.io/ecma262/#sec-well-known-symbols):
 
 - `Symbol.hasInstance`
 - `Symbol.isConcatSpreadable`
 - `Symbol.iterator`
 - `Symbol.toPrimitive`
-- ...and so on.
+- ...ș.a.m.d.
 
-For instance, `Symbol.toPrimitive` allows us to describe object to primitive conversion. We'll see its use very soon.
+De exemplu, `Symbol.toPrimitive` ne permite să descriem obiectele la conversii primitive. Îi vom vedea utilizarea foarte curând.
 
-Other symbols will also become familiar when we study the corresponding language features.
+Alte simboluri vor deveni de asemenea familiare după ce vom studia caracteristicile corespunzătoare limbajului.
 
-## Summary
+## Rezumat
 
-`Symbol` is a primitive type for unique identifiers.
+`Symbol` este un tip primitiv pentru identificatori unici.
 
-Symbols are created with `Symbol()` call with an optional description (name).
+Simbolurile sunt create cu apelul `Symbol()` cu o descriere opțională (name).
 
-Symbols are always different values, even if they have the same name. If we want same-named symbols to be equal, then we should use the global registry: `Symbol.for(key)` returns (creates if needed) a global symbol with `key` as the name. Multiple calls of `Symbol.for` with the same `key` return exactly the same symbol.
+Simbolurile sunt întotdeauna valori diferite, chiar dacă au același nume. Dacă vrem ca simbolurile cu același nume să fie egale, atunci trebuie să folosim registrul global: `Symbol.for(key)` returnează (creează dacă este nevoie) un simbol global cu `cheie` ca și nume. Apelări multiple ale metodei `Symbol.for` aceeași `cheie` returnează exact același simbol.
 
-Symbols have two main use cases:
+Simbolurile au două cazuri principale de folosire:
 
-1. "Hidden" object properties.
-    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be occasionally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from occasional use or overwrite.
+1. Proprietăți "ascunse" ale unui obiect.
+    Dacă vrem să adăugăm o proprietate într-un obiect care "aparține" altui script sau biblioteci, putem crea un simbol și îl putem folosi ca și proprietate cheie. O proprietate simbolică nu apare în `for..in`, motiv pentru care, nu va fi procesată accidental împreună cu alte proprietăți. De asemenea, nu va fi accesată direct, deoarece un alt script nu va avea simbolul nostru. În concluzie, proprietatea va fi protejată împotriva folosirii sau rescrierii accidentale.
 
-    So we can "covertly" hide something into objects that we need, but others should not see, using symbolic properties.
+    Deci, putem ascunde "după cortină", în obiecte, ceva de care avem nevoie, dar alții nu ar trebui să vadă, folosind proprietăți simbol.
 
-2. There are many system symbols used by JavaScript which are accessible as `Symbol.*`. We can use them to alter some built-in behaviors. For instance, later in the tutorial we'll use `Symbol.iterator` for [iterables](info:iterable), `Symbol.toPrimitive` to setup [object-to-primitive conversion](info:object-toprimitive) and so on.
+2. Există multe simboluri sistem folosite de JavaScript care sunt accesibile prin `Symbol.*`. Le putem folosi pentru a altera comportamente incluse în limbaj. De exemplu, mai târziu în tutorial vom folosi `Symbol.iterator` pentru [iterables](info:iterable), `Symbol.toPrimitive` pentru a configura [object-to-primitive conversion](info:object-toprimitive) ș.a.m.d.
 
-Technically, symbols are not 100% hidden. There is a built-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows us to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden. But most libraries, built-in functions and syntax constructs don't use these methods.
+Tehnic, simbolurile nu sunt 100% ascunse. Există metode ale limbajului JavaScript [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) care ne permit sa accesăm toate simbolurile. Mai există o metodă numită [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) care returnează  *toate* cheile unui obiect incluzându-le și pe cele simbol. Deci ele nu sunt ascunse cu adevărat. Dar cele mai multe biblioteci, funcții incluse în limbaj și construcții de sintaxă nu folosesc aceste metode.
