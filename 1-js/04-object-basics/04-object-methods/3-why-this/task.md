@@ -2,11 +2,11 @@ importance: 3
 
 ---
 
-# Explain the value of "this"
+# Explicați valoarea variabilei "this"
 
-In the code below we intend to call `user.go()` method 4 times in a row.
+În codul următor intenționăm să apelăm metoda `user.go()` de 4 ori la rând.
 
-But calls `(1)` and `(2)` works differently from `(3)` and `(4)`. Why?
+Însă apelurile `(1)` și `(2)` funcționează diferit de `(3)` și `(4)`. De ce?
 
 ```js run no-beautify
 let obj, method;
@@ -23,4 +23,3 @@ obj.go();               // (1) [object Object]
 
 (obj.go || obj.stop)(); // (4) undefined
 ```
-

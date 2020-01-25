@@ -1,22 +1,21 @@
 
-Here's the explanations.
+Iată explicațiile.
 
-1. That's a regular object method call.
+1. Aceasta este o apelare normală a metodei obiectului.
 
-2. The same, brackets do not change the order of operations here, the dot is first anyway.
+2. Similar, aici, parantezele nu schimbă ordinea operațiunilor, punctul este oricum primul.
 
-3. Here we have a more complex call `(expression).method()`. The call works as if it were split into two lines:
+3. Aici avem un apel mai complex `(expression).method()`. Apelul funcționează ca și cum ar fi împărțit în două linii:
 
     ```js no-beautify
-    f = obj.go; // calculate the expression
-    f();        // call what we have
+    f = obj.go; // calculează expresia
+    f();        // apelează ce avem
     ```
 
-    Here `f()` is executed as a function, without `this`.
+    Aici `f()` este executat ca funcție, fără `this`.
 
-4. The similar thing as `(3)`, to the left of the dot `.` we have an expression.
+4. Chestia similară cu `(3)`, la stânga punctului `.` avem o expresie.
 
-To explain the behavior of `(3)` and `(4)` we need to recall that property accessors (dot or square brackets) return a value of the Reference Type.  
+Pentru a explica comportamentul apelurilor `(3)` și `(4)` trebuie să ne reamintim că accesorii de proprietăți (punct sau paranteze pătrate) returnează o valoare de Tip Referință.  
 
-Any operation on it except a method call (like assignment `=` or `||`) turns it into an ordinary value, which does not carry the information allowing to set `this`.
-
+Orice operațiune pe aceasta, cu excepția unui apel de metodă (precum alocarea `=` sau `||`) o transformă într-o valoare obișnuită, care nu poartă informațiile ce permit setarea variabilei `this`.

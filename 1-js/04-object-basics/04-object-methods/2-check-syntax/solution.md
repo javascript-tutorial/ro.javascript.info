@@ -1,6 +1,6 @@
-**Error**!
+**Eroare**!
 
-Try it:
+Incercați:
 
 ```js run
 let user = {
@@ -8,22 +8,22 @@ let user = {
   go: function() { alert(this.name) }
 }
 
-(user.go)() // error!
+(user.go)() // eroare!
 ```
 
-The error message in most browsers does not give understanding what went wrong.
+Din mesajul de eroare furnizat de majoritatea browserelor nu reiese ce a mers prost.
 
-**The error appears because a semicolon is missing after `user = {...}`.**
+**Eroarea apare deoarece semicolonul ";" lipsește după `user = {...}`.**
 
-JavaScript does not auto-insert a semicolon before a bracket `(user.go)()`, so it reads the code like:
+Limbajul JavaScript nu adaugă automat un semicolon înainte de paranteză `(user.go)()`, deci citește codul ca:
 
 ```js no-beautify
 let user = { go:... }(user.go)()
 ```
 
-Then we can also see that such a joint expression is syntactically a call of the object `{ go: ... }` as a function with the argument `(user.go)`. And that also happens on the same line with `let user`, so the `user` object has not yet even been defined, hence the error.
+Apoi, putem vedea, de asemenea, că o stfel de expresie combinată este sintactic un apel al obiectului `{ go: ... }` ca funcție cu argumentul `(user.go)`. Și asta se întâmplă și pe aceeași linie cu `let user`, deci obiectul `user` nu a fost încă definit, de unde și eroarea.
 
-If we insert the semicolon, all is fine:
+Dacă introducem un semicolon, totul este în regulă:
 
 ```js run
 let user = {
@@ -34,4 +34,4 @@ let user = {
 (user.go)() // John
 ```
 
-Please note that brackets around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
+Rețineți că parantezele din jurul `(user.go)` nu fc nimic aici. De obicei setează ordinea operațiunilor, dar aici punctul `.` are oricum precedență, deci nu are niciun efect. Singura chestie care contează este semicolonul.
