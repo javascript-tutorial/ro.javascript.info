@@ -1,6 +1,6 @@
-# Object methods, "this"
+# Metode obiect, "this"
 
-Objects are usually created to represent entities of the real world, like users, orders and so on:
+Obiectele sunt de obicei create pentru a reprezenta entități din lumea reală, cum ar fi utilizatorii, comenzile și așa mai departe:
 
 ```js
 let user = {
@@ -9,13 +9,13 @@ let user = {
 };
 ```
 
-And, in the real world, a user can *act*: select something from the shopping cart, login, logout etc.
+Iar, în lumea reală, un utilizator poate *acționa*: poate selecta ceva din coșul de cumpărături, se poate autentifica, deconecta etc.
 
-Actions are represented in JavaScript by functions in properties.
+Acțiunile sunt reprezentate în JavaScript prin funcții în proprietăți.
 
-## Method examples
+## Exemple de metodă
 
-For a start, let's teach the `user` to say hello:
+Pentru început, hai să-l învățăm pe `user` să spună salut:
 
 ```js run
 let user = {
@@ -25,22 +25,22 @@ let user = {
 
 *!*
 user.sayHi = function() {
-  alert("Hello!");
+  alert("Salut!");
 };
 */!*
 
-user.sayHi(); // Hello!
+user.sayHi(); // Salut!
 ```
 
-Here we've just used a Function Expression to create the function and assign it to the property `user.sayHi` of the object.
+Aici tocmai am folosit o Expresie Funcție (Function Expression) pentru a crea funcția și a o atribui proprietății `user.sayHi` a obiectului.
 
-Then we can call it. The user can now speak!
+Apoi o putem apela. Utilizatorul poate vorbi acum!
 
-A function that is the property of an object is called its *method*.
+O funcție care este proprietatea unui obiect se numește *metodă*.
 
-So, here we've got a method `sayHi` of the object `user`.
+Deci, aici avem o metodă `sayHi` a obiectului `user`.
 
-Of course, we could use a pre-declared function as a method, like this:
+Bineînțeles, am putea folosi o funcție predeclarată ca metodă, astfel:
 
 ```js run
 let user = {
@@ -50,59 +50,59 @@ let user = {
 *!*
 // first, declare
 function sayHi() {
-  alert("Hello!");
+  alert("Salut!");
 };
 
 // then add as a method
 user.sayHi = sayHi;
 */!*
 
-user.sayHi(); // Hello!
+user.sayHi(); // Salut!
 ```
 
-```smart header="Object-oriented programming"
-When we write our code using objects to represent entities, that's called an [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
+```smart header="Programare orientată pe obiect"
+Când scriem cod folosind obiecte pentru a reprezenta entități, asta se numește [programare orientată pe obiect (object-oriented programming)](https://en.wikipedia.org/wiki/Object-oriented_programming), pe scurt: "OOP".
 
-OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E.Gamma, R.Helm, R.Johnson, J.Vissides or "Object-Oriented Analysis and Design with Applications" by G.Booch, and more.
+OOP este un lucru mare, o știință interesantă în sine. Cum să alegi entitățile potrivite? Cum să organizezi interacțiunea dintre ele? Aceasta este arhitectură, și există cărți interesante pe această temă, precum "Design Patterns: Elements of Reusable Object-Oriented Software" de E.Gamma, R.Helm, R.Johnson, J.Vissides sau "Object-Oriented Analysis and Design with Applications" de G.Booch, și altele.
 ```
-### Method shorthand
+### Metoda scurtă
 
-There exists a shorter syntax for methods in an object literal:
+Există o sintaxă mai scurtă pentru metode într-un obiect literal:
 
 ```js
-// these objects do the same
+// aceste obiecte realizează același lucru
 
 user = {
   sayHi: function() {
-    alert("Hello");
+    alert("Salut");
   }
 };
 
-// method shorthand looks better, right?
+// Metoda scurtă arată mai bine, nu-i așa?
 user = {
 *!*
-  sayHi() { // same as "sayHi: function()"
+  sayHi() { // la fel ca "sayHi: function()"
 */!*
-    alert("Hello");
+    alert("Salut");
   }
 };
 ```
 
-As demonstrated, we can omit `"function"` and just write `sayHi()`.
+După cum s-a demonstrat, putem omite `"function"` și scriem doar `sayHi()`.
 
-To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases the shorter syntax is preferred.
+Pentru a spune adevărul, notațiile nu sunt complet identice. Există diferențe subtile legate de moștenirea obiectelor (care vor fi acoperite ulterior), dar deocamdată nu contează. În aproape toate cazurile, se preferă sintaxa mai scurtă.
 
-## "this" in methods
+## "this" în metode
 
-It's common that an object method needs to access the information stored in the object to do its job.
+Este uzual ca o metoda de obiect să aibe nevoie să acceseze o informație stocată în obiect pentru a-și face treaba.
 
-For instance, the code inside `user.sayHi()` may need the name of the `user`.
+De exemplu, codul din interiorul metodei `user.sayHi()` poate avea nevoie de numele `user`-ului.
 
-**To access the object, a method can use the `this` keyword.**
+**Pentru a ccesa obiectul, o metodă poate utiliza cuvântul cheie `this`.**
 
-The value of `this` is the object "before dot", the one used to call the method.
+Valoarea variabilei `this` este obiectul "dinainte de punct", cel folosit pentru a apela metoda.
 
-For instance:
+De exemplu:
 
 ```js run
 let user = {
@@ -111,7 +111,7 @@ let user = {
 
   sayHi() {
 *!*
-    // "this" is the "current object"
+    // "this" este "obiectul curent"
     alert(this.name);
 */!*
   }
@@ -121,9 +121,9 @@ let user = {
 user.sayHi(); // John
 ```
 
-Here during the execution of `user.sayHi()`, the value of `this` will be `user`.
+Aici, în timpul execuției metodei `user.sayHi ()`, valoarea variabilei `this` va fi `user`.
 
-Technically, it's also possible to access the object without `this`, by referencing it via the outer variable:
+Tehnic, este de asemenea posibilă accesarea obiectului fără `this`, făcându-i referire prin variabila exterioară:
 
 ```js
 let user = {
@@ -132,16 +132,16 @@ let user = {
 
   sayHi() {
 *!*
-    alert(user.name); // "user" instead of "this"
+    alert(user.name); // "user" în loc de "this"
 */!*
   }
 
 };
 ```
 
-...But such code is unreliable. If we decide to copy `user` to another variable, e.g. `admin = user` and overwrite `user` with something else, then it will access the wrong object.
+...Însă un astfel de cod nu este de încredere. Dacă decidem să copiem variabila `user` intr-o altă variabilă, de ex. `admin = user` și suprascriem `user` cu altceva, apoi acesta va accesa obiectul greșit.
 
-That's demonstrated below:
+Acest lucru este demonstrat mai jos:
 
 ```js run
 let user = {
@@ -150,7 +150,7 @@ let user = {
 
   sayHi() {
 *!*
-    alert( user.name ); // leads to an error
+    alert( user.name ); // duce la o eroare
 */!*
   }
 
@@ -158,18 +158,18 @@ let user = {
 
 
 let admin = user;
-user = null; // overwrite to make things obvious
+user = null; // suprascrie pentru a face lucrurile evidente
 
-admin.sayHi(); // Whoops! inside sayHi(), the old name is used! error!
+admin.sayHi(); // Hopa! în interiorul sayHi() este folosit vechiul nume! eroare!
 ```
 
-If we used `this.name` instead of `user.name` inside the `alert`, then the code would work.
+Dacă am folosi `this.name` în loc de `user.name` în interiorul funcției `alert`, atunci codul ar funcționa.
 
-## "this" is not bound
+## "this" nu este legat
 
-In JavaScript, "this" keyword behaves unlike most other programming languages. It can be used in any function.
+În JavaScript, cuvântul cheie "this" se comportă diferit de cele mai multe limbaje de programare. Poate fi utilizat în orice funcție.
 
-There's no syntax error in the code like that:
+Nu există nicio eroare de sintaxă într-un cod ca acesta:
 
 ```js
 function sayHi() {
@@ -177,9 +177,9 @@ function sayHi() {
 }
 ```
 
-The value of `this` is evaluated during the run-time, depending on the context.
+Valoarea variabilei `this` este evaluată în timpul execuției, depinzând de context.
 
-For instance, here the same function is assigned to two different objects and has different "this" in the calls:
+De exemplu, aici aceeași funcție este atribuită la două obiecte diferite și are variabilă "this", diferită în apeluri:
 
 ```js run
 let user = { name: "John" };
@@ -190,23 +190,23 @@ function sayHi() {
 }
 
 *!*
-// use the same function in two objects
+// folosește aceeași funcție în două obiecte
 user.f = sayHi;
 admin.f = sayHi;
 */!*
 
-// these calls have different this
-// "this" inside the function is the object "before the dot"
+// aceste apeluri au this diferit
+// "this" în interiorul funcției este obiectul "dinainte de punct"
 user.f(); // John  (this == user)
 admin.f(); // Admin  (this == admin)
 
-admin['f'](); // Admin (dot or square brackets access the method – doesn't matter)
+admin['f'](); // Admin (punctul sau parantezele pătrate accesează metoda – nu contează)
 ```
 
-The rule is simple: if `obj.f()` is called, then `this` is `obj` during the call of `f`. So it's either `user` or `admin` in the example above.
+Regula e simplă: dacă `obj.f()` este apelată, atunci `this` este `obj` în timpul apelului funcției `f`. Deci, este fie `user`, fie `admin` în exemplul de mai sus.
 
-````smart header="Calling without an object: `this == undefined`"
-We can even call the function without an object at all:
+````smart header="Apelarea fără obiect: `this == undefined`"
+Putem chiar să apelăm funcția fără niciun obiect:
 
 ```js run
 function sayHi() {
@@ -216,32 +216,32 @@ function sayHi() {
 sayHi(); // undefined
 ```
 
-In this case `this` is `undefined` in strict mode. If we try to access `this.name`, there will be an error.
+În acest caz `this` este `undefined` în modul strict. Dacă încercăm să accesăm `this.name`, va fi o eroare.
 
-In non-strict mode the value of `this` in such case will be the *global object* (`window` in a browser, we'll get to it later in the chapter [](info:global-object)). This is a historical behavior that `"use strict"` fixes.
+În mod non-strict valoarea variabilei `this` în astfel de cazuri va fi *obiect global* (`window` într-un browser, vom ajunge la el mai târziu în capitolul [](info:global-object)). Acesta este un comportament istoric pe care îl corectează sintaxa `"use strict"`.
 
-Usually such call is an programming error. If there's `this` inside a function, it expects to be called in an object context.
+În mod normal, asemenea apel este o eroare de programare. Dacă există variabila `this` în interiorul unei funcții, este de așteptat să fie apelată într-un context obiect.
 ````
 
-```smart header="The consequences of unbound `this`"
-If you come from another programming language, then you are probably used to the idea of a "bound `this`", where methods defined in an object always have `this` referencing that object.
+```smart header="Consecințele detașării variabilei `this`"
+Dacă veniți dintr-un alt limbaj de programare, atunci sunteți probabil obișnuit cu ideea de "variabilă `this` atașată", unde metodele definite într-un obiect au întotdeauna variabila `this` care referențiază acel obiect.
 
-In JavaScript `this` is "free", its value is evaluated at call-time and does not depend on where the method was declared, but rather on what's the object "before the dot".
+În JavaScript variabila `this` este "liberă", valoarea ei este evaluată la timpul apelării și nu depinde de locul în care a fost metoda declarată, ci mai degrabă de cine este obiectul "dinaintea punctului".
 
-The concept of run-time evaluated `this` has both pluses and minuses. On the one hand, a function can be reused for different objects. On the other hand, greater flexibility opens a place for mistakes.
+Conceptul de variabilă `this` evaluată în timpul execuției are atât plusuri cât și minusuri. Pe de o parte, o funcție poate fi reutilizată pentru obiecte diferite. Pe partea cealaltă, o flexibilitate mai mare lasă loc pentru greșeli.
 
-Here our position is not to judge whether this language design decision is good or bad. We'll understand how to work with it, how to get benefits and evade problems.
+Aici poziția noastră nu este să judecăm dacă această decizie de proiectare a limbajului este bună sau rea. Vom înțelege cum să lucrăm cu ea, cum să obținem beneficii și cum să ocolim problemele.
 ```
 
-## Internals: Reference Type
+## Interne: Tipul Referință
 
-```warn header="In-depth language feature"
-This section covers an advanced topic, to understand certain edge-cases better.
+```warn header="Trăsătură de limbaj aprofundată"
+Acestă secțiune acoperă un subiect avansat pentru a înțelege mai bine anumite cazuri particulare.
 
-If you want to go on faster, it can be skipped or postponed.
+Dacă doriți să continuați mai repede, această secțiune poate fi omisă sau amânată.
 ```
 
-An intricate method call can lose `this`, for instance:
+Un apel către o metodă complexă poate pierde variabila `this`, de exemplu:
 
 ```js run
 let user = {
@@ -250,40 +250,40 @@ let user = {
   bye() { alert("Bye"); }
 };
 
-user.hi(); // John (the simple call works)
+user.hi(); // John (apelul simplu funcționează)
 
 *!*
-// now let's call user.hi or user.bye depending on the name
-(user.name == "John" ? user.hi : user.bye)(); // Error!
+// acum să apelăm user.hi sau user.bye în funcție de nume
+(user.name == "John" ? user.hi : user.bye)(); // Eroare!
 */!*
 ```
 
-On the last line there is a conditional operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
+Pe ultima linie există un operator condițional care alege `user.hi` sau `user.bye`. În acest caz rezultatul este `user.hi`.
 
-Then the method is immediately called with parentheses `()`. But it doesn't work correctly!
+Apoi, metoda este apelată imediat cu pranteze `()`. Însă nu funcționează corect!
 
-As you can see, the call results in an error, because the value of `"this"` inside the call becomes `undefined`.
+După cum puteți vedea, apelul are ca rezultat o eroare, deoarece valoarea variabilei `"this"` din interiorul apelului devine `undefined`.
 
-This works (object dot method):
+Asta funcționează (obiect punct metodă):
 ```js
 user.hi();
 ```
 
-This doesn't (evaluated method):
+Asta nu (metoda evaluată):
 ```js
-(user.name == "John" ? user.hi : user.bye)(); // Error!
+(user.name == "John" ? user.hi : user.bye)(); // Eroare!
 ```
 
-Why? If we want to understand why it happens, let's get under the hood of how `obj.method()` call works.
+De ce? Dacă dorim să înțelegem de ce se întâmplă asta, să punem sub lupă funcționarea apelului `obj.method()`.
 
-Looking closely, we may notice two operations in `obj.method()` statement:
+Privind îndeaproape, putem observa două operațiuni în declararea instrucțiunii `obj.method ()`:
 
-1. First, the dot `'.'` retrieves the property `obj.method`.
-2. Then parentheses `()` execute it.
+1. Prima, punctul `'.'` recuperează proprietatea `obj.method`.
+2. Apoin parantezele `()` o execută.
 
-So, how does the information about `this` get passed from the first part to the second one?
+Deci, cum sunt transmise informațiile despre `this` de la prima parte către a doua?
 
-If we put these operations on separate lines, then `this` will be lost for sure:
+Dacă plasăm aceste operațiuni pe linii diferite, atunci variabila `this`, cu certitudine, se va pierde:
 
 ```js run
 let user = {
@@ -292,44 +292,44 @@ let user = {
 }
 
 *!*
-// split getting and calling the method in two lines
+// separăm obținerea și apelul metodei pe două rânduri
 let hi = user.hi;
-hi(); // Error, because this is undefined
+hi(); // Eroare, deoarece `this` este nedefinit
 */!*
 ```
 
-Here `hi = user.hi` puts the function into the variable, and then on the last line it is completely standalone, and so there's no `this`.
+Aici `hi = user.hi` introduce funcția în variabilă iar apoi pe ultima linie este complet autonomă, deci nu există `this`.
 
-**To make `user.hi()` calls work, JavaScript uses a trick -- the dot `'.'` returns not a function, but a value of the special [Reference Type](https://tc39.github.io/ecma262/#sec-reference-specification-type).**
+**Pentru a face apelurile `user.hi()` să funcționeze, JavaScript folosește un truc -- punctul `'.'` returnează nu o funcție, ci o valoare specială [Tip Referință (Reference Type)](https://tc39.github.io/ecma262/#sec-reference-specification-type).**
 
-The Reference Type is a "specification type". We can't explicitly use it, but it is used internally by the language.
+Tipul Referință este un "tip de specificație". Nu-l putem folosi explicit, dar este folosit intern de limbaj.
 
-The value of Reference Type is a three-value combination `(base, name, strict)`, where:
+Valoarea Tipului Referință este o combinație de trei valori `(base, name, strict)`, unde:
 
-- `base` is the object.
-- `name` is the property name.
-- `strict` is true if `use strict` is in effect.
+- `base` este obiectul.
+- `name` este numele proprietății.
+- `strict` este adevărat dacă instrucțiunea `use strict` este activă.
 
-The result of a property access `user.hi` is not a function, but a value of Reference Type. For `user.hi` in strict mode it is:
+Rezultatul unui acces de proprietate nu este o funcție, ci o valoare de Tip Referință. Pentru `user.hi` în mod strict este:
 
 ```js
-// Reference Type value
+// valoarea Tipului Referință
 (user, "hi", true)
 ```
 
-When parentheses `()` are called on the Reference Type, they receive the full information about the object and its method, and can set the right `this` (`=user` in this case).
+Când parantezele `()` sunt apelate pe Tipul Referință, ele primesc informațiile complete despre obiect și metodele acestuia, și pot stabili variabila `this` corectă (`=user` în acest caz).
 
-Reference type is a special "intermediary" internal type, with the purpose to pass information from dot `.` to calling parentheses `()`.
+Tipul referință este un tip special "intermediar" intern, cu scopul de a transmite informațiile de la punct `.` către parantezele `()` care efectuează apelarea.
 
-Any other operation like assignment `hi = user.hi` discards the reference type as a whole, takes the value of `user.hi` (a function) and passes it on. So any further operation "loses" `this`.
+Orice altă operațiune, precum atribuirea `hi = user.hi` renunță la tipul referință în ansamblu, primește valoarea proprietății `user.hi` (o funcție) și o transmite mai departe. Deci orice altă operațiune ulterioară "pierde" variabila `this`.
 
-So, as the result, the value of `this` is only passed the right way if the function is called directly using a dot `obj.method()` or square brackets `obj['method']()` syntax (they do the same here). Later in this tutorial, we will learn various ways to solve this problem such as [func.bind()](/bind#solution-2-bind).
+Așadar, ca rezultat, valoarea variabilei `this` este transmisă în mod corect doar dacă funcția este apelată direct folosind un punct `obj.method()` sau sintaxa cu paranteze pătrate `obj['method']()` (aici se comportă identic). Mai târziu în acest tutorial, vom învăța diverse modalități de a rezolva această problemă, precum [func.bind()](/bind#solution-2-bind).
 
-## Arrow functions have no "this"
+## Funcțiile săgeată nu au "this"
 
-Arrow functions are special: they don't have their "own" `this`. If we reference `this` from such a function, it's taken from the outer "normal" function.
+Funcțiile săgeată sunt speciale: ele nu au variabila "proprie" `this`. Dacă facem referire la `this` dintr-o astfel de funție, aceasta este preluată din funcția exterioară "normală".
 
-For instance, here `arrow()` uses `this` from the outer `user.sayHi()` method:
+De exemplu, aici `arrow()` folosește `this` din metoda exterioară `user.sayHi()`:
 
 ```js run
 let user = {
@@ -343,18 +343,18 @@ let user = {
 user.sayHi(); // Ilya
 ```
 
-That's a special feature of arrow functions, it's useful when we actually do not want to have a separate `this`, but rather to take it from the outer context. Later in the chapter <info:arrow-functions> we'll go more deeply into arrow functions.
+Aceasta este o caracteristică specială a funcțiilor săgeată, utilă când de fapt nu dorim să avem o variabilă `this` separată, ci mai degrabă să o preluăm din contextul exterior. Mai târziu, în capitolul <info:arrow-functions>, vom intra mai adânc în funcțiile săgeată (arrow functions).
 
 
-## Summary
+## Rezumat
 
-- Functions that are stored in object properties are called "methods".
-- Methods allow objects to "act" like `object.doSomething()`.
-- Methods can reference the object as `this`.
+- Funcțiile care sunt stocate în proprietățile obiectului sunt numite "metode".
+- Metodele permit obiectelor să "acționeze" precum `object.doSomething()`.
+- Metodele pot face referirea obiectului prin variabila `this`.
 
-The value of `this` is defined at run-time.
-- When a function is declared, it may use `this`, but that `this` has no value until the function is called.
-- A function can be copied between objects.
-- When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
+Valoarea variabilei `this` este definită în timpul execuției.
+- Când o funcție este declarată, poate folosi variabila `this`, dar această `this` nu are valoare decât atunci când funcția este apelată.
+- O funcție poate fi copiată între obiecte.
+- Când o funcție este apelată cu sintaxa "metodă": `object.method()`, valoarea variabilei `this` din timpul apelării este `object`.
 
-Please note that arrow functions are special: they have no `this`. When `this` is accessed inside an arrow function, it is taken from outside.
+Vă rugăm să rețineți că funcțiile săgeată sunt speciale: acestea nu au variabila `this`. Când `this` este accesată din interiorul unei funcții săgeată, este primită din exterior.
