@@ -1,6 +1,6 @@
-**Answer: an error.**
+**Răspuns: o eroare.**
 
-Try it:
+Încercați:
 ```js run
 function makeUser() {
   return {
@@ -11,18 +11,18 @@ function makeUser() {
 
 let user = makeUser();
 
-alert( user.ref.name ); // Error: Cannot read property 'name' of undefined
+alert( user.ref.name ); // Eroare: Cannot read property 'name' of undefined
 ```
 
-That's because rules that set `this` do not look at object definition. Only the moment of call matters.
+Acest lucru se datorează faptului că regulile care setează `this` nu se uita la definirea obiectului. Doar momentul apelului contează .
 
-Here the value of `this` inside `makeUser()` is `undefined`, because it is called as a function, not as a method with "dot" syntax.
+Aici valoarea variabilei `this` din interiorul funcției `makeUser()` este `undefined`, deoarece este apelată ca funcție, nu ca o metodă cu sintaxa "punct".
 
-The value of `this` is one for the whole function, code blocks and object literals do not affect it.
+Valoarea variabilei `this` este unică pentru întreaga funcția, blocurile de cod și obiectele literale nu o afectează.
 
-So `ref: this` actually takes current `this` of the function.
+În concluzie `ref: this` preia de fapt variabila curentă `this` a funcției.
 
-Here's the opposite case:
+Iată cazul opus:
 
 ```js run
 function makeUser() {
@@ -41,4 +41,4 @@ let user = makeUser();
 alert( user.ref().name ); // John
 ```
 
-Now it works, because `user.ref()` is a method. And the value of `this` is set to the object before dot `.`.
+Acum funcționează, pentru că `user.ref()` este o metodă. Iar valoarea variabilei `this` este setată la obiectul dinaintea punctului `.`.

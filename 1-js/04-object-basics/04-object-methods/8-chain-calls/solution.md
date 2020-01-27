@@ -1,4 +1,4 @@
-The solution is to return the object itself from every call.
+Soluția este de a returna obiectul însuși la fiecare apelare.
 
 ```js run demo
 let ladder = {
@@ -26,7 +26,7 @@ let ladder = {
 ladder.up().up().down().up().down().showStep(); // 1
 ```
 
-We also can write a single call per line. For long chains it's more readable:
+De asemenea, putem scrie câte o apelare pe linie. Pentru lanțurile lungi este mai lizibil:
 
 ```js
 ladder
