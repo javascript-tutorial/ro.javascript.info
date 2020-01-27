@@ -321,8 +321,13 @@ let key = "age";
 alert( *!*key*/!* in user ); // true, obține numele din key și verifică dacă există această proprietate
 ```
 
+<<<<<<< HEAD
 ````smart header="Folosirea lui \"in\" pentru proprietăți care conțin `undefined`"
 În mod normal, comparația strictă `"=== undefined"` verifică existența proprietății foarte bine. Există însă un caz unde eșuează, cu toate că operatorul `"in"` funcționează corect.
+=======
+````smart header="Using \"in\" for properties that store `undefined`"
+Usually, the strict comparison `"=== undefined"` check the property existence just fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 Se întâmplă atunci când proprietatea există, dar conține `undefined`:
 
@@ -711,7 +716,11 @@ alert(clone.sizes.width); // 51, vedem rezultatul în altă parte
 
 Pentru a rezolva problema, ar trebui să folosim bucla de clonare care examinează fiecare valoare a lui `user[key]` iar dacă este un obiect să replicheze și structura acestuia. Acest proces se numește "clonare profundă".
 
+<<<<<<< HEAD
 Există un algoritm standard pentru clonarea profundă care gestionează cazul de mai sus și cazuri mai complexe, numit [Algoritm de clonare structurată](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). Pentru a nu reinventa roata, putem folosi o implementare deja funcțională în librăria JavaScript [lodash](https://lodash.com), metoda se numește [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+=======
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 
 

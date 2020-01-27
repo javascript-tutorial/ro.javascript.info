@@ -50,7 +50,11 @@ alert(id); // TypeError: Cannot convert a Symbol value to a string
 */!*
 ```
 
+<<<<<<< HEAD
 Aceasta este "protecția limbajului" ("language guard") împotriva stricăciunilor, deoarece șirurile și simbolurile sunt fundamental diferite și nu ar trebui convertite ocazional dintr-unul în altul.
+=======
+That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not accidentally convert one into another.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 Dacă vrem neapărat să afișăm un simbol, trebuie să apelăm explicit metoda `.toString()` a acestuia, ca aici:
 ```js run
@@ -72,7 +76,11 @@ alert(id.description); // id
 
 ## Proprietăți "ascunse"
 
+<<<<<<< HEAD
 Simbolurile ne permit să creăm proprietăți ascunse ale unui obiect, pe care nicio bucată de cod nu le poate accesa sau rescrie accidental.
+=======
+Symbols allow us to create "hidden" properties of an object, that no other part of code can accidentally access or overwrite.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 De exemplu, dacă lucrăm cu obiecte `user`, ce fac parte din cod extern, am dori să le adăugăm identificatori.
 
@@ -92,7 +100,11 @@ alert( user[id] ); // putem accesa informația folosind simbolul ca și cheie
 
 Care sunt avantajele folosirii `Symbol("id")` față de un șir `"id"`?
 
+<<<<<<< HEAD
 Deoarece obiectele `user` aparțin altui cod, și acel cod lucrează de asemenea cu acestea, nu ar trebui să adăugăm niciun câmp la ele. Este nesigur. Însă un simbol nu poate fi accesat accidental, codul extern, probabil, nici nu-l va vedea, deci pesemne este în regulă să o facem.
+=======
+As `user` objects belongs to another code, and that code also works with them, we shouldn't just add any fields to it. That's unsafe. But a symbol cannot be accessed accidentally, the third-party code probably won't even see it, so it's probably all right to do.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
 De asemenea, imaginați-vă că un alt script dorește să aibă propriul său identificator în interiorul obiectului `user`, pentru propriile sale scopuri. Poate fi o altă librărie JavaScript, astfel că script-urile nu știu unul de existența celuilalt.
 
@@ -283,8 +295,13 @@ Simbolurile sunt întotdeauna valori diferite, chiar dacă au același nume. Dac
 
 Simbolurile au două cazuri principale de folosire:
 
+<<<<<<< HEAD
 1. Proprietăți "ascunse" ale unui obiect.
     Dacă vrem să adăugăm o proprietate într-un obiect care "aparține" altui script sau biblioteci, putem crea un simbol și îl putem folosi ca și proprietate cheie. O proprietate simbolică nu apare în `for..in`, motiv pentru care, nu va fi procesată accidental împreună cu alte proprietăți. De asemenea, nu va fi accesată direct, deoarece un alt script nu va avea simbolul nostru. În concluzie, proprietatea va fi protejată împotriva folosirii sau rescrierii accidentale.
+=======
+1. "Hidden" object properties.
+    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be accidentally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from accidental use or overwrite.
+>>>>>>> ff042a03191dfad1268219ae78758193a5803b38
 
     Deci, putem ascunde "după cortină", în obiecte, ceva de care avem nevoie, dar alții nu ar trebui să vadă, folosind proprietăți simbol.
 
