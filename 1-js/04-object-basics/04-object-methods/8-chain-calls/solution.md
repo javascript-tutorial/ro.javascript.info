@@ -26,7 +26,7 @@ let ladder = {
 ladder.up().up().down().up().down().showStep(); // 1
 ```
 
-De asemenea, putem scrie câte o apelare pe linie. Pentru lanțurile lungi este mai lizibil:
+De asemenea, putem scrie câte o apelare pe linie. Pentru înlănțuirile lungi este mai lizibil:
 
 ```js
 ladder
