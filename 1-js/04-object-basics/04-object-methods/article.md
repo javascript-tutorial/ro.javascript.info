@@ -60,8 +60,8 @@ user.sayHi = sayHi;
 user.sayHi(); // Salut!
 ```
 
-```smart header="Programare orientată pe obiect"
-Când scriem cod folosind obiecte pentru a reprezenta entități, asta se numește [programare orientată pe obiect (object-oriented programming)](https://en.wikipedia.org/wiki/Object-oriented_programming), pe scurt: "OOP".
+```smart header="Programare orientată pe obiecte"
+Când scriem cod folosind obiecte pentru a reprezenta entități, asta se numește [programare orientată pe obiecte](https://ro.wikipedia.org/wiki/Programare_orientat%C4%83_pe_obiecte), pe scurt: "OOP".
 
 OOP este un lucru mare, o știință interesantă în sine. Cum să alegi entitățile potrivite? Cum să organizezi interacțiunea dintre ele? Aceasta este arhitectură, și există cărți interesante pe această temă, precum "Design Patterns: Elements of Reusable Object-Oriented Software" de E.Gamma, R.Helm, R.Johnson, J.Vissides sau "Object-Oriented Analysis and Design with Applications" de G.Booch, și altele.
 ```
@@ -90,7 +90,7 @@ user = {
 
 După cum s-a demonstrat, putem omite `"function"` și scriem doar `sayHi()`.
 
-Pentru a spune adevărul, notațiile nu sunt complet identice. Există diferențe subtile legate de moștenirea obiectelor (care vor fi acoperite ulterior), dar deocamdată nu contează. În aproape toate cazurile, se preferă sintaxa mai scurtă.
+În realitate, notațiile nu sunt complet identice. Există diferențe subtile legate de moștenirea obiectelor (care vor fi acoperite ulterior), dar deocamdată nu contează. În aproape toate cazurile, se preferă sintaxa mai scurtă.
 
 ## "this" în metode
 
@@ -279,7 +279,7 @@ De ce? Dacă dorim să înțelegem de ce se întâmplă asta, să punem sub lup�
 Privind îndeaproape, putem observa două operațiuni în declararea instrucțiunii `obj.method ()`:
 
 1. Prima, punctul `'.'` recuperează proprietatea `obj.method`.
-2. Apoin parantezele `()` o execută.
+2. Apoi parantezele `()` o execută.
 
 Deci, cum sunt transmise informațiile despre `this` de la prima parte către a doua?
 
