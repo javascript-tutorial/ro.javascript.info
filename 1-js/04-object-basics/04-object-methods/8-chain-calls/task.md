@@ -36,4 +36,4 @@ Modificați codul pentru `up`, `down` și `showStep` pentru a face apelările î
 ladder.up().up().down().showStep(); // 1
 ```
 
-Asemenea abordare este utilizată pe scară largă în librăriile JavaScript.
+Asemenea abordare este utilizată pe scară largă în bibliotecile JavaScript.
