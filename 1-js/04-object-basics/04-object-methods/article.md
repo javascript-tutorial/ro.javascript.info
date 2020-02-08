@@ -98,7 +98,7 @@ Este uzual ca o metoda de obiect să aibe nevoie să acceseze o informație stoc
 
 De exemplu, codul din interiorul metodei `user.sayHi()` poate avea nevoie de numele `user`-ului.
 
-**Pentru a ccesa obiectul, o metodă poate utiliza cuvântul cheie `this`.**
+**Pentru a accesa obiectul, o metodă poate utiliza cuvântul cheie `this`.**
 
 Valoarea variabilei `this` este obiectul "dinainte de punct", cel folosit pentru a apela metoda.
 
@@ -228,7 +228,7 @@ Dacă veniți dintr-un alt limbaj de programare, atunci sunteți probabil obișn
 
 În JavaScript variabila `this` este "liberă", valoarea ei este evaluată la timpul apelării și nu depinde de locul în care a fost metoda declarată, ci mai degrabă de cine este obiectul "dinaintea punctului".
 
-Conceptul de variabilă `this` evaluată în timpul execuției are atât plusuri cât și minusuri. Pe de o parte, o funcție poate fi reutilizată pentru obiecte diferite. Pe partea cealaltă, o flexibilitate mai mare lasă loc pentru greșeli.
+Conceptul de variabilă `this` evaluată în timpul execuției are atât plusuri cât și minusuri. Pe de o parte, o funcție poate fi reutilizată pentru obiecte diferite. Pe de altă parte, o flexibilitate mai mare lasă loc pentru greșeli.
 
 Aici poziția noastră nu este să judecăm dacă această decizie de proiectare a limbajului este bună sau rea. Vom înțelege cum să lucrăm cu ea, cum să obținem beneficii și cum să ocolim problemele.
 ```
@@ -260,7 +260,7 @@ user.hi(); // John (apelul simplu funcționează)
 
 Pe ultima linie există un operator condițional care alege `user.hi` sau `user.bye`. În acest caz rezultatul este `user.hi`.
 
-Apoi, metoda este apelată imediat cu pranteze `()`. Însă nu funcționează corect!
+Apoi, metoda este apelată imediat cu paranteze `()`. Însă nu funcționează corect!
 
 După cum puteți vedea, apelul are ca rezultat o eroare, deoarece valoarea variabilei `"this"` din interiorul apelului devine `undefined`.
 
