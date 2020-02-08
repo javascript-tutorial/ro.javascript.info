@@ -14,7 +14,7 @@ let user = makeUser();
 alert( user.ref.name ); // Eroare: Cannot read property 'name' of undefined
 ```
 
-Acest lucru se datorează faptului că regulile care setează `this` nu se uita la definirea obiectului. Doar momentul apelului contează .
+Acest lucru se datorează faptului că regulile care setează `this` nu se uită la definirea obiectului. Doar momentul apelului contează .
 
 Aici valoarea variabilei `this` din interiorul funcției `makeUser()` este `undefined`, deoarece este apelată ca funcție, nu ca o metodă cu sintaxa "punct".
 
