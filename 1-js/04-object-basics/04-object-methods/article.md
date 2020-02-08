@@ -94,7 +94,7 @@ După cum s-a demonstrat, putem omite `"function"` și scriem doar `sayHi()`.
 
 ## "this" în metode
 
-Este uzual ca o metoda de obiect să aibe nevoie să acceseze o informație stocată în obiect pentru a-și face treaba.
+Este uzual ca o metodă de obiect să aibe nevoie să acceseze o informație stocată în obiect pentru a-și face treaba.
 
 De exemplu, codul din interiorul metodei `user.sayHi()` poate avea nevoie de numele `user`-ului.
 
