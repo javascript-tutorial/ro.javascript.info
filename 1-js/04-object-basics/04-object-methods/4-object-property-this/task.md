@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Using "this" in object literal
+# Folosirea "this" în obiect literal
 
-Here the function `makeUser` returns an object.
+Aici funcția `makeUser` returnează un obiect.
 
-What is the result of accessing its `ref`? Why?
+Care este rezultatul accesării proprietății `ref`? De ce?
 
 ```js
 function makeUser() {
@@ -18,6 +18,5 @@ function makeUser() {
 
 let user = makeUser();
 
-alert( user.ref.name ); // What's the result?
+alert( user.ref.name ); // Care este rezultatul?
 ```
-
