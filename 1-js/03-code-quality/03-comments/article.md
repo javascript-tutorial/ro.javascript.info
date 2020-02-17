@@ -183,7 +183,12 @@ Comentariile bune ne permit să păstrăm codul organizat, să ne întoarcem la 
 
 **Evită comentariile pentru:**
 
+<<<<<<< HEAD
 - Pentru a descrie "cum funcționează codul" și "ce face".
 - Folosește-le doar dacă este imposibil să faci codul atât de simplu și autodescriptiv încât comentariile să nu mai fie necesare.
+=======
+- That tell "how code works" and "what it does".
+- Put them in only if it's impossible to make the code so simple and self-descriptive that it doesn't require them.
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 Comentariile sunt de asemenea folosite pentru unelte de autodocumentare precum JSDoc3: acestea le citesc și generează documentații HTML (sau documentații în alt format).

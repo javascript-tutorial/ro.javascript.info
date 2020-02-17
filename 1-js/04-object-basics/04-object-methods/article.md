@@ -60,8 +60,13 @@ user.sayHi = sayHi;
 user.sayHi(); // Salut!
 ```
 
+<<<<<<< HEAD
 ```smart header="Programare orientată pe obiecte"
 Când scriem cod folosind obiecte pentru a reprezenta entități, asta se numește [programare orientată pe obiecte](https://ro.wikipedia.org/wiki/Programare_orientat%C4%83_pe_obiecte), pe scurt: "OOP".
+=======
+```smart header="Object-oriented programming"
+When we write our code using objects to represent entities, that's called [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 OOP este un lucru mare, o știință interesantă în sine. Cum să alegi entitățile potrivite? Cum să organizezi interacțiunea dintre ele? Aceasta este arhitectură, și există cărți interesante pe această temă, precum "Design Patterns: Elements of Reusable Object-Oriented Software" de E.Gamma, R.Helm, R.Johnson, J.Vissides sau "Object-Oriented Analysis and Design with Applications" de G.Booch, și altele.
 ```
@@ -167,9 +172,15 @@ Dacă am folosi `this.name` în loc de `user.name` în interiorul funcției `ale
 
 ## "this" nu este legat
 
+<<<<<<< HEAD
 În JavaScript, cuvântul cheie "this" se comportă diferit de cele mai multe limbaje de programare. Poate fi utilizat în orice funcție.
 
 Nu există nicio eroare de sintaxă într-un cod ca acesta:
+=======
+In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function.
+
+There's no syntax error in the following example:
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 
 ```js
 function sayHi() {
@@ -220,17 +231,29 @@ sayHi(); // undefined
 
 În mod non-strict valoarea variabilei `this` în astfel de cazuri va fi *obiect global* (`window` într-un browser, vom ajunge la el mai târziu în capitolul [](info:global-object)). Acesta este un comportament istoric pe care îl corectează sintaxa `"use strict"`.
 
+<<<<<<< HEAD
 În mod normal, asemenea apel este o eroare de programare. Dacă există variabila `this` în interiorul unei funcții, este de așteptat să fie apelată într-un context obiect.
+=======
+Usually such call is a programming error. If there's `this` inside a function, it expects to be called in an object context.
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 ````
 
 ```smart header="Consecințele detașării variabilei `this`"
 Dacă veniți dintr-un alt limbaj de programare, atunci sunteți probabil obișnuit cu ideea de "variabilă `this` atașată", unde metodele definite într-un obiect au întotdeauna variabila `this` care referențiază acel obiect.
 
+<<<<<<< HEAD
 În JavaScript variabila `this` este "liberă", valoarea ei este evaluată la timpul apelării și nu depinde de locul în care a fost metoda declarată, ci mai degrabă de cine este obiectul "dinaintea punctului".
 
 Conceptul de variabilă `this` evaluată în timpul execuției are atât plusuri cât și minusuri. Pe de o parte, o funcție poate fi reutilizată pentru obiecte diferite. Pe de altă parte, o flexibilitate mai mare lasă loc pentru greșeli.
 
 Aici poziția noastră nu este să judecăm dacă această decizie de proiectare a limbajului este bună sau rea. Vom înțelege cum să lucrăm cu ea, cum să obținem beneficii și cum să ocolim problemele.
+=======
+In JavaScript `this` is "free", its value is evaluated at call-time and does not depend on where the method was declared, but rather on what object is "before the dot".
+
+The concept of run-time evaluated `this` has both pluses and minuses. On the one hand, a function can be reused for different objects. On the other hand, the greater flexibility creates more possibilities for mistakes.
+
+Here our position is not to judge whether this language design decision is good or bad. We'll understand how to work with it, how to get benefits and avoid problems.
+>>>>>>> 9acc1302a14a3bbabbc9bf95d04581094bd0f1a8
 ```
 
 ## Interne: Tipul Referință
