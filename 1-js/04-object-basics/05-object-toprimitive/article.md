@@ -1,5 +1,5 @@
 
-# Object to primitive conversion
+# Conversia obiectelor la primitive
 
 What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
 
