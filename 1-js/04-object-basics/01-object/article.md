@@ -1,7 +1,11 @@
 
 # Obiecte
 
+<<<<<<< HEAD
 Așa cum știm din capitolul <info:types>, în JavaScript există șapte tipuri de date. Șase dintre ele sunt denumite "primitive", pentru că ele conțin numai un singur lucru (fie un string, un număr sau altceva).
+=======
+As we know from the chapter <info:types>, there are eight data types in JavaScript. Seven of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 În contrast, obiectele sunt folosite pentru a stoca colecții indexate de date diferite si alte entități complexe. În JavaScript, obiectele pătrund în aproape toate aspectele limbajului. De aceea trebuie să ințelegem obiectele înainte de a intra mai adânc în altă parte.
 
@@ -101,7 +105,13 @@ Accesul la proprietățile formate din mai multe cuvinte nu se poate face cu pun
 user.likes birds = true
 ```
 
+<<<<<<< HEAD
 Asta deorece cheia trebuie să fie un identificator valid pentru o variabilă, adică: fără spații și alte limitări.
+=======
+JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` и `_` are allowed).
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 Există ca alternativă "notația parantezelor pătrate" care funcționează cu orice fel de șir de caractere:
 
@@ -203,6 +213,7 @@ Parantezele pătrate sunt mult mai puternice decât notația cu punct. Ele permi
 
 Deci, de cele mai multe ori, când numele proprietăților sunt cunoscute și simple se folosește punctul, iar daca avem nevoie de ceva mai complex, trecem la parantezele pătrate.
 
+<<<<<<< HEAD
 
 
 ````smart header="Cuvintele rezervate sunt permise ca nume de proprietăți"
@@ -241,6 +252,9 @@ Există, de asemenea, o altă structură de date [Map](info:map-set), pe care o 
 
 
 ## Prescurtare (shorthand) pentru valoarea proprietății
+=======
+## Property value shorthand
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 În cod real folosim des variabile existente ca valori pentru numele proprietăților.
 
@@ -284,7 +298,67 @@ let user = {
 };
 ```
 
+<<<<<<< HEAD
 ## Verificarea existenței
+=======
+## Property names limitations
+
+Property names (keys) must be either strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number `0` becomes a string `"0"` when used as a property key:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
+```
+
+**Reserved words are allowed as property names.**
+
+As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction. Any name is fine:
+
+```js run
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+We can use any string as a key, but there's a special property named `__proto__` that gets special treatment for historical reasons.
+
+For instance, we can't set it to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+```
+
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+The nature of `__proto__` will be revealed in detail later in the chapter [](info:prototype-inheritance).
+
+As for now, it's important to know that such behavior of `__proto__` can become a source of bugs and even vulnerabilities if we intend to store user-provided keys in an object.
+
+The problem is that a visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+
+There are two workarounds for the problem:
+1. Modify the object's behavior to treat `__proto__` as a regular property. We'll learn how to do it in the chapter [](info:prototype-methods).
+2. Using [Map](info:map-set) data structure which supports arbitrary keys. We'll learn it in the chapter <info:map-set>.
+
+## Property existence test, "in" operator
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 O caracteristică notabilă a obiectelor este posibilitatea accesării oricărei proprietăți. Nu va fi nicio eroare dacă proprietatea nu există! Accesarea unei proprietăți inexistente doar returnează `undefined`. Oferă un mod foarte comun de a testa dacă proprietatea există -- de a o obține și a o compara cu undefined:
 
@@ -321,8 +395,13 @@ let key = "age";
 alert( *!*key*/!* in user ); // true, obține numele din key și verifică dacă există această proprietate
 ```
 
+<<<<<<< HEAD
 ````smart header="Folosirea lui \"in\" pentru proprietăți care conțin `undefined`"
 În mod normal, comparația strictă `"=== undefined"` verifică existența proprietății foarte bine. Există însă un caz unde eșuează, cu toate că operatorul `"in"` funcționează corect.
+=======
+````smart header="Using \"in\" for properties that store `undefined`"
+Usually, the strict comparison `"=== undefined"` check the property existence just fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 Se întâmplă atunci când proprietatea există, dar conține `undefined`:
 
@@ -711,7 +790,11 @@ alert(clone.sizes.width); // 51, vedem rezultatul în altă parte
 
 Pentru a rezolva problema, ar trebui să folosim bucla de clonare care examinează fiecare valoare a lui `user[key]` iar dacă este un obiect să replicheze și structura acestuia. Acest proces se numește "clonare profundă".
 
+<<<<<<< HEAD
 Există un algoritm standard pentru clonarea profundă care gestionează cazul de mai sus și cazuri mai complexe, numit [Algoritm de clonare structurată](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). Pentru a nu reinventa roata, putem folosi o implementare deja funcțională în librăria JavaScript [lodash](https://lodash.com), metoda se numește [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+=======
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 
 
