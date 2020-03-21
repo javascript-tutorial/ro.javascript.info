@@ -1,15 +1,15 @@
 
-Backticks embed the expression inside `${...}` into the string.
+Accentele grave încorporează expresia dinăuntrul `${...}` în șirul de caractere.
 
 ```js run
-let name = "Ilya";
+let nume = "Ilya";
 
-// the expression is a number 1
-alert( `hello ${1}` ); // hello 1
+// expresia este numărul 1
+alert( `bună ${1}` ); // bună 1
 
-// the expression is a string "name"
-alert( `hello ${"name"}` ); // hello name
+// expresia este un șir de caractere „nume”
+alert( `bună ${"nume"}` ); // bună nume
 
-// the expression is a variable, embed it
-alert( `hello ${name}` ); // hello Ilya
+// expresia este este o variabilă, care este încorporată
+alert( `bună ${nume}` ); // bună Ilya
 ```

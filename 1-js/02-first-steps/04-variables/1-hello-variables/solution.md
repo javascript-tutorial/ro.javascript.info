@@ -1,12 +1,12 @@
-In the code below, each line corresponds to the item in the task list.
+În codul de mai jos, fiecare rând corespunde cu câte un element de pe lista cu sarcina.
 
 ```js run
-let admin, name; // can declare two variables at once
+let admin, nume; // putem declara două variabile în același timp
 
-name = "John";
+nume = "Ion";
 
-admin = name;
+admin = nume;
 
-alert( admin ); // "John"
+alert( admin ); // "Ion"
 ```
 

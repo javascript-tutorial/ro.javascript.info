@@ -2,16 +2,16 @@ importance: 5
 
 ---
 
-# String quotes
+# Ghilimelele unui șir de caractere
 
-What is the output of the script?
+Care este rezultatul programului?
 
 ```js
-let name = "Ilya";
+let nume = "Ilya";
 
-alert( `hello ${1}` ); // ?
+alert( `bună ${1}` ); // ?
 
-alert( `hello ${"name"}` ); // ?
+alert( `bună ${"nume"}` ); // ?
 
-alert( `hello ${name}` ); // ?
+alert( `bună ${nume}` ); // ?
 ```
