@@ -1,330 +1,331 @@
 # Variables
 
-Most of the time, a JavaScript application needs to work with information. Here are two examples:
-1. An online shop -- the information might include goods being sold and a shopping cart.
-2. A chat application -- the information might include users, messages, and much more.
+În cea mai mare parte a timpului, o aplicație JavaScript are nevoie de informație pentru a funcționa. Două exemple sunt:
+1. Un magazin online -- informația poate include bunurile vândute și produsele din coș.
+2. O aplicație de mesaje -- informația poate include utilizatorii, mesajele și multe altele.
 
-Variables are used to store this information.
+Variabilele sunt folosite pentru a stoca această informație.
 
-## A variable
+## O variabilă
 
-A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "named storage" for data. We can use variables to store goodies, visitors, and other data.
+O [variabilă](https://ro.wikipedia.org/wiki/Variabil%C4%83) este un „spațiu de stocare denumit” pentru date. Putem folosi variabile pentru a stoca bomboane, vizitatori și alte date.
 
-To create a variable in JavaScript, use the `let` keyword.
+Pentru a crea o variabilă în JavaScript, folosim termenul `let`.
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+Codul de mai jos creează (în alte cuvinte, *declară* sau *definește*) o variabilă cu numele „mesaj”:
 
 ```js
-let message;
+let mesaj;
 ```
 
-Now, we can put some data into it by using the assignment operator `=`:
+Acum, putem pune date în ea utilizând operatorul de atribuire `=`:
 
 ```js
-let message;
+let mesaj;
 
 *!*
-message = 'Hello'; // store the string
+mesaj = 'Bună'; // stocăm șirul de caractere
 */!*
 ```
 
-The string is now saved into the memory area associated with the variable. We can access it using the variable name:
+Șirul de caractere este acum salvat în zona de memorie asociată cu variabila. O putem accesa utilizând numele variabilei:
 
 ```js run
-let message;
-message = 'Hello!';
+let mesaj;
+mesaj = 'Bună!';
 
 *!*
-alert(message); // shows the variable content
+alert(mesaj); // afișază conținutul variabilei
 */!*
 ```
 
-To be concise, we can combine the variable declaration and assignment into a single line:
+Pentru a fi conciși, putem combina declarația și atribuirea variabilei într-un singur rând:
 
 ```js run
-let message = 'Hello!'; // define the variable and assign the value
+let mesaj = 'Bună!'; // definește variabila și atribuie valoarea.
 
-alert(message); // Hello!
+alert(mesaj); // Bună!
 ```
 
-We can also declare multiple variables in one line:
+Putem de asemenea să declarăm mai multe variabile pe un singur rând:
 
 ```js no-beautify
-let user = 'John', age = 25, message = 'Hello';
+let utilizator = 'Ion', ani = 25, mesaj = 'Bună';
 ```
 
-That might seem shorter, but we don't recommend it. For the sake of better readability, please use a single line per variable.
+Poate părea că este mai simplu, dar nu este recomandat. Pentru o lizibilitate crescute, te rugăm să folosești un singur rând per variabilă.
 
-The multiline variant is a bit longer, but easier to read:
+Varianta pe mai multe linii este puțin mai lungă, dar mai ușor de citit:
 
 ```js
-let user = 'John';
-let age = 25;
-let message = 'Hello';
+let utilizator = 'Ion';
+let ani = 25;
+let mesaj = 'Bună';
 ```
 
-Some people also define multiple variables in this multiline style:
+Unii oameni definesc variabile multiple în acest stil pe mai multe linii:
 ```js no-beautify
-let user = 'John',
-  age = 25,
-  message = 'Hello';
+let utilizator = 'Ion',
+  ani = 25,
+  mesaj = 'Bună';
 ```
 
-...Or even in the "comma-first" style:
+...Sau chiar astfel, unde fiecare rând începe cu o virgulă.
 
 ```js no-beautify
-let user = 'John'
-  , age = 25
-  , message = 'Hello';
+let utilizator = 'Ion'
+  , ani = 25
+  , mesaj = 'Bună';
 ```
 
-Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
+Din punct de vedere tehnic, toate variantele de mai sus fac același lucru, deci este o chestiune de estetică și de gusturi personale.
 
 
-````smart header="`var` instead of `let`"
-In older scripts, you may also find another keyword: `var` instead of `let`:
+````smart header="`var` înloc de `let`"
+În sripturi mai vechi, poți găsi și un alt termen: `var`, în loc de `let`:
 
 ```js
-*!*var*/!* message = 'Hello';
+*!*var*/!* mesaj = 'Bună';
 ```
 
-The `var` keyword is *almost* the same as `let`. It also declares a variable, but in a slightly different, "old-school" way.
+Termenul `var` este *aproape* identic cu `let`. Declară tot o variabilă, dar într-o manieră puțin diferită și „demodată”.
 
-There are subtle differences between `let` and `var`, but they do not matter for us yet. We'll cover them in detail in the chapter <info:var>.
+Există diferențe subtile între `let` și `var`, dar nu sunt importante pentru noi încă. Le vom acoperi în detaliu în capitolul <info:var>.
 ````
 
-## A real-life analogy
+## O analogie din viața de zi cu zi
 
-We can easily grasp the concept of a "variable" if we imagine it as a "box" for data, with a uniquely-named sticker on it.
+Putem înțelege mai ușor conceptul de „variabilă” dacă ne-o imaginăm ca pe o „cutie” pentru date, cu o etichetă unică lipită pe ea.
 
-For instance, the variable `message` can be imagined as a box labeled `"message"` with the value `"Hello!"` in it:
+De exemplu, variabila `mesaj` poate fi imaginată ca fiind o cutie etichetată `„mesaj”` cu valoarea `„Bună”` în interior:
 
 ![](variable.svg)
 
-We can put any value in the box.
+Putem pune orice valoare în cutie.
 
-We can also change it as many times as we want:
+Putem de asemenea să o schimbăm de câte ori dorim:
+
 ```js run
-let message;
+let mesaj;
 
-message = 'Hello!';
+mesaj = 'Bună!';
 
-message = 'World!'; // value changed
+mesaj = 'Ziua!'; // value changed
 
-alert(message);
+alert(mesaj);
 ```
 
-When the value is changed, the old data is removed from the variable:
+Odată ce valoarea este schimbată, vechea valoare este ștearsă din variabilă:
 
 ![](variable-change.svg)
 
-We can also declare two variables and copy data from one into the other.
+Putem de asemenea să declarăm două variabile și să copiem date dintr-una în cealaltă.
 
 ```js run
-let hello = 'Hello world!';
+let salut = 'Bună ziua!';
 
-let message;
+let mesaj;
 
 *!*
-// copy 'Hello world' from hello into message
-message = hello;
+// copiază 'Bună ziua' din salut în mesaj
+mesaj = salut;
 */!*
 
-// now two variables hold the same data
-alert(hello); // Hello world!
-alert(message); // Hello world!
+// acum două variabile conțin aceeași informație
+alert(salut); // Bună ziua!
+alert(mesaj); // Bună ziua!
 ```
 
-```smart header="Functional languages"
-It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+```smart header="Limbaje de programare funcționale"
+Este interesant de știut că există limbaje de programare [funcționale](https://ro.wikipedia.org/wiki/Programare_func%C8%9Bional%C4%83), ca [Scala](https://ro.wikipedia.org/wiki/Scala_(limbaj_de_programare)) sau [Erlang](http://www.erlang.org/) care nu permit schimbarea valorii unei variabile.
 
-In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can't reuse the old one.
+În astfel de limbi, odată ce valoarea este stocată „în cutie”, rămâne acolo pentru totdeauna. Dacă dorim să stocăm altceva, limbajul ne forțează să creăm o nouă cutie (să declarăm o nouă variabilă). Nu o putem refolosi pe cea veche.
 
-Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits. Studying such a language (even if you're not planning to use it soon) is recommended to broaden the mind.
+Deși poate părea puțin ciudat la început, aceste limbaje sunt foarte capabile de dezvoltare și programare serioasă. Mai mult de atât, există domenii precum calculul paralel, unde această limitare oferă anumite beneficii. Studierea unui astfel de limbaj (chiar dacă nu plănuiești să-l folosești curând) este recomandată pentru a-ți dezvolta mintea.
 ```
 
-## Variable naming [#variable-naming]
+## Denumirea variabilelor [#variable-naming]
 
-There are two limitations on variable names in JavaScript:
+Există două limitări asupra denumirii variabilelor în JavaScript:
 
-1. The name must contain only letters, digits, or the symbols `$` and `_`.
-2. The first character must not be a digit.
+1. Numele trebuie să conțină doar litere, cifre sau simbolurile `$` și `_`.
+2. Primul caracter nu poate fi o cifră.
 
-Examples of valid names:
+Exemple de nume valide:
 
 ```js
-let userName;
+let numeUtilizator;
 let test123;
 ```
 
-When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, each word except first starting with a capital letter: `myVeryLongName`.
+Atunci când numele conține mai multe cuvinte, [camelCase](https://ro.wikipedia.org/wiki/Camel_case) este folosit de obicei. Asta înseamnă că toate cuvintele sunt unite, iar fiecare cuvânt în afară de primul începe cu o majusculă: `unNumeDeUtilizatorFoarteLung`.
 
-What's interesting -- the dollar sign `'$'` and the underscore `'_'` can also be used in names. They are regular symbols, just like letters, without any special meaning.
+Interesant este că semnul dolar `$` și sublinie `„_”` pot fi folosite în nume. Ele sunt simboluri normale, ca literele, fără vreo însemnătate specială.
 
-These names are valid:
+Aceste nume sunt valabile:
 
 ```js run untrusted
-let $ = 1; // declared a variable with the name "$"
-let _ = 2; // and now a variable with the name "_"
+let $ = 1; // am declarat o variabilă cu numele „$”
+let _ = 2; // și acum o variabilă cu numele „_”
 
 alert($ + _); // 3
 ```
 
-Examples of incorrect variable names:
+Exemple de nume de variabile greșite:
 
 ```js no-beautify
-let 1a; // cannot start with a digit
+let 1a; // nu putem începe cu o cifră
 
-let my-name; // hyphens '-' aren't allowed in the name
+let my-name; // cratimele „-” nu sunt permise în nume
 ```
 
-```smart header="Case matters"
-Variables named `apple` and `AppLE` are two different variables.
+```smart header="Majusculele și minusculele contează"
+Variabilele cu numele `fruct` și `FruCT` sunt două variabile diferite.
 ```
 
-````smart header="Non-Latin letters are allowed, but not recommended"
-It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
+````smart header="Literele non-latine nu sunt recomandate"
+Putem folosi orice limbă, inclusiv litere chirilice sau chiar hieroglife, ca mai jos:
 
 ```js
 let имя = '...';
 let 我 = '...';
 ```
 
-Technically, there is no error here, such names are allowed, but there is an international tradition to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+Din punct de vedere tehnic, astfel de nume sunt permise, dar există o tradiție internațională de a utiliza alfabetul latin în numele de variabile. Chiar dacă scriem un program scurt, poate să ajungă la oameni din alte țări, care ar putea să aibă nevoie să-l citească.
 ````
 
-````warn header="Reserved names"
-There is a [list of reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), which cannot be used as variable names because they are used by the language itself.
+````warn header="Denumiri rezervate"
+Există o [listă de denumiri rezervate](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), care nu pot fi utilizate pentru denumiri de variabile pentru că sunt folosite de limbajul de programare însuși.
 
-For example: `let`, `class`, `return`, and `function` are reserved.
+De exemplu: `let`, `class`, `return`, și `function` sunt rezervate.
 
-The code below gives a syntax error:
+Codul de mai jos rezultă într-o eroare de sintaxă:
 
 ```js run no-beautify
-let let = 5; // can't name a variable "let", error!
-let return = 5; // also can't name it "return", error!
+let let = 5; // nu putem denumi o variabilă „let”, eroare!
+let return = 5; // nu o putem numi nici „return”, eroare!
 ```
 ````
 
-````warn header="An assignment without `use strict`"
+````warn header="Atribuirea unei variabile fără `use strict`"
 
-Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using `let`. This still works now if we don't put `use strict` in our scripts to maintain compatibility with old scripts.
+În mod normal, trebuie să definim o variabilă înainte de a o utiliza. Dar mai demult, era tehnic posibil să creăm o variabilă printr-o simplă atribuire a valorii fără a folosi `let`. Asta încă funcționează acum dacă nu folosim `use strict` în program, pentru a păstra compatibilitatea cu programele vechi.
 
 ```js run no-strict
-// note: no "use strict" in this example
+// notă: nu folosim „use strict” în acest program
 
-num = 5; // the variable "num" is created if it didn't exist
+num = 5; // variabila „num” este creată acum dacă nu exista deja
 
 alert(num); // 5
 ```
 
-This is a bad practice and would cause an error in strict mode:
+Aceasta este o practică nerecomandată și ar provoca o eroare în modul strict:
 
 ```js
 "use strict";
 
 *!*
-num = 5; // error: num is not defined
+num = 5; // eroare: num nu este definit
 */!*
 ```
 ````
 
-## Constants
+## Constante
 
-To declare a constant (unchanging) variable, use `const` instead of `let`:
+Pentru a declara o variabilă constantă (care nu se schimbă), folosim `const` în loc de `let`:
 
 ```js
-const myBirthday = '18.04.1982';
+const ziuaMea = '18.04.1982';
 ```
 
-Variables declared using `const` are called "constants". They cannot be changed. An attempt to do so would cause an error:
+Variabilele declarate folosind `const` se numesc „constante”. Ele nu pot fi schimbate. O încercare de a le schimba rezultă într-o eroare:
 
 ```js run
-const myBirthday = '18.04.1982';
+const ziuaMea = '18.04.1982';
 
-myBirthday = '01.01.2001'; // error, can't reassign the constant!
+ziuaMea = '01.01.2001'; // eroare, nu putem reatribui constanta!
 ```
 
-When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and clearly communicate that fact to everyone.
+Când un programator este sigur că o variabilă nu se va schimba niciodată, o pot declara cu `const` pentru a asigura și a comunica acest lucru tuturor.
 
 
-### Uppercase constants
+### Constante majuscule
 
-There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution.
+Există o practică răspândită de a folosi constante ca alternative la valori greu de memorat care sunt cunoscute dinaintea executării programului.
 
-Such constants are named using capital letters and underscores.
+Aceste constante sunt denumite folosind majuscule și sublineri.
 
-For instance, let's make constants for colors in so-called "web" (hexadecimal) format:
+De exemplu, să creăm constante pentru culori în formatul „web” (hexadecimal):
 
 ```js run
-const COLOR_RED = "#F00";
-const COLOR_GREEN = "#0F0";
-const COLOR_BLUE = "#00F";
-const COLOR_ORANGE = "#FF7F00";
+const CULOAREA_ROȘU = "#F00";
+const CULOAREA_VERDE = "#0F0";
+const CULOAREA_ALBASTRU = "#00F";
+const CULOAREA_ORANJ = "#FF7F00";
 
-// ...when we need to pick a color
-let color = COLOR_ORANGE;
+// ...când trebuie să alegem o culoare
+let culoare = CULOAREA_ORANJ;
 alert(color); // #FF7F00
 ```
 
-Benefits:
+Beneficii:
 
-- `COLOR_ORANGE` is much easier to remember than `"#FF7F00"`.
-- It is much easier to mistype `"#FF7F00"` than `COLOR_ORANGE`.
-- When reading the code, `COLOR_ORANGE` is much more meaningful than `#FF7F00`.
+- `CULOAREA_ORANJ` este mult mai ușor de memorat decât `"#FF7F00"`.
+- Este mult mai ușor să scrii greșit `"#FF7F00"` decât `CULOAREA_ORANJ`.
+- Când un om citește codul, `CULOAREA_ORANJ` are mai mult sens decât `#FF7F00`.
 
-When should we use capitals for a constant and when should we name it normally? Let's make that clear.
+Când ar trebui să folosim majuscule pentru o constantă și când ar trebui să o denumim normal? Să clarificăm asta.
 
-Being a "constant" just means that a variable's value never changes. But there are constants that are known prior to execution (like a hexadecimal value for red) and there are constants that are *calculated* in run-time, during the execution, but do not change after their initial assignment.
+Fiind o „constantă” înseamnă că valoarea unei variabile nu se schimbă niciodată. Dar există constante care sunt cunoscute dinaintea execuției (precum valorarea hexadecimală pentru roșu) și există constante care sunt *calculate* în timpul rulării, al executării programului, dar nu se schimbă după atribuirea inițială.
 
-For instance:
+De exemplu:
 ```js
-const pageLoadTime = /* time taken by a webpage to load */;
+const timpDeÎncărcare = /* cât îi ia unei pagini web să se încarce */;
 ```
 
-The value of `pageLoadTime` is not known prior to the page load, so it's named normally. But it's still a constant because it doesn't change after assignment.
+Valoarea lui `timpDeÎncărcare` nu este cunoscută dinaintea încărcării pagini, deci este denumită normal. Dar tot este o constantă deoarece nu se modifică după atribuire.
 
-In other words, capital-named constants are only used as aliases for "hard-coded" values.  
+În alte cuvinte, constantele majuscule sunt folosite ca alternative pentru valori nealterabile.
 
-## Name things right
+## Să denumim variabilele cum trebuie
 
-Talking about variables, there's one more extremely important thing.
+Că tot vorbim despre variabile, mai este un lucru extrem de important.
 
-A variable name should have a clean, obvious meaning, describe the data that it stores.
+Numele unei variabile trebuie să aibă un scop clar și să descrie datele stocate în aceasta.
 
-Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code was written by a beginner versus an experienced developer.
+Denumirea variabilelor este una dintre cele mai importante și complexe abilități în programare. O scurtă privire la numele variabilelor îți poate arăta dacă codul a fost scris de un dezvoltator începător sau de unul experimentat.
 
-In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely separate from scratch. When we return to some code after doing something else for a while, it's much easier to find information that is well-labeled. Or, in other words, when the variables have good names.
+Într-un proiect real, majoritatea timpului este petrecut modificând și extinzând codul existent decât creând ceva complet nou și separat. Când ne întoarcem la o bucată de cod după mult timp în care am făcut altceva, este mai ușor să găsim informații dacă acestea sunt etichetate bine. Sau, în alte cuvinte, dacă variabilele sunt denumite cum trebuie.
 
-Please spend time thinking about the right name for a variable before declaring it. Doing so will repay you handsomely.
+Te rugăm să petreci puțin timp gândindu-te la numele potrivit pentru o variabilă înainte de a o declara. Asta te va ajuta foarte mult pe viitor.
 
-Some good-to-follow rules are:
+Câteva reguli generale sunt:
 
-- Use human-readable names like `userName` or `shoppingCart`.
-- Stay away from abbreviations or short names like `a`, `b`, `c`, unless you really know what you're doing.
-- Make names maximally descriptive and concise. Examples of bad names are `data` and `value`. Such names say nothing. It's only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.
-- Agree on terms within your team and in your own mind. If a site visitor is called a "user" then we should name related variables `currentUser` or `newUser` instead of `currentVisitor` or `newManInTown`.
+- Folosește nume lizibile precum `numeDeUtilizator` sau `coșDeCumpărături`.
+- Nu folosi abrevieri sau nume scurte precum `a`, `b` sau `c`, în afară de cazul în care chiar știi ce faci.
+- Folosește nume descriptive și concise. Exemple de nume nepotrivite sunt `data` și `valoare`. Astfel de nume nu îți spun nimic. Le poți folosi totuși dacă contextul codului face evidentă datele sau valoarea la care se referă variabila.
+- Cazi de acord la niște termeni pe care să-i folosești peste tot. Dacă vizitatorul unui site se numește „utilizator”, atunci nume de variabile pot fi „utilizatorCurent” sau „utilizatorNou”, însă nu și „vizitatorCurent” sau „persoanăNouă”.
 
-Sounds simple? Indeed it is, but creating descriptive and concise variable names in practice is not. Go for it.
+Sună simplu? Chiar este, dar creare de nume de variabilă descriptive și concise în practică nu este așa. Încearcă și tu.
 
-```smart header="Reuse or create?"
-And the last note. There are some lazy programmers who, instead of declaring new variables, tend to reuse existing ones.
+```smart header="Refolosește sau crează?"
+Ultima notă. Există unii programatori leneși care, în loc de a declara variabile noi, tind să refolosească variabile existente.
 
-As a result, their variables are like boxes into which people throw different things without changing their stickers. What's inside the box now? Who knows? We need to come closer and check.
+Rezultatul este că variabilele lor sunt ca niște cutii în care oamenii aruncă diverse lucruri fără a le schimba eticheta. Ce este în cutie acum? Cine poate ști? Trebuie să ne uităm și să verificăm.
 
-Such programmers save a little bit on variable declaration but lose ten times more on debugging.
+Astfel de programatori economisesc puțin timp prin nedeclararea de variabile noi, dar pierd de zece ori mai mult când ajung la faza de depanare a codului.
 
-An extra variable is good, not evil.
+O variabilă în plus este bună, nu rea.
 
-Modern JavaScript minifiers and browsers optimize code well enough, so it won't create performance issues. Using different variables for different values can even help the engine optimize your code.
+Minificatoarele din JavaScriptul modern și navigatoarele optimizează codul suficient de mult, deci nu va crea probleme de performanță. Folosirea de variabile diferite pentru valori diferite poate chiar să ajute motorul să-ți optimizeze programul.
 ```
 
-## Summary
+## Rezumat
 
-We can declare variables to store data by using the `var`, `let`, or `const` keywords.
+Putem declara variabile care să stocheze informații cu termenii `var`, `let`, sau `const`.
 
-- `let` -- is a modern variable declaration.
-- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
-- `const` -- is like `let`, but the value of the variable can't be changed.
+- `let` -- este o declarație de variabilă modernă
+- `var` -- este o declarație de variabilă învechită. În mod normal nu o folosim deloc, dar vom acoperi diferențele subtile dintre ea și `let` în capitolul <info:var>, în caz că ai nevoie de ele.
+- `const` -- ca `let`, dar valoarea variabilei nu poate fi schimbată.
 
-Variables should be named in a way that allows us to easily understand what's inside them.
+Variabilele ar trebui denumite într-un fel care ne permite să înțelegem cu ușurință ce este înăuntrul lor.

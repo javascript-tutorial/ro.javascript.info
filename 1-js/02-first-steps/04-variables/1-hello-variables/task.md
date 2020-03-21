@@ -2,9 +2,9 @@ importance: 2
 
 ---
 
-# Working with variables
+# Lucrând cu variabilele
 
-1. Declare two variables: `admin` and `name`.
-2. Assign the value `"John"` to `name`.
-3. Copy the value from `name` to `admin`.
-4. Show the value of `admin` using `alert` (must output "John").
+1. Declară două variabile: `admin` și `nume`.
+2. Atribuie valoarea `„Ion”` lui `nume`.
+3. Copiază valoarea din `nume` în `admin`.
+4. Afișază valoarea lui `admin` folosind `alert` (trebuie să afișeze „Ion”).
