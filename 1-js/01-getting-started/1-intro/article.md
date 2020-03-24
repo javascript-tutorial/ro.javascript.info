@@ -12,8 +12,13 @@ Script-urile sunt furnizate și executate ca și text simplu. Ele nu au nevoie d
 
 În ceea ce privește acest aspect, JavaScript este foarte diferit față de un alt limbaj cu nume asemănător, [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
+<<<<<<< HEAD
 ```smart header="Why <u>Java</u>Script?"
 Când JavaScript a fost creat, inițial avea un alt nume: "LiveScript". Dar la acel moment limbajul Java era foarte popular, așa s-a decis că poziționarea unui nou limbaj ca și "frate mai mic" al lui Java, va ajuta.
+=======
+```smart header="Why is it called <u>Java</u>Script?"
+When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
 Dar cum acesta a evoluat, JavaScript a devenit un limbaj complet independent, cu propriile specificații, numite [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), iar acum nu mai are nici o legătură cu Java.
 ```
@@ -38,7 +43,11 @@ Motoarele sunt complicate. Dar bazele sunt ușoare.
 2. Apoi convertește("compilează") script-ul în limbajul mașină.
 3. Apoi codul mașină rulează, destul de repede.
 
+<<<<<<< HEAD
 Motorul aplică optimizări la fiecare stadiu al procesului. Ba chiar observă script-ul compilat cum rulează, analizează datele care trec prin el și aplică optimizări asupra codului mașină, bazate pe informațiile strânse. La sfârșit script-urile rulează destul de repede.
+=======
+The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 ```
 
 ## Ce poate JavaScript-ul din browser să facă?
@@ -63,7 +72,11 @@ Abilitățile JavaScript-ului din browser sunt limitate pentru siguranța utiliz
 
 Exemplele acestor restricții sunt:
 
+<<<<<<< HEAD
 - JavaScript, pe o pagină web, nu poate citi/scrie fișiere arbitrare pe hard disk, nu le poate copia sau să execute programe. Nu are acces direct la funcțiile sistemului de operare.
+=======
+- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
 
     Browserele moderne îi permit să lucreze cu fișiere, dar accesul este limitat și furnizat doar dacă utilizatorul realizează anumite acțiuni, cum ar fi "scăparea" unui fișier într-o fereastră de browser sau selectarea lui printr-un tag `<input>`.
 
