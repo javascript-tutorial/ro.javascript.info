@@ -11,7 +11,11 @@ let user = {
 (user.go)() // eroare!
 ```
 
+<<<<<<< HEAD
 Din mesajul de eroare furnizat de majoritatea browserelor nu reiese ce a mers prost.
+=======
+The error message in most browsers does not give us much of a clue about what went wrong.
+>>>>>>> 62299ed853674c4fd1427cd310516d5535bce648
 
 **Eroarea apare deoarece simbolul ";" lipsește după `user = {...}`.**
 
