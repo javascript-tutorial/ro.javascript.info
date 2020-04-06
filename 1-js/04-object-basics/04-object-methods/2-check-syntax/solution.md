@@ -11,7 +11,11 @@ let user = {
 (user.go)() // eroare!
 ```
 
+<<<<<<< HEAD
 Din mesajul de eroare furnizat de majoritatea browserelor nu reiese ce a mers prost.
+=======
+The error message in most browsers does not give us much of a clue about what went wrong.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 
 **Eroarea apare deoarece simbolul ";" lipsește după `user = {...}`.**
 
@@ -34,4 +38,8 @@ let user = {
 (user.go)() // John
 ```
 
+<<<<<<< HEAD
 Rețineți că parantezele din jurul `(user.go)` nu fac nimic aici. De obicei setează ordinea operațiilor, dar aici punctul `.` are oricum precedență, deci nu are niciun efect. Singurul lucru care contează este simbolul ";".
+=======
+Please note that parentheses around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622

@@ -117,7 +117,7 @@ Mai multe instrucțiuni `case` care partajează același cod pot fi grupate.
 De exemplu, dacă vrem să executăm același cod pentru `case 3` și `case 5`:
 
 ```js run no-beautify
-let a = 2 + 2;
+let a = 3;
 
 switch (a) {
   case 4:

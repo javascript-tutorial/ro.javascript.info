@@ -3,7 +3,11 @@ Iată explicațiile.
 
 1. Aceasta este o apelare normală a metodei obiectului.
 
+<<<<<<< HEAD
 2. Similar, aici, parantezele nu schimbă ordinea operațiilor, punctul este oricum primul.
+=======
+2. The same, parentheses do not change the order of operations here, the dot is first anyway.
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
 
 3. Aici avem un apel mai complex `(expression).method()`. Apelul funcționează ca și cum ar fi împărțit în două linii:
 
