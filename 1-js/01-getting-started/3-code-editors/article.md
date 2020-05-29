@@ -31,7 +31,12 @@ Diferența majoră dintre un editor de "categorie ușoară" și un "IDE" este c�
 
 Următoarele opțiuni merită atenția ta:
 
+<<<<<<< HEAD
 - [Atom](https://atom.io/) (cross-platform, gratuit).
+=======
+- [Atom](https://atom.io/) (cross-platform, free).
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, gratuit).
 - [Vim](http://www.vim.org/) și [Emacs](https://www.gnu.org/software/emacs/) sunt de asemenea utile dacă știi cum să le folosești.
