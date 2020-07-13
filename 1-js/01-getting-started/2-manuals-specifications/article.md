@@ -5,11 +5,19 @@ Această carte este un *tutorial*. Are ca obiectiv să te ajute să înveți tre
 
 ## Specificații
 
+<<<<<<< HEAD
 **Specificația ECMA-262** conține cea mai în profunzime, detaliată și formalizată informație despre JavaScript. Aceasta definește limbajul.
+=======
+[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
+>>>>>>> c3a11c85e54153ebb137b5541b1d1f751c804439
 
 Dar fiind atât de formalizată, este grea de înțeles la început. Deci dacă ai nevoie de cea mai de încredere sursă de informație despre detaliile limbajului, specificațiile sunt locul potrivit. Dar nu sunt pentru uzul obișnuit.
 
+<<<<<<< HEAD
 Ultima schiță este la <https://tc39.es/ecma262/>.
+=======
+A new specification version is released every year. In-between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+>>>>>>> c3a11c85e54153ebb137b5541b1d1f751c804439
 
 Pentru a citi despre noile caracteristici avansate, incluzând acelea care sunt "aproape standard" (așa-numita "etapă a treia"), vezi propunerile la <https://github.com/tc39/proposals>.
 
