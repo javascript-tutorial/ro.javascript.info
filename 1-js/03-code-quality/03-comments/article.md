@@ -134,6 +134,7 @@ Document function parameters and usage
 : There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
 >>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
+<<<<<<< HEAD
     De exemplu:
     ```js
     /**
@@ -153,6 +154,32 @@ Document function parameters and usage
     Apropo, multe editoare precum [WebStorm](https://www.jetbrains.com/webstorm/) le pot înțelege la fel de bine și să le folosească pentru a asigura autocompletare și verificări automate ale codului.
     
     De asemenea, sunt și unelte precum [JSDoc 3](https://github.com/jsdoc3/jsdoc) care pot genera documentație HTML din comentarii. Poți citi mai multe informații despre JSDoc la <http://usejsdoc.org/>
+=======
+For instance:
+```js
+/**
+ * Returns x raised to the n-th power.
+ *
+ * @param {number} x The number to raise.
+ * @param {number} n The power, must be a natural number.
+ * @return {number} x raised to the n-th power.
+ */
+function pow(x, n) {
+  ...
+}
+```
+
+Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+
+By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+
+Why is the task solved this way?
+: What's written is important. But what's *not* written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
+
+    If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 
 De ce este rezolvată sarcina în modul acesta?
 : Ce este scris este important. Dar ce *nu* este scris s-ar putea să fie mult mai important pentru a înțelege ce se îmtâmplă. De ce este sarcina rezolvată în felul acesta? Codul nu oferă nici un răspuns.
@@ -183,7 +210,12 @@ Comentariile bune ne permit să păstrăm codul organizat, să ne întoarcem la 
 
 **Evită comentariile pentru:**
 
+<<<<<<< HEAD
 - Pentru a descrie "cum funcționează codul" și "ce face".
 - Folosește-le doar dacă este imposibil să faci codul atât de simplu și autodescriptiv încât comentariile să nu mai fie necesare.
+=======
+- That tell "how code works" and "what it does".
+- Put them in only if it's impossible to make the code so simple and self-descriptive that it doesn't require them.
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 
 Comentariile sunt de asemenea folosite pentru unelte de autodocumentare precum JSDoc3: acestea le citesc și generează documentații HTML (sau documentații în alt format).
