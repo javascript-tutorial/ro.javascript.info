@@ -7,7 +7,7 @@ Cookies are usually set by a web-server using response `Set-Cookie` HTTP-header.
 One of the most widespread use cases is authentication:
 
 1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with a unique "session identifier".
-2. Next time when the request is set to the same domain, the browser sends the over the net using `Cookie` HTTP-header.
+2. Next time when the request is set to the same domain, the browser sends the cookie over the net using `Cookie` HTTP-header.
 3. So the server knows who made the request.
 
 We can also access cookies from the browser, using `document.cookie` property.
@@ -68,7 +68,7 @@ alert(document.cookie); // ...; my%20name=John%20Smith
 
 ```warn header="Limitations"
 There are few limitations:
-- The `name=value` pair, after `encodeURIComponent`, should not exceed 4kb. So we can't store anything huge in a cookie.
+- The `name=value` pair, after `encodeURIComponent`, should not exceed 4KB. So we can't store anything huge in a cookie.
 - The total number of cookies per domain is limited to around 20+, the exact limit depends on a browser.
 ```
 
@@ -162,7 +162,7 @@ document.cookie = "user=John; max-age=3600";
 
 // delete cookie (let it expire right now)
 document.cookie = "user=John; max-age=0";
-```  
+```
 
 ## secure
 
@@ -192,7 +192,7 @@ To understand how it works and when it's useful, let's take a look at XSRF attac
 
 Imagine, you are logged into the site `bank.com`. That is: you have an authentication cookie from that site. Your browser sends it to `bank.com` with every request, so that it recognizes you and performs all sensitive financial operations.
 
-Now, while browsing the web in another window, you occasionally come to another site `evil.com`. That site has JavaScript code that submits a form `<form action="https://bank.com/pay">` to `bank.com` with fields that initiate a transaction to the hacker's account.
+Now, while browsing the web in another window, you accidentally come to another site `evil.com`. That site has JavaScript code that submits a form `<form action="https://bank.com/pay">` to `bank.com` with fields that initiate a transaction to the hacker's account.
 
 The browser sends cookies every time you visit the site `bank.com`, even if the form was submitted from `evil.com`. So the bank recognizes you and actually performs the payment.
 
@@ -243,7 +243,7 @@ A `samesite=lax` cookie is sent if both of these conditions are true:
 
 So, what `samesite=lax` does is basically allows a most common "go to URL" operation to have cookies. E.g. opening a website link from notes satisfies these conditions.
 
-But anything more complicated, like a network request from another site or a form submittion loses cookies.
+But anything more complicated, like a network request from another site or a form submission loses cookies.
 
 If that's fine for you, then adding `samesite=lax` will probably not break the user experience and add protection.
 
@@ -310,7 +310,7 @@ function setCookie(name, value, options = {}) {
     ...options
   };
 
-  if (options.expires.toUTCString) {
+  if (options.expires instanceof Date) {
     options.expires = options.expires.toUTCString();
   }
 
@@ -415,7 +415,7 @@ GDPR is not only about cookies, it's about other privacy-related issues too, but
 `document.cookie` provides access to cookies
 - write operations modify only cookies mentioned in it.
 - name/value must be encoded.
-- one cookie up to 4kb, 20+ cookies per site (depends on a browser).
+- one cookie up to 4KB, 20+ cookies per site (depends on a browser).
 
 Cookie options:
 - `path=/`, by default current path, makes the cookie visible only under that path.
