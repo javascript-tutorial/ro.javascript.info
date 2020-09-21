@@ -1,7 +1,11 @@
 
 # Obiecte
 
+<<<<<<< HEAD
 Așa cum știm din capitolul <info:types>, în JavaScript există șapte tipuri de date. Șase dintre ele sunt denumite "primitive", pentru că ele conțin numai un singur lucru (fie un string, un număr sau altceva).
+=======
+As we know from the chapter <info:types>, there are eight data types in JavaScript. Seven of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 În contrast, obiectele sunt folosite pentru a stoca colecții indexate de date diferite si alte entități complexe. În JavaScript, obiectele pătrund în aproape toate aspectele limbajului. De aceea trebuie să ințelegem obiectele înainte de a intra mai adânc în altă parte.
 
@@ -92,7 +96,35 @@ let user = {
 ```
 Aceasta se numește virgulă "de sfârșit" sau "agățatoare". In felul acesta este mai ușor de adăugat/șters/mutat în jurul proprietăților, deoarece toate liniile vor fi  asemănătoare.
 
+<<<<<<< HEAD
 ## Paranteze pătrate
+=======
+````smart header="Object with const can be changed"
+Please note: an object declared as `const` *can* be modified.
+
+For instance:
+
+```js run
+const user = {
+  name: "John"
+};
+
+*!*
+user.name = "Pete"; // (*)
+*/!*
+
+alert(user.name); // Pete
+```
+
+It might seem that the line `(*)` would cause an error, but no. The `const` fixes the value of `user`, but not its contents.
+
+The `const` would give an error only if we try to set `user=...` as a whole.
+
+There's another way to make constant object properties, we'll cover it later in the chapter <info:property-descriptors>.
+````
+
+## Square brackets
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Accesul la proprietățile formate din mai multe cuvinte nu se poate face cu punct:
 
@@ -101,7 +133,13 @@ Accesul la proprietățile formate din mai multe cuvinte nu se poate face cu pun
 user.likes birds = true
 ```
 
+<<<<<<< HEAD
 Asta deorece cheia trebuie să fie un identificator valid pentru o variabilă, adică: fără spații și alte limitări.
+=======
+JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` and `_` are allowed).
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Există ca alternativă "notația parantezelor pătrate" care funcționează cu orice fel de șir de caractere:
 
@@ -159,7 +197,11 @@ alert( user.key ) // undefined
 
 ### Proprietăți calculate
 
+<<<<<<< HEAD
 Putem folosi parantezele pătrate intr-un obiect literal. Asta se numește *proprietate calculată*.
+=======
+We can use square brackets in an object literal, when creating an object. That's called *computed properties*.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 De exemplu:
 
@@ -203,6 +245,7 @@ Parantezele pătrate sunt mult mai puternice decât notația cu punct. Ele permi
 
 Deci, de cele mai multe ori, când numele proprietăților sunt cunoscute și simple se folosește punctul, iar daca avem nevoie de ceva mai complex, trecem la parantezele pătrate.
 
+<<<<<<< HEAD
 
 
 ````smart header="Cuvintele rezervate sunt permise ca nume de proprietăți"
@@ -241,6 +284,9 @@ Există, de asemenea, o altă structură de date [Map](info:map-set), pe care o 
 
 
 ## Prescurtare (shorthand) pentru valoarea proprietății
+=======
+## Property value shorthand
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 În cod real folosim des variabile existente ca valori pentru numele proprietăților.
 
@@ -250,7 +296,7 @@ De exemplu:
 function makeUser(name, age) {
   return {
     name: name,
-    age: age
+    age: age,
     // ...other properties
   };
 }
@@ -267,8 +313,13 @@ In loc de `name:name` putem scrie doar `name`, după cum urmeză:
 function makeUser(name, age) {
 *!*
   return {
+<<<<<<< HEAD
     name, // la fel ca name: name
     age   // la fel ca age: age
+=======
+    name, // same as name: name
+    age,  // same as age: age
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
     // ...
   };
 */!*
@@ -284,9 +335,63 @@ let user = {
 };
 ```
 
+<<<<<<< HEAD
 ## Verificarea existenței
 
 O caracteristică notabilă a obiectelor este posibilitatea accesării oricărei proprietăți. Nu va fi nicio eroare dacă proprietatea nu există! Accesarea unei proprietăți inexistente doar returnează `undefined`. Oferă un mod foarte comun de a testa dacă proprietatea există -- de a o obține și a o compara cu undefined:
+=======
+
+## Property names limitations
+
+As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction:
+
+```js run
+// these properties are all right
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+In short, there are no limitations on property names. They can be any strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number `0` becomes a string `"0"` when used as a property key:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
+```
+
+There's a minor gotcha with a special property named `__proto__`. We can't set it to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+```
+
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+We'll cover the special nature of `__proto__` in [subsequent chapters](info:prototype-inheritance), and suggest the [ways to fix](info:prototype-methods) such behavior.
+
+## Property existence test, "in" operator
+
+A notable feature of objects in JavaScript, compared to many other languages, is that it's possible to access any property. There will be no error if the property doesn't exist!
+
+Reading a non-existing property just returns `undefined`. So we can easily test whether the property exists:
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 let user = {};
@@ -294,7 +399,11 @@ let user = {};
 alert( user.noSuchProperty === undefined ); // true înseamna "nu există proprietatea"
 ```
 
+<<<<<<< HEAD
 Există, de asemenea, un operator special `"in"` pentru a verifica existența unei proprietăți.
+=======
+There's also a special operator `"in"` for that.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Sintaxa este:
 ```js
@@ -312,17 +421,30 @@ alert( "blabla" in user ); // false, user.blabla nu există
 
 Luați aminte că, la stânga operatorului `in` trebuie sa fie un *nume de proprietate*. Uzual numele este un șir de caractere între ghilimele.
 
+<<<<<<< HEAD
 Dacă omitem ghilimelele, asta ar însemna că o variabilă care conține de fapt numele va fi testată. De exemplu:
+=======
+If we omit quotes, that means a variable, it should contain the actual name to be tested. For instance:
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js run
 let user = { age: 30 };
 
 let key = "age";
+<<<<<<< HEAD
 alert( *!*key*/!* in user ); // true, obține numele din key și verifică dacă există această proprietate
 ```
 
 ````smart header="Folosirea lui \"in\" pentru proprietăți care conțin `undefined`"
 În mod normal, comparația strictă `"=== undefined"` verifică existența proprietății foarte bine. Există însă un caz unde eșuează, cu toate că operatorul `"in"` funcționează corect.
+=======
+alert( *!*key*/!* in user ); // true, property "age" exists
+```
+
+Why does the `in` operator exist? Isn't it enough to compare against `undefined`?
+
+Well, most of the time the comparison with `undefined` works fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Se întâmplă atunci când proprietatea există, dar conține `undefined`:
 
@@ -336,11 +458,18 @@ alert( obj.test ); // este ”undefined”, deci - nu există proprietatea?
 alert( "test" in obj ); // true, proprietatea există!
 ```
 
+<<<<<<< HEAD
 
 In codul de mai sus, proprietatea `obj.test` tehnic există. Deci operatorul `in` funcționează corespunzător.
 
 Situații de genul ăsta apar foarte rar, deoarece `undefined` nu este asignat în mod normal. Cel mai des folosim `null` pentru "unknown" sau valori "empty". Prin urmare operatorul `in` este un element exotic în codul nostru.
 ````
+=======
+In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+
+Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Bucla "for..in"
 
@@ -375,8 +504,12 @@ De remarcat, ca pentru construcțiile "for", ne este permis să declarăm variab
 
 De asemenea, putem folosi alt nume pentru variabila noastră, în loc de `key`. De exemplu, declarația `"for (let prop in obj)"` este de și ea des folosită.
 
+<<<<<<< HEAD
 
 ### Ordonarea ca un obiect
+=======
+### Ordered like an object
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Sunt obiectele ordonate? Cu alte cuvinte, dacă traversăm un obiect, obținem toate proprietățile în aceeași ordine în care au fost adăugate? Ne putem baza pe asta?
 
@@ -459,6 +592,7 @@ for (let code in codes) {
 
 Acum funcționează cum trebuie.
 
+<<<<<<< HEAD
 ## Copierea prin referință
 
 Una dintre diferențele fundamentale dintre obiecte și primitive este că obiectele sunt stocate și copiate "după referință".
@@ -716,6 +850,9 @@ Există un algoritm standard pentru clonarea profundă care gestionează cazul d
 
 
 ## Rezumat
+=======
+## Summary
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Obiectele sunt tablouri asociative cu mai multe caracteristici speciale.
 
@@ -732,11 +869,15 @@ Operatori adiționali:
 - Pentru a verifica dacă o proprietate cu o anumită cheie exista: `"key" in obj`.
 - Pentru a itera asupra unui obiect: bucla `for (let key in obj)`.
 
+<<<<<<< HEAD
 Obiectele sunt alocate și copiate prin referință. Cu alte cuvinte, o variabilă nu stochează valoarea obiectului, ci o "referință" (adresă în memorie) pentru valoare. Prin copierea unei asemenea variabile sau prin trecerea ei ca argument al unei funcții, se copiază acea referință, nu și obiectul. Toate operațiunile via referințe copiate (precum adăugare/ștergere proprietăți) sunt efectuate pe același obiect.
 
 Pentru a face o "copie reală" (o clonă) putem folosi `Object.assign` sau  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
 
 Ceea ce am învățat în acest capitol se numește "obiect simplu", sau doar `Object`.
+=======
+What we've studied in this chapter is called a "plain object", or just `Object`.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Există multe alte feluri de obiecte în JavaScript:
 
