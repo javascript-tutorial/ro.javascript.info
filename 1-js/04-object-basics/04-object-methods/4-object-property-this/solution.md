@@ -7,7 +7,7 @@ function makeUser() {
     name: "John",
     ref: this
   };
-};
+}
 
 let user = makeUser();
 
@@ -22,7 +22,22 @@ Valoarea variabilei `this` este unică pentru întreaga funcția, blocurile de c
 
 În concluzie `ref: this` preia de fapt variabila curentă `this` a funcției.
 
+<<<<<<< HEAD
 Iată cazul opus:
+=======
+We can rewrite the function and return the same `this` with `undefined` value: 
+
+```js run
+function makeUser(){
+  return this; // this time there's no object literal
+}
+
+alert( makeUser().name ); // Error: Cannot read property 'name' of undefined
+```
+As you can see the result of `alert( makeUser().name )` is the same as the result of `alert( user.ref.name )` from the previous example.
+
+Here's the opposite case:
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 ```js run
 function makeUser() {
@@ -34,7 +49,7 @@ function makeUser() {
     }
 */!*
   };
-};
+}
 
 let user = makeUser();
 
