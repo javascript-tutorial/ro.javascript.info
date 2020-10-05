@@ -4,7 +4,11 @@ Să vedem ce e atât de special la JavaScript, ce putem realiza cu el și ce alt
 
 ## Ce este JavaScript?
 
+<<<<<<< HEAD
 *JavaScript* a fost creat inițial pentru *"a da viață paginilor"*.
+=======
+*JavaScript* was initially created to "make web pages alive".
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 
 În acest limbaj programele sunt numite *script-uri*(scripts). Acestea pot fi scrise direct în HTML și executate în mod automat pe măsură ce pagina se încarcă.
 
@@ -12,8 +16,13 @@ Script-urile sunt furnizate și executate ca și text simplu. Ele nu au nevoie d
 
 În ceea ce privește acest aspect, JavaScript este foarte diferit față de un alt limbaj cu nume asemănător, [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
+<<<<<<< HEAD
 ```smart header="Why <u>Java</u>Script?"
 Când JavaScript a fost creat, inițial avea un alt nume: "LiveScript". Dar la acel moment limbajul Java era foarte popular, așa s-a decis că poziționarea unui nou limbaj ca și "frate mai mic" al lui Java, va ajuta.
+=======
+```smart header="Why is it called <u>Java</u>Script?"
+When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 
 Dar cum acesta a evoluat, JavaScript a devenit un limbaj complet independent, cu propriile specificații, numite [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), iar acum nu mai are nici o legătură cu Java.
 ```
@@ -24,9 +33,15 @@ Browser-ul are un motor încorporat, uneori denumit "mașină virtuală JavaScri
 
 Diferite motoare au diferite "nume de cod", spre exemplu:
 
+<<<<<<< HEAD
 - [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- în Chrome și Opera.
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- în Firefox.
 - ...Mai există și alte nume de cod precum "Trident" și "Chakra" pentru diferite versiuni de IE, "ChakraCore" pentru Microsoft Edge, "Nitro" și "SquirrelFish" pentru Safari, etc.
+=======
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome and Opera.
+- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- in Firefox.
+- ...There are other codenames like "Chakra" for IE, "ChakraCore" for Microsoft Edge, "Nitro" and "SquirrelFish" for Safari, etc.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 
 Termenii de mai sus sunt bine de știut, pentru că ei sunt folosiți în articole ale dezvoltatorilor, pe internet. De exemplu dacă "o caracteristică(feature) X este suportată de către V8", atunci probabil că merge și în Chrome și în Opera.
 
@@ -38,7 +53,11 @@ Motoarele sunt complicate. Dar bazele sunt ușoare.
 2. Apoi convertește("compilează") script-ul în limbajul mașină.
 3. Apoi codul mașină rulează, destul de repede.
 
+<<<<<<< HEAD
 Motorul aplică optimizări la fiecare stadiu al procesului. Ba chiar observă script-ul compilat cum rulează, analizează datele care trec prin el și aplică optimizări asupra codului mașină, bazate pe informațiile strânse. La sfârșit script-urile rulează destul de repede.
+=======
+The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 ```
 
 ## Ce poate JavaScript-ul din browser să facă?
@@ -63,7 +82,11 @@ Abilitățile JavaScript-ului din browser sunt limitate pentru siguranța utiliz
 
 Exemplele acestor restricții sunt:
 
+<<<<<<< HEAD
 - JavaScript, pe o pagină web, nu poate citi/scrie fișiere arbitrare pe hard disk, nu le poate copia sau să execute programe. Nu are acces direct la funcțiile sistemului de operare.
+=======
+- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 
     Browserele moderne îi permit să lucreze cu fișiere, dar accesul este limitat și furnizat doar dacă utilizatorul realizează anumite acțiuni, cum ar fi "scăparea" unui fișier într-o fereastră de browser sau selectarea lui printr-un tag `<input>`.
 
@@ -106,10 +129,18 @@ Uneltele moderne fac transpilarea foarte rapidă și transparentă, permițând 
 
 Exemple de astfel de limbaje:
 
+<<<<<<< HEAD
 - [CoffeeScript](http://coffeescript.org/) este un "zahăr sintactic" pentru JavaScript, el introduce sintaxă mai scurtă, permițând scrierea de cod mai clar și mai precis. De obicei dezvoltatorii Ruby îl plac.
 - [TypeScript](http://www.typescriptlang.org/) este concentrat pe adăugarea de "tipizare strictă de date", pentru a simplifica dezvoltarea și suportul sistemelor complexe. Este dezvoltat de Microsoft.
 - [Flow](http://flow.org/) adaugă tipizarea datelor, dar într-un mod diferit. Dezvoltate de Facebook.
 - [Dart](https://www.dartlang.org/) este un limbaj standalone care are propriul său motor care rulează în medii non-browser(precum aplicațiile mobile). A fost oferit inițial de către Google ca și un înlocuitor pentru JavaScript, dar de acum browserele necesită ca acesta să fie transpilat în JavaScript la fel ca cele de mai sus.
+=======
+- [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
+- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
+- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
+- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
+- [Brython](https://brython.info/) is a Python transpiler to JavaScript that allow to write application in pure Python without JavaScript.
+>>>>>>> 181cc781ab6c55fe8c43887a0c060db7f93fb0ca
 
 Există mai multe. Desigur, chiar dacă folosim unul dintre aceste limbaje, ar trebui de asemenea să știm JavaScript, pentru a înțelege cu adevărat ce facem.
 
