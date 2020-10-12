@@ -1,6 +1,10 @@
 # The Modern JavaScript Tutorial in Romanian
 
+<<<<<<< HEAD
 This repository hosts the translation of <https://javascript.info> in Romanian.
+=======
+This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 
 **That's how you can contribute:**
@@ -80,6 +84,7 @@ document.querySelector('.hello').innerHTML = text;
 
 ❌ DON'T (translate class):
 
+<<<<<<< HEAD
 ```js
 // Ejemplo
 const text = 'Hola mundo';
@@ -87,6 +92,11 @@ const text = 'Hola mundo';
 // DO NOT TRANSLATE
 document.querySelector('.hola').innerHTML = text;
 ```
+=======
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 ### External Links
 
