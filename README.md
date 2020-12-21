@@ -1,6 +1,10 @@
 # The Modern JavaScript Tutorial in Romanian
 
+<<<<<<< HEAD
 This repository hosts the translation of <https://javascript.info> in Romanian.
+=======
+This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 
 **That's how you can contribute:**
@@ -23,7 +27,11 @@ If maintainers do not respond, or if you'd like to become a maintainer, write us
 
 🎉 Thank you!
 
+<<<<<<< HEAD
 Your name and the contribution size will appear in the "About project" page when the translation gets published.
+=======
+**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 P.S. The full list of languages can be found at <https://javascript.info/translate>.
 
@@ -80,6 +88,7 @@ document.querySelector('.hello').innerHTML = text;
 
 ❌ DON'T (translate class):
 
+<<<<<<< HEAD
 ```js
 // Ejemplo
 const text = 'Hola mundo';
@@ -87,6 +96,11 @@ const text = 'Hola mundo';
 // DO NOT TRANSLATE
 document.querySelector('.hola').innerHTML = text;
 ```
+=======
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 ### External Links
 
@@ -115,6 +129,7 @@ Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
 ```md
 importance: 5
 
+<<<<<<< HEAD
 ---
 ...
 ```
@@ -136,5 +151,8 @@ Please don't translate or remove the `[#...]` part, it's for URL anchors.
 You can run the tutorial server locally to see how the translation looks.
 
 The server and install instructions are at <https://github.com/javascript-tutorial/server>. 
+=======
+---  
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 ♥  
 Ilya Kantor @iliakan
