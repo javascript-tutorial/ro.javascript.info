@@ -12,7 +12,7 @@ A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "na
 
 To create a variable in JavaScript, use the `let` keyword.
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+The statement below creates (in other words: *declares*) a variable with the name "message":
 
 ```js
 let message;
@@ -80,7 +80,6 @@ let user = 'John'
 
 Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
 
-
 ````smart header="`var` instead of `let`"
 In older scripts, you may also find another keyword: `var` instead of `let`:
 
@@ -134,6 +133,20 @@ message = hello;
 alert(hello); // Hello world!
 alert(message); // Hello world!
 ```
+
+````warn header="Declaring twice triggers an error"
+A variable should be declared only once.
+
+A repeated declaration of the same variable is an error:
+
+```js run
+let message = "This";
+
+// repeated 'let' leads to an error
+let message = "That"; // SyntaxError: 'message' has already been declared
+```
+So, we should declare a variable once and then refer to it without `let`.
+````
 
 ```smart header="Functional languages"
 It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
@@ -190,7 +203,7 @@ let имя = '...';
 let 我 = '...';
 ```
 
-Technically, there is no error here, such names are allowed, but there is an international tradition to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
 ````
 
 ````warn header="Reserved names"
@@ -237,7 +250,7 @@ To declare a constant (unchanging) variable, use `const` instead of `let`:
 const myBirthday = '18.04.1982';
 ```
 
-Variables declared using `const` are called "constants". They cannot be changed. An attempt to do so would cause an error:
+Variables declared using `const` are called "constants". They cannot be reassigned. An attempt to do so would cause an error:
 
 ```js run
 const myBirthday = '18.04.1982';
@@ -290,7 +303,7 @@ In other words, capital-named constants are only used as aliases for "hard-coded
 
 Talking about variables, there's one more extremely important thing.
 
-A variable name should have a clean, obvious meaning, describe the data that it stores.
+A variable name should have a clean, obvious meaning, describing the data that it stores.
 
 Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code was written by a beginner versus an experienced developer.
 
