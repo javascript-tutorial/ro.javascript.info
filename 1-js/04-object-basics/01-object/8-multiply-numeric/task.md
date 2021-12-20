@@ -2,9 +2,15 @@ importance: 3
 
 ---
 
+<<<<<<< HEAD
 # Multiplicați proprietățile numerice cu 2
 
 Creați o funcție `multiplyNumeric(obj)` care multiplică fiecare proprietate a `obj` cu `2`.
+=======
+# Multiply numeric property values by 2
+
+Create a function `multiplyNumeric(obj)` that multiplies all numeric property values of `obj` by `2`.
+>>>>>>> 8d04d0d2db97276dbb2b451c30a7bd3e05d65831
 
 For instance:
 
