@@ -32,11 +32,19 @@ user.sayHi = function() {
 user.sayHi(); // Salut!
 ```
 
+<<<<<<< HEAD
 Aici tocmai am folosit o Expresie Funcție (Function Expression) pentru a crea funcția și a o atribui proprietății `user.sayHi` a obiectului.
 
 Apoi o putem apela. Utilizatorul poate vorbi acum!
 
 O funcție care este proprietatea unui obiect se numește *metodă*.
+=======
+Here we've just used a Function Expression to create a function and assign it to the property `user.sayHi` of the object.
+
+Then we can call it as `user.sayHi()`. The user can now speak!
+
+A function that is a property of an object is called its *method*.
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 
 Deci, aici avem o metodă `sayHi` a obiectului `user`.
 
@@ -60,10 +68,17 @@ user.sayHi = sayHi;
 user.sayHi(); // Salut!
 ```
 
+<<<<<<< HEAD
 ```smart header="Programare orientată pe obiecte"
 Când scriem cod folosind obiecte pentru a reprezenta entități, asta se numește [programare orientată pe obiecte](https://ro.wikipedia.org/wiki/Programare_orientat%C4%83_pe_obiecte), pe scurt: "OOP".
 
 OOP este un lucru mare, o știință interesantă în sine. Cum să alegi entitățile potrivite? Cum să organizezi interacțiunea dintre ele? Aceasta este arhitectură, și există cărți interesante pe această temă, precum "Design Patterns: Elements of Reusable Object-Oriented Software" de E.Gamma, R.Helm, R.Johnson, J.Vissides sau "Object-Oriented Analysis and Design with Applications" de G.Booch, și altele.
+=======
+```smart header="Object-oriented programming"
+When we write our code using objects to represent entities, that's called [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
+
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E. Gamma, R. Helm, R. Johnson, J. Vissides or "Object-Oriented Analysis and Design with Applications" by G. Booch, and more.
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 ```
 ### Metoda scurtă
 
@@ -81,7 +96,11 @@ user = {
 // Metoda scurtă arată mai bine, nu-i așa?
 user = {
 *!*
+<<<<<<< HEAD
   sayHi() { // la fel ca "sayHi: function()"
+=======
+  sayHi() { // same as "sayHi: function(){...}"
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 */!*
     alert("Salut");
   }
@@ -160,16 +179,28 @@ let user = {
 let admin = user;
 user = null; // suprascrie pentru a face lucrurile evidente
 
+<<<<<<< HEAD
 admin.sayHi(); // Hopa! în interiorul sayHi() este folosit vechiul nume! eroare!
+=======
+*!*
+admin.sayHi(); // TypeError: Cannot read property 'name' of null
+*/!*
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 ```
 
 Dacă am folosi `this.name` în loc de `user.name` în interiorul funcției `alert`, atunci codul ar funcționa.
 
 ## "this" nu este legat
 
+<<<<<<< HEAD
 În JavaScript, cuvântul cheie "this" se comportă diferit de cele mai multe limbaje de programare. Poate fi utilizat în orice funcție.
 
 Nu există nicio eroare de sintaxă într-un cod ca acesta:
+=======
+In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function, even if it's not a method of an object.
+
+There's no syntax error in the following example:
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 
 ```js
 function sayHi() {
@@ -220,12 +251,17 @@ sayHi(); // undefined
 
 În mod non-strict valoarea variabilei `this` în astfel de cazuri va fi *obiect global* (`window` într-un browser, vom ajunge la el mai târziu în capitolul [](info:global-object)). Acesta este un comportament istoric pe care îl corectează sintaxa `"use strict"`.
 
+<<<<<<< HEAD
 În mod normal, asemenea apel este o eroare de programare. Dacă există variabila `this` în interiorul unei funcții, este de așteptat să fie apelată într-un context obiect.
+=======
+Usually such call is a programming error. If there's `this` inside a function, it expects to be called in an object context.
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 ````
 
 ```smart header="Consecințele detașării variabilei `this`"
 Dacă veniți dintr-un alt limbaj de programare, atunci sunteți probabil obișnuit cu ideea de "variabilă `this` atașată", unde metodele definite într-un obiect au întotdeauna variabila `this` care referențiază acel obiect.
 
+<<<<<<< HEAD
 În JavaScript variabila `this` este "liberă", valoarea ei este evaluată la timpul apelării și nu depinde de locul în care a fost metoda declarată, ci mai degrabă de cine este obiectul "dinaintea punctului".
 
 Conceptul de variabilă `this` evaluată în timpul execuției are atât plusuri cât și minusuri. Pe de o parte, o funcție poate fi reutilizată pentru obiecte diferite. Pe de altă parte, o flexibilitate mai mare lasă loc pentru greșeli.
@@ -326,6 +362,16 @@ Orice altă operațiune, precum atribuirea `hi = user.hi` renunță la tipul ref
 Așadar, ca rezultat, valoarea variabilei `this` este transmisă în mod corect doar dacă funcția este apelată direct folosind un punct `obj.method()` sau sintaxa cu paranteze pătrate `obj['method']()` (aici se comportă identic). Mai târziu în acest tutorial, vom învăța diverse modalități de a rezolva această problemă, precum [func.bind()](/bind#solution-2-bind).
 
 ## Funcțiile săgeată nu au "this"
+=======
+In JavaScript `this` is "free", its value is evaluated at call-time and does not depend on where the method was declared, but rather on what object is "before the dot".
+
+The concept of run-time evaluated `this` has both pluses and minuses. On the one hand, a function can be reused for different objects. On the other hand, the greater flexibility creates more possibilities for mistakes.
+
+Here our position is not to judge whether this language design decision is good or bad. We'll understand how to work with it, how to get benefits and avoid problems.
+```
+
+## Arrow functions have no "this"
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
 
 Funcțiile săgeată sunt speciale: ele nu au variabila "proprie" `this`. Dacă facem referire la `this` dintr-o astfel de funție, aceasta este preluată din funcția exterioară "normală".
 
