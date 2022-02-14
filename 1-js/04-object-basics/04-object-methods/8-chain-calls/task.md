@@ -28,12 +28,14 @@ ladder.up();
 ladder.up();
 ladder.down();
 ladder.showStep(); // 1
+ladder.down();
+ladder.showStep(); // 0
 ```
 
 Modificați codul pentru `up`, `down` și `showStep` pentru a face apelările înlănțuibile, astfel:
 
 ```js
-ladder.up().up().down().showStep(); // 1
+ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
 ```
 
 Asemenea abordare este utilizată pe scară largă în bibliotecile JavaScript.
