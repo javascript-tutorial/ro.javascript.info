@@ -28,7 +28,7 @@ Diferite motoare au diferite "nume de cod", spre exemplu:
 - [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- în Firefox.
 - ...Mai există și alte nume de cod precum "Chakra" pentru IE, "JavaScriptCore", "Nitro" și "SquirrelFish" pentru Safari, etc.
 
-Termenii de mai sus sunt bine de știut pentru că ei sunt folosiți în articole ale dezvoltatorilor de pe internet. Va trebui să le folosim. Spre exemplu, dacă "o caracteristică(feature) X este suportată de către V8", atunci probabil că merge și în Chrome, Opera și Edge.
+Termenii de mai sus sunt bine de știut pentru că ei sunt folosiți în articole ale dezvoltatorilor de pe internet. Va trebui să-i și folosim. Spre exemplu, dacă "o caracteristică(feature) X este suportată de către V8", atunci probabil că merge și în Chrome, Opera și Edge.
 
 ```smart header="How do engines work?"
 
