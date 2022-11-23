@@ -1,6 +1,6 @@
-# The JavaScript language
+# Limbajul JavaScript
 
-Here we learn JavaScript, starting from scratch and go on to advanced concepts like OOP.
+Aici învățăm JavaScript, de la început mergând până la concepte avansate precum OOP.
 
-We concentrate on the language itself here, with the minimum of environment-specific notes.
+Ne concentrăm către limbajul în sine, cu minimul de note cu specific despre environment.
 

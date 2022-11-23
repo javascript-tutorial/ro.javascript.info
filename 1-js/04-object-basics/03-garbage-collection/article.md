@@ -14,27 +14,16 @@ Simplu spus, valorile "accesibile" sunt acelea care sunt abordabile sau folosibi
 
     De exemplu:
 
-<<<<<<< HEAD:1-js/04-object-basics/02-garbage-collection/article.md
-    - Variabile locale și parametri ai funcției curente.
-    - Variabile și parametri ai altor funcții din lanțul curent de apeluri imbricate.
+    - Funcția în execuție, variabilele locale ale acesteia și parametrii ei.
+    - Alte funcții din lanțul curent de nested calls, variabilele locale ale acesteia și parametrii ei.
     - Variabile globale.
-    - (mai sunt și altele, cele interne, de asemenea)
-=======
-    - The currently executing function, its local variables and parameters.
-    - Other functions on the current chain of nested calls, their local variables and parameters.
-    - Global variables.
-    - (there are some other, internal ones as well)
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834:1-js/04-object-basics/03-garbage-collection/article.md
+    - (mai sunt și câteva altele, cele interne de asemenea)
 
     Aceste valori se numesc *rădăcini*.
 
 2. Orice altă valoare este considerată accesibilă dacă este accesibilă dintr-o rădăcină printr-o referință sau printr-un lanț de referințe.
 
-<<<<<<< HEAD:1-js/04-object-basics/02-garbage-collection/article.md
-    De exemplu, dacă există un obiect într-o variabilă locală și acel obiect are o proprietate care face referire la alt obiect, acel obiect este considerat accesibil. Iar cele la care face referire sunt, de asemenea, accesibile. Urmează exemple detaliate.
-=======
-    For instance, if there's an object in a global variable, and that object has a property referencing another object, *that* object is considered reachable. And those that it references are also reachable. Detailed examples to follow.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834:1-js/04-object-basics/03-garbage-collection/article.md
+    Spre exemplu, dacă există un obiect într-o variabilă globală, și acel obiect are o proprietate care face referire la alt obiect, *acel* obiect este considerat accesibil. Iar cele la care face referire sunt de asemenea accesibile. Urmează exemple detaliate.
 
 În motorul limbajului Javascript există un proces de fundal care se numește [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). El monitorizează toate obiectele și le șterge pe cele care au devenit inaccesibile.
 
@@ -164,19 +153,11 @@ Algoritmul de bază de colectare a reziduurilor este denumit "mark-and-sweep" (�
 
 Următorii pași ai "colectării reziduurilor" sunt efectuați regulat:
 
-<<<<<<< HEAD:1-js/04-object-basics/02-garbage-collection/article.md
 - "Garbage collector" ia rădăcinile și le "marchează" (le memorează).
 - Apoi vizitează toate referințele dinspre ele.
-- Apoi parcurge obiectele marcate și însemnează referințele *lor*. Toate obiectele vizitate sunt memorate pentru a nu vizita același obiect de două ori în viitor.
-- ...Și așa mai departe până când nu există referințe nevizitate (accesibil din rădăcini).
-- Toate obiectele, cu excepția celor marcate, sunt eliminate.
-=======
-- The garbage collector takes roots and "marks" (remembers) them.
-- Then it visits and "marks" all references from them.
-- Then it visits marked objects and marks *their* references. All visited objects are remembered, so as not to visit the same object twice in the future.
-- ...And so on until every reachable (from the roots) references are visited.
-- All objects except marked ones are removed.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834:1-js/04-object-basics/03-garbage-collection/article.md
+- Apoi vizitează obiectele marcate și marchează referințele *lor*. Toate obiectele vizitate sunt memorate, pentru a nu vizita același obiect de două ori în viitor.
+- ...Și așa mai departe până când fiecare referință (accesibilă din rădăcini) este vizitată.
+- Toate obiectele cu excepția celor marcate sunt eliminate.
 
 De exemplu, să presupunem că structura obiectului nostru arată așa:
 
@@ -200,15 +181,9 @@ Acum, obiectele care nu au putut fi vizitate pe parcursul procesului sunt consid
 
 ![](garbage-collection-5.svg)
 
-<<<<<<< HEAD:1-js/04-object-basics/02-garbage-collection/article.md
-Acesta este conceptul de funcționare a colectării reziduurilor.
-
-Motoarele limbajului JavaScript aplică numeroase optimizări pentru a-l face să ruleze mai rapid și să nu afecteze execuția.
-=======
 We can also imagine the process as spilling a huge bucket of paint from the roots, that flows through all references and marks all reachable objects. The unmarked ones are then removed.
 
-That's the concept of how garbage collection works. JavaScript engines apply many optimizations to make it run faster and not affect the execution.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834:1-js/04-object-basics/03-garbage-collection/article.md
+Acesta este conceptul de funcționare a colectării reziduurilor. Motoarele limbajului JavaScript aplică numeroase optimizări pentru a-l face să ruleze mai rapid și să nu afecteze execuția.
 
 Câteva dintre optimizări:
 
@@ -216,11 +191,7 @@ Câteva dintre optimizări:
 - **Colectare incrementală** -- dacă există multe obiecte și încercăm să parcurgem simultan întregul set obiect, poate dura mai mult și poate introduce întârzieri vizibile în execuție. Astfel încât, motorul încearcă să împartă în bucăți colectarea reziduurilor. Apoi bucățile sunt executate separat, una câte una. Asta necesită o mai bună contabilitate între ele pentru a urmări modificările, dar avem mai multe întârzieri micuțe în loc de una mare.
 - **Colectare în timp-inactiv** -- colectorul de reziduuri încearcă să ruleze numai în timp ce procesorul este inactiv, pentru a reduce posibilul efect asupra execuției.
 
-<<<<<<< HEAD:1-js/04-object-basics/02-garbage-collection/article.md
-Există și alte optimzări și modele ale algoritmilor de colectare a reziduurilor. Oricât de mult mi-ar plăcea să le descriu aici. trebuie să mă abțin, întrucât diferite motoare implementează ajustări și tehnici diferite. Și, ceea ce este și mai important, lucrurile se schimbă pe măsură ce motoarele se dezvoltă, deci aprofundarea "în avans", fără o nevoie reală, probabil că nu merită acest lucru. Cu excepția cazului în care, bineînțeles, este o chestiune de interes pur, atunci vor fi câteva link-uri pentru voi mai jos.
-=======
-There exist other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so studying deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834:1-js/04-object-basics/03-garbage-collection/article.md
+Există și alte optimzări și modele ale algoritmilor de colectare a reziduurilor. Oricât de mult mi-ar plăcea să le descriu aici, trebuie să mă abțin, întrucât diferite motoare implementează ajustări și tehnici diferite. Și, ceea ce este și mai important, lucrurile se schimbă pe măsură ce motoarele se dezvoltă, deci aprofundarea "în avans", fără o nevoie reală probabil că nu merită acest lucru. Cu excepția cazului în care, bineînțeles, este o chestiune de interes pur, atunci vor fi câteva link-uri pentru tine mai jos.
 
 ## Rezumat
 

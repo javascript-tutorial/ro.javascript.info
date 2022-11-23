@@ -13,7 +13,7 @@ Spre exemplu:
 let menu = {
   width: 200,
   height: 300,
-  title: "My menu"
+  title: "Meniul meu"
 };
 
 multiplyNumeric(menu);
@@ -22,7 +22,7 @@ multiplyNumeric(menu);
 menu = {
   width: 400,
   height: 600,
-  title: "My menu"
+  title: "Meniul meu"
 };
 ```
 
