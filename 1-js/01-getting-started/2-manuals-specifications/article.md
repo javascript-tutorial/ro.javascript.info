@@ -21,7 +21,7 @@ De asemenea, dacă programezi pentru browser, atunci sunt și alte specificații
 
     Poate fi găsit la <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
     
-Cu toate acestea, de cele mai multe ori este mai bine să folosim o căutare pe internet. Folosiți doar "MDN [termen]" în query, e.g. <https://google.com/search?q=MDN+parseInt> pentru a căuta funcția `parseInt`.
+Cu toate acestea, de cele mai multe ori este mai bine să facem o căutare pe internet. Folosiți doar "MDN [termen]" în query, e.g. <https://google.com/search?q=MDN+parseInt> pentru a căuta funcția `parseInt`.
 
 ## Tabele de compatibilitate
 
