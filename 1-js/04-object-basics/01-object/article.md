@@ -354,7 +354,7 @@ In codul de mai sus, proprietatea `obj.test` tehnic există. Deci operatorul `in
 
 Situații de genul ăsta apar foarte rar, deoarece `undefined` nu este assigned în mod normal. De obicei folosim `null` pentru valori "necunoscute" sau "goale". Prin urmare operatorul `in` este un element exotic în codul nostru.
 
-## Bucla "for..in"
+## Bucla "for..in" [#forin]
 
 Pentru a traversa toate cheile unui obiect, există o formă specială de buclă: `for..in`. Aceasta este complet diferită de construcția buclei `for(;;)` pe care am studiat-o anterior.
 
