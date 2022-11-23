@@ -29,7 +29,7 @@ Aspectul exact al uneltelor de dezvoltare depinde de versiunea de Chrome folosit
 - Aici vedem mesajul colorat în roșu. În acest caz, scriptul conține o comandă necunoscută, "lalala".
 - În partea dreaptă se află un link către sursa `bug.html:12`, cu numărul liniei pe care a apărut eroarea. 
 
-Sub mesajul de eroare se află un simbol `>` albastru. El marchează o "linie de comandă" unde putem introduce comenzi JavaScript. Apăsați `key:Enter` ca să le rulați.
+Sub mesajul de eroare, se află un simbol `>` albastru. El marchează un "command line" unde putem introduce comenzi JavaScript. Apăsați `key:Enter` ca să le rulați.
 
 Pentru moment putem vedea erorile și asta e suficient pentru început. Vom reveni mai târziu la uneltele de dezvoltare și vom detalia depanarea în capitolul <info:debugging-chrome>.
 
@@ -54,12 +54,6 @@ Deschideți preferințele (Preferences) și mergeți în secțiunea de setări a
 ![safari](safari.png)
 
 Acum, cu tastele `key:Cmd+Opt+C` puteți afișa sau ascunde consola. De asemenea, în meniul principal a apărut opțiunea "Develop". Are multe comenzi și opțiuni.
-
-```smart header="Multi-line input"
-În mod obișnuit, când introducem o linie de cod în consolă și apoi apăsăm `key:Enter`, codul se execută.
-
-Pentru a introduce mai multe linii, apăsați `key:Shift+Enter`. În acest fel oricine poate insera fragmente lungi de cod JavaScript.
-```
 
 ## Rezumat
 
