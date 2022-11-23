@@ -57,7 +57,7 @@ De exemplu, JavaScript din browser este capabil să:
 - Preia și să seteze cookie-uri, pună întrebări vizitatorului, arate mesaje.
 - Să-și amintească date pe partea de client("local storage").
 
-## Ce nu poate JavaScript-ul din browser să facă?
+## Ce NU poate JavaScript-ul din browser să facă?
 
 Abilitățile JavaScript-ului din browser sunt limitate de dragul siguranței utilizatorului. Scopul este de a preveni o pagină web malițioasă să acceseze informații private sau să corupă datele utilizatorului.
 
@@ -88,11 +88,11 @@ Sunt cel puțin *trei* lucruri imporante în legătură cu JavaScript:
 + Lucrurile simple sunt făcute simplu.
 + Este suportat de toate browserele majore și activat în mod implicit.
 ```
-JavaScript este singura tehnologie browser care combină aceste 3 lucruri.
+JavaScript este singura tehnologie browser care combină aceste trei lucruri.
 
 Asta e ceea ce face JavaScript unic. De aceea este cea mai răspândită unealtă pentru crearea de interfețe pentru browser.
 
-Acestea fiind zise JavaScript permite de asemenea crearea serverlor, aplicațiilor mobile etc.
+Acestea fiind spuse, JavaScript permite de asemenea crearea serverlor, aplicațiilor mobile etc.
 
 ## Limbaje "peste" JavaScript
 
@@ -100,7 +100,7 @@ Sintaxa JavaScript-ului nu se potrivește cerințelor fiecăruia. Persoane difer
 
 Acest lucru este de așteptat, pentru că proiectele și cerințele sunt diferite pentru fiecare.
 
-Așa că recent a apărut o pletoră de limbaje noi, care sunt *transpilate*(convertite) în JavaScript, înainte ca ele să ruleze în browser.
+Așa că, recent au apărut o pletoră de limbaje noi, care sunt *transpiled*(convertite) în JavaScript înainte ca ele să ruleze în browser.
 
 Uneltele moderne fac transpilarea foarte rapidă și transparentă, permițând defapt dezvoltatorilor să codeze în alt limbaj și să auto convertească codul în cod "sub capotă"(under the hood).
 
