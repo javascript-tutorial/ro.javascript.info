@@ -20,24 +20,18 @@ De asemenea, dacă programezi pentru browser, atunci sunt și alte specificații
 - **MDN (Mozilla) JavaScript Reference** este manualul principal cu exemple și alte informații. Este minunat pentru a obține informații mai profunde despre funcții individuale ale limbajului, metode etc.
 
     Poate fi găsit la <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
-
-    Deși, adeseori cel mai bine este să cauți pe internet. Doar folosește "MDN [term]" în query, e.g. <https://google.com/search?q=MDN+parseInt> pentru a căuta funcția `parseInt`.
-
-- **MSDN** – manual de la Microsoft cu o multitudine de informații, inclusiv JavaScript (adeseori menționat ca JScript). Dacă cineva are nevoie de ceva specific pentru Internet Explorer, cel mai bine este să vadă: <http://msdn.microsoft.com/>.
     
-    De asemenea, putem căuta pe internet fraze de genul "RegExp MSDN" or "RegExp MSDN jscript".
+Cu toate acestea, de cele mai multe ori este mai bine să folosim o căutare pe internet. Folosiți doar "MDN [termen]" în query, e.g. <https://google.com/search?q=MDN+parseInt> pentru a căuta funcția `parseInt`.
 
 ## Tabele de compatibilitate
 
 JavaScipt este un limbaj în dezvoltare, noi caracteristici fiind adăugate regulat.
-
-Cu toate acestea, de cele mai multe ori este mai bine să folosim o căutare pe internet. Folosiți doar "MDN [termen]" în interogare, e.g. <https://google.com/search?q=MDN+parseInt> pentru a căuta funcția `parseInt`.
 
 Pentru a vedea suportul acestora printre browsere și alte motoare vezi:
 
 - <http://caniuse.com> - tabele pentru suport per-caracteristică, e.g. pentru a vedea ce motoare suportă funcțiile moderne de criptografie: <http://caniuse.com/#feat=cryptography>.
 - <https://kangax.github.io/compat-table> - un tabel cu caracteristicile limbajului și motoarele ce le suportă sau nu.
 
-Toate aceste resurse sunt utile de în dezvoltarea din viața reală, conținând informații valoroase despre detaliile limbajului, suportul acestora etc.
+Toate aceste resurse sunt utile pentru dezvoltarea din viața reală, conținând informații valoroase despre detaliile limbajului, suportul acestora etc.
 
 Te rugăm să îți amintești de ele (sau de acestă pagină) pentru cazurile în care ai nevoie de informații mai profunde despre o caracteristică particulară.
