@@ -47,18 +47,14 @@ switch (a) {
     break;
 */!*
   case 5:
-<<<<<<< HEAD:1-js/02-first-steps/13-switch/article.md
     alert( 'Prea mare' );
-=======
-    alert( 'Too big' );
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834:1-js/02-first-steps/14-switch/article.md
     break;
   default:
     alert( "Nu știu astfel de valori" );
 }
 ```
 
-Aici, `switch` începe să compare `a` cu valoarea din primul `case`, adică `3`. Egalitatea nu este îndeplinită.
+Aici `switch` începe să compare `a` cu valoarea din primul `case`, adică `3`. Egalitatea nu este îndeplinită.
 
 Urmează `4`. Acesta se potrivește, deci execuția începe de la `case 4` până la cel mai apropiat `break`.
 
@@ -129,11 +125,7 @@ switch (a) {
     break;
 
 *!*
-<<<<<<< HEAD
-  case 3:                    // (*) două cazuri grupate
-=======
-  case 3: // (*) grouped two cases
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
+  case 3: // (*) două cazuri grupate
   case 5:
     alert('Greșit!');
     alert("De ce nu urmezi un curs de matematică?");
