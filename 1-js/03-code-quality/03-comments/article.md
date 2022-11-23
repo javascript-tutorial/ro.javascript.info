@@ -166,14 +166,14 @@ Comentariile bune ne permit să păstrăm codul organizat, să ne întoarcem la 
 
 **Comentează următoarele:**
 
-- Arhitectura per total, o vedere de ansamblu a acesteia.
+- Arhitectura per total, o vedere high-level.
 - Utilizarea funcțiilor.
 - Soluții importante, în special când nu sunt imediat evidente.
 
 **Evită comentariile pentru:**
 
 - Pentru a spune "cum funcționează codul" și "ce face".
-- Punele înăuntru doar dacă este imposibil să faci codul atât de simplu și autodescriptiv încat nu este nevoie de ele.
+- Punele înăuntru doar dacă este imposibil să faci codul atât de simplu și autodescriptiv încat să nu fie nevoie de ele.
 
 
 Comentariile sunt de asemeni folosite pentru unelte de autodocumentare precum JSDoc3: acestea le citesc și generează documentații HTML (sau documentații în alt format).
