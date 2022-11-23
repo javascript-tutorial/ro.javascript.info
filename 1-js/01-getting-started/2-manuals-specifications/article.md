@@ -9,7 +9,7 @@ Această carte este un *tutorial*. Are ca obiectiv să te ajute să înveți tre
 
 Dar fiind atât de formalizată, este grea de înțeles la început. Deci dacă ai nevoie de cea mai de încredere sursă de informație despre detaliile limbajului, specificațiile sunt locul potrivit. Dar nu sunt pentru uzul obișnuit.
 
-A new specification version is released every year. In-between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+O nouă versiune a specificației este lansată în fiecare an. Printre aceste lansări, cea mai recentă schiță a specificației este la <https://tc39.es/ecma262/>.
 
 Pentru a citi despre noile caracteristici avansate, incluzând acelea care sunt "aproape standard" (așa-numita "etapă a treia"), vezi propunerile la <https://github.com/tc39/proposals>.
 
@@ -17,7 +17,7 @@ De asemenea, dacă programezi pentru browser, atunci sunt și alte specificații
 
 ## Manuale
 
-- **MDN (Mozilla) JavaScript Reference** este un manual cu exemple și alte informații. Este bun pentru a obține informații mult mai profunde despre funcții individuale ale limbajului, metode etc.
+- **MDN (Mozilla) JavaScript Reference** este manualul principal cu exemple și alte informații. Este minunat pentru a obține informații mai profunde despre funcții individuale ale limbajului, metode etc.
 
     Poate fi găsit la <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>.
 
@@ -31,7 +31,7 @@ De asemenea, dacă programezi pentru browser, atunci sunt și alte specificații
 
 JavaScipt este un limbaj în dezvoltare, noi caracteristici fiind adăugate regulat.
 
-Although, it's often best to use an internet search instead. Just use "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for `parseInt` function.
+Cu toate acestea, de cele mai multe ori este mai bine să folosim o căutare pe internet. Folosiți doar "MDN [termen]" în interogare, e.g. <https://google.com/search?q=MDN+parseInt> pentru a căuta funcția `parseInt`.
 
 Pentru a vedea suportul acestora printre browsere și alte motoare vezi:
 
