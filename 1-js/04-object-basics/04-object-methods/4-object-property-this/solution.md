@@ -20,24 +20,21 @@ Aici valoarea variabilei `this` din interiorul funcției `makeUser()` este `unde
 
 Valoarea variabilei `this` este unică pentru întreaga funcția, blocurile de cod și obiectele literale nu o afectează.
 
-În concluzie `ref: this` preia de fapt variabila curentă `this` a funcției.
+Deci `ref: this` preia de fapt variabila curentă `this` a funcției.
 
-<<<<<<< HEAD
-Iată cazul opus:
-=======
-We can rewrite the function and return the same `this` with `undefined` value: 
+Putem rescrie funția și returna același `this` cu valoarea `undefined`: 
 
 ```js run
 function makeUser(){
-  return this; // this time there's no object literal
+  return this; // de această dată nu este nici un obiect literal
 }
 
 alert( makeUser().name ); // Error: Cannot read property 'name' of undefined
 ```
-As you can see the result of `alert( makeUser().name )` is the same as the result of `alert( user.ref.name )` from the previous example.
+Așa cum puteți vedea, rezultatul a `alert( makeUser().name )` este același ca rezultatul a `alert( user.ref.name )` din exemplul anterior.
 
-Here's the opposite case:
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
+Iată cazul opus:
+
 
 ```js run
 function makeUser() {
@@ -56,4 +53,4 @@ let user = makeUser();
 alert( user.ref().name ); // John
 ```
 
-Acum funcționează, pentru că `user.ref()` este o metodă. Iar valoarea variabilei `this` este setată la obiectul dinaintea punctului `.`.
+Acum funcționează, pentru că `user.ref()` este o metodă. Iar valoarea `this` este setată la obiectul dinaintea punctului `.`.

@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Însumați proprietățile obiectului
+# Adunați proprietățile obiectului
 
 Avem un obiect care stochează salariile persoanelor din echipa noastră:
 
