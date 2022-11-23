@@ -100,6 +100,7 @@ Accesul la proprietățile formate din mai multe cuvinte nu se poate face cu pun
 // aceasta va genera o erroare de sintaxă
 user.likes birds = true
 ```
+
 Javascript nu înțelege asta. El crede că ne adresăm la `user.likes` și apoi ne răspunde cu syntax error când vede în mod neașteptat `birds`.
 
 Punctul necesită ca cheia să fie un identifier valid de variabilă. În mod implicit: nu conține spații, nu începe cu numere și nu include caractere speciale (`$` și `_` sunt permise).
@@ -203,40 +204,6 @@ let bag = {
 Parantezele pătrate sunt mult mai puternice decât notația cu punct. Ele permit orice fel de nume și de variabile pentru proprietăți, dar sunt mai dificil de scris.
 
 Deci, de cele mai multe ori, când numele proprietăților sunt cunoscute și simple se folosește punctul, iar daca avem nevoie de ceva mai complex, trecem la parantezele pătrate.
-
-````smart header="Cuvintele rezervate sunt permise ca nume de proprietăți"
-O variabilă nu poate avea un nume identic cu unul dintre cuvintele rezervate limbajului precum "for", "let", "return" etc.
-
-În schimb, pentru o proprietate a unui obiect nu există o astfel de restricție. Orice nume este bun:
-
-```js run
-let obj = {
-  for: 1,
-  let: 2,
-  return: 3
-};
-
-alert( obj.for + obj.let + obj.return );  // 6
-```
-
-Practic, orice nume este permis, însă există unul special: `"__proto__"` care primește un tratament preferențial din motive istorice. De exemplu, nu îl putem seta la o valoare non-obiect:
-
-```js run
-let obj = {};
-obj.__proto__ = 5;
-alert(obj.__proto__); // [object Object], nu a funcționat cum ne-am așteptat
-```
-
-După cum vedem din cod, atribuirea către o primitivă `5` este ignorată.
-
-Acest lucru poate deveni o sursă de bug-uri și chiar vulnerabilități dacă intenționăm să stocăm perechi cheie-valoare arbitrare într-un obiect și să permitem unui vizitator să specifice cheile.
-
-În acest caz vizitatorul poate alege `__proto__` ca și cheie, iar logica de atribuire va fi stricată (după cum se arată mai sus).
-
-Există o modalitate, pe care o vom acoperi mai târziu, de a face obiectele să trateze `__proto__` ca pe o proprietate obișnuită, dar mai întâi trebuie să știm mai multe despre obiecte.
-
-Există, de asemenea, o altă structură de date [Map](info:map-set), pe care o vom învăța în capitolul <info:map-set>, care acceptă chei arbitrare.
-````
 
 ## Prescurtare (shorthand) pentru valoarea proprietății
 
