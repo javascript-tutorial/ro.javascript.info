@@ -1,11 +1,6 @@
-# The Modern JavaScript Tutorial in Romanian
+# The Modern JavaScript Tutorial in *Romanian*
 
-<<<<<<< HEAD
-This repository hosts the translation of <https://javascript.info> in Romanian.
-=======
-This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
-
+This repository hosts the Romanian content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
 
 **That's how you can contribute:**
 
@@ -27,11 +22,7 @@ If maintainers do not respond, or if you'd like to become a maintainer, write us
 
 🎉 Thank you!
 
-<<<<<<< HEAD
-Your name and the contribution size will appear in the "About project" page when the translation gets published.
-=======
 **You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 P.S. The full list of languages can be found at <https://javascript.info/translate>.
 
@@ -43,9 +34,9 @@ The folder is named `N-url`, where `N` – is the number for sorting (articles a
 
 The folder has one of files:
 
-- `index.md` for a section,
-- `article.md` for an article,
-- `task.md` for a task formulation (+`solution.md` with the solution text if any).
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
 
 A file starts with the `# Title Header`, and then the text in Markdown-like format, editable in a simple text editor. 
 
@@ -81,26 +72,20 @@ document.querySelector('.hello').innerHTML = text;
 ✅ DO (translate comment):
 
 ```js
-// Ejemplo
-const text = 'Hola mundo';
+// Exemplul
+const text = 'Bună ziua`
 document.querySelector('.hello').innerHTML = text;
 ```
 
 ❌ DON'T (translate class):
 
-<<<<<<< HEAD
 ```js
-// Ejemplo
-const text = 'Hola mundo';
-// ".hello" is a class
+// Exemplu
+const text = 'Bună ziua lume';
+document.querySelector('.salut').innerHTML = text;
+// ".salut" is a class
 // DO NOT TRANSLATE
-document.querySelector('.hola').innerHTML = text;
 ```
-=======
-  - `index.md` stands for a chapter
-  - `article.md` stands for an article
-  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 ### External Links
 
@@ -128,8 +113,6 @@ Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
 
 ```md
 importance: 5
-
-<<<<<<< HEAD
 ---
 ...
 ```
@@ -151,8 +134,6 @@ Please don't translate or remove the `[#...]` part, it's for URL anchors.
 You can run the tutorial server locally to see how the translation looks.
 
 The server and install instructions are at <https://github.com/javascript-tutorial/server>. 
-=======
----  
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
+
 ♥  
 Ilya Kantor @iliakan
