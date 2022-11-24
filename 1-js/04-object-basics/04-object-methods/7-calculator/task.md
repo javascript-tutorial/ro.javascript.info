@@ -6,7 +6,7 @@ importance: 5
 
 Creați un obiect `calculator` cu trei metode:
 
-- `read()` solicită două valori și le salvează ca proprietăți ale obiectului.
+- `read()` solicită două valori și le salvează ca proprietăți ale obiectului cu numele `a` respectiv `b`.
 - `sum()` returnează suma valorilor salvate.
 - `mul()` multiplică valorile salvate și returnează rezultatul.
 

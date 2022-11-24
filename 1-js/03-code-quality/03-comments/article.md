@@ -4,15 +4,11 @@ După cum știm din capitolul <info:structure>, comentariile pot fi pe o singur�
 
 Noi le folosim în mod obișnuit pentru a descrie cum și de ce funcționează codul. 
 
-<<<<<<< HEAD
-La prima vedere, scrierea comentariilor pare a fi evidentă, dar adeseori începătorii în programare fac greșeli. 
-=======
-At first sight, commenting might be obvious, but novices in programming often use them wrongly.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
+La prima vedere, scrierea comentariilor pare a fi evidentă, dar deseori începătorii în programare fac greșeli.
 
-## Comentarii rele
+## Comentarii greșite
 
-Începătorii tind să utilizeze comentariile pentru a explica "ce se întâmplă în cod". Ceva de genul ăsta: 
+Începătorii tind să utilizeze comentariile pentru a explica "ce se întâmplă în cod". Cam așa:
 
 ```js
 // Acest cod va face asta (...) și asta (...)
@@ -47,6 +43,7 @@ function showPrimes(n) {
 ```
 
 Varianta mai bună, cu o funcție separată `isPrime`
+
 
 ```js
 function showPrimes(n) {
@@ -120,41 +117,33 @@ function addJuice(container) {
 
 Deci, comentarii explicative sunt de obicei rele. Ce comentarii sunt bune?
 
-<<<<<<< HEAD
 Descrierea arhitecturii
-: Oferă o vedere de ansamblu asupra componentelor, cum interacționează, care este ordinea de control în diverse situații... Pe scurt -- ochiul de vultur al codului. Există un limbaj-diagramă special [UML](https://ro.wikipedia.org/wiki/Unified_Modeling_Language) pentru diagrame de nivel înalt. Cu siguranță merită studiate.
+: Oferă o vedere de ansamblu asupra componentelor, cum interacționează, care este ordinea de control flow în diverse situații... Pe scurt -- privirea de ansamblu a codului. Există un limbaj special [UML](https://ro.wikipedia.org/wiki/Unified_Modeling_Language) pentru a construi diagrame de arhitectură high-level. Cu siguranță merită studiate.
 
 Documentarea utilizării unei funcții
-: Există o sintaxă specială [JSDoc](http://en.wikipedia.org/wiki/JSDoc) pentru pentru a documenta funcțiile: utilizare, parametri, valoare returnată.
-=======
-Describe the architecture
-: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) to build high-level architecture diagrams explaining the code. Definitely worth studying.
+: Există o sintaxă specială [JSDoc](http://en.wikipedia.org/wiki/JSDoc) pentru pentru a documenta o funcție: utilizare, parametri, valoare returnată.
 
-Document function parameters and usage
-: There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
+Spre exemplu:
+```js
+/**
+* Returnează x la puterea n.
+*
+* @param {number} x Numărul de ridicat la putere.
+* @param {number} n Puterea, trebuie să fie un număr natural.
+* @return {number} x ridicat la puterea n.
+*/
+function pow(x, n) {
+...
+}
+```
 
-    De exemplu:
-    ```js
-    /**
-     * Returnează x la puterea n.
-     *
-     * @param {number} x Numărul ridicat la putere.
-     * @param {number} n Puterea, trebuie să fie un număr natural.
-     * @return {number} x ridicat la puterea n.
-     */
-    function pow(x, n) {
-      ...
-    }
-    ```
-    Comentariile de acest tip ne permit să înțelegem scopul funcției și să o folosim în modul corect fără a ne uita în codul ei.
-
+Comentariile de acest tip ne permit să înțelegem scopul funcției și să o folosim în modul corect fără a ne uita în codul ei.
     
-    Apropo, multe editoare precum [WebStorm](https://www.jetbrains.com/webstorm/) le pot înțelege la fel de bine și să le folosească pentru a asigura autocompletare și verificări automate ale codului.
+Apropo, multe editoare precum [WebStorm](https://www.jetbrains.com/webstorm/) le pot înțelege la fel de bine și să le folosească pentru a furniza autocomplete și câteva verificări automate ale codului.
     
-    De asemenea, sunt și unelte precum [JSDoc 3](https://github.com/jsdoc3/jsdoc) care pot genera documentație HTML din comentarii. Poți citi mai multe informații despre JSDoc la <http://usejsdoc.org/>
+De asemenea, sunt și unelte precum [JSDoc 3](https://github.com/jsdoc3/jsdoc) care pot genera documentație HTML din comentarii. Poți citi mai multe informații despre JSDoc la <https://jsdoc.app>.
 
-De ce este rezolvată sarcina în modul acesta?
+De ce este rezolvată sarcina în acest mod?
 : Ce este scris este important. Dar ce *nu* este scris s-ar putea să fie mult mai important pentru a înțelege ce se îmtâmplă. De ce este sarcina rezolvată în felul acesta? Codul nu oferă nici un răspuns.
   
     Dacă sunt multe moduri de a rezolva sarcina, de ce tocmai acesta? În special când nu este chiar cel mai evident. 
@@ -175,15 +164,16 @@ Un semn important al unui dezvoltator bun sunt comentariile: prezența lor și c
 
 Comentariile bune ne permit să păstrăm codul organizat, să ne întoarcem la el după un timp și să îl folosim mult mai eficient.
 
-**Folosește comentariile pentru:**
+**Comentează următoarele:**
 
-- Arhitectura per total, o vedere de ansamblu a acesteia.
+- Arhitectura per total, o vedere high-level.
 - Utilizarea funcțiilor.
 - Soluții importante, în special când nu sunt imediat evidente.
 
 **Evită comentariile pentru:**
 
-- Pentru a descrie "cum funcționează codul" și "ce face".
-- Folosește-le doar dacă este imposibil să faci codul atât de simplu și autodescriptiv încât comentariile să nu mai fie necesare.
+- Pentru a spune "cum funcționează codul" și "ce face".
+- Punele înăuntru doar dacă este imposibil să faci codul atât de simplu și autodescriptiv încât să nu fie nevoie de ele.
 
-Comentariile sunt de asemenea folosite pentru unelte de autodocumentare precum JSDoc3: acestea le citesc și generează documentații HTML (sau documentații în alt format).
+
+Comentariile sunt de asemeni folosite pentru unelte de autodocumentare precum JSDoc3: acestea le citesc și generează documentații HTML (sau documentații în alt format).
