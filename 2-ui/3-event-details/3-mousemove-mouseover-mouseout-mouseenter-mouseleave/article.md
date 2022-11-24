@@ -52,11 +52,7 @@ That's good for performance, because there may be many intermediate elements. We
 
 On the other hand, we should keep in mind that the mouse pointer doesn't "visit" all elements along the way. It can "jump".
 
-<<<<<<< HEAD
-![](mouseover-mouseout-from-outside.svg)
-=======
 In particular, it's possible that the pointer jumps right inside the middle of the page from out of the window. In that case `relatedTarget` is `null`, because it came from "nowhere":
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ![](mouseover-mouseout-from-outside.svg)
 
@@ -76,13 +72,6 @@ In case of fast mouse movements, intermediate elements may be ignored, but one t
 
 ## Mouseout when leaving for a child
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-![](mouseover-to-child.svg)
-=======
-An important feature of `mouseout` -- it triggers, when the pointer moves from an element to its descendant.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
-=======
 An important feature of `mouseout` -- it triggers, when the pointer moves from an element to its descendant, e.g. from `#parent` to `#child` in this HTML:
 
 ```html
@@ -90,7 +79,6 @@ An important feature of `mouseout` -- it triggers, when the pointer moves from a
   <div id="child">...</div>
 </div>
 ```
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 If we're on `#parent` and then move the pointer deeper into `#child`, we get `mouseout` on `#parent`!
 
