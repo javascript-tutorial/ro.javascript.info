@@ -70,6 +70,7 @@ alert(id.toString()); // Symbol(id), acum funcționează
 ```
 
 Sau să obținem proprietatea `symbol.description` pentru a afișa numai descrierea:
+
 ```js run
 let id = Symbol("id");
 *!*
@@ -172,7 +173,7 @@ alert( "Direct: " + user[id] ); // Direct: 123
 
 [Object.keys(user)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) le ignoră, de asemenea. Aceasta este o parte a principiului general "ascunderea proprietăților simbolice". Dacă un alt script sau librărie iterează asupra obiectului nostru, nu va accesa neașteptat o proprietate simbol.
 
-În contrast, metoda [Object.assign](mdn:js/Object/assign) copiază proprietățile de ambele tipuri, șir și simbol:
+În contrast, metoda [Object.assign](mdn:js/Object/assign) copiază atât proprietățile string cât și symbol:
 
 ```js run
 let id = Symbol("id");
@@ -185,7 +186,7 @@ let clone = Object.assign({}, user);
 alert( clone[id] ); // 123
 ```
 
-Nu este niciun paradox aici. Așa este construit. Ideea este că, atunci când clonăm un obiect sau contopim obiecte, în mod normal vrem ca *toate* proprietățile să fie copiate (incluzând simboluri precum `id`).
+Nu este niciun paradox aici. Așa este construit. Ideea este că, atunci când clonăm un obiect sau contopim obiecte, de obicei vrem ca *toate* proprietățile să fie copiate (incluzând simboluri precum `id`).
 
 ## Simboluri globale
 
@@ -284,4 +285,4 @@ Simbolurile au două cazuri principale de folosire:
 
 2. Există multe simboluri sistem folosite de JavaScript care sunt accesibile prin `Symbol.*`. Le putem folosi pentru a altera câteva comportamente incluse în limbaj. De exemplu, mai târziu în tutorial vom folosi `Symbol.iterator` pentru [iterabile](info:iterable), `Symbol.toPrimitive` pentru a configura [conversia object-to-primitive](info:object-toprimitive) ș.a.m.d.
 
-Tehnic, simbolurile nu sunt 100% ascunse. Există metode ale limbajului JavaScript [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) care ne permit sa accesăm toate simbolurile. Mai există o metodă numită [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) care returnează  *toate* cheile unui obiect incluzându-le și pe cele simbolice. Dar cele mai multe librării, funcții built-in și construcții de sintaxă nu folosesc aceste metode.
+Tehnic, simbolurile nu sunt 100% ascunse. Există o metodă built-in [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) care ne permit sa accesăm toate simbolurile. Mai există o metodă numită [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) care returnează  *toate* cheile unui obiect incluzându-le și pe cele simbolice. Dar cele mai multe librării, funcții built-in și construcții de sintaxă nu folosesc aceste metode.

@@ -70,7 +70,7 @@ OOP este un lucru mare, o știință interesantă în sine. Cum să alegi entit�
 Există o sintaxă mai scurtă pentru metode într-un obiect literal:
 
 ```js
-// aceste obiecte realizează același lucru
+// aceste obiecte fac același lucru
 
 user = {
   sayHi: function() {
@@ -90,7 +90,7 @@ user = {
 
 După cum s-a demonstrat, putem omite `"function"` și scriem doar `sayHi()`.
 
-În realitate, notațiile nu sunt complet identice. Există diferențe subtile legate de moștenirea obiectelor (care vor fi acoperite ulterior), dar deocamdată nu contează. În aproape toate cazurile, se preferă sintaxa mai scurtă.
+Să spunem adevărul, notațiile nu sunt complet identice. Există diferențe subtile legate de moștenirea obiectelor (care vor fi acoperite ulterior), dar deocamdată nu contează. În aproape toate cazurile, se preferă sintaxa mai scurtă.
 
 ## "this" în metode
 

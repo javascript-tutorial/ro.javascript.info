@@ -730,11 +730,7 @@ The problem is actually in the proxy, in the line `(*)`.
 2. The prototype is `userProxy`.
 3. When reading `name` property from the proxy, its `get` trap triggers and returns it from the original object as `target[prop]` in the line `(*)`.
 
-<<<<<<< HEAD
-![](proxy-inherit.svg)
-=======
     A call to `target[prop]`, when `prop` is a getter, runs its code in the context `this=target`. So the result is `this._name` from the original object `target`, that is: from `user`.
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 To fix such situations, we need `receiver`, the third argument of `get` trap. It keeps the correct `this` to be passed to a getter. In our case that's `admin`.
 

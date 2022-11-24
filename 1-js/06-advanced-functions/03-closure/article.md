@@ -7,7 +7,7 @@ We already know that a function can access variables outside of it ("outer" vari
 
 But what happens if outer variables change since a function is created? Will the function get newer values or the old ones?
 
-And what if a function is passed along as a parameter and called from another place of code, will it get access to outer variables at the new place?
+And what if a function is passed along as an argument and called from another place of code, will it get access to outer variables at the new place?
 
 Let's expand our knowledge to understand these scenarios and more complex ones.
 
@@ -173,17 +173,7 @@ In this simple code without functions, there is only one Lexical Environment:
 
 ![lexical environment](lexical-environment-global.svg)
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-5. When the `counter()` is called, an "empty" Lexical Environment is created for it. It has no local variables by itself. But the `[[Environment]]` of `counter` is used as the outer reference for it, so it has access to the variables of the former `makeCounter()` call where it was created:
-
-    ![](lexenv-nested-makecounter-5.svg)
-=======
-5. When `counter()` is called, a new Lexical Environment is created for the call. It's empty, as `counter` has no local variables by itself. But the `[[Environment]]` of `counter` is used as the `outer` reference for it, that provides access to the variables of the former `makeCounter()` call where it was created:
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
-=======
 This is the so-called *global* Lexical Environment, associated with the whole script.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 On the picture above, the rectangle means Environment Record (variable store) and the arrow means the outer reference. The global Lexical Environment has no outer reference, that's why the arrow points to `null`.
 
@@ -195,20 +185,11 @@ Here's a little bit longer code:
 
 Rectangles on the right-hand side demonstrate how the global Lexical Environment changes during the execution:
 
-<<<<<<< HEAD
-    ![](lexenv-nested-makecounter-6.svg)
-<<<<<<< HEAD
-
-    So we return to the previous step with the only change -- the new value of `count`. The following calls all do the same.
-=======
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
-=======
 1. When the script starts, the Lexical Environment is pre-populated with all declared variables.
     - Initially, they are in the "Uninitialized" state. That's a special internal state, it means that the engine knows about the variable, but it cannot be referenced until it has been declared with `let`. It's almost the same as if the variable didn't exist.
 2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable from this point forward.
 3. `phrase` is assigned a value.
 4. `phrase` changes the value.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 Everything looks simple for now, right?
 

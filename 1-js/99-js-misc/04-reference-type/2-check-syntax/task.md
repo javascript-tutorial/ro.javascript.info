@@ -4,7 +4,7 @@ importance: 2
 
 # Verificare de sintaxă
 
-Care este rezultatul următorului cod?
+Care este rezultatul acestui cod?
 
 
 ```js no-beautify

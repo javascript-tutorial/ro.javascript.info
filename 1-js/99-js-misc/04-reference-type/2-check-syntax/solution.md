@@ -11,11 +11,7 @@ let user = {
 (user.go)() // eroare!
 ```
 
-<<<<<<< HEAD:1-js/04-object-basics/04-object-methods/2-check-syntax/solution.md
-Din mesajul de eroare furnizat de majoritatea browserelor nu reiese ce a mers prost.
-=======
-The error message in most browsers does not give us much of a clue about what went wrong.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834:1-js/99-js-misc/04-reference-type/2-check-syntax/solution.md
+Mesajul de eroare din majoritatea browserelor nu ne oferă prea multe indicii despre ce a mers greșit.
 
 **Eroarea apare deoarece simbolul ";" lipsește după `user = {...}`.**
 
@@ -38,8 +34,5 @@ let user = {
 (user.go)() // John
 ```
 
-<<<<<<< HEAD:1-js/04-object-basics/04-object-methods/2-check-syntax/solution.md
-Rețineți că parantezele din jurul `(user.go)` nu fac nimic aici. De obicei setează ordinea operațiilor, dar aici punctul `.` are oricum precedență, deci nu are niciun efect. Singurul lucru care contează este simbolul ";".
-=======
-Please note that parentheses around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834:1-js/99-js-misc/04-reference-type/2-check-syntax/solution.md
+Vă rugăm să rețineți că parantezele din jurul `(user.go)` nu fac nimic aici. De obicei ele stabilesc ordinea operațiilor, dar aici punctul `.` funcționează primul oricum, deci nu au niciun efect. Doar chestia cu punctul și virgula contează.
+
