@@ -171,7 +171,7 @@ for (let key in user) alert(key); // name, age (niciun simbol)
 alert( "Direct: " + user[id] ); // Direct: 123
 ```
 
-[Object.keys(user)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) le ignoră, de asemenea. Aceasta este o parte a principiului general "ascunderea proprietăților simbolice". Dacă un alt script sau librărie iterează asupra obiectului nostru, nu va accesa neașteptat o proprietate simbol.
+[Object.keys(user)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys) de asemenea le ignoră. Aceasta este o parte a principiului general "ascunderea proprietăților simbolice". Dacă un alt script sau librărie iterează asupra obiectului nostru, nu va accesa în mod neașteptat o proprietate simbolică.
 
 În contrast, metoda [Object.assign](mdn:js/Object/assign) copiază atât proprietățile string cât și symbol:
 
@@ -273,7 +273,7 @@ Alte simboluri vor deveni de asemenea familiare după ce vom studia caracteristi
 
 Simbolurile sunt create cu apelul `Symbol()` cu o descriere opțională (name).
 
-Simbolurile sunt întotdeauna valori diferite, chiar dacă au același nume. Dacă vrem ca simbolurile cu același nume să fie egale, atunci trebuie să folosim registrul global: `Symbol.for(key)` returnează (creează dacă este nevoie) un simbol global cu `cheie` ca și nume. Apelări multiple a `Symbol.for` cu aceeași `key` returnează exact același simbol.
+Simbolurile sunt întotdeauna valori diferite, chiar dacă au același nume. Dacă vrem ca simbolurile cu același nume să fie egale, atunci trebuie să folosim registrul global: `Symbol.for(key)` returnează (creează dacă este nevoie) un simbol global cu `key` ca și nume. Apelări multiple a `Symbol.for` cu aceeași `key` returnează exact același simbol.
 
 Simbolurile au două cazuri principale de folosire:
 
