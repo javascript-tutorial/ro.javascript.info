@@ -23,10 +23,10 @@ let ladder = {
   }
 };
 
-ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+ladder.up().up().down().showStep().down().showStep(); // arată 1 apoi 0
 ```
 
-De asemenea, putem scrie câte o apelare pe linie. Pentru înlănțuirile lungi este mai lizibil:
+De asemenea putem scrie câte o singură apelare pe linie. Pentru înlănțuirile lungi este mai lizibil:
 
 ```js
 ladder

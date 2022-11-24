@@ -4,11 +4,7 @@ importance: 3
 
 # Explicați valoarea variabilei "this"
 
-<<<<<<< HEAD:1-js/04-object-basics/04-object-methods/3-why-this/task.md
-În codul următor intenționăm să apelăm metoda `user.go()` de 4 ori la rând.
-=======
-In the code below we intend to call `obj.go()` method 4 times in a row.
->>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834:1-js/99-js-misc/04-reference-type/3-why-this/task.md
+În codul de mai jos intenționăm să apelăm metoda `obj.go()` de 4 ori la rând.
 
 Însă apelurile `(1)` și `(2)` funcționează diferit de `(3)` și `(4)`. De ce?
 
@@ -27,3 +23,4 @@ obj.go();               // (1) [object Object]
 
 (obj.go || obj.stop)(); // (4) undefined
 ```
+
