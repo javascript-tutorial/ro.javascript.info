@@ -1,117 +1,117 @@
-# Conditional branching: if, '?'
+# Ramificare condiționată: if, '?'
 
-Sometimes, we need to perform different actions based on different conditions.
+Uneori, trebuie să efectuăm acțiuni diferite în funcție de condiții diferite.
 
-To do that, we can use the `if` statement and the conditional operator `?`, that's also called a "question mark" operator.
+Pentru a face asta, putem folosi acest `if` și operatorul condițional `?`, care se mai numește și operatorul "semn de întrebare".
 
-## The "if" statement
+## Instrucțiunea "if"
 
-The `if(...)` statement evaluates a condition in parentheses and, if the result is `true`, executes a block of code.
+Instrucțiunea `if(...)` evaluează o condiție între paranteze și, dacă rezultatul este `true`, execută un bloc de cod.
 
-For example:
+De exemplu:
 
 ```js run
-let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+let year = prompt('În ce an a fost publicată specificația ECMAScript-2015?', '');
 
 *!*
-if (year == 2015) alert( 'You are right!' );
+if (year == 2015) alert( 'Ai dreptate!' );
 */!*
 ```
 
-In the example above, the condition is a simple equality check (`year == 2015`), but it can be much more complex.
+În exemplul de mai sus, condiția este o simplă verificare a egalității (`year == 2015`), dar poate fi mult mai complexă.
 
-If we want to execute more than one statement, we have to wrap our code block inside curly braces:
+Dacă vrem să executăm mai mult de o instrucțiune, trebuie să înfășurăm blocul nostru de cod în interiorul unor acolade:
 
 ```js
 if (year == 2015) {
-  alert( "That's correct!" );
-  alert( "You're so smart!" );
+  alert( "Este corect!" );
+  alert( "Ești atât de deștept!" );
 }
 ```
 
-We recommend wrapping your code block with curly braces `{}` every time you use an `if` statement, even if there is only one statement to execute. Doing so improves readability.
+Vă recomandăm să vă înfășurați blocul de cod cu acolade `{}` de fiecare dată când folosiți o instrucțiune `if`, chiar dacă există doar o singură instrucțiune de executat. Procedând astfel se îmbunătățește lizibilitatea.
 
-## Boolean conversion
+## Conversia boolean
 
-The `if (…)` statement evaluates the expression in its parentheses and converts the result to a boolean.
+Instrucțiunea `if (...)` evaluează expresia din paranteze și convertește rezultatul în boolean.
 
-Let's recall the conversion rules from the chapter <info:type-conversions>:
+Să ne reamintim regulile de conversie din capitolul <info:type-conversions>:
 
-- A number `0`, an empty string `""`, `null`, `undefined`, and `NaN` all become `false`. Because of that they are called "falsy" values.
-- Other values become `true`, so they are called "truthy".
+- Un număr `0`, un string gol `""`, `null`, `undefined` și `NaN` devin toate `false`. Din acest motiv, ele sunt numite valori "falsy".
+- Alte valori devin `true`, de aceea se numesc "truthy".
 
-So, the code under this condition would never execute:
+Așadar, codul din această condiție nu se va executa niciodată:
 
 ```js
-if (0) { // 0 is falsy
+if (0) { // 0 este falsy
   ...
 }
 ```
 
-...and inside this condition -- it always will:
+...și în interiorul acestei condiții -- întotdeauna va fi așa:
 
 ```js
-if (1) { // 1 is truthy
+if (1) { // 1 este truthy
   ...
 }
 ```
 
-We can also pass a pre-evaluated boolean value to `if`, like this:
+Putem de asemenea să transmitem o valoare boolean pre-evaluată la `if`, astfel:
 
 ```js
-let cond = (year == 2015); // equality evaluates to true or false
+let cond = (year == 2015); // egalitatea se evaluează la true sau false
 
 if (cond) {
   ...
 }
 ```
 
-## The "else" clause
+## Clauza "else"
 
-The `if` statement may contain an optional "else" block. It executes when the condition is falsy.
+Instrucțiunea `if` poate conține un bloc opțional "else". Acesta se execută atunci când condiția este falsy.
 
-For example:
+De exemplu:
 ```js run
-let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
+let year = prompt('În ce an a fost publicată specificația ECMAScript-2015?', '');
 
 if (year == 2015) {
   alert( 'You guessed it right!' );
 } else {
-  alert( 'How can you be so wrong?' ); // any value except 2015
+  alert( 'How can you be so wrong?' ); // orice valoare cu excepția 2015
 }
 ```
 
-## Several conditions: "else if"
+## Mai multe condiții: "else if"
 
-Sometimes, we'd like to test several variants of a condition. The `else if` clause lets us do that.
+Uneori, ne-ar place să testăm mai multe variante ale unei condiții. Clauza `else if` ne permite să facem asta.
 
-For example:
+De exemplu:
 
 ```js run
-let year = prompt('In which year was the ECMAScript-2015 specification published?', '');
+let year = prompt('În ce an a fost publicată specificația ECMAScript-2015?', '');
 
 if (year < 2015) {
-  alert( 'Too early...' );
+  alert( 'Prea devreme...' );
 } else if (year > 2015) {
-  alert( 'Too late' );
+  alert( 'Prea târziu' );
 } else {
-  alert( 'Exactly!' );
+  alert( 'Exact!' );
 }
 ```
 
-In the code above, JavaScript first checks `year < 2015`. If that is falsy, it goes to the next condition `year > 2015`. If that is also falsy, it shows the last `alert`.
+În codul de mai sus, JavaScript verifică mai întâi `year < 2015`. Dacă este falsy, trece la următoarea condiție `year > 2015`. Dacă și aceasta este falsy, afișează ultimul `alert`.
 
-There can be more `else if` blocks. The final `else` is optional.
+Pot fi mai multe blocuri `else if`. Ultimul `else` este opțional.
 
-## Conditional operator '?'
+## Operatorul condițional '?'
 
-Sometimes, we need to assign a variable depending on a condition.
+Uneori, trebuie să atribuim o variabilă care depinde de o condiție.
 
-For instance:
+De exemplu:
 
 ```js run no-beautify
 let accessAllowed;
-let age = prompt('How old are you?', '');
+let age = prompt('Câți ani ai?', '');
 
 *!*
 if (age > 18) {
@@ -124,116 +124,116 @@ if (age > 18) {
 alert(accessAllowed);
 ```
 
-The so-called "conditional" or "question mark" operator lets us do that in a shorter and simpler way.
+Așa-numitul operator "condițional" sau "semn de întrebare" ne lasă să facem asta într-un mod mai scurt și simplu.
 
-The operator is represented by a question mark `?`. Sometimes it's called "ternary", because the operator has three operands. It is actually the one and only operator in JavaScript which has that many.
+Operatorul este reprezentat de un semn de întrebare `?`. Uneori se numește "ternary", deoarece operatorul are trei operanzi. De fapt este singurul și unicul operator din JavaScript care are atât de mulți.
 
-The syntax is:
+Sintaxa este:
 ```js
 let result = condition ? value1 : value2;
 ```
 
-The `condition` is evaluated: if it's truthy then `value1` is returned, otherwise -- `value2`.
+Se evaluează `condition`: dacă este truthy atunci se returnează `value1`, altfel -- `value2`.
 
-For example:
+De exemplu:
 
 ```js
 let accessAllowed = (age > 18) ? true : false;
 ```
 
-Technically, we can omit the parentheses around `age > 18`. The question mark operator has a low precedence, so it executes after the comparison `>`.
+Din punct de vedere tehnic, putem omite parantezele din jurul lui `age > 18`. Operatorul semn de întrebare are o precedență scăzută, deci se execută după comparația `>`.
 
-This example will do the same thing as the previous one:
+Acest exemplu va face același lucru ca și cel precedent:
 
 ```js
-// the comparison operator "age > 18" executes first anyway
-// (no need to wrap it into parentheses)
+// operatorul de comparație "age > 18" se execută oricum primul
+// (nu este nevoie să îl punem între paranteze)
 let accessAllowed = age > 18 ? true : false;
 ```
 
-But parentheses make the code more readable, so we recommend using them.
+Dar parantezele fac codul mai ușor de citit, așa că vă recomandăm să le folosiți.
 
 ````smart
-In the example above, you can avoid using the question mark operator because the comparison itself returns `true/false`:
+În exemplul de mai sus, puteți evita utilizarea operatorului semn de întrebare deoarece comparația în sine returnează `true/false`:
 
 ```js
-// the same
+// același
 let accessAllowed = age > 18;
 ```
 ````
 
 ## Multiple '?'
 
-A sequence of question mark operators `?` can return a value that depends on more than one condition.
+O secvență de operatori de semne de întrebare `?` poate returna o valoare care depinde de mai mult de o condiție.
 
-For instance:
+De exemplu:
 ```js run
-let age = prompt('age?', 18);
+let age = prompt('Vârsta?', 18);
 
-let message = (age < 3) ? 'Hi, baby!' :
-  (age < 18) ? 'Hello!' :
-  (age < 100) ? 'Greetings!' :
-  'What an unusual age!';
+let message = (age < 3) ? 'Bună, dragă!' :
+  (age < 18) ? 'Bună!' :
+  (age < 100) ? 'Salutări!' :
+  'Ce vârstă neobișnuită!';
 
 alert( message );
 ```
 
-It may be difficult at first to grasp what's going on. But after a closer look, we can see that it's just an ordinary sequence of tests:
+Ar putea fi dificil la început să înțelegem ce se întâmplă. Dar după o privire mai atentă, putem vedea că este doar o secvență obișnuită de teste:
 
-1. The first question mark checks whether `age < 3`.
-2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon '":"', checking `age < 18`.
-3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon '":"', checking `age < 100`.
-4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon '":"', returning `'What an unusual age!'`.
+1. Primul semn de întrebare verifică dacă `age < 3`.
+2. Dacă este adevărat -- se returnează `'Bună, puiule!``. În caz contrar, continuă spre expresia de după două puncte '":"`, verificând `age < 18`.
+3. Dacă este adevărat -- returnează `'Bună!``. În caz contrar, continuă cu expresia de după următoarele două puncte '":"'', verificând `age < 100`.
+4. Dacă acest lucru este adevărat -- returnează `'Salutări!'`. În caz contrar, continuă cu expresia de după ultimele două puncte '":"'', returnând `'Ce vârstă neobișnuită!'`.
 
-Here's how this looks using `if..else`:
+Iată cum arată acest lucru folosind `if..else`:
 
 ```js
 if (age < 3) {
-  message = 'Hi, baby!';
+  message = 'Bună, puiule!';
 } else if (age < 18) {
-  message = 'Hello!';
+  message = 'Bună!';
 } else if (age < 100) {
-  message = 'Greetings!';
+  message = "Salutări!";
 } else {
-  message = 'What an unusual age!';
+  message = "Ce vârstă neobișnuită!";
 }
 ```
 
-## Non-traditional use of '?'
+## Utilizarea netradițională a lui "?
 
-Sometimes the question mark `?` is used as a replacement for `if`:
+Uneori semnul de întrebare `?` este folosit ca înlocuitor pentru `if`:
 
 ```js run no-beautify
-let company = prompt('Which company created JavaScript?', '');
+let company = prompt('Ce companie a creat JavaScript?', '');
 
 *!*
 (company == 'Netscape') ?
-   alert('Right!') : alert('Wrong.');
+   alert('Corect!') : alert('Greșit.');
 */!*
 ```
 
-Depending on the condition `company == 'Netscape'`, either the first or the second expression after the `?` gets executed and shows an alert.
+În funcție de condiția `company == 'Netscape'`, prima sau a doua expresie de după `?` se execută și afișează o alertă.
 
-We don't assign a result to a variable here. Instead, we execute different code depending on the condition.
+Aici nu atribuim un rezultat unei variabile. În schimb, executăm un cod diferit în funcție de condiție.
 
-**It's not recommended to use the question mark operator in this way.**
+**Nu este recomandat să folosim operatorul semn de întrebare în acest mod.**
 
-The notation is shorter than the equivalent `if` statement, which appeals to some programmers. But it is less readable.
+Notația este mai scurtă decât instrucțiunea echivalentă `if`, ceea ce îi atrage pe unii programatori. Dar este mai puțin lizibilă.
 
-Here is the same code using `if` for comparison:
+Iată același cod folosind `if` pentru comparație:
 
 ```js run no-beautify
-let company = prompt('Which company created JavaScript?', '');
+let company = prompt('Ce companie a creat JavaScript?', '');
 
 *!*
 if (company == 'Netscape') {
-  alert('Right!');
+  alert('Corect!');
 } else {
-  alert('Wrong.');
+  alert('Greșit.');
 }
 */!*
 ```
 
-Our eyes scan the code vertically. Code blocks which span several lines are easier to understand than a long, horizontal instruction set.
+Ochii noștri scanează codul pe verticală. Blocurile de cod care se întind pe câteva linii sunt mai ușor de înțeles decât un set de instrucțiuni lung și orizontal.
 
-The purpose of the question mark operator `?` is to return one value or another depending on its condition. Please use it for exactly that. Use `if` when you need to execute different branches of code.
+Scopul operatorului cu semnul întrebării `?` este de a returna o valoare sau alta în funcție de condiția sa. Vă rugăm să îl folosiți exact pentru acest lucru. Folosiți `if` atunci când trebuie să executați diferite branșe de cod.
