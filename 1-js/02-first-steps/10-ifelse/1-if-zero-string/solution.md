@@ -2,7 +2,7 @@
 
 Orice string cu excepția unui string gol (iar `"0"` nu este gol) devine `true` în contextul logical.
 
-We can run and check:
+Putem rula și verifica:
 
 ```js run
 if ("0") {
