@@ -1,9 +1,9 @@
 
 
 ```js
-let message = (login == 'Employee') ? 'Hello' :
-  (login == 'Director') ? 'Greetings' :
-  (login == '') ? 'No login' :
+let message = (login == 'Angajat') ? 'Bună ziua!' :
+  (login == 'Director') ? 'Salutări!' :
+  (login == '') ? 'Nu te poți loga.' :
   '';
 ```
 
