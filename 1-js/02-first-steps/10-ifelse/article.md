@@ -181,9 +181,9 @@ alert( message );
 Ar putea fi dificil la început să înțelegem ce se întâmplă. Dar după o privire mai atentă, putem vedea că este doar o secvență obișnuită de teste:
 
 1. Primul semn de întrebare verifică dacă `age < 3`.
-2. Dacă este adevărat -- se returnează `'Bună, puiule!``. În caz contrar, continuă spre expresia de după două puncte '":"`, verificând `age < 18`.
-3. Dacă este adevărat -- returnează `'Bună!``. În caz contrar, continuă cu expresia de după următoarele două puncte '":"'', verificând `age < 100`.
-4. Dacă acest lucru este adevărat -- returnează `'Salutări!'`. În caz contrar, continuă cu expresia de după ultimele două puncte '":"'', returnând `'Ce vârstă neobișnuită!'`.
+2. Dacă este adevărat -- se returnează `'Bună, puiule!'`. În caz contrar, continuă spre expresia de după două puncte '":"', verificând `age < 18`.
+3. Dacă este adevărat -- returnează `'Bună!'`. În caz contrar, continuă cu expresia de după următoarele două puncte '":"', verificând `age < 100`.
+4. Dacă acest lucru este adevărat -- returnează `'Salutări!'`. În caz contrar, continuă cu expresia de după ultimele două puncte '":"', returnând `'Ce vârstă neobișnuită!'`.
 
 Iată cum arată acest lucru folosind `if..else`:
 
@@ -199,7 +199,7 @@ if (age < 3) {
 }
 ```
 
-## Utilizarea netradițională a lui "?
+## Utilizarea netradițională a lui "?"
 
 Uneori semnul de întrebare `?` este folosit ca înlocuitor pentru `if`:
 
