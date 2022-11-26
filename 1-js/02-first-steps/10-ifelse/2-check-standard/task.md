@@ -2,7 +2,7 @@ importance: 2
 
 ---
 
-# Numele JavaScript
+# Numele lui JavaScript
 
 Folosind construcția `if..else`, scrieți codul care întreabă: "Care este numele "oficial" al lui JavaScript?".
 

@@ -37,7 +37,7 @@ Instrucțiunea `if (...)` evaluează expresia din paranteze și convertește rez
 
 Să ne reamintim regulile de conversie din capitolul <info:type-conversions>:
 
-- Un număr `0`, un string gol `""`, `null`, `undefined` și `NaN` devin toate `false`. Din acest motiv, ele sunt numite valori "falsy".
+- Un număr `0`, un string gol `""`, `null`, `undefined`, și `NaN` devin toate `false`. Din acest motiv ele sunt numite valori "falsy".
 - Alte valori devin `true`, de aceea se numesc "truthy".
 
 Așadar, codul din această condiție nu se va executa niciodată:
@@ -164,7 +164,7 @@ let accessAllowed = age > 18;
 
 ## Multiple '?'
 
-O secvență de operatori de semne de întrebare `?` poate returna o valoare care depinde de mai mult de o condiție.
+O secvență de operatori de semne de întrebare `?` pot returna o valoare care depinde de mai mult de o condiție.
 
 De exemplu:
 ```js run
@@ -193,13 +193,13 @@ if (age < 3) {
 } else if (age < 18) {
   message = 'Bună!';
 } else if (age < 100) {
-  message = "Salutări!";
+  message = 'Salutări!';
 } else {
-  message = "Ce vârstă neobișnuită!";
+  message = 'Ce vârstă neobișnuită!';
 }
 ```
 
-## Utilizarea netradițională a lui "?"
+## Utilizarea netradițională a lui '?'
 
 Uneori semnul de întrebare `?` este folosit ca înlocuitor pentru `if`:
 
