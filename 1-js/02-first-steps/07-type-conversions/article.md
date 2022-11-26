@@ -116,37 +116,37 @@ alert( Boolean(" ") ); // spații, de asemenea true (orice șir ne-gol este true
 ```
 ````
 
-## Summary
 ## Rezumat
 
-The three most widely used type conversions are to string, to number, and to boolean.
+Cele mai des folosite tipuri de conversii sunt la șir, la numere, și la boolean
 
-**`String Conversion`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+**`Conversia Șirului`** -- Apare când afișăm ceva. Poate fi executată cu `String(value)`. Aceasta conversia la șir este destul de evidentă pentru pentru valori primitive.
 
-**`Numeric Conversion`** -- Occurs in math operations. Can be performed with `Number(value)`.
+**`Conversia Numerică`** -- Apare în operațiile matematica. Poate fi executată cu `Number(value)`.
 
-The conversion follows the rules:
+Conversia urmează regulile:
 
-| Value |  Becomes... |
+| Valoare |  Devine... |
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
-| `string` | The string is read "as is", whitespaces from both sides are ignored. An empty string becomes `0`. An error gives `NaN`. |
+| `string` | Șirul este citit "așa cum este", spațiile goale din ambele părți sunt ignorate. Un șir gol devine `0`. O eroare devine `NaN`. |
 
-**`Boolean Conversion`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+**`Conversia Boolean`** -- Apare in operațiile logice. Poate fi executată cu `Boolean(value)`.
 
-Follows the rules:
+Urmează regulile:
 
-| Value |  Becomes... |
+| Valoare |  Devine... |
 |-------|-------------|
 |`0`, `null`, `undefined`, `NaN`, `""` |`false`|
-|any other value| `true` |
+|orice altă valoare| `true` |
 
 
-Most of these rules are easy to understand and memorize. The notable exceptions where people usually make mistakes are:
+Majoritatea acestor reguli sunt ușor de înțeles și memorat. Excepțiile notabile unde oamenii fac greșeli de obicei sunt:
 
-- `undefined` is `NaN` as a number, not `0`.
-- `"0"` and space-only strings like `"   "` are true as a boolean.
+- `undefined` este `NaN` ca și număr, nu `0`.
+- `"0"` și șirurile mono-spațiale ca și `"   "` sunt adevărate ca și boolean.
 
-Objects aren't covered here. We'll return to them later in the chapter <info:object-toprimitive> that is devoted exclusively to objects after we learn more basic things about JavaScript.
+Obiectele nu sunt acoperite aici. Ne vom întoarce la ele mai târziu in capitolul <info:object-toprimitive> ce este devotat exclusiv obiectelor dupa ce învățăm mai multe lucruri elementare despre JavaScript
+
