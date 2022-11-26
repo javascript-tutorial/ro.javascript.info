@@ -1,121 +1,123 @@
-# Type Conversions
+# Conversii de tip
 
-Most of the time, operators and functions automatically convert the values given to them to the right type.
+Majoritatea timpului, operatorii si funcțiile convertesc automat valorile date catre tipul corect.
 
-For example, `alert` automatically converts any value to a string to show it. Mathematical operations convert values to numbers.
+De exemplu, `alert` convertește automat orice valoare catre un șir pentru a o arăta. Operațiile matematice convertesc valorile catre numere.
 
-There are also cases when we need to explicitly convert a value to the expected type.
+Există și cazuri unde este nevoie sa convertim explicit o valoare către tipul așteptat. 
 
 ```smart header="Not talking about objects yet"
-In this chapter, we won't cover objects. For now we'll just be talking about primitives.
+În acest captiol, nu vom acoperi obiectele. Pentru moment vom vorbi doar despre primitive.
 
-Later, after we learn about objects, in the chapter <info:object-toprimitive> we'll see how objects fit in.
+Mai târziu, dupa ce vom învăța despre obiecte, în acest capitol <info:object-toprimitive> vom vedea cum se incadrează obiectele.
 ```
 
-## String Conversion
+## Conversia unui Șir
 
-String conversion happens when we need the string form of a value.
+Conversia unui șir se întâmplă când avem nevoie de forma de șir a unei valori.
 
-For example, `alert(value)` does it to show the value.
+De exemplu, `alert(value)` o face pentru a arăta valoarea.
 
-We can also call the `String(value)` function to convert a value to a string:
+Totodată, putem apela funcța `String(value)` pentru a converti o valoare către un șir
 
 ```js run
 let value = true;
 alert(typeof value); // boolean
 
 *!*
-value = String(value); // now value is a string "true"
-alert(typeof value); // string
+value = String(value); // acum valoarea este un "adevărat" șir
+alert(typeof value); // șir
 */!*
 ```
 
-String conversion is mostly obvious. A `false` becomes `"false"`, `null` becomes `"null"`, etc.
+Conversia unui șir este destul de evidentă. Un `false` devine `"false"`, `null` devine `"null"`, etc.
 
-## Numeric Conversion
+## Conversia Numerică
 
-Numeric conversion happens in mathematical functions and expressions automatically.
+Conversia numerică se petrece in funcții și expresii matematice automat.
 
-For example, when division `/` is applied to non-numbers:
+De exemplu, când împărțirea `/` este aplicată non-numerelor:
 
 ```js run
-alert( "6" / "2" ); // 3, strings are converted to numbers
+alert( "6" / "2" ); // 3, șirurile sunt convertite către numere
 ```
 
-We can use the `Number(value)` function to explicitly convert a `value` to a number:
+Putem folosi funcția `Number(value)` pentru a converti explicit o `value` către un număr.
 
 ```js run
 let str = "123";
-alert(typeof str); // string
+alert(typeof str); // șir
 
-let num = Number(str); // becomes a number 123
+let num = Number(str); // devine un număr 123
 
-alert(typeof num); // number
+alert(typeof num); // număr
 ```
 
-Explicit conversion is usually required when we read a value from a string-based source like a text form but expect a number to be entered.
+Conversia explicită de obicei este cerută când citim o valoarea dintr-o sursă bazată pe un șir ca și un formular text dar așteaptă un număr să fie inclus.
 
-If the string is not a valid number, the result of such a conversion is `NaN`. For instance:
+Dacă șirul nu este un număr valid, rezultatul acestei conversii este `NaN`. De exemplu:
 
 ```js run
-let age = Number("an arbitrary string instead of a number");
+let age = Number("un șir arbitrar in locul unui număr");
 
-alert(age); // NaN, conversion failed
+alert(age); // NaN, conversie eșuată
 ```
 
-Numeric conversion rules:
+Regulile conversiei numerice:
 
-| Value |  Becomes... |
+| Valoare |  Devine... |
 |-------|-------------|
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
-| `string` | Whitespaces from the start and end are removed. If the remaining string is empty, the result is `0`. Otherwise, the number is "read" from the string. An error gives `NaN`. |
+| `string` | Spațiile goale de la ïnceput și sfârșit sunt eliminate. Daca șirul rămas este gol, rezultatul este `0`. Altfel numărul este "citit" din șir . O eroare transmite `NaN`. |
 
-Examples:
+Exemple:
 
 ```js run
 alert( Number("   123   ") ); // 123
-alert( Number("123z") );      // NaN (error reading a number at "z")
+alert( Number("123z") );      // NaN (eroare la citirea unui numar la "z")
 alert( Number(true) );        // 1
 alert( Number(false) );       // 0
 ```
 
-Please note that `null` and `undefined` behave differently here: `null` becomes zero while `undefined` becomes `NaN`.
+Va rugăm sa notați faptul că `null` și `undefined` se comportă diferit aici: `null` devine 0, în timp ce `undefined` devine `NaN`.
 
-Most mathematical operators also perform such conversion, we'll see that in the next chapter.
+Cei mai mulți operatori matematici execută o astfel de conversie, vom vedea aceasta in capitolul următor.
 
 ## Boolean Conversion
+## Conversia Boolean
 
-Boolean conversion is the simplest one.
+Conversia boolean este cea mai simplă.
 
-It happens in logical operations (later we'll meet condition tests and other similar things) but can also be performed explicitly with a call to `Boolean(value)`.
+Are loc in operațiile logice (mai tarziu vom cunoaște teste condiționale si alte lucruri similare) dar poate fi executată specific cu o apelare la `Boolean(value)`.
 
-The conversion rule:
+Regula conversiei:
 
-- Values that are intuitively "empty", like `0`, an empty string, `null`, `undefined`, and `NaN`, become `false`.
-- Other values become `true`.
+- Valorile care sunt "goale" intuitiv, ca și `0`, un șir gol, `null`, `undefined`, and `NaN`, devin `false`.
+- Alte valori devin `true`.
 
-For instance:
+De exemplu:
 
 ```js run
 alert( Boolean(1) ); // true
 alert( Boolean(0) ); // false
 
-alert( Boolean("hello") ); // true
+alert( Boolean("salut") ); // true
 alert( Boolean("") ); // false
 ```
 
 ````warn header="Please note: the string with zero `\"0\"` is `true`"
-Some languages (namely PHP) treat `"0"` as `false`. But in JavaScript, a non-empty string is always `true`.
+Alte limbaje (anume PHP) trateaza `"0"` ca și `false`. Dar in JavaScript, un șir ne-gol este întotdeauna `true`.
 
 ```js run
 alert( Boolean("0") ); // true
-alert( Boolean(" ") ); // spaces, also true (any non-empty string is true)
+alert( Boolean(" ") ); // spații, de asemenea true (orice șir ne-gol este true)
 ```
 ````
 
 ## Summary
+## Rezumat
 
 The three most widely used type conversions are to string, to number, and to boolean.
 
