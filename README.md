@@ -1,115 +1,86 @@
-# The Modern JavaScript Tutorial in *Romanian*
+# The Modern JavaScript Tutorial în limba Română
 
-This repository hosts the Romanian content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
+Acest repository găzduiește conținutul în limba română pentru The Modern JavaScript Tutorial, publicat în [https://javascript.info](https://javascript.info).
 
-**That's how you can contribute:**
+### Cum puteți contribui:
 
-- See the [Romanian Translate Progress](https://github.com/javascript-tutorial/ro.javascript.info/issues/1) issue.
-- Choose an unchecked article you'd like to translate.
-- Add a comment with the article title to the issue, e.g. `An Introduction to JavaScript`.
-    - Our bot will mark it in the issue, for everyone to know that you're translating it.
-    - Your comment should contain only the title.
-- Fork the repository, translate and send a PR when done.
-    - PR title should match article title, the bot will write it's number into the issue.
+## Primii pași
 
-See <https://javascript.info/translate> for the details.
+- Consultați acest issue [Romanian Translate Progress](https://github.com/javascript-tutorial/ro.javascript.info/issues/1).
+- Alegeți un articol nebifat pe care doriți să îl traduceți.
+- Adăugați un comentariu cu titlul articolului la issue, e.g. `An Introduction to JavaScript`.
+  - Botul nostru îl va marca automat în issue pentru ca toată lumea să știe că îl traduceți.
+  - Comentariul _trebuie_ să conțină doar titlul.
+- Faceți un fork la repository, traduceți și apoi trimiteți un PR când ați terminat.
+  - Titlul PR trebuie să se potrivească cu titlul articolului, botul va scrie automat numărul acestuia în issue.
 
-Please kindly allow maintainers to review and merge or request changes in your translation.
-   
-If maintainers do not respond, or if you'd like to become a maintainer, write us at the [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
-    
-**Let others know what you're translating, in message boards or chats in your language. Invite them to join!**
+Vedeți <https://javascript.info/translate> pentru detalii.
 
-🎉 Thank you!
+Vă rugăm să păstrați salturile de linie și paragrafele "așa cum sunt": nu adăugați linii noi și nu le eliminați pe cele existente. Asta facilitează îmbinarea viitoarelor modificări din versiunea engleză în traducere.
 
-**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+Dacă vedeți că versiunea în limba engleză poate fi îmbunătățită - grozav, vă rugăm să trimiteți un PR pentru aceasta.
 
-P.S. The full list of languages can be found at <https://javascript.info/translate>.
+## Cum se scriu termenii
 
-## Structure
+- Unii termeni din specificații **nu** trebuie traduși, spre exemplu, "Function Declaration" poate fi lăsat "așa cum este".
+- Pentru alți termeni, cum ar fi `resolved promise`, `slash`, `regexp` și așa mai departe căutați un glosar bun.
+  - Dacă nu există un dicționar, căutați traduceri în manuale, cum ar fi [MDN](https://developer.mozilla.org/en-US/).
 
-Every chapter, an article or a task resides in its own folder.
+## Cum traducem un code block
 
-The folder is named `N-url`, where `N` – is the number for sorting (articles are ordered), and `url` is the URL-slug on the site.
+- Traduceți comentariile.
+- Traduceți mesajele și strings spre exemple.
+- Nu traduceți variabile, clase, identificatori.
+- Verificați dacă funcționează codului după traducere :)
 
-The folder has one of files:
-
-  - `index.md` stands for a chapter
-  - `article.md` stands for an article
-  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
-
-A file starts with the `# Title Header`, and then the text in Markdown-like format, editable in a simple text editor. 
-
-Additional resources and examples for the article or the task, are also in the same folder.
-
-## Translation Tips
-
-Please keep line breaks and paragraphs "as is": don't add newlines and don't remove existing ones. Makes it easy to merge future changes from the English version into the translation. 
-
-If you see that the English version can be improved – great, please send a PR to it.
-
-### Terms
-
-- Some specification terms are not to be translated, e.g. "Function Declaration" can be left "as is".
-- For other terms like `resolved promise`, `slash`, `regexp`, and so on look a good glossary, hopefully there's one for your language already.
-    - If there's no dictionary, look for translations in manuals, such as [MDN](https://developer.mozilla.org/en-US/).
-
-### Text in Code Blocks
-
-- Translate comments.
-- Translate user-messages and example strings.
-- Don't translate variables, classes, identifiers.
-- Ensure that the code works after the translation :)
-
-Example:
+Exemplu de cod:
 
 ```js
 // Example
-const text = "Hello, world";
+const text = 'Hello, world';
 document.querySelector('.hello').innerHTML = text;
 ```
 
-✅ DO (translate comment):
+✅ Așa da:
 
 ```js
-// Exemplul
+// Exemplu
 const text = 'Bună ziua`
 document.querySelector('.hello').innerHTML = text;
+// traduceți comentariul și mesajul text
 ```
 
-❌ DON'T (translate class):
+❌ Așa nu:
 
 ```js
 // Exemplu
 const text = 'Bună ziua lume';
 document.querySelector('.salut').innerHTML = text;
-// ".salut" is a class
-// DO NOT TRANSLATE
+// ".salut" este o clasă
+// NU SE TRADUCE
 ```
 
-### External Links
+## Atașamente externe
 
-If an external link is to Wikipedia, e.g. `https://en.wikipedia.org/wiki/JavaScript`, and a version of that article exists in your language that is of decent quality, link to that version instead.
+Dacă un link extern este către Wikipedia, de exemplu `https://en.wikipedia.org/wiki/JavaScript`, și există o versiune a articolului respectiv în limba română de o calitate decentă, folosiți link-ul către acea versiune în schimb.
 
-Example:
+Exemplu:
 
 ```md
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a programming language.
 ```
 
-✅ OK (en -> es):
+✅ Așa da (en -> ro):
 
 ```md
-[JavaScript](https://es.wikipedia.org/wiki/JavaScript) es un lenguaje de programación.
+[JavaScript](https://ro.wikipedia.org/wiki/JavaScript) este un limbaj de programare.
 ```
 
-For links to MDN, a partially translated version is ok.
+Dacă un articol cu link nu are o versiune tradusă, lăsați link-ul "așa cum este".
 
-If a linked article has no translated version, leave the link "as is".
+## Metadata
 
-### Metadata
-
-Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
+Unele fișiere, de obicei tasks, au metadate YAML în partea de sus, delimitate prin `---`:
 
 ```md
 importance: 5
@@ -117,23 +88,53 @@ importance: 5
 ...
 ```
 
-Please don't translate "importance" (and other top metadata).
+Vă rugăm să nu traduceți "importance" (și alte metadate de acolo).
 
-### Anchors
+## Anchors
 
-Some headers have `[#anchor]` at the end, e.g.
+Unele anteturi au `[#anchor]` la sfârșit, de ex.
 
 ```md
 ## Spread operator [#spread-operator]
 ```
 
-Please don't translate or remove the `[#...]` part, it's for URL anchors.
+Vă rugăm să nu traduceți sau să eliminați partea `[#...]`, aceasta este pentru ancorele URL.
 
-## Running locally
+Vă rugăm frumos să permiteți responsabililor să revizuiască și să fuzioneze sau să solicite modificări în traducerea dvs.
 
-You can run the tutorial server locally to see how the translation looks.
+## Structura
 
-The server and install instructions are at <https://github.com/javascript-tutorial/server>. 
+Fiecare capitol, un articol sau task au propriul folder.
+
+Dosarul se numește `N-url`, unde `N` - este numărul pentru sortare (articolele sunt ordonate), iar `url` este URL-slug-ul de pe site.
+
+Dosarul are unul dintre fișiere:
+
+- `index.md` reprezintă un capitol
+- `article.md` reprezintă un articol
+- `task.md` reprezintă o sarcină (soluția trebuie să fie furnizată și în fișierul `solution.md`)
+
+Un fișier începe cu `# Title Header`, apoi textul în format de tip Markdown, editabil într-un editor de text simplu.
+
+Resursele suplimentare și exemplele pentru articol sau pentru task, se află de asemenea în același folder.
+
+## Rularea în mediu local
+
+Puteți rula serverul tutorialului la nivel local pentru a vedea cum arată traducerea.
+
+Serverul și instrucțiunile de instalare sunt la <https://github.com/javascript-tutorial/server>.
+
+## Alte mențiuni
+
+În cazul în care menținătorii nu răspund sau dacă doriți să deveniți menținător, scrieți-ne la [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
+
+**Spune-le și altora ce traduci prin forumuri sau chat-uri. Invitați-i să se alăture!**
+
+🎉 Mulțumesc!
+
+**Puteți edita textul în orice editor.** Tutorialul folosește formatul îmbunătățit "markdown", ușor de înțeles.
+
+P.S. Lista completă a limbilor poate fi găsită la <https://javascript.info/translate>.
 
 ♥  
 Ilya Kantor @iliakan
