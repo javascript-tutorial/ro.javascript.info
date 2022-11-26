@@ -1,6 +1,5 @@
-The answer is `2`, that's the first truthy value.
+Răspunsul este `2`, aceasta fiind prima valoare adevărată.
 
 ```js run
-alert( null || 2 || undefined );
+alert(null || 2 || undefined);
 ```
-

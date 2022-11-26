@@ -1,13 +1,13 @@
-The answer: first `1`, then `2`.
+Răspunsul: primul va fi `1`, apoi `2`.
 
 ```js run
-alert( alert(1) || 2 || alert(3) );
+alert(alert(1) || 2 || alert(3));
 ```
 
-The call to `alert` does not return a value. Or, in other words, it returns `undefined`.
+Invocând `alert` nu se va returna o valoare. Sau, cu alte cuvinte, se va returna `undefined`.
 
-1. The first OR `||` evaluates its left operand `alert(1)`. That shows the first message with `1`.
-2. The `alert` returns `undefined`, so OR goes on to the second operand searching for a truthy value.
-3. The second operand `2` is truthy, so the execution is halted, `2` is returned and then shown by the outer alert.
+1. Primul OR `||` evaluează operatorul din stânga `alert(1)`. Primul mesaj care va fi afișat este `1`.
+2. `alert` va returna `undefined`, așa că OR trece la următorul operator căutând o valoare adevărată.
+3. Cel de al doilea operator `2` fiind adevărat, execuția este oprită, `2` este returnat și afișat.
 
-There will be no `3`, because the evaluation does not reach `alert(3)`.
+`3` nu va fi afișat , deoarece nu se ajunge la evaluarea `alert(3)`.

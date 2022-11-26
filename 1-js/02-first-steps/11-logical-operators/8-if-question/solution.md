@@ -1,20 +1,19 @@
-The answer: the first and the third will execute.
+Răspunsul: prima și ultima alertă vor fi executate.
 
-Details:
+Detalii:
 
 ```js run
-// Runs.
-// The result of -1 || 0 = -1, truthy
-if (-1 || 0) alert( 'first' );
+// Rulează.
+// Rezultatul lui -1 || 0 = -1, adevărat
+if (-1 || 0) alert("first");
 
-// Doesn't run
-// -1 && 0 = 0, falsy
-if (-1 && 0) alert( 'second' );
+// Nu rulează
+// -1 && 0 = 0, fals
+if (-1 && 0) alert("second");
 
-// Executes
-// Operator && has a higher precedence than ||
-// so -1 && 1 executes first, giving us the chain:
+// Execută
+// Operatorul && are prioritate mai mare decât ||
+// deci -1 && va fi executat primul, expresia va deveni:
 // null || -1 && 1  ->  null || 1  ->  1
-if (null || -1 && 1) alert( 'third' );
+if (null || (-1 && 1)) alert("third");
 ```
-

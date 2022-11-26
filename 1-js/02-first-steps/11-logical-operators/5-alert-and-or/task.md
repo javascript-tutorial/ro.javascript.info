@@ -2,11 +2,10 @@ importance: 5
 
 ---
 
-# The result of OR AND OR
+# Rezultatul OR ȘI AND
 
-What will the result be?
+Care va fi rezultatul?
 
 ```js
-alert( null || 2 && 3 || 4 );
+alert(null || (2 && 3) || 4);
 ```
-

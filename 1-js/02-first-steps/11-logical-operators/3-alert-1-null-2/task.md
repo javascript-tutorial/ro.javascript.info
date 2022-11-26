@@ -2,11 +2,10 @@ importance: 5
 
 ---
 
-# What is the result of AND?
+# Care este rezultatul operatorului AND?
 
-What is this code going to show?
+Ce va returna codul de mai jos?
 
 ```js
-alert( 1 && null && 2 );
+alert(1 && null && 2);
 ```
-
