@@ -1,1 +1,1 @@
-# Objects: the basics
+# Obiecte: noțiuni de bază

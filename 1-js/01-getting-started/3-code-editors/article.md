@@ -13,7 +13,7 @@ Un IDE încarcă proiectul (pot fi mai multe fișiere), permite navigarea între
 Dacă nu ai selectat până acum un IDE, uită-te la următoarele variante:
 
 - [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
-- [Netbeans](http://netbeans.org/) (plătit).
+- [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, plătit).
 
 Pentru Windows există de asemenea un editor "Visual Studio", a nu se confunda cu "Visual Studio Code". "Visual Studio" este un editor doar pentru Windows, plătit dar puternic, foarte potrivit pentru platforma .NET. O versiune gratuită al lui este [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
@@ -23,15 +23,14 @@ Multe IDE-uri sunt plătite dar au o perioadă de încercare. Costul lor este î
 
 "Editoarele de categorie ușoară" nu sunt la fel de puternice precum IDE-urile, dar sunt rapide, elegante și simple.
 
-Sunt de obicei folosite pentru a deschide și edita un fișier, instant.
+Ele sunt în principal folosite pentru a deschide și edita un fișier, instant.
 
 Diferența majoră dintre un editor de "categorie ușoară" și un "IDE" este că un IDE funcționează la un nivel de proiect, așa că acesta încarcă mult mai multe date încă de la început, analizează structura proiectului dacă este necesar, ș.a.m.d. Un editor de categorie ușoară este mult mai rapid dacă avem nevoie doar de un fișier.
 
 În practică, editoarele de categorie ușoară pot avea multe plugin-uri, inclusiv analizatoare de sintaxă la nivel de director sau autocompletatoare, așadar nu este o graniță strictă între un editor de categorie ușoară și un IDE.
 
-Următoarele opțiuni merită atenția ta:
+Sunt multe opțiuni, spre exemplu:
 
-- [Atom](https://atom.io/) (cross-platform, gratuit).
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, gratuit).
 - [Vim](http://www.vim.org/) și [Emacs](https://www.gnu.org/software/emacs/) sunt de asemenea utile dacă știi cum să le folosești.
@@ -40,6 +39,11 @@ Următoarele opțiuni merită atenția ta:
 
 Editoarele din lista de mai sus sunt cele pe care fie eu sau prietenii mei, pe care îi consider dezvoltatori buni, le-am folosit pentru un timp îndelungat și suntem mulțumiți de ele.
 
-Există și alte editoare grozave în lume. Te rog alege un editor care îți place cel mai mult.
+Există și alte editoare grozave în lumea asta mare. Te rog alege un editor care îți place cel mai mult.
 
 Alegerea unui editor, ca a oricărui alt tool, este individuală și depinde de proiectele tale, obiceiurile și preferințele personale.
+
+The author's personal opinion:
+
+- I'd use [Visual Studio Code](https://code.visualstudio.com/) if I develop mostly frontend.
+- Otherwise, if it's mostly another language/platform and partially frontend, then consider other editors, such as XCode (Mac), Visual Studio (Windows) or Jetbrains family (Webstorm, PHPStorm, RubyMine etc, depending on the language).

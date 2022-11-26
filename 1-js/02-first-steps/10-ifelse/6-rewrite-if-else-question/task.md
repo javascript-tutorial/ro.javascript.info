@@ -2,21 +2,21 @@ importance: 5
 
 ---
 
-# Rewrite 'if..else' into '?'
+# Rescrieți 'if..else' în '?'
 
-Rewrite `if..else` using multiple ternary operators `'?'`.
+Rescrieți `if..else` folosind mai mulți operatori ternary `'?'`.
 
-For readability, it's recommended to split the code into multiple lines.
+Pentru lizibilitate, este recomandat să împărțiți codul în mai multe linii.
 
 ```js
 let message;
 
-if (login == 'Employee') {
-  message = 'Hello';
+if (login == 'Angajat') {
+  message = 'Bună ziua!';
 } else if (login == 'Director') {
-  message = 'Greetings';
+  message = 'Salutări!';
 } else if (login == '') {
-  message = 'No login';
+  message = 'Nu te poți loga';
 } else {
   message = '';
 }

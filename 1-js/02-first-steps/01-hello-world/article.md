@@ -10,6 +10,7 @@ Dar avem nevoie de un mediu pentru a rula script-urile și, având în vedere c�
 
 Programele JavaScript pot fi inserate în orice parte al unui document HTML cu ajutorul tag-ului  `<script>`.
 
+feature/hello-world
 De exemplu:
 
 ```html run height=100
@@ -42,9 +43,9 @@ Tag-ul `<script>` conține cod JavaScript care este executat automat cand browse
 ## Markup modern
 
 Tag-ul `<script>` are câteva atribute care mai nou sunt folosite rar, dar care încă se găsesc în codul vechi:
+The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
+: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic, we'll talk about modules in another part of the tutorial.
 
-Atributul `type`: <code>&lt;script <u>type</u>=...&gt;</code>
-: În vechiul standard HTML, HTML4, un script era necesar să aibă un `type`. De obicei era `type="text/javascript"`. Acum nu mai este nevoie de el. De asemenea, standardul HTML modern a schimbat total înțelesul acestui atribut. Acum, el poate fi folosit pentru module JavaScript. Dar acesta este un subiect mai avansat; o să vorbim despre module în altă parte a tutorialului.
 
 Atributul `language`: <code>&lt;script <u>language</u>=...&gt;</code>
 : Acest atribut a fost menit să arate limbajul script-ului. Acest atribut nu mai are sens deoarece JavaScript este limbajul implicit. Nu este nevoie să îl folosiți.
@@ -58,7 +59,8 @@ Comentarii înainte și după script-uri.
     //--></script>
     ```
 
-    Acest truc nu este folosit în JavaScript modern. Aceste comentarii ascund codul JavaScript în browserele vechi care nu știau cum să proceseze tag-ul `<script>`. Deoarece browserele lansate în ultimii 15 ani nu au această problemă, accest tip de comentariu vă poate ajuta să identificați cod foarte vechi.
+
+    This trick isn't used in modern JavaScript. These comments hide JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
 
 ## Script-uri externe
 
@@ -70,12 +72,12 @@ Fișierele de acest tip sunt atașate codului HTML cu ajutorul atributului `src`
 <script src="/path/to/script.js"></script>
 ```
 
-Aici, `/path/to/script.js` este o cale absolută către script de la rădăcina site-ului. Se poate oferi, de asemenea, o cale relativă din pagina curentă. De exemplu, `src="script.js"` ar însemna un fișier `"script.js"` în folderul curent.
+
+Here, `/path/to/script.js` is an absolute path to the script from the site root. One can also provide a relative path from the current page. For instance, `src="script.js"`, just like `src="./script.js"`, would mean a file `"script.js"` in the current folder.
 
 Putem oferi și o adresă URL completă. De exemplu:
-
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
 ```
 
 Pentru a atașa mai multe scripturi, utilizați mai multe tag-uri:
