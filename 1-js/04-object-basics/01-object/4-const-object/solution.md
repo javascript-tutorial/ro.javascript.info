@@ -1,8 +1,8 @@
-Sure, it works, no problem.
+Bineînțeles, funcționează fără probleme.
 
-The `const` only protects the variable itself from changing. 
+Cuvântul `const` protejează numai modificarea variabilei în sine.
 
-In other words, `user` stores a reference to the object. And it can't be changed. But the content of the object can.
+Cu alte cuvinte, `user` stochează o referință a obiectului. Și nu poate fi modificată. În schimb, conținutul obiectului se poate modifica.
 
 ```js run
 const user = {
@@ -10,10 +10,10 @@ const user = {
 };
 
 *!*
-// works
+// funcționează
 user.name = "Pete";
 */!*
 
-// error
+// eroare
 user = 123;
 ```

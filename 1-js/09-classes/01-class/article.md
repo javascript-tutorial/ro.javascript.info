@@ -51,7 +51,7 @@ user.sayHi();
 
 Atunci când `new User("John")` este apelat:
 1. Un nou obiect este creat.
-2. `constructor` rulează cu argumentele primite și atribuie `this.name` acestuia.
+2. `constructor`ul rulează cu argumentul primit și îi atribuie `this.name` acestuia.
 
 ...După acestea, putem apela metode ale obiectelor precum `user.sayHi()`.
 
@@ -89,7 +89,7 @@ Ce face constructorul `class User {...}` mai exact este:
 1. Crează o funcție denumită `User`, ce devine rezultatul unei declarări a clasei. Codul funcției este preluat din metoda `constructor` (se presupune faptul că e goală dacă nu declarăm o astfel de metodă).
 2. Conține metode ale clasei, precum `sayHi`, în `User.prototype`.
 
-După acestea, pentru obiectele `new User`, când apelăm o metodă, aceasta este chemată din prototip, exact cum a fost descris în capitolul <info:function-prototype>. Astfel, obiectele au acces la metodele definite în clasă.
+După ce obiectul `new User` este creat, când îi apelăm metoda, aceasta este luată din prototip, exact cum a fost descris în capitolul <info:function-prototype>. Deci obiectul are acces la metodele din clasă.
 
 Putem ilustra rezultatul declarației lui `class User` ca și:
 
@@ -109,16 +109,16 @@ alert(typeof User); // funcție
 // ...sau, mai precis, metoda constructor
 alert(User === User.prototype.constructor); // true
 
-// Metodele se află în User.prototype, e.g:
-alert(User.prototype.sayHi); // alert(this.name);
+// Metodele sunt în User.prototype, e.g:
+alert(User.prototype.sayHi); // codul din metoda sayHi
 
 // sunt exact două metode în prototype
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 ```
 
-## Nu doar sugar syntax
+## Nu doar un syntactic sugar
 
-Câteodată oamenii spun că `class` este sugar syntax (sintaxă proiectată într-o manieră în care este mai ușor de citit, dar care nu introduce nimic nou), pentru că am putea să declarăm o clasă și fără sintaxa implicită, în felul următor:
+Câteodată oamenii spun că `class` este un "syntactic sugar" (sintaxă care este concepută ca să facă lucrurile mai ușor de citit, dar care nu introduc nimic nou), pentru că am putea de fapt să declarăm același lucru și fără să folosim cuvântul cheie `class` deloc:
 
 ```js run
 // Rescrierea clasei User cu funcții pure
@@ -128,8 +128,8 @@ function User(name) {
   this.name = name;
 }
 
-// orice funcție prototip are o proprietate constructor în mode implicit
-// astfel că noi nu trebuie să o creăm.
+// o funcție prototip deține proprietatea "constructor" în mod implicit,
+// deci nu trebuie să o creăm.
 
 // 2. Adaugă metoda la prototip
 User.prototype.sayHi = function() {
@@ -140,13 +140,14 @@ User.prototype.sayHi = function() {
 let user = new User("John");
 user.sayHi();
 ```
-Rezultatul definiției este aproape același. Deci, există întreadevăr motive pentru care `class` poate să fie considerat ca și sugar syntax pentru a definii un constructor împreună cu metodele prototipului.
 
-Cu toate acestea, există diferențe importante.
+Rezultatul acestei definiții este cam același. Așadar, există într-adevăr motive pentru care `class` poate fi considerat un syntactic sugar pentru a defini un constructor împreună cu metodele prototipului său.
 
-1. În primul rând, o funcție creadtă de `class` este marcată de o proprietate internă specială `[[FunctionKind]]:"classConstructor"`. Atlfel, nu este în totalitate același lucru cu crearea manuală a acesteia
+Totuși, există diferențe importante.
 
-    Spre deosebire de o funcție simplă, constructorul unei clasei trebuie să fie apelat cu `new`:
+1. În primul rând, o funcție creată de `class` este etichetată printr-o proprietate internă specială `[[IsClassConstructor]]: true`. Deci nu este în totalitate același lucru precum crearea manuală a acesteia.
+
+    Limbajul verifică această proprietate într-o varietate de locuri. De exemplu, spre deosebire de o funcție obișnuită, aceasta trebuie să fie apelată cu `new`:
 
     ```js run
     class User {
@@ -166,6 +167,7 @@ Cu toate acestea, există diferențe importante.
 
     alert(User); // class User { ... }
     ```
+    There are other differences, we'll see them soon.
 
 2. Metodele claselor sunt non-enumerabile.
     Definiția unei clase setează fanionul `enumerable` ca fiind `false` pentru toate metodele din `"prototype"`.
@@ -180,7 +182,7 @@ Cu toate acestea, există diferențe importante.
 
 ## Expresia Clasei
 
-Exact ca și funcțiile, clasele pot să fie definite în interiorul alte expresii, pot să fie trimise dintr-o parte în alta, returnare, alocate etc.
+La fel ca și funcțiile, clasele pot fi definite în interiorul altei expresii, transmise dintr-o parte în alta, returnate, atribuite, etc.
 
 Aici este un exemplu de expresie a unei clase.
 
@@ -210,7 +212,6 @@ new User().sayHi(); // funcționează, afișează definiția lui MyClass
 alert(MyClass); // eroare, numele MyClass nu este vizibil în afara clasei
 ```
 
-
 Putem chiar să facem clasele dinamice "la cerere", în felul următor:
 
 ```js run
@@ -219,7 +220,7 @@ function makeClass(phrase) {
   return class {
     sayHi() {
       alert(phrase);
-    };
+    }
   };
 }
 
@@ -230,9 +231,9 @@ new User().sayHi(); // Salut
 ```
 
 
-## Getters/setters, other shorthands
+## Getters/setters
 
-Exact ca și literal objects, clasele pot include getteri/setter, generatori, proprietăți computed etc.
+La fel ca literal objects, clasele pot include getters/setters, computed properties etc.
 
 Aici este un exemplu pentru `user.name` implementat folosind`get/set`:
 
@@ -267,23 +268,11 @@ alert(user.name); // John
 
 user = new User(""); // Numele este prea scurt
 ```
+Tehnic, o astfel de declarație de clasă funcționează prin crearea de getters și setters în `User.prototype`.
 
-Declararea clasei crează getteri și setter în `User.prototype`, exact așa:
+## Computed names [...]
 
-```js
-Object.defineProperties(User.prototype, {
-  name: {
-    get() {
-      return this._name
-    },
-    set(name) {
-      // ...
-    }
-  }
-});
-```
-
-Aici este un exemplu cu o proprietate computed folosită între paranteze `[...]`:
+Iată un exemplu de un nume folosind parantezele prin computed method `[...]`:
 
 ```js run
 class User {
@@ -299,20 +288,24 @@ class User {
 new User().sayHi();
 ```
 
-Pentru o metodă generator, similar, o precedăm cu `*`.
+Astfel de caracteristici sunt ușor de reținut, deoarece seamănă cu cele ale obiectelor literale.
 
-## Proprietățile clasei
+## Câmpuri de clasă
 
-```warn header="Browserele vechi pot avea nevoie de polyfill"
-Proprietațile la nivel de clasă sunt o adiție recentă.
+```warn header="Este posibil ca browserele vechi să aibă nevoie de un polyfill"
+Câmpurile de clasă sunt o adăugare recentă a limbajului.
 ```
 
-În exemplul de mai sus, `User` avea doar metode. Hai să adăugam o proprietate:
+Anterior, clasele noastre aveau doar metode.
+
+"Class fields" este o sintaxă care permite adăugarea oricăror proprietăți.
+
+De exemplu, să adăugăm proprietatea `name` la `class User`:
 
 ```js run
 class User {
 *!*
-  name = "Anonim";
+  name = "Ion";
 */!*
 
   sayHi() {
@@ -320,10 +313,94 @@ class User {
   }
 }
 
-new User().sayHi();
+new User().sayHi(); // Salut, Ion!
 ```
 
-Proprietatea `name` nu este introdusă în `User.prototype`. În schimb, aceasta este creată de `new` înainte de apelarea constructorului, it's the property of the object itself.
+Așadar, trebuie doar să scriem "<numele proprietății> = <valoare>" în declarație, și asta este tot.
+
+Diferența importantă a câmpurilor de clasă este că acestea sunt setate pe obiecte individuale, nu pe `User.prototype`:
+
+```js run
+class User {
+*!*
+  nume = "Ion";
+*/!*
+}
+
+let user = new User();
+alert(user.name); // Ion
+alert(User.prototype.name); // undefined
+```
+
+De asemenea, putem atribui valori folosind expresii mai complexe și apeluri de funcții:
+
+```js run
+class User {
+*!*
+  name = prompt("Nume, vă rog?", "John");
+*/!*
+}
+
+let user = new User();
+alert(user.name); // John
+```
+
+
+### Realizarea de metode bound cu class fields
+
+După cum s-a demonstrat în capitolul <info:bind> funcțiile din JavaScript au un `this` dinamic. Acesta depinde de contextul apelului.
+
+Astfel dacă o metodă obiect este transmisă și apelată în alt context, `this` nu va mai fi o referință la obiectul său.
+
+De exemplu, acest cod va afișa `undefined`:
+
+```js run
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+
+  click() {
+    alert(this.value);
+  }
+}
+
+let button = new Button("salut");
+
+*!*
+setTimeout(button.click, 1000); // undefined
+*/!*
+```
+
+Problema se numește "pierderea lui `this`".
+
+Există două abordări pentru a o rezolva, așa cum se discută în capitolul <info:bind>:
+
+1. Treceți o funcție wrapper, cum ar fi `setTimeout(() => button.click(), 1000)`.
+2. Bind la metodă de obiect, e.g în constructor.
+
+Câmpurile de clasă oferă o altă sintaxă, destul de elegantă:
+
+```js run
+class Button {
+  constructor(value) {
+    this.value = value;
+  }
+*!*
+  click = () => {
+    alert(this.value);
+  }
+*/!*
+}
+
+let button = new Button("salut");
+
+setTimeout(button.click, 1000); // salut
+```
+
+Câmpul de clasă `click = () => {...}` este creat pentru fiecare obiect în parte, există o funcție separată pentru fiecare obiect `Button`, cu `this` în interiorul ei făcând referire la acel obiect. Putem trece `button.click` oriunde, iar valoarea lui `this` va fi întotdeauna corectă.
+
+Acest lucru este deosebit de util în mediul browser, pentru event listeners.
 
 ## Sumar
 
@@ -347,6 +424,6 @@ class MyClass {
 }
 ```
 
-`MyClass` este tehnic o funcție (cea pe care o furnizăm ca și `constructor`), în timp ce metodele, getteri și setteri sunt trecuți în `MyClass.prototype`.
+`MyClass` este tehnic o funcție (cea pe care o furnizăm ca `constructor`), în timp ce metodele, getters și setters sunt scrise în `MyClass.prototype`.
 
 În următoarele capitole o să învățăm mai multe despre clase, printre care o să învătăm despre moșternie și alte caracteristici ale acestora.

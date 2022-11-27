@@ -1,1 +1,1 @@
-Just loop over the object and `return false` immediately if there's at least one property.
+Se va executa o buclă asupra obiectului și se va `returna false` imediat ce se întalnește o proprietate.

@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Check for emptiness
+# Verificați dacă este gol
 
-Write the function `isEmpty(obj)` which returns `true` if the object has no properties, `false` otherwise.
+Scrieți funcția `isEmpty(obj)` care returnează `true` dacă obiectul nu are proprietăți și `false` în caz contrar.
 
-Should work like that:
+Ar trebui să funcționeze așa:
 
 ```js
 let schedule = {};
@@ -17,4 +17,3 @@ schedule["8:30"] = "get up";
 
 alert( isEmpty(schedule) ); // false
 ```
-

@@ -1,8 +1,8 @@
-The HTML code:
+Codul HTML:
 
 [html src="index.html"]
 
-For the file `alert.js` in the same folder:
+Pentru fișierul `alert.js` în același folder:
 
 [js src="alert.js"]
 
