@@ -90,7 +90,7 @@ Cei mai mulți operatori matematici execută o astfel de conversie, vom vedea ac
 
 Conversia boolean este cea mai simplă.
 
-Are loc in operațiile logice (mai tarziu vom cunoaște teste condiționale si alte lucruri similare) dar poate fi executată specific cu o apelare la `Boolean(value)`.
+Are loc în operațiile logice (mai târziu vom întâlni teste condiționale și alte lucruri similare) dar poate de asemenea fi executată specific cu o apelare la `Boolean(value)`.
 
 Regula conversiei:
 
