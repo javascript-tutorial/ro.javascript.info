@@ -1,5 +1,6 @@
 
-The answer is:
+Răspunsul este:
+
 
 - `a = 2`
 - `b = 2`
@@ -9,10 +10,11 @@ The answer is:
 ```js run no-beautify
 let a = 1, b = 1;
 
-alert( ++a ); // 2, prefix form returns the new value
-alert( b++ ); // 1, postfix form returns the old value
+alert( ++a ); // 2, forma prefix afișează noua valoare
+alert( b++ ); // 1, forma sufix afișează vechea valoare
 
-alert( a ); // 2, incremented once
-alert( b ); // 2, incremented once
+
+alert( a ); // 2, incrementat odată
+alert( b ); // 2, incrementat odată
 ```
 

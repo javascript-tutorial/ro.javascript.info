@@ -16,10 +16,10 @@ undefined + 1 = NaN // (6)
 " \t \n" - 2 = -2 // (7)
 ```
 
-1. The addition with a string `"" + 1` converts `1` to a string: `"" + 1 = "1"`, and then we have `"1" + 0`, the same rule is applied.
-2. The subtraction `-` (like most math operations) only works with numbers, it converts an empty string `""` to `0`.
-3. The addition with a string appends the number `5` to the string.
-4. The subtraction always converts to numbers, so it makes `"  -9  "` a number `-9` (ignoring spaces around it).
-5. `null` becomes `0` after the numeric conversion.
-6. `undefined` becomes `NaN` after the numeric conversion.
-7. Space characters, are trimmed off string start and end when a string is converted to a number. Here the whole string consists of space characters, such as `\t`, `\n` and a "regular" space between them. So, similarly to an empty string, it becomes `0`.
+1. Adunarea cu un șir `"" + 1` convertește `1` într-un șir: `"" + 1 = "1"`, iar apoi avem `"1" + 0`, aceeași regulă este aplicată
+2. Scăderea `-` (ca și majoritatea operațiilor matematica) funcționează doar cu numere, convertește un sir gol `""` în `0`.
+3. Adunarea cu un șir alipește numărul `5` la șir 
+4. Scăderea întotdeauna convertește în numere, astfel va face `"  -9  "` un număr `-9` (ignorănd spațiile din jurului lui).
+5. `null` devine `0` după conversia numerică.
+6. `undefined` devine `NaN` după conversia numerică.
+7. Caracterele spații sunt tăiate din începutul si sfârșitului un șir când un șir este convertit într-un număr. Aici tot șirul constă în caractere spații ca și `\t`, `\n` și un spațiu "normal" între ele. Deci, similar cu un șir gol, devine `0`.
