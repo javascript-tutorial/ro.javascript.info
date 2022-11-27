@@ -1,22 +1,22 @@
 
-# Class basic syntax
+# Sintaxă de bază a claselor
 
 ```quote author="Wikipedia"
-In object-oriented programming, a *class* is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).
+In programarea orientată obiect, o clasă este un program extensibil code-template pentru crearea de obiecte, pentru a furniza valori inițiale variabilelor membre ale clasei și de a implementa comportamentul acesteia(funcții membre și metode).
 ```
 
-In practice, we often need to create many objects of the same kind, like users, or goods or whatever.
+În practică, avem destul de des nevoia de a crea multe obiecte de același tip, precum useri, bunuri sau orice altceva.
 
-As we already know from the chapter <info:constructor-new>, `new function` can help with that.
+Așa cum știm deja din capitolul <info:constructor-new>, `new function` ne poate ajuta cu asta.
 
-But in the modern JavaScript, there's a more advanced "class" construct, that introduces great new features which are useful for object-oriented programming.
+Dar in JavaScript-ul modern, există o metodă de constructie a claselor mai avansată, care introduce noi caracteristici grozave ce sunt folositoare în object-oriented programming.
 
-## The "class" syntax
+## Sintaxa "class"
 
-The basic syntax is:
+Sintaxa de bază este:
 ```js
 class MyClass {
-  // class methods
+  // Metodele clasei
   constructor() { ... }
   method1() { ... }
   method2() { ... }
@@ -25,11 +25,11 @@ class MyClass {
 }
 ```
 
-Then use `new MyClass()` to create a new object with all the listed methods.
+Apoi folosim `new MyClass()` pentru a crea un obiect cu toate metodele listate în clasă.
 
-The `constructor()` method is called automatically by `new`, so we can initialize the object there.
+Metoda `constructor()` este apelată automat de către `new`, astfel încât putem inițializa un obiect acolo.
 
-For example:
+De exemplu:
 
 ```js run
 class User {
@@ -44,33 +44,33 @@ class User {
 
 }
 
-// Usage:
-let user = new User("John");
+// Mod de folosire:
+let user = new User("Ion");
 user.sayHi();
 ```
 
-When `new User("John")` is called:
-1. A new object is created.
-2. The `constructor` runs with the given argument and assigns it to `this.name`.
+Atunci când `new User("Ion")` este apelat:
+1. Un nou obiect este creat.
+2. `constructor`-ul rulează cu argumentul primit și îi atribuie `this.name` acestuia.
 
-...Then we can call object methods, such as `user.sayHi()`.
+...După aceasta, putem apela metode ale obiectelor precum `user.sayHi()`.
 
 
-```warn header="No comma between class methods"
-A common pitfall for novice developers is to put a comma between class methods, which would result in a syntax error.
+```warn header="Fără virgule între metodele claselor"
+O greșeala comună pentru dezvoltatorii începători este să folosească virgule între metodele clasei, ceea ce rezultă în erori de sintaxă.
 
-The notation here is not to be confused with object literals. Within the class, no commas are required.
+Notația de aici nu trebuie să fie confundată cu object literals. În cadrul unei clase, nu sunt necesare virgule.
 ```
 
-## What is a class?
+## Ce este o clasă?
 
-So, what exactly is a `class`? That's not an entirely new language-level entity, as one might think.
+Deci, ce exact este o `clasă`? Nu este o entitate cu totul nouă la nivel de limbaj, așa cum s-ar putea crede.
 
-Let's unveil any magic and see what a class really is. That'll help in understanding many complex aspects.
+Haideți să dezvăluim magia ei și să vedem cu adevărat ce este defapt o clasă. Asta ne va ajuta să-i înțelegem multe aspecte complexe.
 
-In JavaScript, a class is a kind of function.
+În JavaScript, o clasă este un fel de funcție.
 
-Here, take a look:
+Aici, aruncă o privire:
 
 ```js run
 class User {
@@ -78,24 +78,24 @@ class User {
   sayHi() { alert(this.name); }
 }
 
-// proof: User is a function
+// dovadă: User este o funcție
 *!*
 alert(typeof User); // function
 */!*
 ```
 
-What `class User {...}` construct really does is:
+Ce face constructorul `class User {...}` cu adevărat este:
 
-1. Creates a function named `User`, that becomes the result of the class declaration. The function code is taken from the `constructor` method (assumed empty if we don't write such method).
-2. Stores class methods, such as `sayHi`, in `User.prototype`.
+1. Crează o funcție denumită `User`, ce devine rezultatul unei declarări a clasei. Codul funcției este preluat din metoda `constructor` (se presupune faptul că e goală dacă nu declarăm o astfel de metodă).
+2. Conține metode ale clasei, precum `sayHi`, în `User.prototype`.
 
-After `new User` object is created, when we call its method, it's taken from the prototype, just as described in the chapter <info:function-prototype>. So the object has access to class methods.
+După ce obiectul `new User` este creat, când îi apelăm metoda, aceasta este luată din prototip, exact cum a fost descris în capitolul <info:function-prototype>. Deci obiectul are acces la metodele din clasă.
 
-We can illustrate the result of `class User` declaration as:
+Putem ilustra rezultatul declarației lui `class User` ca și:
 
 ![](class-user.svg)
 
-Here's the code to introspect it:
+Iată codul pentru a-l introspecta:
 
 ```js run
 class User {
@@ -103,50 +103,51 @@ class User {
   sayHi() { alert(this.name); }
 }
 
-// class is a function
-alert(typeof User); // function
+// clasa este o funcție
+alert(typeof User); // funcție
 
-// ...or, more precisely, the constructor method
+// ...sau, mai precis, metoda constructor
 alert(User === User.prototype.constructor); // true
 
-// The methods are in User.prototype, e.g:
-alert(User.prototype.sayHi); // the code of the sayHi method
+// Metodele sunt în User.prototype, e.g:
+alert(User.prototype.sayHi); // codul din metoda sayHi
 
-// there are exactly two methods in the prototype
+// sunt exact două metode în prototype
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 ```
 
-## Not just a syntactic sugar
+## Nu doar un syntactic sugar
 
-Sometimes people say that `class` is a "syntactic sugar" (syntax that is designed to make things easier to read, but doesn't introduce anything new), because we could actually declare the same thing without using the `class` keyword at all:
+Câteodată oamenii spun că `class` este un "syntactic sugar" (sintaxă care este concepută ca să facă lucrurile mai ușor de citit, dar care nu introduc nimic nou), pentru că am putea de fapt să declarăm același lucru și fără să folosim cuvântul cheie `class` deloc:
 
 ```js run
-// rewriting class User in pure functions
+// Rescrierea clasei User cu funcții pure
 
-// 1. Create constructor function
+// 1. Crează o funcție constructor
 function User(name) {
   this.name = name;
 }
-// a function prototype has "constructor" property by default,
-// so we don't need to create it
 
-// 2. Add the method to prototype
+// o funcție prototip deține proprietatea "constructor" în mod implicit,
+// deci nu trebuie să o creăm.
+
+// 2. Adaugă metoda la prototip
 User.prototype.sayHi = function() {
   alert(this.name);
 };
 
-// Usage:
-let user = new User("John");
+// Mod de folosire:
+let user = new User("Ion");
 user.sayHi();
 ```
 
-The result of this definition is about the same. So, there are indeed reasons why `class` can be considered a syntactic sugar to define a constructor together with its prototype methods.
+Rezultatul acestei definiții este cam același. Așadar, există într-adevăr motive pentru care `class` poate fi considerat un syntactic sugar pentru a defini un constructor împreună cu metodele prototipului său.
 
-Still, there are important differences.
+Totuși, există diferențe importante.
 
-1. First, a function created by `class` is labelled by a special internal property `[[IsClassConstructor]]: true`. So it's not entirely the same as creating it manually.
+1. În primul rând, o funcție creată de `class` este etichetată printr-o proprietate internă specială `[[IsClassConstructor]]: true`. Deci nu este în totalitate același lucru precum crearea manuală a acesteia.
 
-    The language checks for that property in a variety of places. For example, unlike a regular function, it must be called with `new`:
+    Limbajul verifică această proprietate într-o varietate de locuri. De exemplu, spre deosebire de o funcție obișnuită, aceasta trebuie să fie apelată cu `new`:
 
     ```js run
     class User {
@@ -157,7 +158,7 @@ Still, there are important differences.
     User(); // Error: Class constructor User cannot be invoked without 'new'
     ```
 
-    Also, a string representation of a class constructor in most JavaScript engines starts with the "class..."
+    De asemenea, o reprezentare a șirului de caractere a unui constructor de clasă în engine-ul JavaScript începe cu "class..."
 
     ```js run
     class User {
@@ -168,53 +169,54 @@ Still, there are important differences.
     ```
     There are other differences, we'll see them soon.
 
-2. Class methods are non-enumerable.
-    A class definition sets `enumerable` flag to `false` for all methods in the `"prototype"`.
+2. Metodele claselor sunt non-enumerabile.
+    Definiția unei clase setează fanionul `enumerable` ca fiind `false` pentru toate metodele din `"prototype"`.
 
-    That's good, because if we `for..in` over an object, we usually don't want its class methods.
+    Asta este foarte bine, pentru că daca am folosi `for..in` peste un obiect, nu am vrea toate metodele clasei acestuia.
 
-3. Classes always `use strict`.
-    All code inside the class construct is automatically in strict mode.
+3. Clasele folosesc întotdeauna `use strict`.
+    Tot codul din interiorul constructorului clasei este în mod automat in stric mode.
+    Tot codul din cadrul constructorului clasei este automatc in strict mode.
 
-Besides, `class` syntax brings many other features that we'll explore later.
+În plus, sintaxa `class` aduce mult mai multe caracteristici pe care o să le explorăm în curând.
 
 ## Class Expression
 
-Just like functions, classes can be defined inside another expression, passed around, returned, assigned, etc.
+La fel ca și funcțiile, clasele pot fi definite în interiorul altei expresii, transmise dintr-o parte în alta, returnate, atribuite, etc.
 
-Here's an example of a class expression:
+Aici este un exemplu de expresie a unei clase.
 
 ```js
 let User = class {
   sayHi() {
-    alert("Hello");
+    alert("Salut");
   }
 };
 ```
 
-Similar to Named Function Expressions, class expressions may have a name.
+Similar cu Named Function Expressions, expresile clasei pot avea și ele nume.
 
-If a class expression has a name, it's visible inside the class only:
+Daca o expresie a unei clase are un nume, aceasta este vizibil doar în interiorul clasei:
 
 ```js run
 // "Named Class Expression"
 // (no such term in the spec, but that's similar to Named Function Expression)
 let User = class *!*MyClass*/!* {
   sayHi() {
-    alert(MyClass); // MyClass name is visible only inside the class
+    alert(MyClass); // Numele MyClass este vizibil doar în interioriul clasei
   }
 };
 
-new User().sayHi(); // works, shows MyClass definition
+new User().sayHi(); // funcționează, afișează definiția lui MyClass
 
 alert(MyClass); // error, MyClass name isn't visible outside of the class
 ```
 
-We can even make classes dynamically "on-demand", like this:
+Putem chiar să facem clasele dinamice "la cerere", în felul următor:
 
 ```js run
 function makeClass(phrase) {
-  // declare a class and return it
+  // declară o clasă și o returnează
   return class {
     sayHi() {
       alert(phrase);
@@ -222,24 +224,24 @@ function makeClass(phrase) {
   };
 }
 
-// Create a new class
-let User = makeClass("Hello");
+// Crează o nouă clasă
+let User = makeClass("Salut");
 
-new User().sayHi(); // Hello
+new User().sayHi(); // Salut
 ```
 
 
 ## Getters/setters
 
-Just like literal objects, classes may include getters/setters, computed properties etc.
+La fel ca literal objects, clasele pot include getters/setters, computed properties etc.
 
-Here's an example for `user.name` implemented using `get/set`:
+Aici este un exemplu pentru `user.name` implementat folosind`get/set`:
 
 ```js run
 class User {
 
   constructor(name) {
-    // invokes the setter
+    // invocă setterul
     this.name = name;
   }
 
@@ -253,7 +255,7 @@ class User {
   set name(value) {
 */!*
     if (value.length < 4) {
-      alert("Name is too short.");
+      alert("Numele este prea scurt");
       return;
     }
     this._name = value;
@@ -261,17 +263,16 @@ class User {
 
 }
 
-let user = new User("John");
-alert(user.name); // John
+let user = new User("Ion");
+alert(user.name); // Ion
 
-user = new User(""); // Name is too short.
+user = new User(""); // Numele este prea scurt
 ```
-
-Technically, such class declaration works by creating getters and setters in `User.prototype`.
+Tehnic, o astfel de declarație de clasă funcționează prin crearea de getters și setters în `User.prototype`.
 
 ## Computed names [...]
 
-Here's an example with a computed method name using brackets `[...]`:
+Iată un exemplu de un nume folosind parantezele prin computed method `[...]`:
 
 ```js run
 class User {
@@ -287,71 +288,71 @@ class User {
 new User().sayHi();
 ```
 
-Such features are easy to remember, as they resemble that of literal objects.
+Astfel de caracteristici sunt ușor de reținut, deoarece seamănă cu cele ale obiectelor literale.
 
-## Class fields
+## Câmpuri de clasă
 
-```warn header="Old browsers may need a polyfill"
-Class fields are a recent addition to the language.
+```warn header="Este posibil ca browserele vechi să aibă nevoie de un polyfill"
+Câmpurile de clasă sunt o adăugare recentă a limbajului.
 ```
 
-Previously, our classes only had methods.
+Anterior, clasele noastre aveau doar metode.
 
-"Class fields" is a syntax that allows to add any properties.
+"Class fields" este o sintaxă care permite adăugarea oricăror proprietăți.
 
-For instance, let's add `name` property to `class User`:
+De exemplu, să adăugăm proprietatea `name` la `class User`:
 
 ```js run
 class User {
 *!*
-  name = "John";
+  name = "Ion";
 */!*
 
   sayHi() {
-    alert(`Hello, ${this.name}!`);
+    alert(`Salut, ${this.name}!`);
   }
 }
 
-new User().sayHi(); // Hello, John!
+new User().sayHi(); // Salut, Ion!
 ```
 
-So, we just write "<property name> = <value>" in the declaration, and that's it.
+Așadar, scrim doar " = " în declarație, și asta este tot.
 
-The important difference of class fields is that they are set on individual objects, not `User.prototype`:
+Diferența importantă a câmpurilor de clasă este că acestea sunt setate pe obiecte individuale, nu pe `User.prototype`:
 
 ```js run
 class User {
 *!*
-  name = "John";
+  nume = "Ion";
 */!*
 }
 
 let user = new User();
-alert(user.name); // John
+alert(user.name); // Ion
 alert(User.prototype.name); // undefined
 ```
 
-We can also assign values using more complex expressions and function calls:
+De asemenea, putem atribui valori folosind expresii mai complexe și apeluri de funcții:
 
 ```js run
 class User {
 *!*
-  name = prompt("Name, please?", "John");
+  name = prompt("Nume, vă rog?", "Ion");
 */!*
 }
 
 let user = new User();
-alert(user.name); // John
+alert(user.name); // Ion
 ```
 
 
-### Making bound methods with class fields
+### Realizarea de metode bound cu class fields
 
-As demonstrated in the chapter <info:bind> functions in JavaScript have a dynamic `this`. It depends on the context of the call.
+După cum s-a demonstrat în capitolul <info:bind> funcțiile din JavaScript au un `this` dinamic. Acesta depinde de contextul apelului.
 
-So if an object method is passed around and called in another context, `this` won't be a reference to its object any more.
+Astfel dacă o metodă obiect este transmisă și apelată în alt context, `this` nu va mai fi o referință la obiectul său.
 
-For instance, this code will show `undefined`:
+De exemplu, acest cod va afișa `undefined`:
 
 ```js run
 class Button {
@@ -364,21 +365,21 @@ class Button {
   }
 }
 
-let button = new Button("hello");
+let button = new Button("salut");
 
 *!*
 setTimeout(button.click, 1000); // undefined
 */!*
 ```
 
-The problem is called "losing `this`".
+Problema se numește "pierderea lui `this`".
 
-There are two approaches to fixing it, as discussed in the chapter <info:bind>:
+Există două abordări pentru a o rezolva, așa cum se discută în capitolul <info:bind>:
 
-1. Pass a wrapper-function, such as `setTimeout(() => button.click(), 1000)`.
-2. Bind the method to object, e.g. in the constructor.
+1. Treceți o funcție wrapper, cum ar fi `setTimeout(() => button.click(), 1000)`.
+2. Bind la metodă de obiect, e.g în constructor.
 
-Class fields provide another, quite elegant syntax:
+Câmpurile de clasă oferă o altă sintaxă, destul de elegantă:
 
 ```js run
 class Button {
@@ -392,37 +393,37 @@ class Button {
 */!*
 }
 
-let button = new Button("hello");
+let button = new Button("salut");
 
-setTimeout(button.click, 1000); // hello
+setTimeout(button.click, 1000); // salut
 ```
 
-The class field `click = () => {...}` is created on a per-object basis, there's a separate function for each `Button` object, with `this` inside it referencing that object. We can pass `button.click` around anywhere, and the value of `this` will always be correct.
+Câmpul de clasă `click = () => {...}` este creat pentru fiecare obiect în parte, există o funcție separată pentru fiecare obiect `Button`, cu `this` în interiorul ei făcând referire la acel obiect. Putem trece `button.click` oriunde, iar valoarea lui `this` va fi întotdeauna corectă.
 
-That's especially useful in browser environment, for event listeners.
+Acest lucru este deosebit de util în mediul browser, pentru event listeners.
 
-## Summary
+## Sumar
 
-The basic class syntax looks like this:
+Sintaxa de bază a unei clase arată în felul următor:
 
 ```js
 class MyClass {
-  prop = value; // property
+  prop = value; // proprietate
 
   constructor(...) { // constructor
     // ...
   }
 
-  method(...) {} // method
+  method(...) {} // metodă
 
-  get something(...) {} // getter method
-  set something(...) {} // setter method
+  get something(...) {} // metodă getter 
+  set something(...) {} // metodă setter
 
-  [Symbol.iterator]() {} // method with computed name (symbol here)
+  [Symbol.iterator]() {} // metodă cu computed name (symbol aici)
   // ...
 }
 ```
 
-`MyClass` is technically a function (the one that we provide as `constructor`), while methods, getters and setters are written to `MyClass.prototype`.
+`MyClass` este tehnic o funcție (cea pe care o furnizăm ca `constructor`), în timp ce metodele, getters și setters sunt scrise în `MyClass.prototype`.
 
-In the next chapters we'll learn more about classes, including inheritance and other features.
+În următoarele capitole o să învățăm mai multe despre clase, printre care o să învătăm despre moșternie și alte caracteristici ale acestora.
