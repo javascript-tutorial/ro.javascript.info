@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Fix the addition
+# Rezolvă adunarea
 
-Here's a code that asks the user for two numbers and shows their sum.
+Aici este codul ce îi cere utilizatorului 2 numere si afișează suma lor.
 
-It works incorrectly. The output in the example below is `12` (for default prompt values).
+Funcționează incorect. Rezultatul în raspunsul de mai jos este `12` (pentru valorile implicite prompte).
 
-Why? Fix it. The result should be `3`.
+De ce? Rezolvă. Rezultatul ar trebui să fie `3`.
 
 ```js run
 let a = prompt("First number?", 1);
