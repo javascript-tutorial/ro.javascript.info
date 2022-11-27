@@ -9,7 +9,7 @@ In programarea orientată obiect, o clasă este un program extensibil code-templ
 
 Așa cum știm deja din capitolul <info:constructor-new>, `new function` ne poate ajuta cu asta.
 
-În schimb in JavaScript de astăzi, există o metodă de constructie a claselor mult mai avansată, ce introduce noi caracteristici grozave ce sunt folositoare în programarea orientată obiect.
+Dar in JavaScript-ul modern, există o metodă de constructie a claselor mai avansată, care introduce noi caracteristici grozave ce sunt folositoare în object-oriented programming.
 
 ## Sintaxa "class"
 
@@ -45,15 +45,15 @@ class User {
 }
 
 // Mod de folosire:
-let user = new User("John");
+let user = new User("Ion");
 user.sayHi();
 ```
 
-Atunci când `new User("John")` este apelat:
+Atunci când `new User("Ion")` este apelat:
 1. Un nou obiect este creat.
-2. `constructor`ul rulează cu argumentul primit și îi atribuie `this.name` acestuia.
+2. `constructor`-ul rulează cu argumentul primit și îi atribuie `this.name` acestuia.
 
-...După acestea, putem apela metode ale obiectelor precum `user.sayHi()`.
+...După aceasta, putem apela metode ale obiectelor precum `user.sayHi()`.
 
 
 ```warn header="Fără virgule între metodele claselor"
@@ -70,7 +70,7 @@ Haideți să dezvăluim magia ei și să vedem cu adevărat ce este defapt o cla
 
 În JavaScript, o clasă este un fel de funcție.
 
-Uite, spre exemplu:
+Aici, aruncă o privire:
 
 ```js run
 class User {
@@ -80,11 +80,11 @@ class User {
 
 // dovadă: User este o funcție
 *!*
-alert(typeof User); // funcție
+alert(typeof User); // function
 */!*
 ```
 
-Ce face constructorul `class User {...}` mai exact este:
+Ce face constructorul `class User {...}` cu adevărat este:
 
 1. Crează o funcție denumită `User`, ce devine rezultatul unei declarări a clasei. Codul funcției este preluat din metoda `constructor` (se presupune faptul că e goală dacă nu declarăm o astfel de metodă).
 2. Conține metode ale clasei, precum `sayHi`, în `User.prototype`.
@@ -137,7 +137,7 @@ User.prototype.sayHi = function() {
 };
 
 // Mod de folosire:
-let user = new User("John");
+let user = new User("Ion");
 user.sayHi();
 ```
 
@@ -154,8 +154,8 @@ Totuși, există diferențe importante.
       constructor() {}
     }
 
-    alert(typeof User); // funcție
-    User(); // Eroare: Constructorul clasei User nu poate să fie invocat fără termenul 'new'
+    alert(typeof User); // function
+    User(); // Error: Class constructor User cannot be invoked without 'new'
     ```
 
     De asemenea, o reprezentare a șirului de caractere a unui constructor de clasă în engine-ul JavaScript începe cu "class..."
@@ -180,7 +180,7 @@ Totuși, există diferențe importante.
 
 În plus, sintaxa `class` aduce mult mai multe caracteristici pe care o să le explorăm în curând.
 
-## Expresia Clasei
+## Class Expression
 
 La fel ca și funcțiile, clasele pot fi definite în interiorul altei expresii, transmise dintr-o parte în alta, returnate, atribuite, etc.
 
@@ -209,7 +209,7 @@ let User = class *!*MyClass*/!* {
 
 new User().sayHi(); // funcționează, afișează definiția lui MyClass
 
-alert(MyClass); // eroare, numele MyClass nu este vizibil în afara clasei
+alert(MyClass); // error, MyClass name isn't visible outside of the class
 ```
 
 Putem chiar să facem clasele dinamice "la cerere", în felul următor:
@@ -263,8 +263,8 @@ class User {
 
 }
 
-let user = new User("John");
-alert(user.name); // John
+let user = new User("Ion");
+alert(user.name); // Ion
 
 user = new User(""); // Numele este prea scurt
 ```
@@ -316,7 +316,7 @@ class User {
 new User().sayHi(); // Salut, Ion!
 ```
 
-Așadar, trebuie doar să scriem "<numele proprietății> = <valoare>" în declarație, și asta este tot.
+Așadar, scrim doar " = " în declarație, și asta este tot.
 
 Diferența importantă a câmpurilor de clasă este că acestea sunt setate pe obiecte individuale, nu pe `User.prototype`:
 
@@ -337,12 +337,12 @@ De asemenea, putem atribui valori folosind expresii mai complexe și apeluri de 
 ```js run
 class User {
 *!*
-  name = prompt("Nume, vă rog?", "John");
+  name = prompt("Nume, vă rog?", "Ion");
 */!*
 }
 
 let user = new User();
-alert(user.name); // John
+alert(user.name); // Ion
 ```
 
 
