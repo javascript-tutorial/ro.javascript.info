@@ -1,15 +1,15 @@
-# Basic operators, maths
+# Operatori de bază, matematică.
 
-We know many operators from school. They are things like addition `+`, multiplication `*`, subtraction `-`, and so on.
+Cunoaștem mulți operatori din școala. Ei sunt lucruri ca adunarea `+`, înmulțirea `+`, scăderea `-`, și așa mai departe.
 
-In this chapter, we’ll start with simple operators, then concentrate on JavaScript-specific aspects, not covered by school arithmetic.
+În acest capitol, vom începe cu operatori simplii, apoi o să ne concentrăm pe aspectele specifice JavaScript, ce nu sunt acoperite de aritmetica școlară. 
 
-## Terms: "unary", "binary", "operand"
+## Termeni: "unar", "binar", "operand"
 
-Before we move on, let's grasp some common terminology.
+Înainte să trecem mai departe, să înțelegem terminologia comună.
 
-- *An operand* -- is what operators are applied to. For instance, in the multiplication of `5 * 2` there are two operands: the left operand is `5` and the right operand is `2`. Sometimes, people call these "arguments" instead of "operands".
-- An operator is *unary* if it has a single operand. For example, the unary negation `-` reverses the sign of a number:
+- *Un operand* -- este ceea ce operatorile le este aplicat. De exemplu, în înmulțirea `5 * 2` sunt 2 operanzi: operandul stâng este `5` și operandul drept este `2`. Câteodată, oamenii le numesc "argumente" în loc de "operanzi".
+- Un operator este *unar* daca are un singur operand. De exemplu, negația unară `-` schimbă semnul unui număr:
 
     ```js run
     let x = 1;
@@ -17,41 +17,41 @@ Before we move on, let's grasp some common terminology.
     *!*
     x = -x;
     */!*
-    alert( x ); // -1, unary negation was applied
+    alert( x ); // -1, negația unară a fost aplicată
     ```
-- An operator is *binary* if it has two operands. The same minus exists in binary form as well:
+- Un opereator este *binar* daca are doi operanzi. Același minus existe în binar de asemenea:
 
     ```js run no-beautify
     let x = 1, y = 3;
-    alert( y - x ); // 2, binary minus subtracts values
+    alert( y - x ); // 2, minusul binar scade valorile
     ```
 
-    Formally, in the examples above we have two different operators that share the same symbol: the negation operator, a unary operator that reverses the sign, and the subtraction operator, a binary operator that subtracts one number from another.
+    Formal, in exemplele de mai sus avem doi operatori diferiti ce împart același simbol: operatorul negatiei, oeprator unar ce inversează semnul, și operatorul scăderii, operator binar ce scade un număr din altul.
+    
+## Matematică
 
-## Maths
+Următoarele operații matematice sunt suportate:
 
-The following math operations are supported:
+- Adunare `+`,
+- Scădere `-`,
+- Înmulțire `*`,
+- Împărțire `/`,
+- Rest `%`,
+- Exponențial `**`.
 
-- Addition `+`,
-- Subtraction `-`,
-- Multiplication `*`,
-- Division `/`,
-- Remainder `%`,
-- Exponentiation `**`.
+Primele patru sunt simple, în timp ce `%` și `**` au nevoie de câteva cuvinte despre ele.
 
-The first four are straightforward, while `%` and `**` need a few words about them.
+### Rest %
 
-### Remainder %
+Operatorul restului `%`, în ciuda aparenței, nu este înrudit cu procentele.
 
-The remainder operator `%`, despite its appearance, is not related to percents.
+Result `a % b` este [restul](https://en.wikipedia.org/wiki/Remainder) împărțirii lui `a` la `b`.
 
-The result of `a % b` is the [remainder](https://en.wikipedia.org/wiki/Remainder) of the integer division of `a` by `b`.
-
-For instance:
+De exemplu:
 
 ```js run
-alert( 5 % 2 ); // 1, a remainder of 5 divided by 2
-alert( 8 % 3 ); // 2, a remainder of 8 divided by 3
+alert( 5 % 2 ); // 1, restul împărțirii lui 5 la 2
+alert( 8 % 3 ); // 2, restul împărțirii lui 8 la 3
 ```
 
 ### Exponentiation **
