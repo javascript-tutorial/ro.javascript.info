@@ -1,6 +1,6 @@
 # Conversii de tip
 
-Majoritatea timpului, operatorii si funcțiile convertesc automat valorile date catre tipul corect.
+Majoritatea timpului, operatorii si funcțiile convertesc automat valorile date către tipul corect.
 
 De exemplu, `alert` convertește automat orice valoare către un șir pentru a o arăta. Operațiile matematice convertesc valorile în numere.
 
