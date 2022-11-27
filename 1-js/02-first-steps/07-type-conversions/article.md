@@ -4,7 +4,7 @@ Majoritatea timpului, operatorii si funcțiile convertesc automat valorile date 
 
 De exemplu, `alert` convertește automat orice valoare către un șir pentru a o arăta. Operațiile matematice convertesc valorile în numere.
 
-Există și cazuri unde este nevoie sa convertim explicit o valoare către tipul așteptat. 
+De asemenea există și cazuri unde este nevoie să convertim explicit o valoare către tipul așteptat. 
 
 ```smart header="Not talking about objects yet"
 În acest captiol, nu vom acoperi obiectele. Pentru moment vom vorbi doar despre primitive.
