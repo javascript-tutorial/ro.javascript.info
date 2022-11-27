@@ -133,7 +133,7 @@ Conversia urmează regulile:
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | Șirul este citit "așa cum este", spațiile goale din ambele părți sunt ignorate. Un șir gol devine `0`. O eroare transmite `NaN`. |
 
-**`Conversia Boolean`** -- Apare in operațiile logice. Poate fi executată cu `Boolean(value)`.
+**`Conversia Boolean`** -- Apare în operațiile logice. Poate fi executată cu `Boolean(value)`.
 
 Urmează regulile:
 
