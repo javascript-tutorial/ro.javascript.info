@@ -122,7 +122,7 @@ Cele mai des folosite tipuri de conversii sunt la șir, la numere, și la boolea
 
 **`Conversia Șirului`** -- Apare când afișăm ceva. Poate fi executată cu `String(value)`. Aceasta conversia la șir este destul de evidentă pentru pentru valori primitive.
 
-**`Conversia Numerică`** -- Apare în operațiile matematica. Poate fi executată cu `Number(value)`.
+**`Conversia Numerică`** -- Apare în operațiile matematice. Poate fi executată cu `Number(value)`.
 
 Conversia urmează regulile:
 
