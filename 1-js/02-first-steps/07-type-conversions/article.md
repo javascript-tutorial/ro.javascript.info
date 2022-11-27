@@ -83,7 +83,7 @@ alert( Number(false) );       // 0
 
 Va rugăm să notați faptul că `null` și `undefined` se comportă diferit aici: `null` devine 0, în timp ce `undefined` devine `NaN`.
 
-Cei mai mulți operatori matematici execută o astfel de conversie, vom vedea aceasta in capitolul următor.
+Cei mai mulți operatori matematici execută o astfel de conversie, vom vedea aceasta în capitolul următor.
 
 ## Boolean Conversion
 ## Conversia Boolean
