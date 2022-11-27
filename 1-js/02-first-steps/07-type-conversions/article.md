@@ -30,7 +30,7 @@ alert(typeof value); // șir
 */!*
 ```
 
-Conversia unui șir este destul de evidentă. Un `false` devine `"false"`, `null` devine `"null"`, etc.
+Conversia unui șir este în mare parte evidentă. Un `false` devine `"false"`, `null` devine `"null"`, etc.
 
 ## Conversia Numerică
 
