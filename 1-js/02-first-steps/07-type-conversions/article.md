@@ -148,5 +148,5 @@ Majoritatea acestor reguli sunt ușor de înțeles și memorat. Excepțiile nota
 - `undefined` este `NaN` ca și număr, nu `0`.
 - `"0"` și șirurile mono-spațiale ca și `"   "` sunt adevărate ca și boolean.
 
-Obiectele nu sunt acoperite aici. Ne vom întoarce la ele mai târziu in capitolul <info:object-toprimitive> ce este devotat exclusiv obiectelor dupa ce învățăm mai multe lucruri elementare despre JavaScript
+Obiectele nu sunt acoperite aici. Ne vom întoarce la ele mai târziu în capitolul <info:object-toprimitive> ce este devotat exclusiv obiectelor după ce învățăm mai multe lucruri elementare despre JavaScript.
 
