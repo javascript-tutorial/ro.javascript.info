@@ -10,7 +10,7 @@ Deja am întâlnit o declarație, `alert('Hello, world!')`, care afișează mesa
 
 Putem avea cât de multe declarații vrem în codul nostru. Declarațiile pot fi separate prin punct și virgulă.
 
-De exemplu, aici vom despărți "Hello World" în două alerte diferite:
+De exemplu, aici vom despărți "Hello World" în două alerte:
 
 ```js run no-beautify
 alert('Hello'); alert('World');
@@ -27,18 +27,18 @@ alert('World');
 
 Punctul și virgula pot fi omise în majoritatea cazurilor când există o pauză de linie.
 
-Acest lucru ar funcționa, de asemenea:
+Asta ar funcționa la fel:
 
 ```js run no-beautify
 alert('Hello')
 alert('World')
 ```
 
-Aici, JavaScript interpretează întreruperea liniei ca punct și virgulă „implicit”. Aceasta se numește [introducerea automata a punctului și virgulei](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
+Aici, JavaScript interpretează întreruperea liniei ca punct și virgulă „implicit”. Asta se numește [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
 
-**În cele mai multe cazuri, o linie nouă implică punct și virgulă. Dar „în majoritatea cazurilor” nu înseamnă „întotdeauna!**
+**În cele mai multe cazuri, o linie nouă implică punct și virgulă. Dar „în majoritatea cazurilor” nu înseamnă "întotdeauna"!**
 
-Sunt cazuri când o linie nouă nu înseamna un punct și virgulă. De exemplu:
+Sunt cazuri când o linie nouă nu înseamnă un punct și virgulă. De exemplu:
 
 ```js run no-beautify
 alert(3 +
@@ -46,8 +46,7 @@ alert(3 +
 + 2);
 ```
 
-
-The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so a semicolon there would be incorrect. And in this case, that works as intended.
+Codul produce `6` pentru că JavaScript nu introduce punct și virgulă aici. Este intuitiv evidend că dacă linia se termină cu un plus `"+"`, apoi este o "expresie incompletă", deci un punc și virgulă acolo ar fi incorect. Iar în acest caz, asta funcționează cum trebuie.
 
 **Există situații în care JavaScript „eșuează” să-și asume un punct și virgulă unde este cu adevărat necesar.**
 
@@ -57,44 +56,41 @@ Erorile care apar în astfel de cazuri sunt destul de greu de găsit și de reme
 Dacă sunteți curios să vedeți un exemplu concret de astfel de eroare, verificați acest cod:
 
 ```js run
-alert("Hello");
+alert("Salut");
 
 [1, 2].forEach(alert);
 ```
 
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of running the code: it shows `Hello`, then `1`, then `2`.
+Nu este nevoie să vă gândiți încă la semnificația parantezelor `[]` și `forEach`. Le vom studia mai târziu. Deocamdată, amintiți-vă doar rezultatul executării codului: apare `Salut`, apoi `1`, apoi `2`.
 
-Now let's remove the semicolon after the `alert`:
+Acum să eliminăm punctul și virgula de după `alert`:
 
 ```js run no-beautify
-alert("Hello")
+alert("Salut")
 
 [1, 2].forEach(alert);
 ```
 
-The difference compared to the code above is only one character: the semicolon at the end of the first line is gone.
+Diferența față de codul de mai sus este de un singur caracter: punctul și virgula de la sfârșitul primei linii a dispărut.
 
-If we run this code, only the first `Hello` shows (and there's an error, you may need to open the console to see it). There are no numbers any more.
+Dacă rulăm acest cod, apare doar primul `Hello` (și există o eroare, poate fi necesar să deschideți consola pentru a o vedea). Nu mai există niciun număr.
 
-That's because JavaScript does not assume a semicolon before square brackets `[...]`. So, the code in the last example is treated as a single statement.
+Asta pentru că JavaScript nu presupune un punct și virgulă înaintea parantezelor pătrate `[...]`. Așadar, codul din ultimul exemplu este tratat ca o singură instrucțiune.
 
-Here's how the engine sees it:
+Așa e cum îl vede motorul:
 
 ```js run no-beautify
-alert("Hello")[1, 2].forEach(alert);
+alert("Salut")[1, 2].forEach(alert);
 ```
 
-Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert` for the code to work correctly.
+Arată ciudat, nu? O astfel de fuziune în acest caz este pur și simplu greșită. Trebuie să punem un punct și virgulă după `alert` pentru ca codul să funcționeze corect.
 
-This can happen in other situations also.
-
+Acest lucru se poate întâmpla și în alte situații.
 ````
 
-Vă recomandăm să puneți punct și virgulă între instrucțiuni, chiar dacă sunt separate prin linii noi. Această regulă este adoptată pe scară largă de comunitate. Să notăm încă o dată -- *este posibil* să omitem punctul și virgula de cele mai multe ori. Dar este mai sigur -- mai ales pentru un începător -- să o folosească.
-
+Vă recomandăm să puneți punct și virgulă între instrucțiuni, chiar dacă sunt separate prin linii noi. Această regulă este adoptată pe scară largă de comunitate. Să notăm încă o dată -- *este posibil* să omitem punctul și virgula de cele mai multe ori. Dar este mai sigur -- în special pentru un începător -- să o folosească.
 
 ## Comments [#code-comments]
-
 
 Pe măsură ce timpul trece, programele devin din ce în ce mai complexe. Devine necesar să adăugați *comentarii* care descriu ce face codul și de ce.
 
@@ -126,7 +122,7 @@ alert('World');
 
 Conținutul comentariilor este ignorat, deci dacă punem cod în interior <code>/&#42; ... &#42;/</code>, acesta nu o să se execute.
 
-Uneori, poate fi util să dezactivați temporar o parte a codului:
+Uneori poate fi util să dezactivați temporar o parte a codului:
 
 ```js run
 /* Comentând codul
@@ -135,12 +131,11 @@ alert('Hello');
 alert('World');
 ```
 
-
 ```smart header="Use hotkeys!"
-In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl` and `key:Option` instead of `key:Shift`.
+În majoritatea editorilor, o linie de cod poate fi comentată prin apăsarea tastei de acces rapid `key:Ctrl+/` pentru un comentariu pe o singură linie și ceva de genul `key:Ctrl+Shift+/` -- pentru comentarii pe mai multe linii (selectați o bucată de cod și apăsați tasta de acces rapid). Pentru Mac, încercați `key:Cmd` în loc de `key:Ctrl` și `key:Option` în loc de `key:Shift`.
 ```
 
-````warn header="Comentariile imbricate nu sunt suportate!"
+````warn header="Comentariile nested nu sunt suportate!"
 Nu poate exista `/*...*/` în interiorul altui `/*...*/`.
 
 Acest cod va genera o eroare:
@@ -149,12 +144,12 @@ Acest cod va genera o eroare:
 /*
   /* comentariu imbricat ?!? */
 */
-alert( 'World' );
+alert( 'Lume' );
 ```
 ````
 
 Vă rugăm, nu ezitați să vă comentați codul.
 
-Comentariile cresc amprenta generală a codului, dar aceasta nu este deloc o problemă. Există multe instrumente care reduc codul înainte de publicarea pe un server de producție. Șterg comentariile, deci nu apar în scripturile de lucru. Prin urmare comentariile nu au deloc efecte negative asupra producției.
+Comentariile cresc amprenta generală a codului, dar aceasta nu este deloc o problemă. Există multe instrumente care micșorează codul înainte de publicarea pe un server de producție. Șterg comentariile, deci nu apar în scripturile de lucru. Prin urmare comentariile nu au deloc efecte negative asupra producției.
 
 Mai târziu în tutorial va exista un capitol  <info:code-quality> care explică, de asemenea, cum să scrieți comentarii mai bune.
