@@ -6,7 +6,7 @@ De exemplu, `alert` convertește automat orice valoare către un șir pentru a o
 
 De asemenea există și cazuri unde este nevoie să convertim explicit o valoare către tipul așteptat. 
 
-```smart header="Not talking about objects yet"
+```smart header="Nu vorbim despre obiecte încă"
 În acest captiol, nu vom acoperi obiectele. Pentru moment vom vorbi doar despre primitive.
 
 Mai târziu, dupa ce vom învăța despre obiecte, în acest capitol <info:object-toprimitive> vom vedea cum se incadrează obiectele.
