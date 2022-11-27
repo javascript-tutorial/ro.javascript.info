@@ -108,7 +108,7 @@ alert( Boolean("") ); // false
 ```
 
 ````warn header="Please note: the string with zero `\"0\"` is `true`"
-Alte limbaje (anume PHP) trateaza `"0"` ca și `false`. Dar in JavaScript, un șir ne-gol este întotdeauna `true`.
+Alte limbaje (anume PHP) tratează `"0"` ca și `false`. Dar în JavaScript, un șir ne-gol este întotdeauna `true`.
 
 ```js run
 alert( Boolean("0") ); // true
