@@ -1,5 +1,5 @@
-The answer is:
+Răspunsul este:
 
-- `a = 4` (multiplied by 2)
-- `x = 5` (calculated as 1 + 4)
+- `a = 4` (multiplicat cu 2)
+- `x = 5` (calculat ca și 1 + 4)
 
