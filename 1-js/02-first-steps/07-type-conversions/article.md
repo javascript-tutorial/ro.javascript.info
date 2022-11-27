@@ -120,7 +120,7 @@ alert( Boolean(" ") ); // spații, de asemenea true (orice șir ne-gol este true
 
 Cele mai des folosite tipuri de conversii sunt la șir, la numere, și la boolean
 
-**`Conversia Șirului`** -- Apare când afișăm ceva. Poate fi executată cu `String(value)`. Aceasta conversia la șir este destul de evidentă pentru pentru valori primitive.
+**`Conversia Șirului`** -- Apare când afișăm ceva. Poate fi executată cu `String(value)`. Conversia la șir este de obicei destul de evidentă pentru valori primitive.
 
 **`Conversia Numerică`** -- Apare în operațiile matematice. Poate fi executată cu `Number(value)`.
 
