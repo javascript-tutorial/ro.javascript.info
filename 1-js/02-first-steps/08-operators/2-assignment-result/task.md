@@ -4,7 +4,7 @@ importance: 3
 
 # Rezultatul sarcinii
 
-Care sunt valorile lui `a` și `x` dupa codul de mai jos?
+Care sunt valorile lui `a` și `x` după codul de mai jos?
 
 
 ```js
