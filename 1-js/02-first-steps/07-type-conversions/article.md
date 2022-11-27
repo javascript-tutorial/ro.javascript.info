@@ -34,7 +34,7 @@ Conversia unui șir este destul de evidentă. Un `false` devine `"false"`, `null
 
 ## Conversia Numerică
 
-Conversia numerică se petrece in funcții și expresii matematice automat.
+Conversia numerică se petrece în funcții și expresii matematice automat.
 
 De exemplu, când împărțirea `/` este aplicată non-numerelor:
 
