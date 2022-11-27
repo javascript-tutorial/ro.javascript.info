@@ -1,1 +1,2 @@
-alert("Sunt JavaScript!");
+alert("Eu sunt JavaScript!");
+
