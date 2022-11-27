@@ -18,7 +18,7 @@ Conversia unui șir se întâmplă când avem nevoie de forma de șir a unei val
 
 De exemplu, `alert(value)` o face pentru a arăta valoarea.
 
-Totodată, putem apela funcța `String(value)` pentru a converti o valoare către un șir
+Totodată putem apela funcția `String(value)` pentru a converti o valoare într-un șir
 
 ```js run
 let value = true;
