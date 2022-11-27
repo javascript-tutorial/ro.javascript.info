@@ -70,7 +70,7 @@ Regulile conversiei numerice:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
-| `string` | Spațiile goale de la ïnceput și sfârșit sunt eliminate. Daca șirul rămas este gol, rezultatul este `0`. Altfel numărul este "citit" din șir . O eroare transmite `NaN`. |
+| `string` | Spațiile goale de la ïnceput și sfârșit sunt eliminate. Daca șirul rămas este gol, rezultatul este `0`. Altfel numărul este "citit" din șir. O eroare transmite `NaN`. |
 
 Exemple:
 
