@@ -131,7 +131,7 @@ Conversia urmează regulile:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
-| `string` | Șirul este citit "așa cum este", spațiile goale din ambele părți sunt ignorate. Un șir gol devine `0`. O eroare devine `NaN`. |
+| `string` | Șirul este citit "așa cum este", spațiile goale din ambele părți sunt ignorate. Un șir gol devine `0`. O eroare transmite `NaN`. |
 
 **`Conversia Boolean`** -- Apare in operațiile logice. Poate fi executată cu `Boolean(value)`.
 
