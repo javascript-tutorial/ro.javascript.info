@@ -4,16 +4,16 @@ importance: 3
 
 # Multiplicați proprietățile numerice cu 2
 
-Creați o funcție `multiplyNumeric(obj)` care multiplică fiecare proprietate a `obj` cu `2`.
+Creați o funcție `multiplyNumeric(obj)` care multiplică toate propritățile numerice a `obj` cu `2`.
 
-For instance:
+Spre exemplu:
 
 ```js
 // înainte de apelare
 let menu = {
   width: 200,
   height: 300,
-  title: "My menu"
+  title: "Meniul meu"
 };
 
 multiplyNumeric(menu);
@@ -22,7 +22,7 @@ multiplyNumeric(menu);
 menu = {
   width: 400,
   height: 600,
-  title: "My menu"
+  title: "Meniul meu"
 };
 ```
 

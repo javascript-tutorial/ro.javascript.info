@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Show an alert with an external script
+# Afișați o alertă cu un script extern
 
-Take the solution of the previous task <info:task/hello-alert>. Modify it by extracting the script content into an external file `alert.js`, residing in the same folder.
+Luați soluția sarcinii anterioare <info:task/hello-alert>. Modificați-o extrăgând conținutul script-ului într-un fișier extern `alert.js`, cu reședința în același folder.
 
-Open the page, ensure that the alert works.
+Deschideți pagina, asigurați-vă că funcționează alerta.

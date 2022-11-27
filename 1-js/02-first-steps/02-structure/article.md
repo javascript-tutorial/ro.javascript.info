@@ -46,7 +46,8 @@ alert(3 +
 + 2);
 ```
 
-Codul va afișa `6` deoarece JavaScript nu inserează punct și virgulă aici. Este intuitiv evident că, dacă linia se termină cu un plus `"+"`, atunci este o "expresie incompletă", deci punctul si virgula nu este necesar. Și în acest caz, funcționează așa cum este intenționat
+
+The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so a semicolon there would be incorrect. And in this case, that works as intended.
 
 **Există situații în care JavaScript „eșuează” să-și asume un punct și virgulă unde este cu adevărat necesar.**
 
@@ -56,45 +57,44 @@ Erorile care apar în astfel de cazuri sunt destul de greu de găsit și de reme
 Dacă sunteți curios să vedeți un exemplu concret de astfel de eroare, verificați acest cod:
 
 ```js run
-[1, 2].forEach(alert)
+alert("Hello");
+
+[1, 2].forEach(alert);
 ```
 
-Nu este nevoie să ne gândim încă la semnificația parantezelor `[]` și `forEach`. O să le studiem mai târziu. Deocamdată, amintiți-vă doar rezultatul codului: este afișat `1` apoi` 2`.
+No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of running the code: it shows `Hello`, then `1`, then `2`.
 
-Acum, să adăugăm un `alert` înainte de cod și să *nu* încheiem cu un punct și virgulă:
+Now let's remove the semicolon after the `alert`:
 
 ```js run no-beautify
-alert("Va apărea o eroare")
+alert("Hello")
 
-[1, 2].forEach(alert)
+[1, 2].forEach(alert);
 ```
 
-Acum dacă rulăm codul, doar primul `alert` este afișat iar apoi o să avem o eroare!
+The difference compared to the code above is only one character: the semicolon at the end of the first line is gone.
 
-Dar totul este bine din nou dacă adăugăm un punct și virgulă după `alert`:
-```js run
-alert("Totul este bine acum");
+If we run this code, only the first `Hello` shows (and there's an error, you may need to open the console to see it). There are no numbers any more.
 
-[1, 2].forEach(alert)  
-```
+That's because JavaScript does not assume a semicolon before square brackets `[...]`. So, the code in the last example is treated as a single statement.
 
-Acum o să avem mesajul "Totul este bine acum" urmat de `1` și `2`.
-
-
-Eroarea din varianta fără punct și virgulă apare deoarece JavaScript nu își asumă punct și virgulă înainte de paranteze pătrate `[...]`.
-
-Deci, pentru că punct și virgulă nu este inserat automat, codul din primul exemplu este tratat ca o singură instrucțiune. Iată cum îl vede motorul:
+Here's how the engine sees it:
 
 ```js run no-beautify
-alert("Va apărea o eroare")[1, 2].forEach(alert)
+alert("Hello")[1, 2].forEach(alert);
 ```
 
-Dar ar trebui să fie două afirmații separate, nu una. O astfel de fuziune în acest caz este greșită, de unde și eroarea. Acest lucru se poate întâmpla în alte situații.
+Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert` for the code to work correctly.
+
+This can happen in other situations also.
+
 ````
 
 Vă recomandăm să puneți punct și virgulă între instrucțiuni, chiar dacă sunt separate prin linii noi. Această regulă este adoptată pe scară largă de comunitate. Să notăm încă o dată -- *este posibil* să omitem punctul și virgula de cele mai multe ori. Dar este mai sigur -- mai ales pentru un începător -- să o folosească.
 
-## Comentarii
+
+## Comments [#code-comments]
+
 
 Pe măsură ce timpul trece, programele devin din ce în ce mai complexe. Devine necesar să adăugați *comentarii* care descriu ce face codul și de ce.
 
@@ -135,8 +135,9 @@ alert('Hello');
 alert('World');
 ```
 
-```smart header="Folosiți tastele rapide!"
-În majoritatea editorilor, o linie de cod poate fi comentată apăsând tasta `key:Ctrl+/` pentru un comentariu pe o singură linie și `key:Ctrl+Shift+/` -- pentru comentarii pe mai multe linii (selectați o bucată de cod și apăsați tasta rapidă). Pentru Mac, încercați `key:Cmd` în loc de `key:Ctrl`.
+
+```smart header="Use hotkeys!"
+In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl` and `key:Option` instead of `key:Shift`.
 ```
 
 ````warn header="Comentariile imbricate nu sunt suportate!"
