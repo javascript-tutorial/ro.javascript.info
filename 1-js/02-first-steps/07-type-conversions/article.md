@@ -94,7 +94,7 @@ Are loc in operațiile logice (mai tarziu vom cunoaște teste condiționale si a
 
 Regula conversiei:
 
-- Valorile care sunt "goale" intuitiv, ca și `0`, un șir gol, `null`, `undefined`, and `NaN`, devin `false`.
+- Valorile care sunt "goale" intuitiv, ca și `0`, un șir gol, `null`, `undefined`, și `NaN`, devin `false`.
 - Alte valori devin `true`.
 
 De exemplu:
