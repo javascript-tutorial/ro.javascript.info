@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Type conversions
+# Conversii de tip
 
-What are results of these expressions?
+Care sunt rezultatele acestor expresii?
 
 ```js no-beautify
 "" + 1 + 0
