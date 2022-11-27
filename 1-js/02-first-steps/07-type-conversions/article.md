@@ -39,7 +39,7 @@ Conversia numerică se petrece in funcții și expresii matematice automat.
 De exemplu, când împărțirea `/` este aplicată non-numerelor:
 
 ```js run
-alert( "6" / "2" ); // 3, șirurile sunt convertite către numere
+alert( "6" / "2" ); // 3, șirurile sunt convertite în numere
 ```
 
 Putem folosi funcția `Number(value)` pentru a converti explicit o `value` către un număr.
