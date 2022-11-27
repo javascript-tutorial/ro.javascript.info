@@ -25,7 +25,7 @@ let value = true;
 alert(typeof value); // boolean
 
 *!*
-value = String(value); // acum valoarea este un "adevărat" șir
+value = String(value); // acum valoarea este un șir(string?): "adevărat"
 alert(typeof value); // șir
 */!*
 ```
