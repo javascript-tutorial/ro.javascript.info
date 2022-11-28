@@ -28,4 +28,4 @@ let b = prompt("Al doilea număr?", 2);
 alert(+a + +b); // 3
 ```
 
-Folosind atât `+` unar și binar în cel mai recent cod. Arată amuzant, nu-i așa?
+Folosind atât `+` unar cât și binar în cel mai recent cod. Arată amuzant, nu-i așa?
