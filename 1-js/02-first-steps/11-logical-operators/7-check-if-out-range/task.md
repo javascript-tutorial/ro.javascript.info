@@ -4,6 +4,12 @@ importance: 3
 
 # Verifică intervalul exterior
 
+<<<<<<< Updated upstream
 Scrie o condiție `if` pentru a verifica dacă `age` nu se află între `14` și `90` inclusiv.
 
 Crează două variante: prima folosind NOT `!`, iar cea de a doua fără a-l folosi.
+=======
+Scrie o condiție `if` pentru a verifica dacă `age` NU se află între `14` și `90` inclusiv.
+
+Crează două variante: prima folosind NOT `!`, iar cea de-a doua fără el.
+>>>>>>> Stashed changes

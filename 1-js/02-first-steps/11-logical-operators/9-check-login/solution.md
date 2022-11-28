@@ -18,4 +18,8 @@ if (userName === "Admin") {
 }
 ```
 
+<<<<<<< Updated upstream
 Identațiile verticale din blocurile `if` din punct de vedere tehnic nu sunt necesare, dar fac codul mai lizibil.
+=======
+Remarcați identațiile verticale din blocurile `if`. Din punct de vedere tehnic nu sunt necesare, dar fac codul mai lizibil.
+>>>>>>> Stashed changes
