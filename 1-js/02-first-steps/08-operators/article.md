@@ -441,7 +441,7 @@ Acești operatori sunt folosiți foarte rar, atunci când trebuie sa ne jucăm c
 
 Operatorul virgulă `,` este unul dintre cele mai rare si mai neobișnuite operatoare. Câteodată, este folosit pentru a scrie cod mai scurt, deci trebui sa o știm pentru a ințelege ce se întâmplă.
 
-Operatorul virgulă ne permite să evaluăm mai multe expresii, împărțindu-le cu o virgula `,`. Fiecare dintre eacestea sunt evaluate doar un singur rezultat fiind returnat.
+Operatorul virgulă ne permite să evaluăm mai multe expresii, împărțindu-le cu o virgulă `,`. Fiecare dintre acestea sunt evaluate dar un singur rezultat este returnat.
 
 De exemplu:
 
