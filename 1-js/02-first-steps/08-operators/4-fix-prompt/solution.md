@@ -1,4 +1,4 @@
-Motivul este ca prompt afișeaza inputul utilizatorului ca și un șir.
+Motivul este că prompt returnează inputul utilizatorului ca și un șir.
 Astfel variable au valorile `"1"` și `"2"` respectiv.
 
 ```js run
