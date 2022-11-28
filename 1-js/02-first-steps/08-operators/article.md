@@ -453,7 +453,7 @@ let a = (1 + 2, 3 + 4);
 alert( a ); // 7 (rezultatul 3 + 4)
 ```
 
-Aici, prima expresie `1 + 2` este evaluat și rezultatul său este aruncat, Apoi, `3 + 4` este evaluat si returnat ca și rezultat.
+Aici, prima expresie `1 + 2` este evaluată și rezultatul său este aruncat. Apoi, `3 + 4` este evaluat si returnat ca și rezultat.
 
 ```smart header="Comma has a very low precedence"
 Vă rugăm să notați că operatorul virgulă are o precedență foarte joasă, mai joasă decât `=`, deci parantezele sunt importante în exemplul de mai sus.
