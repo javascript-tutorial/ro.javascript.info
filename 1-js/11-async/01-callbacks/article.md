@@ -2,67 +2,67 @@
 
 # Introduction: callbacks
 
-```warn header="We use browser methods in examples here"
-To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods: specifically, loading scripts and performing simple document manipulations.
+```warn header="Folosim metode din browser în exemplele de aici"
+Pentru a demonstra folosul callback-urilor, a promises și a altor concepte abstracte, vom folosi câteva metode ale browser-ului: mai exact, încărcarea de scripturi și efectuarea de manipulări simple ale documentelor.
 
-If you're not familiar with these methods, and their usage in the examples is confusing, you may want to read a few chapters from the [next part](/document) of the tutorial.
+Dacă nu sunteți familiarizat cu aceste metode, iar utilizarea lor în exemple este confuză, este posibil să doriți să citiți câteva capitole din [partea următoare](/document) a tutorialului.
 
-Although, we'll try to make things clear anyway. There won't be anything really complex browser-wise.
+Cu toate acestea, vom încerca să clarificăm lucrurile oricum. Nu va fi nimic cu adevărat complex din punct de vedere al browserului.
 ```
 
-Many functions are provided by JavaScript host environments that allow you to schedule *asynchronous* actions. In other words, actions that we initiate now, but they finish later.
+Multe funcții sunt furnizate de mediile gazdă JavaScript care vă permit să planificați acțiuni *asincrone*. Cu alte cuvinte, acțiuni pe care le inițiem acum, dar care se termină mai târziu.
 
-For instance, one such function is the `setTimeout` function.
+De exemplu, o astfel de funcție este funcția `setTimeout`.
 
-There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
+Există și alte exemple de acțiuni asincrone în lumea reală, e.g. încărcarea scripturilor și modulelor (le vom aborda în viitoare capitole).
 
-Take a look at the function `loadScript(src)`, that loads a script with the given `src`:
+Aruncați o privire la funcția `loadScript(src)`, care încarcă un script cu `src` dat:
 
 ```js
 function loadScript(src) {
-  // creates a <script> tag and append it to the page
-  // this causes the script with given src to start loading and run when complete
+  // creează un tag <script> și îl atașează la pagină
+  // acest lucru face ca scriptul cu src-ul dat să înceapă să se încarce și să ruleze când se termină
   let script = document.createElement('script');
   script.src = src;
   document.head.append(script);
 }
 ```
 
-It inserts into the document a new, dynamically created, tag `<script src="…">` with the given `src`. The browser automatically starts loading it and executes when complete.
+Inserează în document un nou tag `<script src="...">`, creat dinamic, cu `src`-ul dat. Browserul începe automat să îl încarce și îl execută când este gata.
 
-We can use this function like this:
+Putem folosi această funcție astfel:
 
 ```js
-// load and execute the script at the given path
+// încarcă și execută scriptul la ruta dată
 loadScript('/my/script.js');
 ```
 
-The script is executed "asynchronously", as it starts loading now, but runs later, when the function has already finished.
+Scriptul este executat "asincron", deoarece începe să se încarce acum, dar se execută mai târziu, când funcția s-a terminat deja.
 
-If there's any code below `loadScript(…)`, it doesn't wait until the script loading finishes.
+Dacă există oarecare cod sub `loadScript(…)`, acesta nu așteaptă până când se termină încărcarea scriptului.
 
 ```js
 loadScript('/my/script.js');
-// the code below loadScript
-// doesn't wait for the script loading to finish
+// codul de sub loadScript
+// nu așteaptă să se termine încărcarea scriptului
 // ...
 ```
 
-Let's say we need to use the new script as soon as it loads. It declares new functions, and we want to run them.
+Să spunem că trebuie să folosim noul script imediat ce se încarcă. Acesta declară funcții noi și vrem să le executăm.
 
-But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
+Dar dacă am face acest lucru imediat după apelul `loadScript(…)`, nu ar funcționa:
 
 ```js
-loadScript('/my/script.js'); // the script has "function newFunction() {…}"
+loadScript('/my/script.js'); // scriptul are "function newFunction() {…}"
 
 *!*
-newFunction(); // no such function!
+newFunction(); // nu există o astfel de funcție!
 */!*
 ```
 
-Naturally, the browser probably didn't have time to load the script. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
+Firește, browserul probabil că nu a avut timp să încarce scriptul. Până în prezent, funcția `loadScript` nu oferă o modalitate de a urmări finalizarea încărcării. Script-ul se încarcă și în cele din urmă rulează, asta e tot. Dar am dori să știm când se întâmplă acest lucru, pentru a folosi noile funcții și variabile din acel script.
 
-Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
+Să adăugăm o funcție `callback` ca al doilea argument pentru `loadScript` care ar trebui să se execute atunci când scriptul se încarcă:
 
 ```js
 function loadScript(src, *!*callback*/!*) {
@@ -77,19 +77,21 @@ function loadScript(src, *!*callback*/!*) {
 }
 ```
 
-Now if we want to call new functions from the script, we should write that in the callback:
+Evenimentul `onload` este descris în articolul <info:onload-onerror#loading-a-script>, practic execută o funcție după ce scriptul este încărcat și executat.
+
+Acum dacă dorim să apelăm funcțiile noi din script, ar trebui să scrim acest lucru în callback:
 
 ```js
 loadScript('/my/script.js', function() {
-  // the callback runs after the script is loaded
-  newFunction(); // so now it works
+  // callback-ul se execută după ce scriptul este încărcat
+  newFunction(); // așa că acum funcționează
   ...
 });
 ```
 
-That's the idea: the second argument is a function (usually anonymous) that runs when the action is completed.
+Aceasta este ideea: al doilea argument este o funcție (de obicei anonimă) care se execută atunci când acțiunea este finalizată.
 
-Here's a runnable example with a real script:
+Iată un exemplu executabil cu un script real:
 
 ```js run
 function loadScript(src, callback) {
@@ -101,39 +103,39 @@ function loadScript(src, callback) {
 
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
-  alert(`Cool, the script ${script.src} is loaded`);
-  alert( _ ); // function declared in the loaded script
+  alert(`Cool, scriptul ${script.src} este încărcat`);
+  alert( _ ); // funcție declarată în scriptul încărcat
 });
 */!*
 ```
 
-That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
+Acesta se numește un stil de programare asincronă "bazat pe callback". O funcție care face ceva în mod asincron ar trebui să furnizeze un argument `callback` în care punem funcția să se execute după ce este gata.
 
-Here we did it in `loadScript`, but of course it's a general approach.
+Aici am făcut-o în `loadScript`, dar, desigur, este o abordare generală.
 
-## Callback in callback
+## Callback în callback
 
-How can we load two scripts sequentially: the first one, and then the second one after it?
+Cum putem încărca două scripturi în mod secvențial: primul și apoi al doilea după el?
 
-The natural solution would be to put the second `loadScript` call inside the callback, like this:
+Soluția naturală ar fi să punem al doilea apel `loadScript` în interiorul callback-ului, astfel:
 
 ```js
 loadScript('/my/script.js', function(script) {
 
-  alert(`Cool, the ${script.src} is loaded, let's load one more`);
+  alert(`Cool, ${script.src} este încărcat, hai să mai încărcăm unul`);
 
 *!*
   loadScript('/my/script2.js', function(script) {
-    alert(`Cool, the second script is loaded`);
+    alert(`Cool, al doilea script este încărcat`);
   });
 */!*
 
 });
 ```
 
-After the outer `loadScript` is complete, the callback initiates the inner one.
+După ce `loadScript` extern este finalizat, callback-ul îl inițiază pe cel intern.
 
-What if we want one more script...?
+Și dacă mai vrem încă un script...?
 
 ```js
 loadScript('/my/script.js', function(script) {
@@ -142,7 +144,7 @@ loadScript('/my/script.js', function(script) {
 
 *!*
     loadScript('/my/script3.js', function(script) {
-      // ...continue after all scripts are loaded
+      // ...continuă după ce toate scripturile sunt încărcate
     });
 */!*
 
@@ -151,13 +153,13 @@ loadScript('/my/script.js', function(script) {
 });
 ```
 
-So, every new action is inside a callback. That's fine for few actions, but not good for many, so we'll see other variants soon.
+Astfel, fiecare acțiune nouă se află în interiorul unui callback. Acest lucru este bun pentru câteva acțiuni, dar nu este bun pentru multe, așa că vom vedea în curând și alte variante.
 
-## Handling errors
+## Manipularea erorilor
 
-In the above examples we didn't consider errors. What if the script loading fails? Our callback should be able to react on that.
+În exemplele de mai sus nu am luat în considerare erorile. Ce-ar fi dacă încărcarea scriptului eșuează? Callback-ul nostru ar trebui să fie capabil să reacționeze pentru asta.
 
-Here's an improved version of `loadScript` that tracks loading errors:
+Iată o versiune îmbunătățită a `loadScript` care urmărește erorile de încărcare:
 
 ```js
 function loadScript(src, callback) {
@@ -166,39 +168,39 @@ function loadScript(src, callback) {
 
 *!*
   script.onload = () => callback(null, script);
-  script.onerror = () => callback(new Error(`Script load error for ${src}`));
+  script.onerror = () => callback(new Error(`Eroare de încărcarea scriptului pentru ${src}`));
 */!*
 
   document.head.append(script);
 }
 ```
 
-It calls `callback(null, script)` for successful load and `callback(error)` otherwise.
+Se apelează `callback(null, script)` în cazul unei încărcări reușite și `callback(error)` în caz contrar.
 
-The usage:
+Utilizarea:
 ```js
 loadScript('/my/script.js', function(error, script) {
   if (error) {
-    // handle error
+    // gestionează eroarea
   } else {
-    // script loaded successfully
+    // script încărcat cu succes
   }
 });
 ```
 
-Once again, the recipe that we used for `loadScript` is actually quite common. It's called the "error-first callback" style.
+Încă o dată, rețeta pe care am folosit-o pentru `loadScript` este de fapt destul de comună. Se numește stilul "error-first callback".
 
-The convention is:
-1. The first argument of the `callback` is reserved for an error if it occurs. Then `callback(err)` is called.
-2. The second argument (and the next ones if needed) are for the successful result. Then `callback(null, result1, result2…)` is called.
+Convenția este următoarea:
+1. Primul argument al `callback` este rezervat pentru o eroare, dacă aceasta apare. Apoi se apelează `callback(err)`.
+2. Al doilea argument (și următoarele, dacă este necesar) sunt pentru rezultatul de succes. Apoi se apelează `callback(null, result1, result2…)`.
 
-So the single `callback` function is used both for reporting errors and passing back results.
+Astfel, singura funcție `callback` este utilizată atât pentru raportarea erorilor, cât și pentru transmiterea rezultatelor.
 
-## Pyramid of Doom
+## Piramida oșândei
 
-At first glance, it looks like a viable approach to asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
+La prima vedere, pare a fi o abordare viabilă a codării asincrone. Și într-adevăr, așa este. Poate pentru unul sau două nested calls arată bine.
 
-But for multiple asynchronous actions that follow one after another, we'll have code like this:
+Dar pentru mai multe acțiuni asincrone care se succed una după alta, vom avea un cod ca acesta:
 
 ```js
 loadScript('1.js', function(error, script) {
@@ -217,7 +219,7 @@ loadScript('1.js', function(error, script) {
             handleError(error);
           } else {
   *!*
-            // ...continue after all scripts are loaded (*)
+            // ...continuă după ce toate scripturile sunt încărcate (*)
   */!*
           }
         });
@@ -228,17 +230,15 @@ loadScript('1.js', function(error, script) {
 });
 ```
 
-In the code above:
-1. We load `1.js`, then if there's no error...
-2. We load `2.js`, then if there's no error...
-3. We load `3.js`, then if there's no error -- do something else `(*)`.
+În codul de mai sus:
+1. Încărcăm `1.js`, apoi dacă nu există nicio eroare...
+2. Încărcăm `2.js`, apoi dacă nu există nicio eroare...
+3. Încărcăm `3.js`, apoi dacă nu există nicio eroare... facem altceva `(*)`.
 
-As calls become more nested, the code becomes deeper and increasingly more difficult to manage, especially if we have real code instead of `...` that may include more loops, conditional statements and so on.
+Pe măsură ce apelurile devin mai nested, codul devine mai profund și din ce în ce mai dificil de gestionat, mai ales dacă avem cod real în loc de `...` care poate include mai multe bucle, instrucțiuni condiționale și așa mai departe.
 
-That's sometimes called "callback hell" or "pyramid of doom."
+Asta se numește uneori "iadul callback-urilor" sau "piramida osândei".
 
-<<<<<<< HEAD
-=======
 <!--
 loadScript('1.js', function(error, script) {
   if (error) {
@@ -263,14 +263,13 @@ loadScript('1.js', function(error, script) {
 });
 -->
 
->>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 ![](callback-hell.svg)
 
-The "pyramid" of nested calls grows to the right with every asynchronous action. Soon it spirals out of control.
+"Piramida" de apeluri nested crește spre dreapta cu fiecare acțiune asincronă. În curând, aceasta scapă de sub control.
 
-So this way of coding isn't very good.
+Așadar acest mod de codare nu este foarte bun.
 
-We can try to alleviate the problem by making every action a standalone function, like this:
+Putem încerca să atenuăm problema făcând ca fiecare acțiune să fie o funcție de sine stătătoare, astfel:
 
 ```js
 loadScript('1.js', step1);
@@ -297,17 +296,17 @@ function step3(error, script) {
   if (error) {
     handleError(error);
   } else {
-    // ...continue after all scripts are loaded (*)
+    // ...continuă după ce toate scripturile sunt încărcate (*)
   }
 }
 ```
 
-See? It does the same thing, and there's no deep nesting now because we made every action a separate top-level function.
+Vedeți? Face același lucru și nu mai există nici o suprapunere adâncă, deoarece am făcut din fiecare acțiune un separat top-level function.
 
-It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that one needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
+Funcționează, dar codul arată ca o foaie de calcul sfâșiată. Este greu de citit și probabil ați observat că trebuie să săriți cu ochii între bucăți în timp ce îl citiți. Acest lucru este incovenient, mai ales dacă cititorul nu este familiarizat cu codul și nu știe unde să sară cu ochii.
 
-Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of namespace cluttering here.
+De asemenea, funcțiile numite `step*` sunt toate de unică folosință, ele sunt create doar pentru a evita "piramida osândei". Nimeni nu le va refolosi în afara lanțului de acțiuni. Așadar, există un pic de aglomerare a spațiului de nume aici.
 
-We'd like to have something better.
+Ne-ar plăcea să avem ceva mai bun.
 
-Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises", described in the next chapter.
+Din fericire, există și alte modalități de a evita astfel de piramide. Una dintre cele mai bune modalități este utilizarea "promisiunilor", descrise în capitolul următor.
