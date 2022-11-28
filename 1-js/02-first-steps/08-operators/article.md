@@ -54,13 +54,13 @@ alert( 5 % 2 ); // 1, restul împărțirii lui 5 la 2
 alert( 8 % 3 ); // 2, restul împărțirii lui 8 la 3
 ```
 
-### Exponentiation **
+### Putere **
 
-The exponentiation operator `a ** b` raises `a` to the power of `b`.
+Puterea operatorului `a ** b` ridică `a` la puterea lui `b`.
 
-In school maths, we write that as a<sup>b</sup>.
+În matematica școlară, este scrisă ca și a<sup>b</sup>.
 
-For instance:
+De exemplu:
 
 ```js run
 alert( 2 ** 2 ); // 2² = 4
@@ -68,47 +68,47 @@ alert( 2 ** 3 ); // 2³ = 8
 alert( 2 ** 4 ); // 2⁴ = 16
 ```
 
-Just like in maths, the exponentiation operator is defined for non-integer numbers as well. 
-
-For example, a square root is an exponentiation by ½:
+Exact ca și în amtematică, puterea operatorului este definită și pentru numerele non-integer.
+De exemplu, rădăcina pătrată este o putere la  ½:
 
 ```js run
-alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root)
-alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
+alert( 4 ** (1/2) ); // 2 (puterea lui 1/2 este aceași cu rădăcina pătrată)
+alert( 8 ** (1/3) ); // 2 (puterea lui 1/3 este aceeași cu rădăcina cubică)
 ```
 
 
-## String concatenation with binary +
+## Concatenarea șirului cu binarul +
 
-Let's meet features of JavaScript operators that are beyond school arithmetics.
+Să cunoaștem carecteristicile operatorilor JavaScript ce sunt dincolo de aritmetica școlară.
 
-Usually, the plus operator `+` sums numbers.
+De obicei, operatourl plus `+` adună numerele.
 
-But, if the binary `+` is applied to strings, it merges (concatenates) them:
+Dar, dacă binarul `+` este aplicat șirurilor, le alipește (concetenează):
 
 ```js
-let s = "my" + "string";
-alert(s); // mystring
+let s = "șirul" + "meu";
+alert(s); // șirulmeu
 ```
 
-Note that if any of the operands is a string, then the other one is converted to a string too.
+De notat daca unul dintre opranzi este un șir, atunci celălalt este converit la șir de asemenea.
 
-For example:
+De exemplu:
 
 ```js run
 alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
 
-See, it doesn't matter whether the first operand is a string or the second one.
+Vezi, nu contează dacă primul sau al doilea operand este un șir.
 
-Here's a more complex example:
+Aici este un exemplu mai complex:
 
 ```js run
-alert(2 + 2 + '1' ); // "41" and not "221"
+alert(2 + 2 + '1' ); // "41" și nu "221"
 ```
 
 Here, operators work one after another. The first `+` sums two numbers, so it returns `4`, then the next `+` adds the string `1` to it, so it's like `4 + '1' = '41'`.
+Aici, operatorii lucrează unul după celălalt. Primul
 
 ```js run
 alert('1' + 2 + 2); // "122" and not "14"
