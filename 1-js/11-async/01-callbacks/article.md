@@ -1,6 +1,6 @@
 
 
-# Introduction: callbacks
+# Introducere: callbacks
 
 ```warn header="Folosim metode din browser în exemplele de aici"
 Pentru a demonstra folosul callback-urilor, a promises și a altor concepte abstracte, vom folosi câteva metode ale browser-ului: mai exact, încărcarea de scripturi și efectuarea de manipulări simple ale documentelor.
@@ -28,7 +28,7 @@ function loadScript(src) {
 }
 ```
 
-Inserează în document un nou tag `<script src="...">`, creat dinamic, cu `src`-ul dat. Browserul începe automat să îl încarce și îl execută când este gata.
+Inserează în document un nou tag `<script src="…">`, creat dinamic, cu `src`-ul dat. Browserul începe automat să îl încarce și îl execută când este gata.
 
 Putem folosi această funcție astfel:
 
@@ -111,7 +111,7 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 
 Acesta se numește un stil de programare asincronă "bazat pe callback". O funcție care face ceva în mod asincron ar trebui să furnizeze un argument `callback` în care punem funcția să se execute după ce este gata.
 
-Aici am făcut-o în `loadScript`, dar, desigur, este o abordare generală.
+Aici am făcut-o în `loadScript`, dar desigur, este o abordare generală.
 
 ## Callback în callback
 
@@ -168,7 +168,7 @@ function loadScript(src, callback) {
 
 *!*
   script.onload = () => callback(null, script);
-  script.onerror = () => callback(new Error(`Eroare de încărcarea scriptului pentru ${src}`));
+  script.onerror = () => callback(new Error(`Eroare la încărcarea scriptului pentru ${src}`));
 */!*
 
   document.head.append(script);
