@@ -421,7 +421,7 @@ counter++;
 ## Operatori pe biți
 
 
-Operatorii pe biți tratează argumentele ca si numere integer pe 32-biți și funcționeaza pe nivelul representației lor binară.
+Operatorii Bitwise tratează argumentele ca si numere integer pe 32-biți și funcționeaza pe nivelul representației lor binară.
 
 Acești operatori nu sunt specifici JavaScript. Ei sunt suportați în majoritatea limbajelor de programare.
 
