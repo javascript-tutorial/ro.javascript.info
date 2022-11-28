@@ -4,7 +4,7 @@ importance: 5
 
 # Rezolvă adunarea
 
-Aici este codul ce îi cere utilizatorului 2 numere si afișează suma lor.
+Iată un cod care îi cere utilizatorului două numere și afișează suma lor.
 
 Funcționează incorect. Rezultatul în raspunsul de mai jos este `12` (pentru valorile implicite prompte).
 
