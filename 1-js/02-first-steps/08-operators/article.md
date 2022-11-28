@@ -456,7 +456,7 @@ alert( a ); // 7 (rezultatul 3 + 4)
 Aici, prima expresie `1 + 2` este evaluat și rezultatul său este aruncat, Apoi, `3 + 4` este evaluat si returnat ca și rezultat.
 
 ```smart header="Comma has a very low precedence"
-Vă rugăm sa notați ca operatorul virgulă are o precedență foarte joasă, mai joasă decât `=`, deci parantezele sunt importante in exemplul de mai sus.
+Vă rugăm să notați că operatorul virgulă are o precedență foarte joasă, mai joasă decât `=`, deci parantezele sunt importante în exemplul de mai sus.
 
 Fără ele: `a = 1 + 2, 3 + 4` evaluează `+` intâi, însumând numerele în `a = 3, 7`, apoi operatorul `=` atribuie `a = 3`, iar restul este ignorat. Este ca și `(a = 1 + 2), 3 + 4`.
 ```
