@@ -1,14 +1,14 @@
 
-# Delay with a promise
+# Întârzie cu o promisiune
 
-The built-in function `setTimeout` uses callbacks. Create a promise-based alternative.
+Funcția încorporată `setTimeout` utilizează callback-uri. Creați o alternativă bazată pe promisiuni.
 
-The function `delay(ms)` should return a promise. That promise should resolve after `ms` milliseconds, so that we can add `.then` to it, like this:
+Funcția `delay(ms)` ar trebui să returneze o promisiune. Această promisiune ar trebui să se rezolve după `ms` milisecunde, astfel încât să putem adăuga `.then` la ea, astfel:
 
 ```js
 function delay(ms) {
-  // your code
+  // codul tău
 }
 
-delay(3000).then(() => alert('runs after 3 seconds'));
+delay(3000).then(() => alert('rulează după 3 secunde'));
 ```
