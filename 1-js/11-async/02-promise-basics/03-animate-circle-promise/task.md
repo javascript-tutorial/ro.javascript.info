@@ -1,9 +1,9 @@
 
-# Animated circle with promise
+# Cerc animat cu promisiune
 
-Rewrite the `showCircle` function in the solution of the task <info:task/animate-circle-callback> so that it returns a promise instead of accepting a callback.
+Rescrieți funcția `showCircle` din soluția sarcinii <info:task/animate-circle-callback> astfel încât să returneze o promisiune în loc să accepte un callback.
 
-The new usage:
+Noua utilizare:
 
 ```js
 showCircle(150, 150, 100).then(div => {
@@ -12,4 +12,4 @@ showCircle(150, 150, 100).then(div => {
 });
 ```
 
-Take the solution of the task <info:task/animate-circle-callback> as the base.
+Luați ca bază soluția task-ului <info:task/animate-circle-callback>.

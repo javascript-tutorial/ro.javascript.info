@@ -1,314 +1,314 @@
-# Promise
+# Promisiune
 
-Imagine that you're a top singer, and fans ask day and night for your upcoming song.
+Imaginează-ți că ești un cântăreț de top, iar fanii îți cer zi și noapte următorul cântec.
 
-To get some relief, you promise to send it to them when it's published. You give your fans a list. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, a fire in the studio, so that you can't publish the song, they will still be notified.
+Pentru a fi ușurat, le promiți că le vei trimite cântecul atunci când va fi publicat. Le dai fanilor tăi o listă. Aceștia își pot completa adresele de e-mail, astfel încât atunci când cântecul devine disponibil, toți cei înscriși îl primesc instantaneu. Și chiar dacă ceva merge foarte prost, să zicem, un incendiu în studio, astfel încât să nu puteți publica melodia, ei vor fi înștiințați.
 
-Everyone is happy: you, because the people don't crowd you anymore, and fans, because they won't miss the song.
+Toată lumea este fericită: tu, pentru că oamenii nu te mai aglomerează, și fanii, pentru că nu vor pierde melodia.
 
-This is a real-life analogy for things we often have in programming:
+Aceasta este o analogie din viața reală pentru lucrurile pe care le avem adesea în programare:
 
-1. A "producing code" that does something and takes time. For instance, some code that loads the data over a network. That's a "singer".
-2. A "consuming code" that wants the result of the "producing code" once it's ready. Many functions  may need that result. These are the "fans".
-3. A *promise* is a special JavaScript object that links the "producing code" and the "consuming code" together. In terms of our analogy: this is the "subscription list". The "producing code" takes whatever time it needs to produce the promised result, and the "promise" makes that result available to all of the subscribed code when it's ready.
+1. Un "cod producător" care face ceva și care durează. De exemplu, ceva cod care încarcă datele într-o rețea. Acesta este un "cântăreț".
+2. Un "cod consumător" care vrea rezultatul "codului producător" odată ce este gata. Multe funcții pot avea nevoie de acel rezultat. Aceștia sunt "fanii".
+3. O *promisiune* este un obiect JavaScript special care face legătura între "codul producător" și "codul consumator". În termenii analogiei noastre: aceasta este "lista de abonamente". "Codul producător" își ia tot timpul necesar pentru a produce rezultatul promis, iar "promisiunea" pune acel rezultat la dispoziția tuturor codurilor abonate atunci când este gata.
 
-The analogy isn't terribly accurate, because JavaScript promises are more complex than a simple subscription list: they have additional features and limitations. But it's fine to begin with.
+Analogia nu este teribil de exactă, deoarece promisiunile JavaScript sunt mai complexe decât o simplă listă de abonamente: au caracteristici și limitări suplimentare. Dar este bună pentru început.
 
-The constructor syntax for a promise object is:
+Sintaxa constructorului pentru un obiect promisiune este:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // executor (the producing code, "singer")
+  // executor (codul producător, "cântăreț")
 });
 ```
 
-The function passed to `new Promise` is called the *executor*. When `new Promise` is created, the executor runs automatically. It contains the producing code which should eventually produce the result. In terms of the analogy above: the executor is the "singer".
+Funcția transmisă la `new Promise` se numește *executor*. Atunci când `new Promise` este creat, executorul rulează automat. Acesta conține codul producător care ar trebui să producă în cele din urmă rezultatul. În termenii analogiei de mai sus: executorul este "cântărețul".
 
-Its arguments `resolve` and `reject` are callbacks provided by JavaScript itself. Our code is only inside the executor.
+Argumentele sale `resolve` și `reject` sunt callback-uri furnizate de JavaScript însuși. Codul nostru se află doar în interiorul executorului.
 
-When the executor obtains the result, be it soon or late, doesn't matter, it should call one of these callbacks:
+Atunci când executorul obține rezultatul, fie că este devreme sau târziu, nu contează, ar trebui să apeleze unul dintre aceste callback-uri:
 
-- `resolve(value)` — if the job is finished successfully, with result `value`.
-- `reject(error)` — if an error has occurred, `error` is the error object.
+- `resolve(value)` — în cazul în care lucrarea este terminată cu succes, cu rezultatul `value`.
+- `reject(error)` — dacă s-a produs o eroare, `error` este obiectul de eroare.
 
-So to summarize: the executor runs automatically and attempts to perform a job. When it is finished with the attempt, it calls `resolve` if it was successful or `reject` if there was an error.
+Deci, ca să rezumăm: executorul rulează automat și încearcă să îndeplinească o sarcină. Când termină încercarea, apelează `resolve` dacă a avut succes sau `reject` dacă a existat o eroare.
 
-The `promise` object returned by the `new Promise` constructor has these internal properties:
+Obiectul `promise` returnat de constructorul `new Promise` are următoarele proprietăți interne:
 
-- `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
-- `result` — initially `undefined`, then changes to `value` when `resolve(value)` is called or `error` when `reject(error)` is called.
+- `state` — inițial `"pending"`, apoi se schimbă fie în `"fulfilled"` când este apelat `resolve` ori în `"rejected"` când este apelat `reject`.
+- `result` — inițial `undefined`, apoi se modifică în `value` atunci când se apelează `resolve(value)` ori `error` atunci când se apelează `reject(error)`.
 
-So the executor eventually moves `promise` to one of these states:
+Deci, executorul mută în cele din urmă `promise` într-una din aceste stări:
 
 ![](promise-resolve-reject.svg)
 
-Later we'll see how "fans" can subscribe to these changes.
+Mai târziu vom vedea cum "fanii" se pot abona la aceste modificări.
 
-Here's an example of a promise constructor and a simple executor function with  "producing code" that takes time (via `setTimeout`):
+Iată un exemplu de constructor de promisiuni și o funcție executor simplă cu "cod de producție" care necesită timp (prin `setTimeout`):
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
-  // the function is executed automatically when the promise is constructed
+  // funcția rulează automat atunci când promisiunea este construită
 
-  // after 1 second signal that the job is done with the result "done"
-  setTimeout(() => *!*resolve("done")*/!*, 1000);
+  // după 1 secundă se semnalează că treaba este gata cu rezultatul "gata"
+  setTimeout(() => *!*resolve("gata")*/!*, 1000);
 });
 ```
 
-We can see two things by running the code above:
+Putem observa două lucruri prin rularea codului de mai sus:
 
-1. The executor is called automatically and immediately (by `new Promise`).
-2. The executor receives two arguments: `resolve` and `reject`. These functions are pre-defined by the JavaScript engine, so we don't need to create them. We should only call one of them when ready.
+1. Executorul este apelat automat și imediat (de către `new Promise`).
+2. Executorul primește două argumente: `resolve` și `reject`. Aceste funcții sunt predefinite de motorul JavaScript, deci nu trebuie să le creăm. Ar trebui să apelăm doar una dintre ele atunci când suntem gata.
 
-    After one second of "processing", the executor calls `resolve("done")` to produce the result. This changes the state of the `promise` object:
+    După o secundă de "procesare", executorul apelează `resolve("gata")` pentru a produce rezultatul. Acest lucru schimbă starea obiectului `promise`:
 
     ![](promise-resolve-1.svg)
 
-That was an example of a successful job completion, a "fulfilled promise".
+Acesta a fost un exemplu de finalizare cu succes a unei sarcini, o "promisiune îndeplinită".
 
-And now an example of the executor rejecting the promise with an error:
+Și acum un exemplu de executor care respinge promisiunea cu o eroare:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // after 1 second signal that the job is finished with an error
-  setTimeout(() => *!*reject(new Error("Whoops!"))*/!*, 1000);
+  // după 1 secundă semnalează că sarcina s-a terminat cu o eroare
+  setTimeout(() => *!*reject(new Error("Uuups!"))*/!*, 1000);
 });
 ```
 
-The call to `reject(...)` moves the promise object to `"rejected"` state:
+Apelul la `reject(...)` mută obiectul promisiune în starea `"rejected"`:
 
-![](promise-reject-1.svg)
+![](promisiune-reject-1.svg)
 
-To summarize, the executor should perform a job (usually something that takes time) and then call `resolve` or `reject` to change the state of the corresponding promise object.
+Pe scurt, executorul ar trebui să execute o sarcină (de obicei, ceva care necesită timp) și apoi să apeleze `resolve` sau `reject` pentru a schimba starea obiectului promisiune corespunzător.
 
-A promise that is either resolved or rejected is called "settled", as opposed to an initially "pending" promise.
+O promisiune care este rezolvată ori respinsă se numește "soluționată", spre deosebire de o promisiune inițial "în așteptare".
 
-````smart header="There can be only a single result or an error"
-The executor should call only one `resolve` or one `reject`. Any state change is final.
+````smart header="Nu poate exista decât un singur rezultat sau o eroare"
+Executorul ar trebui să apeleze doar un singur `resolve` sau un singur `reject`. Orice schimbare de stare este definitivă.
 
-All further calls of `resolve` and `reject` are ignored:
+Toate apelurile ulterioare de `resolve` și `reject` sunt ignorate:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
 *!*
-  resolve("done");
+  resolve("gata");
 */!*
 
-  reject(new Error("…")); // ignored
-  setTimeout(() => resolve("…")); // ignored
+  reject(new Error("…")); // ignorat
+  setTimeout((() => resolve("…")); // ignorat
 });
 ```
 
-The idea is that a job done by the executor may have only one result or an error.
+Ideea este că o sarcină efectuată de executor poate avea un singur rezultat sau o eroare.
 
-Also, `resolve`/`reject` expect only one argument (or none) and will ignore additional arguments.
+De asemenea, `resolve`/`reject` așteaptă un singur argument (sau niciunul) și va ignora argumentele suplimentare.
 ````
 
-```smart header="Reject with `Error` objects"
-In case something goes wrong, the executor should call `reject`. That can be done with any type of argument (just like `resolve`). But it is recommended to use `Error` objects (or objects that inherit from `Error`). The reasoning for that will soon become apparent.
+```smart header="Respinge cu obiecte `Error`"
+În cazul în care ceva merge prost, executorul ar trebui să apeleze `reject`. Acest lucru se poate face cu orice tip de argument (la fel ca `resolve`). Dar se recomandă utilizarea obiectelor `Error` (sau a obiectelor care moștenesc din `Error`). Raționamentul pentru aceasta va deveni în curând evident.
 ```
 
-````smart header="Immediately calling `resolve`/`reject`"
-In practice, an executor usually does something asynchronously and calls `resolve`/`reject` after some time, but it doesn't have to. We also can call `resolve` or `reject` immediately, like this:
+````smart header="Apelarea imediată a `resolve`/`reject`"
+În practică, un executor face de obicei ceva în mod asincron și apelează `resolve`/`reject` după un anumit timp, dar nu trebuie să o facă. De asemenea, putem apela `resolve` sau `reject` imediat, astfel:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // not taking our time to do the job
-  resolve(123); // immediately give the result: 123
+  // fără a ne lua timpul necesar pentru a face treaba
+  resolve(123); // să dea imediat rezultatul: 123
 });
 ```
 
-For instance, this might happen when we start to do a job but then see that everything has already been completed and cached.
+De exemplu, acest lucru s-ar putea întâmpla când începem să facem o sarcină dar apoi vedem că totul a fost deja finalizat și pus în cache.
 
-That's fine. We immediately have a resolved promise.
+Asta este în regulă. Avem imediat o promisiune rezolvată.
 ````
 
-```smart header="The `state` and `result` are internal"
-The properties `state` and `result` of the Promise object are internal. We can't directly access them. We can use the methods `.then`/`.catch`/`.finally` for that. They are described below.
+```smart header="The `state` și `result` sunt interne"
+Proprietățile `state` și `result` ale obiectului Promise sunt interne. Nu le putem accesa direct. Pentru aceasta putem folosi metodele `.then`/`.catch`/`.finally`. Acestea sunt descrise mai jos.
 ```
 
-## Consumers: then, catch
+## Consumatori: then, catch
 
-A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using the methods `.then` and `.catch`.
+Un obiect Promise servește ca o legătură între executor (codul producător ori "cântărețul") și funcțiile consumatoare (fanii), care vor primi rezultatul ori eroarea. Funcțiile consumatoare pot fi înregistrate (abonate) cu ajutorul metodelor `.then` și `.catch`.
 
 ### then
 
-The most important, fundamental one is `.then`.
+Cea mai importantă, fundamentală din ele este `.then`.
 
-The syntax is:
+Sintaxa este:
 
 ```js
 promise.then(
-  function(result) { *!*/* handle a successful result */*/!* },
-  function(error) { *!*/* handle an error */*/!* }
+  function(result) { *!*/* gestionează un rezultat de succes */*/!* },
+  function(error) { *!*/* gestionează o eroare */*/!* }
 );
 ```
 
-The first argument of `.then` is a function that runs when the promise is resolved and receives the result.
+Primul argument din `.then` este o funcție care rulează atunci când promisiunea este rezolvată și primește rezultatul.
 
-The second argument of `.then` is a function that runs when the promise is rejected and receives the error.
+Al doilea argument al lui `.then` este o funcție care rulează atunci când promisiunea este respinsă și primește eroarea.
 
-For instance, here's a reaction to a successfully resolved promise:
+De exemplu, iată o reacție la o promisiune rezolvată cu succes:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
-  setTimeout(() => resolve("done!"), 1000);
+  setTimeout(() => resolve("gata!")), 1000);
 });
 
-// resolve runs the first function in .then
+// resolve rulează prima funcție din .then
 promise.then(
 *!*
-  result => alert(result), // shows "done!" after 1 second
+  result => alert(result), // afișează "gata!" după 1 secundă
 */!*
-  error => alert(error) // doesn't run
+  error => alert(error) // nu rulează
 );
 ```
 
-The first function was executed.
+Prima funcție a fost executată.
 
-And in the case of a rejection, the second one:
+Iar în cazul unei respingeri, a doua:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
-  setTimeout(() => reject(new Error("Whoops!")), 1000);
+  setTimeout(() => reject(new Error("Uuups!"))), 1000);
 });
 
-// reject runs the second function in .then
+// reject rulează a doua funcție din .then
 promise.then(
-  result => alert(result), // doesn't run
+  result => alert(result), // nu rulează
 *!*
-  error => alert(error) // shows "Error: Whoops!" after 1 second
+  error => alert(error) // afișează "Error: Uuups!" după 1 secundă
 */!*
 );
 ```
 
-If we're interested only in successful completions, then we can provide only one function argument to `.then`:
+Dacă suntem interesați doar de completările cu succes, atunci putem furniza un singur argument de funcție pentru `.then`:
 
 ```js run
 let promise = new Promise(resolve => {
-  setTimeout(() => resolve("done!"), 1000);
+  setTimeout(() => resolve("gata!")), 1000);
 });
 
 *!*
-promise.then(alert); // shows "done!" after 1 second
+promise.then(alert); // arată "gata!" după 1 secundă
 */!*
 ```
 
 ### catch
 
-If we're interested only in errors, then we can use `null` as the first argument: `.then(null, errorHandlingFunction)`. Or we can use `.catch(errorHandlingFunction)`, which is exactly the same:
+Dacă suntem interesați doar de erori, atunci putem folosi `null` ca prim argument: `.then(null, errorHandlingFunction)`. Sau putem folosi `.catch(errorHandlingFunction)`, care este exact același lucru:
 
 
 ```js run
-let promise = new Promise((resolve, reject) => {
-  setTimeout(() => reject(new Error("Whoops!")), 1000);
+let promise = new Promise((resolve, reject) => { {
+  setTimeout(() => reject(new Error("Uuups!!"))), 1000);
 });
 
 *!*
-// .catch(f) is the same as promise.then(null, f)
-promise.catch(alert); // shows "Error: Whoops!" after 1 second
+// .catch(f) este același lucru cu promise.then(null, f)
+promise.catch(alert); // afișează "Error: Uuups!" după 1 secundă
 */!*
 ```
 
-The call `.catch(f)` is a complete analog of `.then(null, f)`, it's just a shorthand.
+Apelul `.catch(f)` este un analog complet al lui `.then(null, f)`, este doar o prescurtare.
 
-## Cleanup: finally
+## Curățare: finally
 
-Just like there's a `finally` clause in a regular `try {...} catch {...}`, there's `finally` in promises.
+La fel cum există o clauză `finally` într-un obișnuit `try {...} catch {...}`, există `finally` în promisiuni.
 
-The call `.finally(f)` is similar to `.then(f, f)` in the sense that `f` runs always, when the promise is settled: be it resolve or reject.
+Apelul `.finally(f)` este similar cu `.then(f, f)` în sensul că `f` rulează întotdeauna, atunci când promisiunea este soluționată: fie că este rezolvată sau respinsă.
 
-The idea of `finally` is to set up a handler for performing cleanup/finalizing after the previous operations are complete.
+Ideea lui `finally` este de a stabili un gestionar pentru a efectua curățarea/finalizarea după ce operațiunile anterioare sunt finalizate.
 
-E.g. stopping loading indicators, closing no longer needed connections, etc.
+E.g. oprirea încărcării indicatorilor, închiderea conexiunilor care nu mai sunt necesare, etc.
 
-Think of it as a party finisher. No matter was a party good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
+Gândiți-vă la el ca la un încheietor de petrecere. Indiferent dacă a fost o petrecere bună sau rea, câți prieteni au fost la ea, tot trebuie (sau cel puțin ar trebui) să facem o curățare după ea.
 
-The code may look like this:
+Codul poate arăta astfel:
 
 ```js
 new Promise((resolve, reject) => {
-  /* do something that takes time, and then call resolve or maybe reject */
+  /* face ceva care necesită timp, și apoi apelează resolve sau poate reject */
 })
 *!*
-  // runs when the promise is settled, doesn't matter successfully or not
-  .finally(() => stop loading indicator)
-  // so the loading indicator is always stopped before we go on
+  // rulează atunci când promisiunea este soluționată, nu contează dacă a fost cu succes sau nu
+  .finally(() => oprește indicatorul de încărcare)
+  // astfel încât indicatorul de încărcare să fie întotdeauna oprit înainte de a continua
 */!*
-  .then(result => show result, err => show error)
+  .then(result => afișează rezultatul, err => afișează eroarea)
 ```
 
-Please note that `finally(f)` isn't exactly an alias of `then(f,f)` though.
+Vă rugăm să rețineți că `finally(f)` nu este chiar un alias al lui `then(f,f)`.
 
-There are important differences:
+Există diferențe importante:
 
-1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
+1. Un procesor `finally` nu are argumente. În `finally` nu știm dacă promisiunea are succes sau nu. Acest lucru este în regulă, deoarece sarcina noastră este de obicei de a efectua proceduri de finalizare "generale".
 
-    Please take a look at the example above: as you can see, the `finally` handler has no arguments, and the promise outcome is handled by the next handler.
-2. A `finally` handler "passes through" the result or error to the next suitable handler.
+    Vă rugăm să vă uitați la exemplul de mai sus: după cum puteți vedea, gestionarul `finally` nu are argumente, iar rezultatul promisiunii este gestionat de gestionarul următor.
+2. Un gestionar `finally` "trece" rezultatul sau eroarea către următorul gestionar adecvat.
 
-    For instance, here the result is passed through `finally` to `then`:
-
-    ```js run
-    new Promise((resolve, reject) => {
-      setTimeout(() => resolve("value"), 2000);
-    })
-      .finally(() => alert("Promise ready")) // triggers first
-      .then(result => alert(result)); // <-- .then shows "value"
-    ```
-
-    As you can see, the `value` returned by the first promise is passed through `finally` to the next `then`.
-
-    That's very convenient, because `finally` is not meant to process a promise result. As said, it's a place to do generic cleanup, no matter what the outcome was.
-
-    And here's an example of an error, for us to see how it's passed through `finally` to `catch`:
+    De exemplu, aici rezultatul este trecut prin `finally` către `then`:
 
     ```js run
     new Promise((resolve, reject) => {
-      throw new Error("error");
+      setTimeout(() => resolve("value")), 2000);
     })
-      .finally(() => alert("Promise ready")) // triggers first
-      .catch(err => alert(err));  // <-- .catch shows the error
+      .finally(() => alert("Promise ready"))) // se declanșează primul
+      .then(result => alert(rezultat)); // <-- .then arată "value"
     ```
 
-3. A `finally` handler also shouldn't return anything. If it does, the returned value is silently ignored.
+    După cum puteți vedea, `value` returnată de prima promisiune este trecută prin `finally` către următorul `then`.
 
-    The only exception to this rule is when a `finally` handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
+    Acest lucru este foarte convenabil, deoarece `finally` nu este menit să proceseze rezultatul unei promisiuni. Așa cum s-a spus, este un loc pentru a face curățare generică, indiferent de rezultatul obținut.
 
-To summarize:
+    Și iată un exemplu de eroare, ca să vedem cum este trecută prin `finally` către `catch`:
 
-- A `finally` handler doesn't get the outcome of the previous handler (it has no arguments). This outcome is passed through instead, to the next suitable handler.
-- If a `finally` handler returns something, it's ignored.
-- When `finally` throws an error, then the execution goes to the nearest error handler.
+    ```js run
+    new Promise((resolve, reject) => {
+      throw new Error("eroare");
+    })
+      .finally(() => alert("Promisiune gata"))) // se declanșează mai înțâi
+      .catch(err => alert(err)); // <-- .catch arată eroarea
+    ```
 
-These features are helpful and make things work just the right way if we use `finally` how it's supposed to be used: for generic cleanup procedures.
+3. Un gestionar `finally` deasemeni nu ar trebui să returneze nimic. Dacă o face, valoarea returnată este ignorată în tăcere.
 
-````smart header="We can attach handlers to settled promises"
-If a promise is pending, `.then/catch/finally` handlers wait for its outcome.
+    Singura excepție de la această regulă este atunci când un gestionar `finally` aruncă o eroare. Atunci această eroare trece la următorul gestionar, în locul oricărui rezultat anterior.
 
-Sometimes, it might be that a promise is already settled when we add a handler to it.
+Pentru a rezuma:
 
-In such case, these handlers just run immediately:
+- Un gestionar `finally` nu primește rezultatul gestionarului anterior (nu are argumente). Acest deznodământ este în schimb trecut prin el, la următorul gestionar adecvat.
+- Dacă un gestionar `finally` returnează ceva, acesta este ignorat.
+- Când `finally` aruncă o eroare, atunci execuția trece la cel mai apropiat gestionar de erori.
+
+Aceste caracteristici sunt utile și fac lucrurile să funcționeze în mod corect dacă folosim `finally` așa cum ar trebui să fie folosit: pentru proceduri de curățare generice.
+
+````smart header="Putem atașa gestionari către promisiuni soluționate"
+Dacă o promisiune este în așteptare, gestionarii `.then/catch/finally` așteaptă rezultatul acesteia.
+
+Uneori, se poate întâmpla ca o promisiune să fie deja soluționată atunci când îi adăugăm un gestionar.
+
+Într-un astfel de caz, acești gestionari rulează imediat:
 
 ```js run
-// the promise becomes resolved immediately upon creation
-let promise = new Promise(resolve => resolve("done!"));
+// promisiunea devine soluționată imediat după creare
+let promise = new Promise(resolve => resolve("gata!")));
 
-promise.then(alert); // done! (shows up right now)
+promise.then(alert); // gata! (se afișează chiar acum)
 ```
 
-Note that this makes promises more powerful than the real life "subscription list" scenario. If the singer has already released their song and then a person signs up on the subscription list, they probably won't receive that song. Subscriptions in real life must be done prior to the event.
+Notați că acest lucru face ca promisiunile să fie mai puternice decât scenariul "listă de abonamente" din viața reală. Dacă cântărețul și-a lansat deja cântecul și apoi o persoană se înscrie pe lista de abonați, probabil că nu va primi acel cântec. Abonamentele în viața reală trebuie făcute înainte de eveniment.
 
-Promises are more flexible. We can add handlers any time: if the result is already there, they just execute.
+Promisiunile sunt mai flexibile. Putem adăuga gestionari în orice moment: dacă rezultatul este deja acolo, acestea se execută pur și simplu.
 ````
 
-## Example: loadScript [#loadscript]
+## Exemplu: loadScript [#loadscript]
 
-Next, let's see more practical examples of how promises can help us write asynchronous code.
+În continuare, să vedem mai multe exemple practice despre cum promisiunile ne pot ajuta să scriem cod asincron.
 
-We've got the `loadScript` function for loading a script from the previous chapter.
+Avem funcția `loadScript` pentru încărcarea unui script din capitolul anterior.
 
-Here's the callback-based variant, just to remind us of it:
+Iată varianta bazată pe callback, doar pentru a ne reaminti de ea:
 
 ```js
 function loadScript(src, callback) {
@@ -316,15 +316,15 @@ function loadScript(src, callback) {
   script.src = src;
 
   script.onload = () => callback(null, script);
-  script.onerror = () => callback(new Error(`Script load error for ${src}`));
+  script.onerror = () => callback(new Error(`Eroare de încărcare a scriptului pentru ${src}`));
 
   document.head.append(script);
 }
 ```
 
-Let's rewrite it using Promises.
+Haideți să-l rescriem folosind Promisiuni.
 
-The new function `loadScript` will not require a callback. Instead, it will create and return a Promise object that resolves when the loading is complete. The outer code can add handlers (subscribing functions) to it using `.then`:
+Noua funcție `loadScript` nu va avea nevoie de un callback. În schimb, ea va crea și va returna un obiect Promise care se va soluționa atunci când încărcarea este completă. Codul exterior îi poate adăuga gestionari (funcții de abonare) folosind `.then`:
 
 ```js run
 function loadScript(src) {
@@ -333,32 +333,32 @@ function loadScript(src) {
     script.src = src;
 
     script.onload = () => resolve(script);
-    script.onerror = () => reject(new Error(`Script load error for ${src}`));
+    script.onerror = () => reject(new Error(`Eroare de încărcare a scriptului pentru ${src}`));
 
     document.head.append(script);
   });
 }
 ```
 
-Usage:
+Utilizare:
 
 ```js run
 let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
 
 promise.then(
-  script => alert(`${script.src} is loaded!`),
-  error => alert(`Error: ${error.message}`)
+  script => alert(`${script.src} este încărcat!`),
+  error => alert(`Eroare: ${error.message}`)
 );
 
-promise.then(script => alert('Another handler...'));
+promise.then(script => alert('Un alt gestionar...'));
 ```
 
-We can immediately see a few benefits over the callback-based pattern:
+Putem observa imediat câteva beneficii față de modelul bazat pe callback:
 
 
-| Promises | Callbacks |
-|----------|-----------|
-| Promises allow us to do things in the natural order. First, we run `loadScript(script)`, and `.then` we write what to do with the result. | We must have a `callback` function at our disposal when calling `loadScript(script, callback)`. In other words, we must know what to do with the result *before* `loadScript` is called. |
-| We can call `.then` on a Promise as many times as we want. Each time, we're adding a new "fan", a new subscribing function, to the "subscription list". More about this in the next chapter: [](info:promise-chaining). | There can be only one callback. |
+| Promisiuni | Callbacks |
+|------------|-----------|
+| Promisiunile ne permit să facem lucrurile în ordinea firească. Mai întâi, rulăm `loadScript(script)`, iar apoi `.then` scriem ce să facem cu rezultatul. | Trebuie să avem la dispoziție o funcție `callback` atunci când apelăm `loadScript(script, callback)`. Cu alte cuvinte, trebuie să știm ce să facem cu rezultatul *înainte* de a fi apelat `loadScript`. |
+| Putem apela `.then` către o Promisiune de câte ori dorim. De fiecare dată, adăugăm un nou "fan", o nouă funcție de abonare, către "lista de abonamente". Mai multe despre asta în capitolul următor: [](info:promise-chaining). | Nu poate exista decât un singur callback. |
 
-So promises give us better code flow and flexibility. But there's more. We'll see that in the next chapters.
+Așadar promisiunile ne oferă un flux de cod mai bun și mai multă flexibilitate. Dar mai este și altceva. Vom vedea asta în capitolele următoare.

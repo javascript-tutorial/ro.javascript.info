@@ -1,8 +1,8 @@
 
-# Re-resolve a promise?
+# Re-rezolvați o promisiune?
 
 
-What's the output of the code below? 
+Care este rezultatul codului de mai jos? 
 
 ```js
 let promise = new Promise(function(resolve, reject) {
