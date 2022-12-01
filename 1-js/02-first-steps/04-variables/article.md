@@ -1,6 +1,6 @@
 # Variabile
 
-n cea mai mare parte a timpului, o aplicație JavaScript are nevoie să lucreze cu informații. Aici sunt două example:
+În cea mai mare parte a timpului, o aplicație JavaScript are nevoie să lucreze cu informații. Aici sunt două example:
 1. Un magazin online -- informația ar putea include bunurile vândute și un coș de cumpărături.
 2. O aplicație de chat -- informația ar pputea include utilizatori, mesaje, și mult mai multe.
 
@@ -64,7 +64,6 @@ let message = 'Bună';
 ```
 
 Unele persoane definesc, de asemenea, multiple variabile în acest stil pe mai multe linii:
-
 ```js no-beautify
 let user = 'John',
   age = 25,

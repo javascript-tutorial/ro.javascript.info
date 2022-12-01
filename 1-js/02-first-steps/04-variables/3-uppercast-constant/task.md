@@ -12,9 +12,7 @@ const birthday = '18.04.1982';
 const age = someCode(birthday);
 ```
 
-Aici avem constanta `birthday` pentru dată, și de asemenea constanta `age`.
-
-Constanta `age` este calculată de la `birthday` folosind `someCode()`, care înseamnă chemarea unei funcții pe care nu o explicăm încă (o vom explica curând!), dar detaliile nu contează aici, ideea este că `age` este calculat oarecum bazat pe `birthday`.
+Aici avem o constantă `birthday` dată și `age` este calculat din  `birthday` cu ajutorul codului (nu este redat aici pentru a scurta, și pentru că detaliile nu contează aici).
 
 Ar fi corect să folosim majuscule pentru `birthday`? Pentru `age`? Sau chiar pentru amândouă?
 
