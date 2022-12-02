@@ -2,7 +2,7 @@ importance: 4
 
 ---
 
-# onst cu majuscule?
+# const cu majuscule?
 
 Examinează următorul cod:
 

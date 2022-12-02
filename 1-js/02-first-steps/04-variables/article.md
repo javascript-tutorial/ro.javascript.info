@@ -2,7 +2,7 @@
 
 În cea mai mare parte a timpului, o aplicație JavaScript are nevoie să lucreze cu informații. Aici sunt două example:
 1. Un magazin online -- informația ar putea include bunurile vândute și un coș de cumpărături.
-2. O aplicație de chat -- informația ar pputea include utilizatori, mesaje, și mult mai multe.
+2. O aplicație de chat -- informația ar putea include utilizatori, mesaje, și mult mai multe.
 
 Variabilele sunt folosite pentru a stoca această informație.
 
