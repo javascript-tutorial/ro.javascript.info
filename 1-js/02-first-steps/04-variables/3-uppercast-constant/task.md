@@ -21,5 +21,4 @@ const BIRTHDAY = '18.04.1982'; // facem birthday cu majuscule?
 
 const AGE = someCode(BIRTHDAY); //facem age cu majuscule?
 ```
-```
 
