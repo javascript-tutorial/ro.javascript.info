@@ -64,12 +64,12 @@ let message = 'Bună';
 ```
 
 Unele persoane definesc, de asemenea, multiple variabile în acest stil pe mai multe linii:
+
 ```js no-beautify
 let user = 'John',
   age = 25,
   message = 'Bună';
 ```
-
 
 ...Sau chiar în "prima-virgulă" ca stil:
 
@@ -103,7 +103,7 @@ De exemplu, variabila `message` poate fi imaginată drept o cutie cu eticheta `"
 
 Putem pune orice valoare în cutie.
 
-De asemenaea o putem schimba de câte ori vrem:
+De asemenea o putem schimba de câte ori vrem:
 
 ```js run
 let message;
