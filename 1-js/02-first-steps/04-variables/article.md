@@ -18,7 +18,7 @@ Declarația de mai jos crează (în alte cuvinte: *declară*) o variabilă cu nu
 let message;
 ```
 
-Acum, putem pune niște date în ea folosind operatorul de alocare `=`:
+Acum, putem pune niște date în aceasta folosind operatorul de alocare `=`:
 
 ```js
 let message;
