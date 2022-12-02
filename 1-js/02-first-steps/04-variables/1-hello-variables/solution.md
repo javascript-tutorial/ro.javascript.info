@@ -1,7 +1,7 @@
 În codul următor, fiecare linie corespunde cu obiectul din lista de sarcini.
 
 ```js run
-let admin, name; // putem declara două variabile deodată
+let admin, name; // putem să declarăm două variabile deodată
 
 name = "John";
 
