@@ -262,7 +262,6 @@ myBirthday = '01.01.2001'; // eroare, nu nputem realoca constanta!
 
 Când un programator este sigur că acea variabilă nu se va schimba niciodată, o poate declara folosind `const` pentru a garanta și a comunica clar acest fapt tuturor.
 
-
 ### Constante cu majuscule
 
 Este o practica răspândită de a folosi constante drept așa-zise valori greu de reținut care sunt cunoscute înainte de execuție.
@@ -293,6 +292,7 @@ Când ar trebui să folosim majuscule pentru o constantă și când ar trebui s�
 A fi o "constantă" înseamnă doar a fi o valoare a unei variabile care nu se schimbă. Dar există și constante care sunt cunoscute înainte de execuție (ca de exemplu valoarea hexadecimală pentru roșu) și există constante care sunt *calculate* în timpul execuției, dar nu se schimbă după ce sunt alocate inițial.
 
 De exemplu:
+
 ```js
 const pageLoadTime = /* timpul cât durează ca o pagină web să se încarce  */;
 ```
