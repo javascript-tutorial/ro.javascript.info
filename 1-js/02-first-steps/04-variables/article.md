@@ -1,4 +1,4 @@
-# Variabile
+`# Variabile
 
 În cea mai mare parte a timpului, o aplicație JavaScript are nevoie să lucreze cu informații. Aici sunt două example:
 1. Un magazin online -- informația ar putea include bunurile vândute și un coș de cumpărături.
