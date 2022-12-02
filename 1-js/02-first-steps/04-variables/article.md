@@ -104,6 +104,7 @@ De exemplu, variabila `message` poate fi imaginată drept o cutie cu eticheta `"
 Putem pune orice valoare în cutie.
 
 De asemenaea o putem schimba de câte ori vrem:
+
 ```js run
 let message;
 
@@ -136,7 +137,7 @@ alert(message); // Bună lume!
 ```
 
 ````warn header="Declaring twice triggers an error"
-O viariabilă ar trebui declarată o singură dată.
+O variabilă ar trebui declarată o singură dată.
 
 O repetare a declarației a aceleași variabile este o eroare:
 
