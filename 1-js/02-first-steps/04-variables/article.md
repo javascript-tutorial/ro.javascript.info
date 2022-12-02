@@ -70,6 +70,7 @@ let user = 'John',
   message = 'Bună';
 ```
 
+
 ...Sau chiar în "prima-virgulă" ca stil:
 
 ```js no-beautify
