@@ -18,17 +18,17 @@ Declarația de mai jos crează (în alte cuvinte: *declară*) o variabilă cu nu
 let message;
 ```
 
-Acum, putem pune niște date în ea folosind operatorul de asignare `=`:
+Acum, putem pune niște date în ea folosind operatorul de alocare `=`:
 
 ```js
 let message;
 
 *!*
-message = 'Bună'; // stochează stringul 'Bună' în variabila denumită message
+message = 'Bună'; // stochează șirul 'Hello' în variabila numită mesaj
 */!*
 ```
 
-Stringul este acum salvat în zona de memorie asociată cu variabila. Putem să o accesăm folosind numele variabilei:
+Șirul este acum salvat în zona de memorie asociată cu variabila. Putem să o accesăm folosind numele variabilei:
 
 ```js run
 let message;
@@ -42,7 +42,7 @@ alert(message); // arată conținutul variabilei
 Ca să fim conciși, putem să combinăm declarația variabilei și desemnarea ei într-o singură linie:
 
 ```js run
-let message = 'Buna!'; // definește variabila și îi asignează valoarea
+let message = 'Bună!'; // definește variabila și îi asignează valoarea
 
 alert(message); // Bună!
 ```
@@ -78,7 +78,7 @@ let user = 'John'
   , message = 'Bună';
 ```
 
-Technic, toate aceste variante fac același lucru. Deci, este o problemă de preferință personală și de estetică.
+Technic, toate aceste variante fac același lucru. Deci, este o problemă de preferință personală și de estetică..
 
 ````smart header="`var` instead of `let`"
 În transcrieri mai vechi, ai putea găsi de asemenea un alt termen: `var` în loc de `let`:
@@ -87,7 +87,7 @@ Technic, toate aceste variante fac același lucru. Deci, este o problemă de pre
 *!*var*/!* message = 'Bună';
 ```
 
-Termenul `var` este *aproape* la fel ca și `let`. Declară de asemenea o variabilă, but într-un mod ușor diferit, de "școală-veche" .
+Termenul `var` este *aproape* la fel ca și `let`. Declară de asemenea o variabilă, dar într-un mod ușor diferit, de "școală-veche".
 
 Există diferențe subtile între `let` și `var`, dar nu contează pentru noi acum. O să le acoperim în detaliu în capitolul <info:var>.
 ````
@@ -103,11 +103,10 @@ De exemplu, variabila `message` poate fi imaginată drept o cutie cu eticheta `"
 Putem pune orice valoare în cutie.
 
 De asemenaea o putem schimba de câte ori vrem:
-
 ```js run
 let message;
 
-message = 'Bună!';
+message = ''Bună!';
 
 message = 'Lume!'; // valoare schimbată
 
@@ -118,10 +117,10 @@ Când valoarea este schimbată, data veche este stearsă din variabilă:
 
 ![](variable-change.svg)
 
-De asemenea putem declara două variabile și copia datele din una în cealaltă.
+De asemenea putem declara două variabile și copia datele din una în cealaltă..
 
 ```js run
-let hello = 'Buna lume!';
+let hello = ''Buna lume!!';
 
 let message;
 
@@ -141,7 +140,7 @@ O viariabilă ar trebui declarată o singură dată.
 O repetare a declarației a aceleași variabile este o eroare:
 
 ```js run
-let message = "acesta";
+let message = "Acesta";
 
 // 'let' repetat duce la o eroare
 let message = "Acesta"; // SyntaxError: 'message' a fost deja declarat
@@ -157,7 +156,7 @@ Este interesant de notat dacă acolo există acele numite [funcțional pure](htt
 Deși pare un pic ciudat la prima vedere, aceste limbaje sunt destul de capabile de dezvoltare serioasă. Mai mult decât atât, sunt zone ca de exemplu calcule paralele unde această limitare conferă beneficii sigure.
 ```
 
-## Denumirea variabilelor [#variable-naming]
+## Denumirea variabilelor  [#variable-naming]
 
 Există două limitări în denumirea variabilelor în JavaScript:
 
@@ -171,7 +170,7 @@ let userName;
 let test123;
 ```
 
-Cînd numele conține cuvinte multiple, [camelCase](https://en.wikipedia.org/wiki/CamelCase) este folosit adesea. Acesta este: cuvintele vin unul după celălalt, fiecare cuvânt exceptând primul care începe cu majusculă: `numeleMeuFoarteLung`.
+Când numele conține cuvinte multiple, [camelCase](https://en.wikipedia.org/wiki/CamelCase) este folosit adesea. Acesta este: cuvintele vin unul după celălalt, fiecare cuvânt exceptând primul care începe cu majusculă: `numeleMeuFoarteLung`.
 
 Ceea ce este interesant -- semnul de dolar `'$'` și bară jos `'_'` pot fi de asemenea folosite în nume. Acestea sunt simboluri obișnuite, la fel ca și literele, fără însemnătate specială.
 
@@ -184,12 +183,12 @@ let _ = 2; // și apoi o variabilă cu numele "_"
 alert($ + _); // 3
 ```
 
-Example de nume de variabile greșite:
+Examples of incorrect variable names:
 
 ```js no-beautify
 let 1a; // nu poate începe cu o cifră
 
-let my-name; // cratima '-' nu este permisă în nume
+let my-name; // și apoi o variabilă cu numele "_"
 ```
 
 ```smart header="Case matters"
@@ -210,7 +209,7 @@ Technic, aici nu este nicio greșeală. Astfel de nume sunt permise, dar există
 ````warn header="Reserved names"
 Există o [listă de cuvinte rezervate](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), care nu poate fi folostă ca nume de variabile pentru că sunt folosite de către limbajul însuși.
 
-De exemplu: `let`, `class`, `return`, și `function` sunt rezervate.
+De exemplu:  `let`, `class`, `return`, and `function` sunt rezervate..
 
 Codul următor dă eroare de sintaxă:
 
@@ -222,7 +221,7 @@ let return = 5; // de asemenea nu o putem numi "return", eroare!
 
 ````warn header="An assignment without `use strict`"
 
-În mod normal, avem nevoie să definim o variabilă înainte să o folosim. Dar în timpurile vechi, era technic posibil să creezi o variabilă prin simpla asignare a unei valori fără a folosi `let`. Acesta încă funcționează acum dacă nu punem `use strict` în textul nostru pentru a menține compatibilitatea cu textele vechi.
+În mod normal, avem nevoie să definim o variabilă înainte să o folosim. Dar în timpurile vechi, era technic posibil să creezi o variabilă prin simpla alocare a unei valori fără a folosi `let`. Acesta încă funcționează acum dacă nu punem `use strict` în textul nostru pentru a menține compatibilitatea cu textele vechi.
 
 ```js run no-strict
 // notă: nu există "use strict" în acest exemplu
@@ -251,15 +250,16 @@ Pentru a declara o constantă (care nu se schimbă) variabilă, folosim `const` 
 const myBirthday = '18.04.1982';
 ```
 
-Variabilele declarate folosind `const` se numesc "constante". Ele nu pot fi reasignate. O încercare de a face acest lucru va produce o eroare:
+Variabilele declarate folosind `const` se numesc "constante". Ele nu pot fi realocate. O încercare de a face acest lucru va produce o eroare:
 
 ```js run
 const myBirthday = '18.04.1982';
 
-myBirthday = '01.01.2001'; // eroare, nu nputem reasigna constanta!
+myBirthday = '01.01.2001'; // eroare, nu nputem realoca constanta!
 ```
 
 Când un programator este sigur că acea variabilă nu se va schimba niciodată, o poate declara folosind `const` pentru a garanta și a comunica clar acest fapt tuturor.
+
 
 ### Constante cu majuscule
 
@@ -275,28 +275,27 @@ const COLOR_GREEN = "#0F0";
 const COLOR_BLUE = "#00F";
 const COLOR_ORANGE = "#FF7F00";
 
-// ...când avem nevoie să algem o culoare
+// ...când avem nevoie să alegem o culoare
 let color = COLOR_ORANGE;
 alert(color); // #FF7F00
 ```
 
 Beneficii:
 
-- `COLOR_ORANGE` este mai ușor de reținut decât `"#FF7F00"`.
-- Este mai ușor de greșit `"#FF7F00"` decât `COLOR_ORANGE`.
-- Când citim codul, `COLOR_ORANGE` are o mai mmare însemnătate decât `#FF7F00`.
+- `COLOR_ORANGE` este mai ușor de reținut decât  `"#FF7F00"`.
+- Este mai ușor de greșit  `"#FF7F00"` decât `COLOR_ORANGE`.
+- Când citim codul, `COLOR_ORANGE` are o mai mmare însemnătate  `#FF7F00`.
 
 Când ar trebui să folosim majuscule pentru o constantă și când ar trebui să o denumim în mod obișnuit? Haideți să clarificăm acest lucru.
 
-A fi o "constantă" înseamnă doar a fi o valoare a unei variabile care nu se schimbă. Dar există și constante care sunt cunoscute înainte de execuție (ca de exemplu valoarea hexadecimală pentru roșu) și există constante care sunt *calculate* în timpul execuției, dar nu se schimbă după ce sunt asignate inițial.
+A fi o "constantă" înseamnă doar a fi o valoare a unei variabile care nu se schimbă. Dar există și constante care sunt cunoscute înainte de execuție (ca de exemplu valoarea hexadecimală pentru roșu) și există constante care sunt *calculate* în timpul execuției, dar nu se schimbă după ce sunt alocate inițial.
 
 De exemplu:
-
 ```js
-const pageLoadTime = /* timpul cât durează ca o pagină web să se încarce */;
+const pageLoadTime = /* timpul cât durează ca o pagină web să se încarce  */;
 ```
 
-Valoarea lui `pageLoadTime` nu este cunoscută înainte ca pagina să se încarce, astfel că este denumită obișnuit. Dar este totuși o constantă pentru că nu se schimbă după ce este asignată.
+Valoarea lui `pageLoadTime` nu este cunoscută înainte ca pagina să se încarce, astfel că este denumită obișnuit. Dar este totuși o constantă pentru că nu se schimbă după ce este alocată.
 
 În alte cuvinte, constantele cu majuscule sunt folosite doar ca așa-zise valori "hard-codate".
 
