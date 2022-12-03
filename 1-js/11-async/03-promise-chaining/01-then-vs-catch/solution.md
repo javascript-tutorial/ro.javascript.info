@@ -11,7 +11,7 @@ promise
 ...Dar nu aici:
 
 ```js run
-promisiune
+promise
   .then(f1, f2);
 ```
 
