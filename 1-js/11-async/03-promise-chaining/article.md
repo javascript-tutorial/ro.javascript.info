@@ -42,7 +42,7 @@ Aici fluxul este următorul:
 
 Pe măsură ce rezultatul este transmis de-a lungul lanțului de gestionari, putem vedea o secvență de apeluri `alert`: `1` -> `2` -> `4`.
 
-![](promise-handler-variants.svg)
+![](promise-then-chain.svg)
 
 Totul funcționează, deoarece fiecare apel la un `.then` returnează o nouă promisiune, astfel încât să putem apela următorul `.then` pe ea.
 
@@ -76,7 +76,7 @@ Ceea ce am făcut aici este doar mai mulți gestionari pentru o promisiune. Ace�
 
 Iată imaginea (comparați-o cu înlănțuirea de mai sus):
 
-![](promise-then-chain.svg)
+![](promise-then-many.svg)
 
 Toate `.then` pe aceeași promisiune obțin același rezultat -- rezultatul acelei promisiuni. Deci în codul de mai sus toate `alert` arată același: `1`.
 
