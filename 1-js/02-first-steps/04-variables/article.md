@@ -1,4 +1,4 @@
-`# Variabile
+# Variabile
 
 În cea mai mare parte a timpului, o aplicație JavaScript are nevoie să lucreze cu informații. Aici sunt două example:
 1. Un magazin online -- informația ar putea include bunurile vândute și un coș de cumpărături.
@@ -53,7 +53,7 @@ De asemenea putem declara multiple variabile într-o singură linie:
 let user = 'John', age = 25, message = 'Bună';
 ```
 
-Asta ar putea să apară mai scurt, dar nu recomandăm. De dragul unei lizibilități mai bune, te rugăm să folosești o singură linie de variabilă.
+Asta ar putea să pară mai scurt, dar nu recomandăm. De dragul unei lizibilități mai bune, te rugăm să folosești o singură linie per variabilă.
 
 Varianta pe mai multe linii este puțin mai lungă, dar mai ușor de citit:
 
@@ -122,7 +122,7 @@ Când valoarea este schimbată, data veche este stearsă din variabilă:
 De asemenea putem declara două variabile și copia datele din una în cealaltă..
 
 ```js run
-let hello = ''Buna lume!!';
+let hello = ''Bună lume!!';
 
 let message;
 
@@ -174,23 +174,23 @@ let test123;
 
 Când numele conține cuvinte multiple, [camelCase](https://en.wikipedia.org/wiki/CamelCase) este folosit adesea. Acesta este: cuvintele vin unul după celălalt, fiecare cuvânt exceptând primul care începe cu majusculă: `numeleMeuFoarteLung`.
 
-Ceea ce este interesant -- semnul de dolar `'$'` și bară jos `'_'` pot fi de asemenea folosite în nume. Acestea sunt simboluri obișnuite, la fel ca și literele, fără însemnătate specială.
+Ceea ce este interesant -- semnul de dolar `'$'` și bara jos `'_'` pot fi de asemenea folosite în nume. Acestea sunt simboluri obișnuite, la fel ca și literele, fără însemnătate specială.
 
 Aceste nume sunt valide:
 
 ```js run untrusted
-let $ = 1; // declarăm o variabilă cu numele "$"
+let $ = 1; // a declarat o variabilă cu numele "$"
 let _ = 2; // și apoi o variabilă cu numele "_"
 
 alert($ + _); // 3
 ```
 
-Examples of incorrect variable names:
+Example de nume de variabile greșite:
 
 ```js no-beautify
 let 1a; // nu poate începe cu o cifră
 
-let my-name; // și apoi o variabilă cu numele "_"
+let my-name; // liniuțele '-' nu sunt permise în nume
 ```
 
 ```smart header="Case matters"
@@ -294,7 +294,7 @@ A fi o "constantă" înseamnă doar a fi o valoare a unei variabile care nu se s
 De exemplu:
 
 ```js
-const pageLoadTime = /* timpul cât durează ca o pagină web să se încarce  */;
+const pageLoadTime = /* durata timpului de încărcare a unei pagini web  */;
 ```
 
 Valoarea lui `pageLoadTime` nu este cunoscută înainte ca pagina să se încarce, astfel că este denumită obișnuit. Dar este totuși o constantă pentru că nu se schimbă după ce este alocată.
@@ -325,13 +325,13 @@ Sună simplu? Chiar este, dar crearea de variabile descriptive și concise în p
 ```smart header="Reuse or create?"
 Și ultima notă. Există programatori leneși care, în loc să declare variabile noi, încearcă să le reutilizeze pe cele deja existente.
 
-Drept rezultat, variabilele lor sunt ca niște cutii în care oamenii aruncă diferite lucruri fără să schimbe etichetele.  Ce este înăuntrul cutiei acum? Cine știe? Trebuie să ne apropiem și să vedem.
+Drept rezultat, variabilele lor sunt ca niște cutii în care oamenii aruncă diferite lucruri fără să schimbe etichetele. Ce este înăuntrul cutiei acum? Cine știe? Trebuie să ne apropiem și să verificăm.
 
 Astfel de programatori salvează puțin din declararea variabilelor dar pierd de zece ori mai mult să remedieze erorile.
 
 O variabilă în plus este bună, nu rea.
 
-Limbajul JavaScript modern micșorează și browserele optimizează codul destul de bine, deci nu vom crea probleme de performanță. Folosind diferite variabile pentru diferite valori putem chiar ajuta ca motorul să îți optimizeze codul.
+Minificatoarele și browserele moderne de JavaScript optimizează codul suficient de bine, astfel încât să nu creeze probleme de performanță. Folosirea unor variabile diferite pentru valori diferite poate chiar ajuta motorul să vă optimizeze codul.
 ```
 
 ## Sumar
