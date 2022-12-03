@@ -17,8 +17,8 @@ Aici avem o constantă `birthday` dată și `age` este calculat din  `birthday` 
 Ar fi corect să folosim majuscule pentru `birthday`? Pentru `age`? Sau chiar pentru amândouă?
 
 ```js
-const BIRTHDAY = '18.04.1982'; // facem birthday cu majuscule?
+const BIRTHDAY = '18.04.1982'; // facem cu majuscule?
 
-const AGE = someCode(BIRTHDAY); //facem age cu majuscule?
+const AGE = someCode(BIRTHDAY); //facem cu majuscule?
 ```
 
