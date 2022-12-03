@@ -133,7 +133,7 @@ message = hello;
 
 // acum cele două variabile conțin aceleași date
 alert(hello); // Bună lume!
-alert(message); // Bună lume!
+alert(message); // Bună ziua lume!
 ```
 
 ````warn header="Declaring twice triggers an error"
@@ -145,7 +145,7 @@ O repetare a declarației a aceleași variabile este o eroare:
 let message = "Acesta";
 
 // 'let' repetat duce la o eroare
-let message = "Acesta"; // SyntaxError: 'message' a fost deja declarat
+let message = "Acesta"; // SyntaxError: 'message' has already been declared
 ```
 Deci, ar trebui să declarăm o variabilă o dată și apoi să ne referim la aceasta fără `let`.
 ````
