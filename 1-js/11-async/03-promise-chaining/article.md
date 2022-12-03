@@ -84,7 +84,7 @@ Toate `.then` pe aceeași promisiune obțin același rezultat - rezultatul acele
 
 ## Promisiuni care se întorc
 
-Un gestionar, utilizat în `.then(handler)` poate crea și returna o promisiune.
+Un gestionar, utilizat în `.then(gestionar)` poate crea și returna o promisiune.
 
 În acest caz ceilalți gestionari așteaptă până când aceasta se soluționează, și apoi obțin rezultatul ei.
 
