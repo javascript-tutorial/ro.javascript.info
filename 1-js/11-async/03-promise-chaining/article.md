@@ -76,7 +76,7 @@ Ceea ce am făcut aici este doar mai mulți gestionari pentru o promisiune. Ace�
 
 Iată imaginea (comparați-o cu înlănțuirea de mai sus):
 
-![](promise-then-many.svg)
+![](promise-then-chain.svg)
 
 Toate `.then` pe aceeași promisiune obțin același rezultat -- rezultatul acelei promisiuni. Deci în codul de mai sus toate `alert` arată același: `1`.
 
