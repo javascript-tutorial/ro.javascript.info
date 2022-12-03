@@ -3,11 +3,11 @@
 
 Să ne întoarcem la problema menționată în capitolul <info:callbacks>: avem o secvență de sarcini asincrone care trebuie efectuate una după alta - de exemplu, încărcarea scripturilor. Cum putem să o codăm bine?
 
-Promisiunile oferă câteva rețete pentru a face acest lucru.
+Promisiunile oferă câteva rețete pentru a face asta.
 
 În acest capitol acoperim înlănțuirea promisiunilor.
 
-Arată în felul următor:
+Arată așa:
 
 ```js run
 new Promise(function(resolve, reject) {
@@ -42,11 +42,11 @@ Aici fluxul este următorul:
 
 Pe măsură ce rezultatul este transmis de-a lungul lanțului de gestionari, putem vedea o secvență de apeluri `alert`: `1` -> `2` -> `4`.
 
-![](promisiune-în-catenar.svg)
+![](promise-handler-variants.svg)
 
 Totul funcționează, deoarece fiecare apel la un `.then` returnează o nouă promisiune, astfel încât să putem apela următorul `.then` pe ea.
 
-Atunci când un gestionar returnează o valoare, aceasta devine rezultatul acelei promisiuni, astfel încât următorul `.then` este apelat cu ea.
+Atunci când un gestionar returnează o valoare, aceasta devine rezultatul acelei promisiuni, așa că următorul `.then` este apelat cu ea.
 
 **O greșeală clasică de începător: tehnic putem deasemeni adăuga mai multe `.then` la o singură promisiune. Aceasta nu este o înlănțuire.**
 
@@ -72,15 +72,15 @@ promise.then(function(result) {
 });
 ```
 
-Ceea ce am făcut aici este doar mai mulți gestionari pentru o promisiune. Aceștia nu își transmit rezultatul unul altuia, ci îl procesează independent.
+Ceea ce am făcut aici este doar mai mulți gestionari pentru o promisiune. Aceștia nu își transmit rezultatul unul altuia; în schimb îl procesează independent.
 
 Iată imaginea (comparați-o cu înlănțuirea de mai sus):
 
 ![](promise-then-many.svg)
 
-Toate `.then` pe aceeași promisiune obțin același rezultat - rezultatul acelei promisiuni. Deci în codul de mai sus toate `alert` arată același: `1`.
+Toate `.then` pe aceeași promisiune obțin același rezultat -- rezultatul acelei promisiuni. Deci în codul de mai sus toate `alert` arată același: `1`.
 
-În practică avem rareori nevoie de mai mulți gestionari pentru o promisiune. Înlănțuirea este folosită mult mai des.
+În practică avem rareori nevoie de multipli gestionari pentru o promisiune. Înlănțuirea este folosită mult mai des.
 
 ## Promisiuni care se întorc
 
@@ -101,7 +101,7 @@ new Promise(function(resolve, reject) {
 
 *!*
   return new Promise((resolve, reject) => { // (*)
-    setTimeout(() => resolve(rezultat * 2), 1000);
+    setTimeout(() => resolve(result * 2), 1000);
   });
 */!*
 
@@ -120,9 +120,9 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-Aici primul `.then` arată `1` și returnează `new Promise(…)` în linia `(*)`. După o secundă se rezolvă, iar rezultatul (argumentul lui `resolve`, aici este `result * 2`) este transmis către gestionarul celui de-al doilea `.then`. Acest gestionar se află în linia `(**)`, arată `2` și face același lucru.
+Aici primul `.then` arată `1` și returnează `new Promise(…)` în linia `(*)`. După o secundă se rezolvă, iar rezultatul (argumentul lui `resolve`, aici este `result * 2`) este transmis către gestionarul celui de-al doilea `.then`. Acel gestionar se află în linia `(**)`, arată `2` și face același lucru.
 
-Deci, rezultatul este același ca în exemplul anterior: 1 -> 2 -> 4, dar acum cu o întârziere de 1 secundă între apelurile `alert`.
+Deci rezultatul este același ca în exemplul anterior: 1 -> 2 -> 4, dar acum cu o întârziere de 1 secundă între apelurile `alert`.
 
 Returnarea promisiunilor ne permite să construim lanțuri de acțiuni asincrone.
 
@@ -140,7 +140,7 @@ loadScript("/article/promise-chaining/one.js")
   })
   .then(function(script) {
     // utilizează funcțiile declarate în scripturi
-    // pentru a arăta că acestea au fost într-adevăr încărcate
+    // pentru a arăta că acestea sunt într-adevăr încărcate
     one();
     two();
     three();
@@ -151,18 +151,18 @@ Acest cod poate fi scurtat puțin cu ajutorul funcțiilor săgeată:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
-  .then(script => loadScript("/articol/promise-chaining/two.js"))
+  .then(script => loadScript("/article/promise-chaining/two.js"))
   .then(script => loadScript("/article/promise-chaining/three.js"))
   .then(script => {
     // scripturile sunt încărcate, putem folosi funcțiile declarate acolo
     one();
-    două();
-    trei();
+    two();
+    three();
   });
 ```
 
 
-Aici fiecare apel `loadScript` returnează o promisiune, iar următorul `.then` se execută atunci când se soluționează. Apoi inițiază încărcarea următorului script. Așa că scripturile sunt încărcate unul după altul.
+Aici fiecare apel `loadScript` returnează o promisiune, iar următorul `.then` rulează atunci când se soluționează. Apoi inițiază încărcarea următorului script. Așa că scripturile sunt încărcate unul după altul.
 
 Putem adăuga mai multe acțiuni asincrone în lanț. Vă rugăm să rețineți că acest cod este încă "plat" - crește în jos, nu spre dreapta. Nu există semne de "piramida osândei".
 
@@ -174,8 +174,8 @@ loadScript("/article/promise-chaining/one.js").then(script1 => {
     loadScript("/article/promise-chaining/three.js").then(script3 => {
       // această funcție are acces la variabilele script1, script2 și script3
       one();
-      doi();
-      trei();
+      two();
+      three();
     });
   });
 });
@@ -193,7 +193,7 @@ Pentru a fi mai precis, un gestionar poate returna nu chiar o promisiune, ci un 
 
 Ideea este că bibliotecile terțe pot implementa propriile obiecte "compatibile cu promisiunile". Acestea pot avea un set extins de metode, dar pot fi de asemenea compatibile cu promisiunile native, deoarece implementează `.then`.
 
-Iată un exemplu de obiect "thenable":
+Iată un exemplu de obiect thenable:
 
 ```js run
 class Thenable {
@@ -202,7 +202,7 @@ class Thenable {
   }
   then(resolve, reject) {
     alert(resolve); // function() { cod nativ }
-    // rezolvă cu this.num*2 după 1 secundă
+    // resolve cu this.num*2 după 1 secundă
     setTimeout(() => resolve(this.num * 2), 1000); // (**)
   }
 }
@@ -224,7 +224,7 @@ Această caracteristică ne permite să integrăm obiecte personalizate în lan�
 
 ## Exemplu mai mare: fetch
 
-În programarea frontend, promisiunile sunt adesea folosite pentru network requests. Să vedem deci un exemplu extins în acest sens.
+În programarea frontend, promisiunile sunt adesea folosite pentru network requests. Să vedem deci un exemplu extins despre asta.
 
 Vom folosi metoda [fetch](info:fetch) pentru a încărca informațiile despre utilizator de pe remote server. Aceasta are o mulțime de parametri opționali acoperiți în [capitole separate](info:fetch), dar sintaxa de bază este destul de simplă:
 
@@ -242,7 +242,7 @@ Codul de mai jos face o cerere către `user.json` și încarcă textul acestuia 
 fetch('/article/promise-chaining/user.json')
   // .then de mai jos rulează când remote server răspunde
   .then(function(response) {
-    // response.text() returnează o nouă promisiune care se rezolvă cu textul complet al răspunsului
+    // response.text() returnează o nouă promisiune care se rezolvă cu întregul response text
     // când se încarcă
     return response.text();
   })
@@ -297,7 +297,7 @@ Așa:
 
 ```js run
 fetch('/article/promise-chaining/user.json')
-  .then(răspuns => răspuns.json())
+  .then(response => response.json())
   .then(user => fetch(`https://api.github.com/users/${user.name}`))
   .then(response => response.json())
 *!*
@@ -308,7 +308,7 @@ fetch('/article/promise-chaining/user.json')
     img.className = "promise-avatar-example";
     document.body.append(img);
 
-    setTimeout((() => {
+    setTimeout(() => {
       img.remove();
 *!*
       resolve(githubUser); // (**)
@@ -319,9 +319,9 @@ fetch('/article/promise-chaining/user.json')
   .then(githubUser => alert(`A terminat de arătat ${githubUser.name}`));
 ```
 
-Adică, gestionarul `.then` din linia `(*)` acum returnează `new Promise`, care devine soluționată numai după apelul lui `resolve(githubUser)` în `setTimeout` `(**)`. Următorul `.then` din lanț va aștepta acest lucru.
+Adică, gestionarul `.then` din linia `(*)` acum returnează `new Promise`, care devine soluționată numai după apelul lui `resolve(githubUser)` în `setTimeout` `(**)`. Următorul `.then` din lanț va aștepta pentru aceasta.
 
-Ca o bună practică, o acțiune asincronă ar trebui să returneze întotdeauna o promisiune. Acest lucru face posibilă planificarea acțiunilor după ea; chiar dacă nu plănuim să extindem lanțul acum, s-ar putea să avem nevoie de el mai târziu.
+Ca o bună practică, o acțiune asincronă ar trebui să returneze întotdeauna o promisiune. Asta face posibilă planificarea acțiunilor după ea; chiar dacă nu plănuim să extindem lanțul acum, s-ar putea să avem nevoie de el mai târziu.
 
 În cele din urmă, putem împărți codul în funcții reutilizabile:
 
@@ -342,7 +342,7 @@ function showAvatar(githubUser) {
     img.className = "promise-avatar-example";
     document.body.append(img);
 
-    setTimeout((() => {
+    setTimeout(() => {
       img.remove();
       resolve(githubUser);
     }, 3000);
