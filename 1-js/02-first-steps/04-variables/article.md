@@ -132,7 +132,7 @@ message = hello;
 */!*
 
 // acum cele două variabile conțin aceleași date
-alert(hello); // Bună lume!
+alert(hello); // Bună ziua lume!
 alert(message); // Bună ziua lume!
 ```
 
