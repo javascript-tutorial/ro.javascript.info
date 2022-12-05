@@ -8,9 +8,9 @@ Variabilele sunt folosite pentru a stoca această informație.
 
 ## O variabilă
 
-O [variabilă](https://en.wikipedia.org/wiki/Variable_(computer_science)) este un "spațiu de stocare numit" pentru date. Putem folosi variabile pentru a stoca bunuri, visitatori, și alte date.
+O [variabilă](https://en.wikipedia.org/wiki/Variable_(computer_science)) este un "spațiu de stocare numit" pentru date. Putem folosi variabile pentru a stoca bunuri, vizitatori, și alte date.
 
-Pentru a crea o variabilă în JavaScript, folosim termenul`let` .
+Pentru a crea o variabilă în JavaScript, folosim cuvântul cheie `let` .
 
 Declarația de mai jos crează (în alte cuvinte: *declară*) o variabilă cu numele "message":
 
@@ -42,7 +42,7 @@ alert(message); // arată conținutul variabilei
 Ca să fim conciși, putem să combinăm declarația variabilei și desemnarea ei într-o singură linie:
 
 ```js run
-let message = 'Bună!'; // definește variabila și îi asignează valoarea
+let message = 'Bună!'; // definește variabila și îi atribuie valoarea
 
 alert(message); // Bună!
 ```
@@ -122,7 +122,7 @@ Când valoarea este schimbată, data veche este stearsă din variabilă:
 De asemenea putem declara două variabile și copia datele din una în cealaltă..
 
 ```js run
-let hello = ''Bună lume!!';
+let hello = 'Bună lume!';
 
 let message;
 
