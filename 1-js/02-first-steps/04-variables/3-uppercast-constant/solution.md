@@ -1,5 +1,5 @@
-We generally use upper case for constants that are "hard-coded". Or, in other words, when the value is known prior to execution and directly written into the code.
+În general folosim majuscule pentru constante care sunt "hard-coded". Sau, în alte cuvinte, când valoarea este știută înainte de execuție și este scrisă direct în cod.
 
-In this code, `birthday` is exactly like that. So we could use the upper case for it.
+În acest cod, `birthday` este exact la fel. Deci am putea folosi majuscule pentru el.
 
-In contrast, `age` is evaluated in run-time. Today we have one age, a year after we'll have another one. It is constant in a sense that it does not change through the code execution. But it is a bit "less of a constant" than `birthday`: it is calculated, so we should keep the lower case for it.
+În contrast, `age` evaluat în timpul execuției. Astăzi avem o vârstă, peste un an vom avea alta. Este constantă în sensul că nu se schimbă pe parcursul execuției codului. Dar este un pic "mai puțin constantă" decât `birthday`: este calculată, deci ar trebui să păstrăm minuscule pentru aceasta.
