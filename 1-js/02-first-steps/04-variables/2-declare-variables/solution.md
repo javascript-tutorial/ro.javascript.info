@@ -1,9 +1,9 @@
-## Variabilele pentru planeta noastră
+## Variabila pentru planeta noastră
 
 Este simplu:
 
 ```js
-let ourPlanetName = "Earth";
+let ourPlanetName = "Pământ";
 ```
 
 Notează, am putea folosi un nume mai scurt decât `planet`, dar s-ar putea să nu fie evident la ce planetă se referă. E frumos să fim mai verbali. Cel puțin până când variabila nuEstePreaLungă.
