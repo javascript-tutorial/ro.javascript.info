@@ -7,4 +7,4 @@ importance: 2
 1. Declară două variabile: `admin` și `name`.
 2. Atribuie valoarea `"John"` la `name`.
 3. Copiază valoarea de la `name` la `admin`.
-4. Arată valoarea lui `admin` folosind `alert` (trebuie să rezulte "John").
+4. Arată valoarea lui `admin` folosind `alert` (trebuie să iasă "John").
