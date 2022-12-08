@@ -1,87 +1,87 @@
 
 # Fetch
 
-JavaScript can send network requests to the server and load new information whenever it's needed.
+JavaScript poate trimite network requests către server și încărca informații noi ori de câte ori este nevoie.
 
-For example, we can use a network request to:
+De exemplu, putem folosi un network request pentru a:
 
-- Submit an order,
-- Load user information,
-- Receive latest updates from the server,
+- Trimite o comandă,
+- Încărca informații despre utilizator,
+- Primi cele mai recente actualizări de la server,
 - ...etc.
 
-...And all of that without reloading the page!
+...Și toate acestea fără a reîncărca pagina!
 
-There's an umbrella term "AJAX" (abbreviated <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML) for network requests from JavaScript. We don't have to use XML though: the term comes from old times, that's why that word is there. You may have heard that term already.
+Există un termen umbrelă „AJAX” (abreviat <b>A</b>synchronous <b>J</b>avaScript <b>A</b>nd <b>X</b>ML) pentru network requests din JavaScript. Totuși nu trebuie să folosim XML: termenul vine din vremuri de odinioară, de aceea acel cuvânt este acolo. S-ar putea să fi auzit deja acest termen.
 
-There are multiple ways to send a network request and get information from the server.
+Sunt multiple moduri de a trimite o solicitare de rețea și de a obține informații de la server.
 
-The `fetch()` method is modern and versatile, so we'll start with it. It's not supported by old browsers (can be polyfilled), but very well supported among the modern ones.
+Metoda `fetch()` este modernă și versatilă, așa că vom începe cu ea. Nu este suportată de browserele vechi (poate fi polyfilled), dar foarte bine suportată printre cele moderne.
 
-The basic syntax is:
+Sintaxa de bază este:
 
 ```js
 let promise = fetch(url, [options])
 ```
 
-- **`url`** -- the URL to access.
-- **`options`** -- optional parameters: method, headers etc.
+- **`url`** -- adresa URL de accesat.
+- **`options`** -- parametri opționali: metodă, anteturi etc.
 
-Without `options`, this is a simple GET request, downloading the contents of the `url`.
+Fără `options`, aceasta este o simplă solicitare GET, care descarcă conținutul `url`.
 
-The browser starts the request right away and returns a promise that the calling code should use to get the result.
+Browserul începe imediat cererea și returnează o promisiune pe care codul apelant trebuie să o folosească pentru a obține rezultatul.
 
-Getting a response is usually a two-stage process.
+Obținerea unui răspuns este de obicei un proces în două etape.
 
-**First, the `promise`, returned by `fetch`, resolves with an object of the built-in [Response](https://fetch.spec.whatwg.org/#response-class) class as soon as the server responds with headers.**
+**În primul rând, `promise`, returnat de `fetch`, se rezolvă cu un obiect din clasa built-in [Response](https://fetch.spec.whatwg.org/#response-class) imediat ce serverul răspunde cu anteturi.**
 
-At this stage we can check HTTP status, to see whether it is successful or not, check headers, but don't have the body yet.
+În acest stadiu putem verifica HTTP status, pentru a vedea dacă a avut succes sau nu, verifica anteturile, dar nu avem un body încă.
 
-The promise rejects if the `fetch` was unable to make HTTP-request, e.g. network problems, or there's no such site. Abnormal HTTP-statuses, such as 404 or 500 do not cause an error.
+Promisiunea este respinsă dacă `fetch` nu a putut efectua un HTTP-request, e.g. probleme de rețea, sau dacă nu există un astfel de site. Stările HTTP anormale, precum 404 sau 500 nu provoacă o eroare.
 
-We can see HTTP-status in response properties:
+Putem vedea HTTP-status în proprietățile răspunsului:
 
-- **`status`** -- HTTP status code, e.g. 200.
-- **`ok`** -- boolean, `true` if the HTTP status code is 200-299.
+- **`status`** -- Codul de stare HTTP, e.g. 200.
+- **`ok`** -- boolean, `true` dacă codul de stare HTTP este 200-299.
 
-For example:
+De exemplu:
 
 ```js
 let response = await fetch(url);
 
-if (response.ok) { // if HTTP-status is 200-299
-  // get the response body (the method explained below)
+if (response.ok) { // dacă HTTP-status este 200-299
+  // obțineți response body (metoda explicată mai jos)
   let json = await response.json();
 } else {
   alert("HTTP-Error: " + response.status);
 }
 ```
 
-**Second, to get the response body, we need to use an additional method call.**
+**În al doilea rând, pentru a obține response body, trebuie să folosim un method call adițional.**
 
-`Response` provides multiple promise-based methods to access the body in various formats:
+`Response` oferă mai multe metode bazate pe promisiuni pentru a accesa body în diferite formate:
 
-- **`response.text()`** -- read the response and return as text,
-- **`response.json()`** -- parse the response as JSON,
-- **`response.formData()`** -- return the response as `FormData` object (explained in the [next chapter](info:formdata)),
-- **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
-- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level representation of binary data),
-- additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows you to read the body chunk-by-chunk, we'll see an example later.
+- **`response.text()`** -- citește răspunsul și îl returnează ca text,
+- **`response.json()`** -- parsează răspunsul ca JSON,
+- **`response.formData()`** -- returnează răspunsul ca obiect `FormData` (explicat în [capitolul următor](info:formdata)),
+- **`response.blob()`** -- returnează răspunsul ca [Blob](info:blob) (date binare cu tip),
+- **`response.arrayBuffer()`** -- returnează răspunsul ca [ArrayBuffer](info:arraybuffer-binary-arrays) (reprezentare low-level a datelor binare),
+- adițional, `response.body` este un obiect [ReadableStream](https://streams.spec.whatwg.org/#rs-class), care îți permite să citești corpul bucată-cu-bucată, vom vedea un exemplu mai târziu.
 
-For instance, let's get a JSON-object with latest commits from GitHub:
+De exemplu, haideți să obținem un obiect JSON cu ultimele commits din GitHub:
 
 ```js run async
 let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
 let response = await fetch(url);
 
 *!*
-let commits = await response.json(); // read response body and parse as JSON
+let commits = await response.json(); // citește response body și îl parsează ca JSON
 */!*
 
 alert(commits[0].author.login);
 ```
 
-Or, the same without `await`, using pure promises syntax:
+Sau, același lucru fără `await`, folosind o sintaxă pură de promisiuni:
 
 ```js run
 fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
@@ -89,63 +89,63 @@ fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commi
   .then(commits => alert(commits[0].author.login));
 ```
 
-To get the response text, `await response.text()` instead of `.json()`:
+Pentru a obține response text, `await response.text()` în loc de `.json()`:
 
 ```js run async
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
 
-let text = await response.text(); // read response body as text
+let text = await response.text(); // citește response body ca text
 
 alert(text.slice(0, 80) + '...');
 ```
 
-As a show-case for reading in binary format, let's fetch and show a logo image of ["fetch" specification](https://fetch.spec.whatwg.org) (see chapter [Blob](info:blob) for details about operations on `Blob`):
+Ca un caz arătător pentru citirea în format binar, să preluăm și să afișăm o imagine logo din specificația ["fetch"](https://fetch.spec.whatwg.org) (vedeți capitolul [Blob](info:blob) pentru detalii despre operațiile asupra `Blob`):
 
 ```js async run
 let response = await fetch('/article/fetch/logo-fetch.svg');
 
 *!*
-let blob = await response.blob(); // download as Blob object
+let blob = await response.blob(); // descărcare ca obiect Blob
 */!*
 
-// create <img> for it
+// crează <img> pentru el
 let img = document.createElement('img');
 img.style = 'position:fixed;top:10px;left:10px;width:100px';
 document.body.append(img);
 
-// show it
+// afișeaz-o
 img.src = URL.createObjectURL(blob);
 
-setTimeout(() => { // hide after three seconds
+setTimeout(() => { // ascunde după trei secunde
   img.remove();
   URL.revokeObjectURL(img.src);
 }, 3000);
 ```
 
 ````warn
-We can choose only one body-reading method.
+Putem alege doar o singură metodă de citire a corpului body.
 
-If we've already got the response with `response.text()`, then `response.json()` won't work, as the body content has already been processed.
+Dacă am obținut deja răspunsul cu `response.text()`, atunci `response.json()` nu va funcționa, deoarece conținutul corpului a fost deja procesat.
 
 ```js
-let text = await response.text(); // response body consumed
-let parsed = await response.json(); // fails (already consumed)
+let text = await response.text(); // response body consumat
+let parsed = await response.json(); // dă greși (deja consumat)
 ```
 ````
 
 ## Response headers
 
-The response headers are available in a Map-like headers object in `response.headers`.
+Response headers sunt disponibile într-un obiect antet asemănător Map în `response.headers`.
 
-It's not exactly a Map, but it has similar methods to get individual headers by name or iterate over them:
+Nu este chiar un Map, dar are metode similare pentru a obține antete individuale după nume sau pentru a le itera:
 
 ```js run async
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
 
-// get one header
+// obține un antet
 alert(response.headers.get('Content-Type')); // application/json; charset=utf-8
 
-// iterate over all headers
+// iterați peste toate antetele
 for (let [key, value] of response.headers) {
   alert(`${key} = ${value}`);
 }
@@ -153,17 +153,17 @@ for (let [key, value] of response.headers) {
 
 ## Request headers
 
-To set a request header in `fetch`, we can use the `headers` option. It has an object with outgoing headers, like this:
+Pentru a seta un request header în `fetch`, putem folosi opțiunea `headers`. Aceasta are un obiect cu antetele de ieșire, ca acesta:
 
 ```js
 let response = fetch(protectedUrl, {
   headers: {
-    Authentication: 'secret'
+    Autentificare: 'secret'
   }
 });
 ```
 
-...But there's a list of [forbidden HTTP headers](https://fetch.spec.whatwg.org/#forbidden-header-name) that we can't set:
+...Dar există o listă de [anteturi HTTP interzise](https://fetch.spec.whatwg.org/#forbidden-header-name) pe care nu le putem seta:
 
 - `Accept-Charset`, `Accept-Encoding`
 - `Access-Control-Request-Headers`
@@ -186,22 +186,22 @@ let response = fetch(protectedUrl, {
 - `Proxy-*`
 - `Sec-*`
 
-These headers ensure proper and safe HTTP, so they are controlled exclusively by the browser.
+Aceste anteturi asigură un protocol HTTP corect și sigur, așa că sunt controlate exclusiv de browser.
 
 ## POST requests
 
-To make a `POST` request, or a request with another method, we need to use `fetch` options:
+Pentru a face un `POST` request, sau o cerere cu o altă metodă, trebuie să folosim opțiunile `fetch`:
 
-- **`method`** -- HTTP-method, e.g. `POST`,
-- **`body`** -- the request body, one of:
-  - a string (e.g. JSON-encoded),
-  - `FormData` object, to submit the data as `form/multipart`,
-  - `Blob`/`BufferSource` to send binary data,
-  - [URLSearchParams](info:url), to submit the data in `x-www-form-urlencoded` encoding, rarely used.
+- **`method`** -- Metoda HTTP e.g. `POST`,
+- **`body`** -- request body, unul dintre:
+  - un șir (e.g. codificat JSON),
+  - obiect `FormData`, pentru a trimite datele ca `multipart/form-data`,
+  - `Blob`/`BufferSource` pentru a trimite date binare,
+  - [URLSearchParams](info:url), pentru a trimite datele în codificare `x-www-form-urlencoded`, rar utilizat.
 
-The JSON format is used most of the time.
+Formatul JSON este utilizat de cele mai multe ori.
 
-For example, this code submits `user` object as JSON:
+De exemplu, acest cod trimite obiectul `user` ca JSON:
 
 ```js run async
 let user = {
@@ -223,15 +223,15 @@ let result = await response.json();
 alert(result.message);
 ```
 
-Please note, if the request `body` is a string, then `Content-Type` header is set to `text/plain;charset=UTF-8` by default.
+Vă rugăm să notați că, în cazul în care request `body` este un șir, atunci antetul `Content-Type` este setat în mod implicit la `text/plain;charset=UTF-8`.
 
-But, as we're going to send JSON, we use `headers` option to send `application/json` instead, the correct `Content-Type` for JSON-encoded data.
+Dar, deoarece vom trimite JSON, folosim opțiunea `headers` pentru a trimite în schimb `application/json`, corectul `Content-Type` pentru datele codificate JSON.
 
-## Sending an image
+## Trimiterea unei imagini
 
-We can also submit binary data with `fetch` using `Blob` or `BufferSource` objects.
+De asemenea putem trimite date binare cu `fetch` folosind obiectele `Blob` sau `BufferSource`.
 
-In this example, there's a `<canvas>` where we can draw by moving a mouse over it. A click on the "submit" button sends the image to the server:
+În acest exemplu, există un `<canvas>` în care putem desena prin deplasarea mouse-ului peste el. Un clic pe butonul "submit" trimite imaginea către server:
 
 ```html run autorun height="90"
 <body style="margin:0">
@@ -253,7 +253,7 @@ In this example, there's a `<canvas>` where we can draw by moving a mouse over i
         body: blob
       });
 
-      // the server responds with confirmation and the image size
+      // serverul răspunde cu o confirmare și dimensiunea imaginii
       let result = await response.json();
       alert(result.message);
     }
@@ -262,9 +262,9 @@ In this example, there's a `<canvas>` where we can draw by moving a mouse over i
 </body>
 ```
 
-Please note, here we don't set `Content-Type` header manually, because a `Blob` object has a built-in type (here `image/png`, as generated by `toBlob`). For `Blob` objects that type becomes the value of `Content-Type`.
+Vă rugăm să notați că, aici nu setați manual antetul `Content-Type`, deoarece un obiect `Blob` are un tip încorporat (aici `image/png`, așa cum este generat de `toBlob`). Pentru obiectele `Blob` acest tip devine valoarea lui `Content-Type`.
 
-The `submit()` function can be rewritten without `async/await` like this:
+Funcția `submit()` poate fi rescrisă fără `async/await` astfel:
 
 ```js
 function submit() {
@@ -279,38 +279,38 @@ function submit() {
 }
 ```
 
-## Summary
+## Sumar
 
-A typical fetch request consists of two `await` calls:
+Un fetch request tipic constă în două apeluri `await`:
 
 ```js
-let response = await fetch(url, options); // resolves with response headers
-let result = await response.json(); // read body as json
+let response = await fetch(url, options); // se rezolvă cu response headers
+let result = await response.json(); // citește body ca json
 ```
 
-Or, without `await`:
+Sau, fără `await`:
 
 ```js
 fetch(url, options)
   .then(response => response.json())
-  .then(result => /* process result */)
+  .then(result => /* procesează result */)
 ```
 
-Response properties:
-- `response.status` -- HTTP code of the response,
-- `response.ok` -- `true` is the status is 200-299.
-- `response.headers` -- Map-like object with HTTP headers.
+Proprietăți de răspuns:
+- `response.status` -- Codul HTTP al răspunsului,
+- `response.ok` -- `true` dacă status este 200-299.
+- `response.headers` -- Obiect asemănător Map cu HTTP headers.
 
-Methods to get response body:
-- **`response.text()`** -- return the response as text,
-- **`response.json()`** -- parse the response as JSON object,
-- **`response.formData()`** -- return the response as `FormData` object (form/multipart encoding, see the next chapter),
-- **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
-- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level binary data),
+Metode de obținere response body:
+- **`response.text()`** -- returnează răspunsul ca text,
+- **`response.json()`** -- parsează răspunsul ca obiect JSON,
+- **`response.formData()`** -- returnează răspunsul ca obiect `FormData` (codificare `multipart/form-data`, vezi capitolul următor),
+- **`response.blob()`** -- returnează răspunsul ca [Blob](info:blob) (date binare cu tip),
+- **`response.arrayBuffer()`** -- returnează răspunsul ca [ArrayBuffer](info:arraybuffer-binary-arrays) (date binare low-level),
 
-Fetch options so far:
-- `method` -- HTTP-method,
-- `headers` -- an object with request headers (not any header is allowed),
-- `body` -- the data to send (request body) as `string`, `FormData`, `BufferSource`, `Blob` or `UrlSearchParams` object.
+Opțiunile fetch de până acum:
+- `method` -- metodă HTTP,
+- `headers` -- un obiect cu request headers (nu este permis orice antet),
+- `body` -- datele de trimis (corpul cererii) ca `string`, `FormData`, `BufferSource`, `Blob` sau obiect `UrlSearchParams`.
 
-In the next chapters we'll see more options and use cases of `fetch`.
+În capitolele următoare vom vedea mai multe opțiuni și cazuri de utilizare ale lui `fetch`.
