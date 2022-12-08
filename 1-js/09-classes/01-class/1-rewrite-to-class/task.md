@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Rewrite to class
+# Rescrie în "class"
 
-The `Clock` class is written in functional style. Rewrite it the "class" syntax.
+Clasa `Clock` este scrisă (vezi sandbox-ul) în stil funcțional. Rescrie-o în sintaxa "class".
 
-P.S. The clock ticks in the console, open it to see.
+P.S. Ceasul ticăie în consolă, deschide-o ca să vezi.

@@ -1,7 +1,7 @@
 describe("getUsers", function() {
 
-  it("gets users from GitHub", async function() {
-    let users = await getUsers(['iliakan', 'remy', 'no.such.users']);
+  it("obține utilizatorii din GitHub", async function() {
+    let users = await getUsers(['iliakan', 'remy', 'nici.un.astfel.de.utilizator']);
     assert.equal(users[0].login, 'iliakan');
     assert.equal(users[1].login, 'remy');
     assert.equal(users[2], null);

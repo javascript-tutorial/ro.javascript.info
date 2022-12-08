@@ -32,9 +32,9 @@ user.sayHi = function() {
 user.sayHi(); // Salut!
 ```
 
-Aici tocmai am folosit o Expresie Funcție (Function Expression) pentru a crea funcția și a o atribui proprietății `user.sayHi` a obiectului.
+Aici tocmai am folosit o Function Expression pentru a crea o funcție și a o atribui proprietății `user.sayHi` a obiectului.
 
-Apoi o putem apela. Utilizatorul poate vorbi acum!
+Apoi o putem apela cu `user.sayHi()`. Utilizatorul acum poate vorbi!
 
 O funcție care este proprietatea unui obiect se numește *metodă*.
 
@@ -61,16 +61,16 @@ user.sayHi(); // Salut!
 ```
 
 ```smart header="Programare orientată pe obiecte"
-Când scriem cod folosind obiecte pentru a reprezenta entități, asta se numește [programare orientată pe obiecte](https://ro.wikipedia.org/wiki/Programare_orientat%C4%83_pe_obiecte), pe scurt: "OOP".
+Când scriem codul nostru folosind obiecte pentru a reprezenta entități, asta se numește [programare orientată pe obiecte](https://ro.wikipedia.org/wiki/Programare_orientat%C4%83_pe_obiecte), pe scurt: "OOP".
 
-OOP este un lucru mare, o știință interesantă în sine. Cum să alegi entitățile potrivite? Cum să organizezi interacțiunea dintre ele? Aceasta este arhitectură, și există cărți interesante pe această temă, precum "Design Patterns: Elements of Reusable Object-Oriented Software" de E.Gamma, R.Helm, R.Johnson, J.Vissides sau "Object-Oriented Analysis and Design with Applications" de G.Booch, și altele.
+OOP este un lucru mare, o știință interesantă în sine. Cum să alegi entitățile potrivite? Cum să organizezi interacțiunea dintre ele? Aceasta este arhitectură, și există cărți interesante pe acea temă, precum "Design Patterns: Elements of Reusable Object-Oriented Software" de E.Gamma, R.Helm, R.Johnson, J.Vissides sau "Object-Oriented Analysis and Design with Applications" de G.Booch, și altele.
 ```
 ### Metoda scurtă
 
 Există o sintaxă mai scurtă pentru metode într-un obiect literal:
 
 ```js
-// aceste obiecte realizează același lucru
+// aceste obiecte fac același lucru
 
 user = {
   sayHi: function() {
@@ -81,7 +81,7 @@ user = {
 // Metoda scurtă arată mai bine, nu-i așa?
 user = {
 *!*
-  sayHi() { // la fel ca "sayHi: function()"
+  sayHi() { // la fel ca "sayHi: function(){...}"
 */!*
     alert("Salut");
   }
@@ -90,7 +90,7 @@ user = {
 
 După cum s-a demonstrat, putem omite `"function"` și scriem doar `sayHi()`.
 
-În realitate, notațiile nu sunt complet identice. Există diferențe subtile legate de moștenirea obiectelor (care vor fi acoperite ulterior), dar deocamdată nu contează. În aproape toate cazurile, se preferă sintaxa mai scurtă.
+Să spunem adevărul, notațiile nu sunt complet identice. Există diferențe subtile legate de moștenirea obiectelor (care vor fi acoperite ulterior), dar deocamdată nu contează. În aproape toate cazurile, se preferă sintaxa mai scurtă.
 
 ## "this" în metode
 
@@ -160,16 +160,18 @@ let user = {
 let admin = user;
 user = null; // suprascrie pentru a face lucrurile evidente
 
-admin.sayHi(); // Hopa! în interiorul sayHi() este folosit vechiul nume! eroare!
+*!*
+admin.sayHi(); // TypeError: Cannot read property 'name' of null
+*/!*
 ```
 
 Dacă am folosi `this.name` în loc de `user.name` în interiorul funcției `alert`, atunci codul ar funcționa.
 
-## "this" nu este legat
+## "this" nu este bound
 
-În JavaScript, cuvântul cheie "this" se comportă diferit de cele mai multe limbaje de programare. Poate fi utilizat în orice funcție.
+În JavaScript, cuvântul cheie "this" se comportă diferit față de alte limbaje de programare. Poate fi folosit în orice funcție, chiar dacă nu este o metodă a unui obiect.
 
-Nu există nicio eroare de sintaxă într-un cod ca acesta:
+Nu există nici un syntax error în exemplul următor:
 
 ```js
 function sayHi() {
@@ -220,114 +222,22 @@ sayHi(); // undefined
 
 În mod non-strict valoarea variabilei `this` în astfel de cazuri va fi *obiect global* (`window` într-un browser, vom ajunge la el mai târziu în capitolul [](info:global-object)). Acesta este un comportament istoric pe care îl corectează sintaxa `"use strict"`.
 
-În mod normal, asemenea apel este o eroare de programare. Dacă există variabila `this` în interiorul unei funcții, este de așteptat să fie apelată într-un context obiect.
+De obicei asemeni call este o eroare de programare. Dacă există `this` în interiorul unei funcții, se asteaptă să fie apelat într-un context de obiect.
 ````
 
 ```smart header="Consecințele detașării variabilei `this`"
 Dacă veniți dintr-un alt limbaj de programare, atunci sunteți probabil obișnuit cu ideea de "variabilă `this` atașată", unde metodele definite într-un obiect au întotdeauna variabila `this` care referențiază acel obiect.
 
-În JavaScript variabila `this` este "liberă", valoarea ei este evaluată la timpul apelării și nu depinde de locul în care a fost metoda declarată, ci mai degrabă de cine este obiectul "dinaintea punctului".
+În JavaScript `this` este "liber", valoarea lui este evaluată la timpul apelării și nu depinde de locul în care a fost declarată metoda, ci mai degrabă de cine este obiectul "dinaintea punctului".
 
 Conceptul de variabilă `this` evaluată în timpul execuției are atât plusuri cât și minusuri. Pe de o parte, o funcție poate fi reutilizată pentru obiecte diferite. Pe de altă parte, o flexibilitate mai mare lasă loc pentru greșeli.
 
 Aici poziția noastră nu este să judecăm dacă această decizie de proiectare a limbajului este bună sau rea. Vom înțelege cum să lucrăm cu ea, cum să obținem beneficii și cum să ocolim problemele.
 ```
 
-## Interne: Tipul Referință
-
-```warn header="Trăsătură de limbaj aprofundată"
-Acestă secțiune acoperă un subiect avansat pentru a înțelege mai bine anumite cazuri particulare.
-
-Dacă doriți să continuați mai repede, această secțiune poate fi omisă sau amânată.
-```
-
-Un apel către o metodă complexă poate pierde variabila `this`, de exemplu:
-
-```js run
-let user = {
-  name: "John",
-  hi() { alert(this.name); },
-  bye() { alert("Bye"); }
-};
-
-user.hi(); // John (apelul simplu funcționează)
-
-*!*
-// acum să apelăm user.hi sau user.bye în funcție de nume
-(user.name == "John" ? user.hi : user.bye)(); // Eroare!
-*/!*
-```
-
-Pe ultima linie există un operator condițional care alege `user.hi` sau `user.bye`. În acest caz rezultatul este `user.hi`.
-
-Apoi, metoda este apelată imediat cu paranteze `()`. Însă nu funcționează corect!
-
-După cum puteți vedea, apelul are ca rezultat o eroare, deoarece valoarea variabilei `"this"` din interiorul apelului devine `undefined`.
-
-Asta funcționează (obiect punct metodă):
-```js
-user.hi();
-```
-
-Asta nu (metoda evaluată):
-```js
-(user.name == "John" ? user.hi : user.bye)(); // Eroare!
-```
-
-De ce? Dacă dorim să înțelegem de ce se întâmplă asta, să punem sub lupă funcționarea apelului `obj.method()`.
-
-Privind îndeaproape, putem observa două operațiuni în declararea instrucțiunii `obj.method ()`:
-
-1. Prima, punctul `'.'` recuperează proprietatea `obj.method`.
-2. Apoi parantezele `()` o execută.
-
-Deci, cum sunt transmise informațiile despre `this` de la prima parte către a doua?
-
-Dacă plasăm aceste operațiuni pe linii diferite, atunci variabila `this`, cu certitudine, se va pierde:
-
-```js run
-let user = {
-  name: "John",
-  hi() { alert(this.name); }
-}
-
-*!*
-// separăm obținerea și apelul metodei pe două rânduri
-let hi = user.hi;
-hi(); // Eroare, deoarece `this` este nedefinit
-*/!*
-```
-
-Aici `hi = user.hi` introduce funcția în variabilă iar apoi pe ultima linie este complet autonomă, deci nu există `this`.
-
-**Pentru a face apelurile `user.hi()` să funcționeze, JavaScript folosește un truc -- punctul `'.'` returnează nu o funcție, ci o valoare specială [Tip Referință (Reference Type)](https://tc39.github.io/ecma262/#sec-reference-specification-type).**
-
-Tipul Referință este un "tip de specificație". Nu-l putem folosi explicit, dar este folosit intern de limbaj.
-
-Valoarea Tipului Referință este o combinație de trei valori `(base, name, strict)`, unde:
-
-- `base` este obiectul.
-- `name` este numele proprietății.
-- `strict` este adevărat dacă instrucțiunea `use strict` este activă.
-
-Rezultatul unui acces de proprietate nu este o funcție, ci o valoare de Tip Referință. Pentru `user.hi` în mod strict este:
-
-```js
-// valoarea Tipului Referință
-(user, "hi", true)
-```
-
-Când parantezele `()` sunt apelate pe Tipul Referință, ele primesc informațiile complete despre obiect și metodele acestuia, și pot stabili variabila `this` corectă (`=user` în acest caz).
-
-Tipul referință este un tip special "intermediar" intern, cu scopul de a transmite informațiile de la punct `.` către parantezele `()` care efectuează apelarea.
-
-Orice altă operațiune, precum atribuirea `hi = user.hi` renunță la tipul referință în ansamblu, primește valoarea proprietății `user.hi` (o funcție) și o transmite mai departe. Deci orice altă operațiune ulterioară "pierde" variabila `this`.
-
-Așadar, ca rezultat, valoarea variabilei `this` este transmisă în mod corect doar dacă funcția este apelată direct folosind un punct `obj.method()` sau sintaxa cu paranteze pătrate `obj['method']()` (aici se comportă identic). Mai târziu în acest tutorial, vom învăța diverse modalități de a rezolva această problemă, precum [func.bind()](/bind#solution-2-bind).
-
 ## Funcțiile săgeată nu au "this"
 
-Funcțiile săgeată sunt speciale: ele nu au variabila "proprie" `this`. Dacă facem referire la `this` dintr-o astfel de funție, aceasta este preluată din funcția exterioară "normală".
+Funcțiile săgeată sunt speciale: ele nu au `this` "propriu". Dacă facem referire la `this` dintr-o astfel de funție, aceasta este preluată din funcția exterioară "normală".
 
 De exemplu, aici `arrow()` folosește `this` din metoda exterioară `user.sayHi()`:
 
@@ -343,7 +253,7 @@ let user = {
 user.sayHi(); // Ilya
 ```
 
-Aceasta este o caracteristică specială a funcțiilor săgeată, utilă când de fapt nu dorim să avem o variabilă `this` separată, ci mai degrabă să o preluăm din contextul exterior. Mai târziu, în capitolul <info:arrow-functions>, vom intra mai adânc în funcțiile săgeată (arrow functions).
+Aceasta este o caracteristică specială a funcțiilor săgeată, utilă când de fapt nu dorim să avem `this` separat, ci mai degrabă să o preluăm din contextul exterior. Mai târziu în capitolul <info:arrow-functions> vom intra mai adânc în funcțiile săgeată.
 
 
 ## Rezumat
@@ -357,4 +267,4 @@ Valoarea variabilei `this` este definită în timpul execuției.
 - O funcție poate fi copiată între obiecte.
 - Când o funcție este apelată cu sintaxa "metodă": `object.method()`, valoarea variabilei `this` din timpul apelării este `object`.
 
-Vă rugăm să rețineți că funcțiile săgeată sunt speciale: acestea nu au variabila `this`. Când `this` este accesată din interiorul unei funcții săgeată, este primită din exterior.
+Vă rugăm să notați că funcțiile săgeată sunt speciale: ele nu au `this`. Când `this` este accesat din interiorul unei funcții săgeată, este primit din exterior.

@@ -1,13 +1,13 @@
 
-# Promises chaining
+# Promisiuni înlănțuite
 
-Let's return to the problem mentioned in the chapter <info:callbacks>: we have a sequence of asynchronous tasks to be done one after another. For instance, loading scripts. How can we code it well?
+Să ne întoarcem la problema menționată în capitolul <info:callbacks>: avem o secvență de sarcini asincrone care trebuie efectuate una după alta - de exemplu, încărcarea scripturilor. Cum putem să o codăm bine?
 
-Promises provide a couple of recipes to do that.
+Promisiunile oferă câteva rețete pentru a face asta.
 
-In this chapter we cover promise chaining.
+În acest capitol acoperim înlănțuirea promisiunilor.
 
-It looks like this:
+Arată așa:
 
 ```js run
 new Promise(function(resolve, reject) {
@@ -32,25 +32,25 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-The idea is that the result is passed through the chain of `.then` handlers.
+Ideea este că rezultatul este transmis prin lanțul de gestionari `.then`.
 
-Here the flow is:
-1. The initial promise resolves in 1 second `(*)`,
-2. Then the `.then` handler is called `(**)`.
-3. The value that it returns is passed to the next `.then` handler `(***)`
-4. ...and so on.
+Aici fluxul este următorul:
+1. Promisiunea inițială se rezolvă în 1 secundă `(*)`,
+2. Apoi gestionarul `.then` este apelat `(**)`, care la rândul său creează o nouă promisiune (rezolvată cu valoarea `2`).
+3. Următorul `then` `(***)` primește rezultatul celui precedent, îl procesează (îl dublează) și îl trece la următorul gestionar.
+4. ...și așa mai departe.
 
-As the result is passed along the chain of handlers, we can see a sequence of `alert` calls: `1` -> `2` -> `4`.
+Pe măsură ce rezultatul este transmis de-a lungul lanțului de gestionari, putem vedea o secvență de apeluri `alert`: `1` -> `2` -> `4`.
 
 ![](promise-then-chain.svg)
 
-The whole thing works, because a call to `promise.then` returns a promise, so that we can call the next `.then` on it.
+Totul funcționează, deoarece fiecare apel la un `.then` returnează o nouă promisiune, astfel încât să putem apela următorul `.then` pe ea.
 
-When a handler returns a value, it becomes the result of that promise, so the next `.then` is called with it.
+Atunci când un gestionar returnează o valoare, aceasta devine rezultatul acelei promisiuni, așa că următorul `.then` este apelat cu ea.
 
-**A classic newbie error: technically we can also add many `.then` to a single promise. This is not chaining.**
+**O greșeală clasică de începător: tehnic putem deasemeni adăuga mai multe `.then` la o singură promisiune. Aceasta nu este o înlănțuire.**
 
-For example:
+De examplu:
 ```js run
 let promise = new Promise(function(resolve, reject) {
   setTimeout(() => resolve(1), 1000);
@@ -72,23 +72,23 @@ promise.then(function(result) {
 });
 ```
 
-What we did here is just several handlers to one promise. They don't pass the result to each other, instead they process it independently.
+Ceea ce am făcut aici este doar mai mulți gestionari pentru o promisiune. Aceștia nu își transmit rezultatul unul altuia; în schimb îl procesează independent.
 
-Here's the picture (compare it with the chaining above):
+Iată imaginea (comparați-o cu înlănțuirea de mai sus):
 
 ![](promise-then-many.svg)
 
-All `.then` on the same promise get the same result -- the result of that promise. So in the code above all `alert` show the same: `1`.
+Toate `.then` pe aceeași promisiune obțin același rezultat -- rezultatul acelei promisiuni. Deci în codul de mai sus toate `alert` arată același: `1`.
 
-In practice we rarely need multiple handlers for one promise. Chaining is used much more often.
+În practică avem rareori nevoie de multipli gestionari pentru o promisiune. Înlănțuirea este folosită mult mai des.
 
-## Returning promises
+## Promisiuni care se întorc
 
-A handler, used in `.then(handler)` may create and return a promise.
+Un gestionar, utilizat în `.then(gestionar)` poate crea și returna o promisiune.
 
-In that case further handlers wait till it settles, and then get its result.
+În acest caz ceilalți gestionari așteaptă până când aceasta se soluționează, și apoi obțin rezultatul ei.
 
-For instance:
+De exemplu:
 
 ```js run
 new Promise(function(resolve, reject) {
@@ -120,15 +120,15 @@ new Promise(function(resolve, reject) {
 });
 ```
 
-Here the first `.then` shows `1` and returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result (the argument of `resolve`, here it's `result * 2`) is passed on to handler of the second `.then`. That handler is in the line `(**)`, it shows `2` and does the same thing.
+Aici primul `.then` arată `1` și returnează `new Promise(…)` în linia `(*)`. După o secundă se rezolvă, iar rezultatul (argumentul lui `resolve`, aici este `result * 2`) este transmis către gestionarul celui de-al doilea `.then`. Acel gestionar se află în linia `(**)`, arată `2` și face același lucru.
 
-So the output is the same as in the previous example: 1 -> 2 -> 4, but now with 1 second delay between `alert` calls.
+Deci rezultatul este același ca în exemplul anterior: 1 -> 2 -> 4, dar acum cu o întârziere de 1 secundă între apelurile `alert`.
 
-Returning promises allows us to build chains of asynchronous actions.
+Returnarea promisiunilor ne permite să construim lanțuri de acțiuni asincrone.
 
-## Example: loadScript
+## Exemplu: loadScript
 
-Let's use this feature with the promisified `loadScript`, defined in the [previous chapter](info:promise-basics#loadscript), to load scripts one by one, in sequence:
+Să folosim această caracteristică cu promisiunile `loadScript`, definite în [capitolul anterior](info:promise-basics#loadscript), pentru a încărca scripturile unul câte unul, în succesiune:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
@@ -139,22 +139,22 @@ loadScript("/article/promise-chaining/one.js")
     return loadScript("/article/promise-chaining/three.js");
   })
   .then(function(script) {
-    // use functions declared in scripts
-    // to show that they indeed loaded
+    // utilizează funcțiile declarate în scripturi
+    // pentru a arăta că acestea sunt într-adevăr încărcate
     one();
     two();
     three();
   });
 ```
 
-This code can be made bit shorter with arrow functions:
+Acest cod poate fi scurtat puțin cu ajutorul funcțiilor săgeată:
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
   .then(script => loadScript("/article/promise-chaining/two.js"))
   .then(script => loadScript("/article/promise-chaining/three.js"))
   .then(script => {
-    // scripts are loaded, we can use functions declared there
+    // scripturile sunt încărcate, putem folosi funcțiile declarate acolo
     one();
     two();
     three();
@@ -162,17 +162,17 @@ loadScript("/article/promise-chaining/one.js")
 ```
 
 
-Here each `loadScript` call returns a promise, and the next `.then` runs when it resolves. Then it initiates the loading of the next script. So scripts are loaded one after another.
+Aici fiecare apel `loadScript` returnează o promisiune, iar următorul `.then` rulează atunci când se soluționează. Apoi inițiază încărcarea următorului script. Așa că scripturile sunt încărcate unul după altul.
 
-We can add more asynchronous actions to the chain. Please note that code is still "flat", it grows down, not to the right. There are no signs of "pyramid of doom".
+Putem adăuga mai multe acțiuni asincrone în lanț. Vă rugăm să rețineți că acest cod este încă "plat" - crește în jos, nu spre dreapta. Nu există semne de "piramida osândei".
 
-Technically, we could add `.then` directly to each `loadScript`, like this:
+Tehnic, am putea adăuga `.then` direct la fiecare `loadScript`, astfel:
 
 ```js run
 loadScript("/article/promise-chaining/one.js").then(script1 => {
   loadScript("/article/promise-chaining/two.js").then(script2 => {
     loadScript("/article/promise-chaining/three.js").then(script3 => {
-      // this function has access to variables script1, script2 and script3
+      // această funcție are acces la variabilele script1, script2 și script3
       one();
       two();
       three();
@@ -181,19 +181,19 @@ loadScript("/article/promise-chaining/one.js").then(script1 => {
 });
 ```
 
-This code does the same: loads 3 scripts in sequence. But it "grows to the right". So we have the same problem as with callbacks.
+Acest cod face același lucru: încarcă 3 scripturi în succesiune. Dar "crește spre dreapta". Deci avem aceeași problemă ca și în cazul callback-urilor.
 
-People who start to use promises sometimes don't know about chaining, so they write it this way. Generally, chaining is preferred.
+Oamenii care încep să folosească promisiuni uneori nu știu despre înlănțuire, așa că scriu în acest fel. În general, este preferabilă înlănțuirea.
 
-Sometimes it's ok to write `.then` directly, because the nested function has access to the outer scope. In the example above the most nested callback has access to all variables `script1`, `script2`, `script3`. But that's an exception rather than a rule.
+Uneori este în regulă să scriem `.then` direct, deoarece funcția nested are acces la outer scope. În exemplul de mai sus cea mai nested funcție callback are acces la toate variabilele `script1`, `script2`, `script3`. Dar aceasta este mai degrabă o excepție decât o regulă.
 
 
 ````smart header="Thenables"
-To be precise, a handler may return not exactly a promise, but a so-called "thenable" object - an arbitrary object that has method `.then`, and it will be treated the same way as a promise.
+Pentru a fi mai precis, un gestionar poate returna nu chiar o promisiune, ci un așa-numit obiect "thenable" - un obiect arbitrar care are o metodă `.then`. Acesta va fi tratat în același mod ca o promisiune.
 
-The idea is that 3rd-party libraries may implement "promise-compatible" objects of their own. They can have extended set of methods, but also be compatible with native promises, because they implement `.then`.
+Ideea este că bibliotecile terțe pot implementa propriile obiecte "compatibile cu promisiunile". Acestea pot avea un set extins de metode, dar pot fi de asemenea compatibile cu promisiunile native, deoarece implementează `.then`.
 
-Here's an example of a thenable object:
+Iată un exemplu de obiect thenable:
 
 ```js run
 class Thenable {
@@ -201,8 +201,8 @@ class Thenable {
     this.num = num;
   }
   then(resolve, reject) {
-    alert(resolve); // function() { native code }
-    // resolve with this.num*2 after the 1 second
+    alert(resolve); // function() { cod nativ }
+    // resolve cu this.num*2 după 1 secundă
     setTimeout(() => resolve(this.num * 2), 1000); // (**)
   }
 }
@@ -213,70 +213,70 @@ new Promise(resolve => resolve(1))
     return new Thenable(result); // (*)
 */!*
   })
-  .then(alert); // shows 2 after 1000ms
+  .then(alert); // afișează 2 după 1000ms
 ```
 
-JavaScript checks the object returned by `.then` handler in the line `(*)`: if it has a callable method named `then`, then it calls that method providing native functions `resolve`, `reject` as arguments (similar to executor) and waits until one of them is called. In the example above `resolve(2)` is called after 1 second `(**)`. Then the result is passed further down the chain.
+JavaScript verifică obiectul returnat de gestionarul `.then` din linia `(*)`: dacă are o metodă apelabilă numită `then`, atunci apelează acea metodă oferind ca argumente funcțiile native `resolve`, `reject` (similar unui executor) și așteaptă până când una dintre ele este apelată. În exemplul de mai sus `resolve(2)` este apelat după 1 secundă `(**)`. Apoi rezultatul este transmis mai departe în lanț.
 
-This feature allows to integrate custom objects with promise chains without having to inherit from `Promise`.
+Această caracteristică ne permite să integrăm obiecte personalizate în lanțurile de promisiuni fără a fi nevoie să moștenim din `Promise`.
 ````
 
 
-## Bigger example: fetch
+## Exemplu mai mare: fetch
 
-In frontend programming promises are often used for network requests. So let's see an extended example of that.
+În programarea frontend, promisiunile sunt adesea folosite pentru network requests. Să vedem deci un exemplu extins despre asta.
 
-We'll use the [fetch](info:fetch) method to load the information about the user from the remote server. It has a lot of optional parameters covered in [separate chapters](info:fetch), but the basic syntax is quite simple:
+Vom folosi metoda [fetch](info:fetch) pentru a încărca informațiile despre utilizator de pe remote server. Aceasta are o mulțime de parametri opționali acoperiți în [capitole separate](info:fetch), dar sintaxa de bază este destul de simplă:
 
 ```js
 let promise = fetch(url);
 ```
 
-This makes a network request to the `url` and returns a promise. The promise resolves with a `response` object when the remote server responds with headers, but *before the full response is downloaded*.
+Aceasta face un network request către `url` și returnează o promisiune. Promisiunea se rezolvă cu un obiect `response` atunci când remote server răspunde cu anteturi, dar *înainte ca răspunsul complet să fie descărcat*.
 
-To read the full response, we should call a method `response.text()`: it returns a promise that resolves  when the full text downloaded from the remote server, with that text as a result.
+Pentru a citi răspunsul complet, ar trebui să apelăm metoda `response.text()`: aceasta returnează o promisiune care se rezolvă atunci când textul complet este descărcat de pe remote server, cu acel text ca rezultat.
 
-The code below makes a request to `user.json` and loads its text from the server:
+Codul de mai jos face o cerere către `user.json` și încarcă textul acestuia de pe server:
 
 ```js run
 fetch('/article/promise-chaining/user.json')
-  // .then below runs when the remote server responds
+  // .then de mai jos rulează când remote server răspunde
   .then(function(response) {
-    // response.text() returns a new promise that resolves with the full response text
-    // when it loads
+    // response.text() returnează o nouă promisiune care se rezolvă cu întregul response text
+    // când se încarcă
     return response.text();
   })
   .then(function(text) {
-    // ...and here's the content of the remote file
-    alert(text); // {"name": "iliakan", isAdmin: true}
+    // ...și iată conținutul din remote file
+    alert(text); // {"name": "iliakan", "isAdmin": true}
   });
 ```
 
-There is also a method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient, so let's switch to it.
+Obiectul `response` returnat de `fetch` include de asemenea metoda `response.json()` care citește remote data și o parsează ca JSON. În cazul nostru asta este chiar mai convenabil, așa că să trecem la ea.
 
-We'll also use arrow functions for brevity:
+Vom folosi de asemenea funcții săgeată pentru a fi mai conciși:
 
 ```js run
-// same as above, but response.json() parses the remote content as JSON
+// la fel ca mai sus, dar response.json() parsează remote content ca JSON
 fetch('/article/promise-chaining/user.json')
   .then(response => response.json())
-  .then(user => alert(user.name)); // iliakan, got user name
+  .then(user => alert(user.name)); // iliakan, am primit numele utilizatorului
 ```
 
-Now let's do something with the loaded user.
+Acum să facem ceva cu utilizatorul încărcat.
 
-For instance, we can make one more request to GitHub, load the user profile and show the avatar:
+De exemplu, putem face încă o cerere către GitHub, încărca profilul utilizatorului și afișa avatarul:
 
 ```js run
-// Make a request for user.json
+// Faceți o cerere pentru user.json
 fetch('/article/promise-chaining/user.json')
-  // Load it as json
+  // Încarcă-l ca json
   .then(response => response.json())
-  // Make a request to GitHub
+  // Efectuați o cerere către GitHub
   .then(user => fetch(`https://api.github.com/users/${user.name}`))
-  // Load the response as json
+  // Încarcă răspunsul ca json
   .then(response => response.json())
-  // Show the avatar image (githubUser.avatar_url) for 3 seconds (maybe animate it)
+  // Afișează imaginea avatarului (githubUser.avatar_url) timp de 3 secunde (poate să o animăm)
   .then(githubUser => {
     let img = document.createElement('img');
     img.src = githubUser.avatar_url;
@@ -287,13 +287,13 @@ fetch('/article/promise-chaining/user.json')
   });
 ```
 
-The code works, see comments about the details. Although, there's a potential problem in it, a typical error of those who begin to use promises.
+Codul funcționează; vezi comentariile despre detalii. Cu toate acestea, există o potențială problemă în el, o eroare tipică pentru cei care încep să folosească promisiuni.
 
-Look at the line `(*)`: how can we do something *after* the avatar has finished showing and gets removed? For instance, we'd like to show a form for editing that user or something else. As of now, there's no way.
+Uitați-vă la linia `(*)`: cum putem face ceva *după* ce avatarul a terminat de arătat și este îndepărtat? De exemplu, am dori să afișăm un formular pentru editarea acelui utilizator sau altceva. Deocamdată, nu există nicio modalitate.
 
-To make the chain extendable, we need to return a promise that resolves when the avatar finishes showing.
+Pentru a face lanțul extensibil, trebuie să returnăm o promisiune care să se rezolve atunci când avatarul termină să fie arătat.
 
-Like this:
+Așa:
 
 ```js run
 fetch('/article/promise-chaining/user.json')
@@ -315,19 +315,15 @@ fetch('/article/promise-chaining/user.json')
 */!*
     }, 3000);
   }))
-  // triggers after 3 seconds
-  .then(githubUser => alert(`Finished showing ${githubUser.name}`));
+  // se declanșează după 3 secunde
+  .then(githubUser => alert(`A terminat de arătat ${githubUser.name}`));
 ```
 
-That is, `.then` handler in the line `(*)` now returns `new Promise`, that becomes settled only after the call of `resolve(githubUser)` in `setTimeout` `(**)`.
+Adică, gestionarul `.then` din linia `(*)` acum returnează `new Promise`, care devine soluționată numai după apelul lui `resolve(githubUser)` în `setTimeout` `(**)`. Următorul `.then` din lanț va aștepta pentru aceasta.
 
-The next `.then` in chain will wait for that.
+Ca o bună practică, o acțiune asincronă ar trebui să returneze întotdeauna o promisiune. Asta face posibilă planificarea acțiunilor după ea; chiar dacă nu plănuim să extindem lanțul acum, s-ar putea să avem nevoie de el mai târziu.
 
-As a good rule, an asynchronous action should always return a promise.
-
-That makes it possible to plan actions after it. Even if we don't plan to extend the chain now, we may need it later.
-
-Finally, we can split the code into reusable functions:
+În cele din urmă, putem împărți codul în funcții reutilizabile:
 
 ```js run
 function loadJson(url) {
@@ -336,8 +332,7 @@ function loadJson(url) {
 }
 
 function loadGithubUser(name) {
-  return fetch(`https://api.github.com/users/${name}`)
-    .then(response => response.json());
+  return loadJson(`https://api.github.com/users/${name}`);
 }
 
 function showAvatar(githubUser) {
@@ -354,7 +349,7 @@ function showAvatar(githubUser) {
   });
 }
 
-// Use them:
+// Utilizați-le:
 loadJson('/article/promise-chaining/user.json')
   .then(user => loadGithubUser(user.name))
   .then(showAvatar)
@@ -362,10 +357,10 @@ loadJson('/article/promise-chaining/user.json')
   // ...
 ```
 
-## Summary
+## Rezumat
 
-If a `.then` (or `catch/finally`, doesn't matter) handler returns a promise, the rest of the chain waits until it settles. When it does, its result (or error) is passed further.
+Dacă un gestionar `.then` (sau `catch/finally`, nu contează) returnează o promisiune, restul lanțului așteaptă până când se soluționează. Atunci când se întâmplă, rezultatul (sau eroarea) este transmis mai departe.
 
-Here's a full picture:
+Iată o imagine completă:
 
 ![](promise-handler-variants.svg)

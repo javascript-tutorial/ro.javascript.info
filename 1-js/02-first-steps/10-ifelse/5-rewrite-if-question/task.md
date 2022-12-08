@@ -2,16 +2,16 @@ importance: 5
 
 ---
 
-# Rewrite 'if' into '?'
+# Rescrieți 'if' în '?'
 
-Rewrite this `if` using the conditional operator `'?'`:
+Rescrieți acest `if` folosind operatorul condițional `'?'`:
 
 ```js
 let result;
 
 if (a + b < 4) {
-  result = 'Below';
+  result = 'Sub';
 } else {
-  result = 'Over';
+  result = 'Peste';
 }
 ```
