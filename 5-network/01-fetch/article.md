@@ -68,7 +68,7 @@ if (response.ok) { // dacă HTTP-status este 200-299
 - **`response.arrayBuffer()`** -- returnează răspunsul ca [ArrayBuffer](info:arraybuffer-binary-arrays) (reprezentare low-level a datelor binare),
 - adițional, `response.body` este un obiect [ReadableStream](https://streams.spec.whatwg.org/#rs-class), care îți permite să citești corpul bucată-cu-bucată, vom vedea un exemplu mai târziu.
 
-De exemplu, haideți să luăm un obiect JSON cu ultimele commits din GitHub:
+De exemplu, haideți să obținem un obiect JSON cu ultimele commits din GitHub:
 
 ```js run async
 let url = 'https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits';
@@ -89,7 +89,7 @@ fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commi
   .then(commits => alert(commits[0].author.login));
 ```
 
-Pentru a lua response text, `await response.text()` în loc de `.json()`:
+Pentru a obține response text, `await response.text()` în loc de `.json()`:
 
 ```js run async
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
