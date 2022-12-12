@@ -46,15 +46,15 @@ Până acum, destul de simplu, nu?
 
 Aceasta a fost teoria. Acum să vedem cum putem aplica aceste cunoștințe.
 
-## Cazul de utilizare 1: împărțirea sarcinilor flămânde de CPU
+## Cazul de utilizare 1: împărțirea sarcinilor flămânde pentru CPU
 
-Să presupunem că avem o sarcină flămândă de CPU.
+Să presupunem că avem o sarcină flămândă pentru CPU.
 
 De exemplu, evidențierea sintaxei (utilizată pentru a colora exemplele de cod de pe această pagină) este destul de grea pentru CPU. Pentru a evidenția codul, se efectuează analiza, se creează multe elemente colorate, se adaugă la document - pentru o cantitate mare de text, ceea ce necesită mult timp.
 
 În timp ce motorul este ocupat cu evidențierea sintaxei, nu poate face alte lucruri legate de DOM, procesa evenimentele utilizatorului etc. Poate chiar să provoace browserul să "sughițe" sau chiar să se "blocheze" pentru un timp, ceea ce este inacceptabil.
 
-Putem evita problemele împărțind sarcina mare în bucăți. Evidențiază primele 100 de rânduri, apoi programați `setTimeout` (cu întârziere zero) pentru următoarele 100 de rânduri, și așa mai departe.
+Putem evita problemele împărțind sarcina mare în bucăți. Evidențiază primele 100 de rânduri, apoi programa `setTimeout` (cu întârziere zero) pentru următoarele 100 de rânduri, și așa mai departe.
 
 Pentru a demonstra această abordare, de dragul simplității, în loc de evidențierea textului, să luăm o funcție care numără de la `1` la `1000000000`.
 
@@ -89,7 +89,7 @@ let start = Date.now();
 
 function count() {
 
-  // face o parte din munca grea (*)
+  // să facă o parte din munca grea (*)
   do {
     i++;
   } while (i % 1e6 != 0);
@@ -113,7 +113,7 @@ O singură execuție a lui `count` face o parte din treabă `(*)`, și apoi se r
 2. A doua rulare numără: `i=1000001..2000000`.
 3. ...și așa mai departe.
 
-Acum, dacă apare o nouă sarcină secundară (de exemplu, evenimentul `onclick`) în timp ce motorul este ocupat cu execuția părții 1, aceasta este pusă la coadă și apoi se execută când partea 1 s-a terminat, înainte de partea următoare. Revenirile periodice la event loop între execuțiile `count` oferă suficient "aer" pentru ca motorul JavaScript să facă altceva, să reacționeze la alte acțiuni ale utilizatorului.
+Acum, dacă apare o nouă sarcină secundară (e.g. evenimentul `onclick`) în timp ce motorul este ocupat cu execuția părții 1, aceasta este pusă la coadă și apoi se execută când partea 1 s-a terminat, înainte de partea următoare. Revenirile periodice la event loop între execuțiile `count` oferă suficient "aer" pentru ca motorul JavaScript să facă altceva, să reacționeze la alte acțiuni ale utilizatorului.
 
 Lucrul notabil este că ambele variante -- cu și fără diviziunea muncii prin `setTimeout` -- sunt comparabile ca viteză. Nu este o diferență prea mare în timpul total pentru numărare.
 
@@ -152,9 +152,9 @@ Dacă o rulezi, este ușor de observat că durează semnificativ mai puțin timp
 
 De ce?  
 
-Este simplu: după cum vă amintiți, este o întârziere minimă în browser de 4 ms pentru multe apeluri nested `setTimeout`. Chiar dacă setăm `0`, este `4ms` (sau un pic mai mult). Deci cu cât programăm mai devreme - cu atât mai repede se execută.
+Este simplu: după cum vă amintiți, este o întârziere minimă în browser de 4 ms pentru multe apeluri nested `setTimeout`. Chiar dacă setăm `0`, este `4ms` (sau un pic mai mult). Deci cu cât programăm mai devreme - cu atât mai repede rulează.
 
-În cele din urmă, am împărțit în părți o sarcină flămândă de CPU - acum nu blochează interfața cu utilizatorul. Iar timpul său total de execuție nu este cu mult mai mare.
+În cele din urmă, am împărțit în părți o sarcină flămândă pentru CPU - acum nu blochează interfața utilizatorului. Iar timpul său total de execuție nu este cu mult mai mare.
 
 ## Cazul de utilizare 2: indicare de progres
 
@@ -183,7 +183,7 @@ Iată demonstrația, modificările aduse lui `i` nu vor apărea până când fun
 </script>
 ```
 
-...Dar este posibil să dorim să afișăm ceva în timpul sarcinii, e.g. o bară de progres.
+...Dar este de asemenea posibil să dorim să afișăm ceva în timpul sarcinii, e.g. o bară de progres.
 
 Dacă împărțim sarcina grea în bucăți folosind `setTimeout`, atunci modificările sunt pictate între ele.
 
@@ -213,10 +213,10 @@ Asta arată mai frumos:
 </script>
 ```
 
-Acum, `<div>` arată valorile crescânde ale lui `i`, un fel de bară de progres.
+Acum `<div>`-ul arată valorile crescânde ale lui `i`, un fel de bară de progres.
 
 
-## Cazul de utilizare 3: a face ceva după eveniment
+## Cazul de utilizare 3: făcând ceva după eveniment
 
 Într-un gestionar de evenimente putem decide să amânăm anumite acțiuni până când evenimentul a crescut și a fost gestionat la toate nivelele. Putem face asta prin ambalarea codului în `setTimeout` cu întârziere zero.
 
@@ -283,7 +283,7 @@ Iată un exemplu cu "contorizarea barei de progres", similar cu cel prezentat an
 
   function count() {
 
-    // face o parte din munca grea (*)
+    // să facă o parte din munca grea (*)
     do {
       i++;
       progress.innerHTML = i;
