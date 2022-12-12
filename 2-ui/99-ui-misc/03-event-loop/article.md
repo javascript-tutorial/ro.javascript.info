@@ -1,64 +1,64 @@
 
-# Event loop: microtasks and macrotasks
+# Event loop: microtasks și macrotasks
 
-Browser JavaScript execution flow, as well as in Node.js, is based on an *event loop*.
+Fluxul de execuție JavaScript din browser, ca și în Node.js, se bazează pe un *event loop*.
 
-Understanding how event loop works is important for optimizations, and sometimes for the right architecture.
+Înțelegerea modului în care funcționează event loop este importantă pentru optimizări, și uneori pentru arhitectura potrivită.
 
-In this chapter we first cover theoretical details about how things work, and then see practical applications of that knowledge.
+În acest capitol vom acoperi mai întâi detaliile teoretice despre cum funcționează lucrurile, iar apoi vom vedea aplicațiile practice ale acestor cunoștințe.
 
 ## Event Loop
 
-The *event loop* concept is very simple. There's an endless loop, where the JavaScript engine waits for tasks, executes them and then sleeps, waiting for more tasks.
+Conceptul *event loop* este foarte simplu. Există o buclă fără sfârșit, în care motorul JavaScript așteaptă sarcini, le execută și apoi adoarme, așteptând alte sarcini.
 
-The general algorithm of the engine:
+Algoritmul general al motorului:
 
-1. While there are tasks:
-    - execute them, starting with the oldest task.
-2. Sleep until a task appears, then go to 1.
+1. În timp ce există sarcini:
+    - le execută, începând cu cea mai veche sarcină.
+2. Doarme până când apare o sarcină, apoi treceți la 1.
 
-That's a formalization for what we see when browsing a page. The JavaScript engine does nothing most of the time, it only runs if a script/handler/event activates.
+Aceasta este o formalizare pentru ceea ce vedem atunci când navigăm pe o pagină. Motorul JavaScript nu face nimic în cea mai mare parte a timpului, se execută doar dacă se activează un script/gestionar/eveniment.
 
-Examples of tasks:
+Exemple de sarcini:
 
-- When an external script `<script src="...">` loads, the task is to execute it.
-- When a user moves their mouse, the task is to dispatch `mousemove` event and execute handlers.
-- When the time is due for a scheduled `setTimeout`, the task is to run its callback.
-- ...and so on.
+- Atunci când se încarcă un script extern `<script src="...">`, sarcina este de a-l executa.
+- Atunci când un utilizator își mișcă mouse-ul, sarcina este de a expedia evenimentul `mousemove` și de a executa gestionarii.
+- Atunci când timpul este scadent pentru un `setTimeout` programat, sarcina este să ruleze callback-ul său.
+- ...și așa mai departe.
 
-Tasks are set -- the engine handles them -- then waits for more tasks (while sleeping and consuming close to zero CPU).
+Sarcinile sunt setate -- motorul le gestionează -- apoi așteaptă mai multe sarcini (în timp ce doarme și consumă aproape zero CPU).
 
-It may happen that a task comes while the engine is busy, then it's enqueued.
+Se poate întâmpla ca o sarcină să vină în timp ce motorul este ocupat, atunci este pusă la coadă.
 
-The tasks form a queue, so-called "macrotask queue" (v8 term):
+Sarcinile formează o coadă, așa-numita "macrotask queue" (termen v8):
 
 ![](eventLoop.svg)
 
-For instance, while the engine is busy executing a `script`, a user may move their mouse causing `mousemove`, and `setTimeout` may be due and so on, these tasks form a queue, as illustrated on the picture above.
+De exemplu, în timp ce motorul este ocupat cu execuția unui `script`, un utilizator poate muta mouse-ul provocând `mousemove`, iar `setTimeout` poate fi scadent și așa mai departe, aceste sarcini formează o coadă, așa cum este ilustrat în imaginea de mai sus.
 
-Tasks from the queue are processed on "first come – first served" basis. When the engine browser is done with the `script`, it handles `mousemove` event, then `setTimeout` handler, and so on.
+Sarcinile din coadă sunt procesate în baza "primul venit -- primul servit". Atunci când motorul browserului a terminat cu `script`, acesta se ocupă de evenimentul `mousemove`, apoi gestionarul `setTimeout`, și așa mai departe.
 
-So far, quite simple, right?
+Până acum, destul de simplu, nu?
 
-Two more details:
-1. Rendering never happens while the engine executes a task. It doesn't matter if the task takes a long time. Changes to the DOM are painted only after the task is complete.
-2. If a task takes too long, the browser can't do other tasks, such as processing user events. So after a time, it raises an alert like "Page Unresponsive", suggesting killing the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to an infinite loop.
+Încă două detalii:
+1. Randarea nu are loc niciodată în timp ce motorul execută o sarcină. Nu contează dacă sarcina durează mult timp. Modificările aduse la DOM sunt pictate numai după ce sarcina este finalizată.
+2. Dacă o sarcină durează prea mult, browserul nu poate efectua alte sarcini, cum ar fi procesarea evenimentelor utilizatorului. Deci după un timp, acesta lansează o alertă ca "Page Unresponsive", sugerând uciderea sarcinii împreună cu întreaga pagină. Asta se întâmplă atunci când au loc o mulțime de calcule complexe sau când o eroare de programare duce la o buclă infinită.
 
-That was the theory. Now let's see how we can apply that knowledge.
+Aceasta a fost teoria. Acum să vedem cum putem aplica aceste cunoștințe.
 
-## Use-case 1: splitting CPU-hungry tasks
+## Cazul de utilizare 1: împărțirea sarcinilor flămânde de CPU
 
-Let's say we have a CPU-hungry task.
+Să presupunem că avem o sarcină flămândă de CPU.
 
-For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a large amount of text that takes a lot of time.
+De exemplu, evidențierea sintaxei (utilizată pentru a colora exemplele de cod de pe această pagină) este destul de grea pentru CPU. Pentru a evidenția codul, se efectuează analiza, se creează multe elemente colorate, se adaugă la document - pentru o cantitate mare de text, ceea ce necesită mult timp.
 
-While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hiccup" or even "hang" for a bit, which is unacceptable.
+În timp ce motorul este ocupat cu evidențierea sintaxei, nu poate face alte lucruri legate de DOM, procesa evenimentele utilizatorului etc. Poate chiar să provoace browserul să "sughițe" sau chiar să se "blocheze" pentru un timp, ceea ce este inacceptabil.
 
-We can avoid problems by splitting the big task into pieces. Highlight first 100 lines, then schedule `setTimeout` (with zero-delay) for the next 100 lines, and so on.
+Putem evita problemele împărțind sarcina mare în bucăți. Evidențiază primele 100 de rânduri, apoi programați `setTimeout` (cu întârziere zero) pentru următoarele 100 de rânduri, și așa mai departe.
 
-To demonstrate this approach, for the sake of simplicity, instead of text-highlighting, let's take a function that counts from `1` to `1000000000`.
+Pentru a demonstra această abordare, de dragul simplității, în loc de evidențierea textului, să luăm o funcție care numără de la `1` la `1000000000`.
 
-If you run the code below, the engine will "hang" for some time. For server-side JS that's clearly noticeable, and if you are running it in-browser, then try to click other buttons on the page -- you'll see that no other events get handled until the counting finishes.
+Dacă executați codul de mai jos, motorul se va "bloca" pentru o perioadă de timp. Pentru server-side JS acest lucru este clar vizibil, iar dacă îl executați în browser, atunci încercați să faceți clic pe alte butoane de pe pagină - veți vedea că niciun alt eveniment nu este gestionat până când numărătoarea se termină.
 
 ```js run
 let i = 0;
@@ -67,20 +67,20 @@ let start = Date.now();
 
 function count() {
 
-  // do a heavy job
+  // face o treabă grea
   for (let j = 0; j < 1e9; j++) {
     i++;
   }
 
-  alert("Done in " + (Date.now() - start) + 'ms');
+  alert("Terminat în " + (Date.now() - start) + 'ms');
 }
 
 count();
 ```
 
-The browser may even show a "the script takes too long" warning.
+Browserul poate chiar afișa un avertisment "the script takes too long".
 
-Let's split the job using nested `setTimeout` calls:
+Să împărțim sarcina folosind apeluri nested `setTimeout`:
 
 ```js run
 let i = 0;
@@ -89,15 +89,15 @@ let start = Date.now();
 
 function count() {
 
-  // do a piece of the heavy job (*)
+  // face o parte din munca grea (*)
   do {
     i++;
   } while (i % 1e6 != 0);
 
   if (i == 1e9) {
-    alert("Done in " + (Date.now() - start) + 'ms');
+    alert("Terminat în " + (Date.now() - start) + 'ms');
   } else {
-    setTimeout(count); // schedule the new call (**)
+    setTimeout(count); // programează noul apel (**)
   }
 
 }
@@ -105,21 +105,21 @@ function count() {
 count();
 ```
 
-Now the browser interface is fully functional during the "counting" process.
+Acum interfața browserului este complet funcțională în timpul procesului de "numărare".
 
-A single run of `count` does a part of the job `(*)`, and then re-schedules itself `(**)` if needed:
+O singură execuție a lui `count` face o parte din treabă `(*)`, și apoi se reprogramează `(**)` dacă este necesar:
 
-1. First run counts: `i=1...1000000`.
-2. Second run counts: `i=1000001..2000000`.
-3. ...and so on.
+1. Prima rulare numără: `i=1...1000000`.
+2. A doua rulare numără: `i=1000001..2000000`.
+3. ...și așa mai departe.
 
-Now, if a new side task (e.g. `onclick` event) appears while the engine is busy executing part 1, it gets queued and then executes when part 1 finished, before the next part. Periodic returns to the event loop between `count` executions provide just enough "air" for the JavaScript engine to do something else, to react to other user actions.
+Acum, dacă apare o nouă sarcină secundară (de exemplu, evenimentul `onclick`) în timp ce motorul este ocupat cu execuția părții 1, aceasta este pusă la coadă și apoi se execută când partea 1 s-a terminat, înainte de partea următoare. Revenirile periodice la event loop între execuțiile `count` oferă suficient "aer" pentru ca motorul JavaScript să facă altceva, să reacționeze la alte acțiuni ale utilizatorului.
 
-The notable thing is that both variants -- with and without splitting the job by `setTimeout` -- are comparable in speed. There's not much difference in the overall counting time.
+Lucrul notabil este că ambele variante -- cu și fără diviziunea muncii prin `setTimeout` -- sunt comparabile ca viteză. Nu există o diferență prea mare în timpul total pentru numărare.
 
-To make them closer, let's make an improvement.
+Pentru a le face mai apropiate, să facem o îmbunătățire.
 
-We'll move the scheduling to the beginning of the `count()`:
+Vom muta programarea la începutul lui `count()`:
 
 ```js run
 let i = 0;
@@ -128,9 +128,9 @@ let start = Date.now();
 
 function count() {
 
-  // move the scheduling to the beginning
+  // mută programarea la început
   if (i < 1e9 - 1e6) {
-    setTimeout(count); // schedule the new call
+    setTimeout(count); // programează noul apel
   }
 
   do {
@@ -138,7 +138,7 @@ function count() {
   } while (i % 1e6 != 0);
 
   if (i == 1e9) {
-    alert("Done in " + (Date.now() - start) + 'ms');
+    alert("Terminat în " + (Date.now() - start) + 'ms');
   }
 
 }
@@ -146,25 +146,25 @@ function count() {
 count();
 ```
 
-Now when we start to `count()` and see that we'll need to `count()` more, we schedule that immediately, before doing the job.
+Acum, când începem `count()` și vedem că va trebui să mai `count()`, programăm acest lucru imediat, înainte de a face treaba.
 
-If you run it, it's easy to notice that it takes significantly less time.
+Dacă o rulezi, este ușor de observat că durează semnificativ mai puțin timp.
 
-Why?  
+De ce?  
 
-That's simple: as you remember, there's the in-browser minimal delay of 4ms for many nested `setTimeout` calls. Even if we set `0`, it's `4ms` (or a bit more). So the earlier we schedule it - the faster it runs.
+Este simplu: după cum vă amintiți, există o întârziere minimă în browser de 4 ms pentru multe apeluri nested `setTimeout`. Chiar dacă setăm `0`, este `4ms` (sau un pic mai mult). Deci cu cât programăm mai devreme - cu atât mai repede se execută.
 
-Finally, we've split a CPU-hungry task into parts - now it doesn't block the user interface. And its overall execution time isn't much longer.
+În cele din urmă, am împărțit în părți o sarcină flămândă de CPU - acum nu blochează interfața cu utilizatorul. Iar timpul său total de execuție nu este cu mult mai mare.
 
-## Use case 2: progress indication
+## Cazul de utilizare 2: indicare de progres
 
-Another benefit of splitting heavy tasks for browser scripts is that we can show progress indication.
+Un alt beneficiu al împărțirii sarcinilor grele pentru scripturile din browser este că putem afișa indicarea progresului.
 
-As mentioned earlier, changes to DOM are painted only after the currently running task is completed, irrespective of how long it takes.
+Așa cum am menționat mai devreme, modificările aduse DOM sunt pictate numai după ce sarcina în curs de execuție este finalizată, indiferent cât de mult durează.
 
-On one hand, that's great, because our function may create many elements, add them one-by-one to the document and change their styles -- the visitor won't see any "intermediate", unfinished state. An important thing, right?
+Pe de o parte, asta e grozav, deoarece funcția noastră poate crea multe elemente, le adăugă unul câte unul în document și le modifică stilurile -- vizitatorul nu va vedea nici o stare "intermediară", neterminată. Un lucru important, nu-i așa?
 
-Here's the demo, the changes to `i` won't show up until the function finishes, so we'll see only the last value:
+Iată demonstrația, modificările aduse lui `i` nu vor apărea până când funcția nu se termină, așa că vom vedea doar ultima valoare:
 
 
 ```html run
@@ -183,11 +183,11 @@ Here's the demo, the changes to `i` won't show up until the function finishes, s
 </script>
 ```
 
-...But we also may want to show something during the task, e.g. a progress bar.
+...Dar este posibil să dorim să afișăm ceva în timpul sarcinii, e.g. o bară de progres.
 
-If we split the heavy task into pieces using `setTimeout`, then changes are painted out in-between them.
+Dacă împărțim sarcina grea în bucăți folosind `setTimeout`, atunci modificările sunt pictate între ele.
 
-This looks prettier:
+Asta arată mai frumos:
 
 ```html run
 <div id="progress"></div>
@@ -197,7 +197,7 @@ This looks prettier:
 
   function count() {
 
-    // do a piece of the heavy job (*)
+    // să facă o parte din munca grea (*)
     do {
       i++;
       progress.innerHTML = i;
@@ -213,25 +213,25 @@ This looks prettier:
 </script>
 ```
 
-Now the `<div>` shows increasing values of `i`, a kind of a progress bar.
+Acum, `<div>` arată valorile crescânde ale lui `i`, un fel de bară de progres.
 
 
-## Use case 3: doing something after the event
+## Cazul de utilizare 3: a face ceva după eveniment
 
-In an event handler we may decide to postpone some actions until the event bubbled up and was handled on all levels. We can do that by wrapping the code in zero delay `setTimeout`.
+Într-un gestionar de evenimente putem decide să amânăm anumite acțiuni până când evenimentul a crescut și a fost gestionat la toate nivelele. Putem face asta prin ambalarea codului în `setTimeout` cu întârziere zero.
 
-In the chapter <info:dispatch-events> we saw an example: custom event `menu-open` is dispatched in `setTimeout`, so that it happens after the "click" event is fully handled.
+În capitolul <info:dispatch-events> am văzut un exemplu: evenimentul personalizat `menu-open` este expediat în `setTimeout`, astfel încât să se întâmple după ce evenimentul "click" a fost complet gestionat.
 
 ```js
 menu.onclick = function() {
   // ...
 
-  // create a custom event with the clicked menu item data
+  // crează un eveniment personalizat cu datele despre elementul de meniu pe care s-a făcut clic
   let customEvent = new CustomEvent("menu-open", {
     bubbles: true
   });
 
-  // dispatch the custom event asynchronously
+  // expediază evenimentul personalizat în mod asincron
   setTimeout(() => menu.dispatchEvent(customEvent));
 };
 ```
