@@ -13,7 +13,7 @@ Conceptul *event loop* este foarte simplu. Există o buclă fără sfârșit, î
 
 Algoritmul general al motorului:
 
-1. În timp ce există sarcini:
+1. În timp ce sunt sarcini:
     - le execută, începând cu cea mai veche sarcină.
 2. Doarme până când apare o sarcină, apoi treceți la 1.
 
@@ -115,7 +115,7 @@ O singură execuție a lui `count` face o parte din treabă `(*)`, și apoi se r
 
 Acum, dacă apare o nouă sarcină secundară (de exemplu, evenimentul `onclick`) în timp ce motorul este ocupat cu execuția părții 1, aceasta este pusă la coadă și apoi se execută când partea 1 s-a terminat, înainte de partea următoare. Revenirile periodice la event loop între execuțiile `count` oferă suficient "aer" pentru ca motorul JavaScript să facă altceva, să reacționeze la alte acțiuni ale utilizatorului.
 
-Lucrul notabil este că ambele variante -- cu și fără diviziunea muncii prin `setTimeout` -- sunt comparabile ca viteză. Nu există o diferență prea mare în timpul total pentru numărare.
+Lucrul notabil este că ambele variante -- cu și fără diviziunea muncii prin `setTimeout` -- sunt comparabile ca viteză. Nu este o diferență prea mare în timpul total pentru numărare.
 
 Pentru a le face mai apropiate, să facem o îmbunătățire.
 
@@ -152,7 +152,7 @@ Dacă o rulezi, este ușor de observat că durează semnificativ mai puțin timp
 
 De ce?  
 
-Este simplu: după cum vă amintiți, există o întârziere minimă în browser de 4 ms pentru multe apeluri nested `setTimeout`. Chiar dacă setăm `0`, este `4ms` (sau un pic mai mult). Deci cu cât programăm mai devreme - cu atât mai repede se execută.
+Este simplu: după cum vă amintiți, este o întârziere minimă în browser de 4 ms pentru multe apeluri nested `setTimeout`. Chiar dacă setăm `0`, este `4ms` (sau un pic mai mult). Deci cu cât programăm mai devreme - cu atât mai repede se execută.
 
 În cele din urmă, am împărțit în părți o sarcină flămândă de CPU - acum nu blochează interfața cu utilizatorul. Iar timpul său total de execuție nu este cu mult mai mare.
 
@@ -236,17 +236,17 @@ menu.onclick = function() {
 };
 ```
 
-## Macrotasks and Microtasks
+## Macrotasks și Microtasks
 
-Along with *macrotasks*, described in this chapter, there are *microtasks*, mentioned in the chapter <info:microtask-queue>.
+Alături de *macrotasks*, descrise în acest capitol, mai sunt și *microtasks*, menționate în capitolul <info:microtask-queue>.
 
-Microtasks come solely from our code. They are usually created by promises: an execution of `.then/catch/finally` handler becomes a microtask. Microtasks are used "under the cover" of `await` as well, as it's another form of promise handling.
+Microtask-urile provin exclusiv din codul nostru. Ele sunt de obicei create prin promisiuni: o execuție a gestionarului `.then/catch/finally` devine un microtask. Microtask-urile sunt folosite "sub capacul" lui `await` de asemenea, deoarece este o altă formă de gestionare a promisiunilor.
 
-There's also a special function `queueMicrotask(func)` that queues `func` for execution in the microtask queue.
+Mai este de asemenea o funcție specială `queueMicrotask(func)` care pune la coadă `func` pentru execuție în microtask queue.
 
-**Immediately after every *macrotask*, the engine executes all tasks from *microtask* queue, prior to running any other macrotasks or rendering or anything else.**
+**Imediat după fiecare *macrotask*, motorul execută toate sarcinile din *microtask* queue, înainte de a rula alte macrotasks sau a randa sau orice altceva.**
 
-For instance, take a look:
+De exemplu, aruncați o privire:
 
 ```js run
 setTimeout(() => alert("timeout"));
@@ -257,23 +257,23 @@ Promise.resolve()
 alert("code");
 ```
 
-What's going to be the order here?
+Care va fi ordinea aici?
 
-1. `code` shows first, because it's a regular synchronous call.
-2. `promise` shows second, because `.then` passes through the microtask queue, and runs after the current code.
-3. `timeout` shows last, because it's a macrotask.
+1. `code` apare primul, pentru că este un apel sincron obișnuit.
+2. `promise` apare al doilea, deoarece `.then` trece prin microtask queue, și se execută după codul curent.
+3. `timeout` apare ultimul, deoarece este un macrotask.
 
-The richer event loop picture looks like this (order is from top to bottom, that is: the script first, then microtasks, rendering and so on):
+Imaginea mai bogată a event loop arată astfel (ordinea este de sus în jos, adică: mai întâi scriptul, apoi microtaskul, randarea și așa mai departe):
 
 ![](eventLoop-full.svg)
 
-All microtasks are completed before any other event handling or rendering or any other macrotask takes place.
+Toate microtask-urile sunt finalizate înainte de orice altă gestionare a evenimentelor sau randare sau orice alt macrotask.
 
-That's important, as it guarantees that the application environment is basically the same (no mouse coordinate changes, no new network data, etc) between microtasks.
+Asta este important, deoarece garantează că mediul aplicației este practic același (fără modificări ale coordonatelor mouse-ului, fără date de rețea noi etc.) între microtaskuri.
 
-If we'd like to execute a function asynchronously (after the current code), but before changes are rendered or new events handled, we can schedule it with `queueMicrotask`.
+Dacă dorim să executăm o funcție în mod asincron (după codul curent), dar înainte ca modificările să fie randate sau noi evenimente gestionate, o putem programa cu `queueMicrotask`.
 
-Here's an example with "counting progress bar", similar to the one shown previously, but `queueMicrotask` is used instead of `setTimeout`. You can see that it renders at the very end. Just like the synchronous code:
+Iată un exemplu cu "contorizarea barei de progres", similar cu cel prezentat anterior, dar `queueMicrotask` este folosit în loc de `setTimeout`. Puteți vedea că se randează chiar la sfârșit. La fel ca în cazul codului sincron:
 
 ```html run
 <div id="progress"></div>
@@ -283,7 +283,7 @@ Here's an example with "counting progress bar", similar to the one shown previou
 
   function count() {
 
-    // do a piece of the heavy job (*)
+    // face o parte din munca grea (*)
     do {
       i++;
       progress.innerHTML = i;
@@ -301,39 +301,39 @@ Here's an example with "counting progress bar", similar to the one shown previou
 </script>
 ```
 
-## Summary
+## Sumar
 
-A more detailed event loop algorithm (though still simplified compared to the [specification](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)):
+Un algoritm mai detaliat al event loop (deși este încă simplificat în comparație cu [specificația](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)):
 
-1. Dequeue and run the oldest task from the *macrotask* queue (e.g. "script").
-2. Execute all *microtasks*:
-    - While the microtask queue is not empty:
-        - Dequeue and run the oldest microtask.
-3. Render changes if any.
-4. If the macrotask queue is empty, wait till a macrotask appears.
-5. Go to step 1.
+1. Retrage din coadă și rulează cea mai veche sarcină din *macrotask* queue (e.g. "script").
+2. Execută toate *microtasks*:
+    - Cât timp microtask queue nu este goală:
+        - Retrage din coadă și rulează cel mai vechi microtask.
+3. Randează modificări dacă există.
+4. Dacă macrotask queue este goală, așteptă până când apare un macrotask.
+5. Merge la pasul 1.
 
-To schedule a new *macrotask*:
-- Use zero delayed `setTimeout(f)`.
+Pentru a programa un nou *macrotask*:
+- Utilizați `setTimeout(f)` cu întârziere zero.
 
-That may be used to split a big calculation-heavy task into pieces, for the browser to be able to react to user events and show progress between them.
+Acest lucru poate fi folosit pentru a împărți o sarcină mare cu calcule grele în bucăți, pentru ca browserul să poată reacționa la evenimentele utilizatorului și să afișeze progresul între ele.
 
-Also, used in event handlers to schedule an action after the event is fully handled (bubbling done).
+De asemenea, utilizat în gestionarii de evenimente pentru a programa o acțiune după ce evenimentul este complet gestionat (bubbling done).
 
-To schedule a new *microtask*
-- Use `queueMicrotask(f)`.
-- Also promise handlers go through the microtask queue.
+Pentru a programa un nou *microtask*
+- utilizați `queueMicrotask(f)`.
+- De asemenea gestionarii de promisiuni trec prin coada de microtask-uri.
 
-There's no UI or network event handling between microtasks: they run immediately one after another.
+Între microtask-uri nu există gestionare de evenimente de interfață sau de rețea: acestea se execută imediat una după alta.
 
-So one may want to `queueMicrotask` to execute a function asynchronously, but within the environment state.
+Astfel se poate dori să folosiți `queueMicrotask` pentru a executa o funcție în mod asincron, dar în cadrul stării mediului.
 
 ```smart header="Web Workers"
-For long heavy calculations that shouldn't block the event loop, we can use [Web Workers](https://html.spec.whatwg.org/multipage/workers.html).
+Pentru calcule lungi și grele care nu ar trebui să blocheze event loop, putem folosi [Web Workers](https://html.spec.whatwg.org/multipage/workers.html).
 
-That's a way to run code in another, parallel thread.
+Aceasta este o modalitate de a rula codul într-un alt thread, în paralel.
 
-Web Workers can exchange messages with the main process, but they have their own variables, and their own event loop.
+Web Workers pot face schimb de mesaje cu procesul principal, dar au propriile variabile, și propriul lor event loop.
 
-Web Workers do not have access to DOM, so they are useful, mainly, for calculations, to use multiple CPU cores simultaneously.
+Web Workers nu au acces la DOM, așa că sunt utili, în principal, pentru calcule, pentru a utiliza mai multe nuclee CPU simultan.
 ```
