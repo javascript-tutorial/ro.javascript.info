@@ -1,6 +1,6 @@
 # Promise API
 
-Există 6 metode statice în clasa `Promise`. Vom acoperi rapid cazurile de utilizare a acestora aici.
+Sunt 6 metode statice în clasa `Promise`. Vom acoperi rapid cazurile de utilizare a acestora aici.
 
 ## Promise.all
 
@@ -18,7 +18,7 @@ let promise = Promise.all(iterable);
 
 `Promise.all` primește un iterabil (de obicei, un array de promisiuni) și returnează o nouă promisiune.
 
-Noua promisiune se rezolvă atunci când toate promisiunile listate sunt rezolvate, iar array-ul cu rezultate acestora devine rezultatul său.
+Noua promisiune se rezolvă atunci când toate promisiunile listate sunt resolved, iar array-ul cu rezultate acestora devine rezultatul său.
 
 De exemplu, `Promise.all` de mai jos se soluționează după 3 secunde, iar rezultatul său este un array `[1, 2, 3]`:
 
@@ -30,7 +30,7 @@ Promise.all([
 ]).then(alert); // 1,2,3 când promisiunile sunt gata: fiecare promisiune contribuie cu un membru în array
 ```
 
-Vă rugăm să notați că ordinea membrilor array-ului rezultat este aceeași cu cea din promisiunile sursă. Chiar dacă prima promisiune ia cel mai mult timp pentru a fi rezolvată, ea este totuși prima în lista de rezultate.
+Vă rugăm să notați că ordinea membrilor array-ului rezultat este aceeași cu cea din promisiunile sursă. Chiar dacă prima promisiune ia cel mai mult timp să se rezolve, ea este totuși prima în lista de rezultate.
 
 Un truc obișnuit este de a mapa un array cu date de sarcini într-un array cu promisiuni și apoi a le împacheta în `Promise.all`.
 
@@ -114,7 +114,7 @@ Promise.all([
 ]).then(alert); // 1, 2, 3
 ```
 
-Deci putem trece valori pregătite la `Promise.all` acolo unde este convenabil.
+Deci putem trece valori pregătite la `Promise.all` unde este convenabil.
 ````
 
 ## Promise.allSettled
@@ -136,7 +136,7 @@ Promise.all([
 - `{status: "fulfilled", value:result}` pentru răspunsurile reușite,
 - `{status: "rejected", reason:error}` pentru erori.
 
-De exemplu, ne-ar plăcea să preluăm informații despre utilizatori multipli. Chiar dacă o cerere eșuează, suntem interesați de celelalte.
+De exemplu, ne-ar plăcea să preluăm informații despre utilizatori multipli. Chiar dacă o cerere eșuează, încă suntem interesați de celelalte.
 
 Să folosim `Promise.allSettled`:
 
@@ -272,7 +272,7 @@ let promise = new Promise(resolve => resolve(value));
 
 Metoda este utilizată pentru compatibilitate, atunci când se așteaptă ca o funcție să returneze o promisiune.
 
-De exemplu, funcția `loadCached` de mai jos preia un URL și îi reține (caches) conținutul. Pentru apelurile viitoare cu același URL aceasta obține imediat conținutul anterior din cache, dar folosește `Promise.resolve` pentru a face o promisiune din acesta, astfel încât valoarea returnată este întotdeauna o promisiune:
+De exemplu, funcția `loadCached` de mai jos preia un URL și îi reține (caches) conținutul. Pentru apelurile viitoare cu același URL aceasta obține imediat conținutul anterior din cache, dar folosește `Promise.resolve` pentru a face o promisiune din acesta, așa că valoarea returnată este întotdeauna o promisiune:
 
 ```js
 let cache = new Map();
@@ -309,7 +309,7 @@ let promise = new Promise((resolve, reject) => reject(error));
 
 ## Sumar
 
-Există 6 metode statice ale clasei `Promise`:
+Sunt 6 metode statice ale clasei `Promise`:
 
 1. `Promise.all(promises)` -- așteaptă ca toate promisiunile să se rezolve și returnează un array cu rezultatele lor. Dacă oricare dintre promisiunile date este respinsă, aceasta devine eroarea din `Promise.all`, iar toate celelalte rezultate sunt ignorate.
 2. `Promise.allSettled(promises)` (metodă adăugată recent) -- așteaptă ca toate promisiunile să se soluționeze și returnează rezultatele lor ca un array de obiecte cu:
@@ -320,4 +320,4 @@ Există 6 metode statice ale clasei `Promise`:
 5. `Promise.resolve(value)` -- realizează o promisiune resolved cu valoarea dată.
 6. `Promise.reject(error)` -- realizează o promisiune rejected cu eroarea dată.
 
-Dintre toate acestea, `Promise.all` este probabil cea mai frecventă în practică.
+Dintre toate acestea, `Promise.all` este probabil cea mai comună în practică.
