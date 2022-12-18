@@ -1,40 +1,40 @@
 # Promise API
 
-There are 6 static methods in the `Promise` class. We'll quickly cover their use cases here.
+Sunt 6 metode statice în clasa `Promise`. Vom acoperi rapid cazurile de utilizare a acestora aici.
 
 ## Promise.all
 
-Let's say we want many promises to execute in parallel and wait until all of them are ready.
+Să spunem că dorim ca mai multe promisiuni să se execute în paralel și să așteptăm până când toate sunt gata.
 
-For instance, download several URLs in parallel and process the content once they are all done.
+De exemplu, să descărcăm mai multe URL-uri în paralel și să procesăm conținutul odată ce toate sunt gata.
 
-That's what `Promise.all` is for.
+La asta servește `Promise.all`.
 
-The syntax is:
+Sintaxa este:
 
 ```js
 let promise = Promise.all(iterable);
 ```
 
-`Promise.all` takes an iterable (usually, an array of promises) and returns a new promise.
+`Promise.all` primește un iterabil (de obicei, un array de promisiuni) și returnează o nouă promisiune.
 
-The new promise resolves when all listed promises are resolved, and the array of their results becomes its result.
+Noua promisiune se rezolvă atunci când toate promisiunile listate sunt resolved, iar array-ul cu rezultate acestora devine rezultatul său.
 
-For instance, the `Promise.all` below settles after 3 seconds, and then its result is an array `[1, 2, 3]`:
+De exemplu, `Promise.all` de mai jos se soluționează după 3 secunde, iar rezultatul său este un array `[1, 2, 3]`:
 
 ```js run
 Promise.all([
   new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
   new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
   new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
-]).then(alert); // 1,2,3 when promises are ready: each promise contributes an array member
+]).then(alert); // 1,2,3 când promisiunile sunt gata: fiecare promisiune contribuie cu un membru în array
 ```
 
-Please note that the order of the resulting array members is the same as in its source promises. Even though the first promise takes the longest time to resolve, it's still first in the array of results.
+Vă rugăm să notați că ordinea membrilor array-ului rezultat este aceeași cu cea din promisiunile sursă. Chiar dacă prima promisiune ia cel mai mult timp să se rezolve, ea este totuși prima în lista de rezultate.
 
-A common trick is to map an array of job data into an array of promises, and then wrap that into `Promise.all`.
+Un truc obișnuit este de a mapa un array cu date de sarcini într-un array cu promisiuni și apoi a le împacheta în `Promise.all`.
 
-For instance, if we have an array of URLs, we can fetch them all like this:
+De exemplu, dacă avem un array de URL-uri, le putem prelua pe toate în felul următor:
 
 ```js run
 let urls = [
@@ -43,17 +43,17 @@ let urls = [
   'https://api.github.com/users/jeresig'
 ];
 
-// map every url to the promise of the fetch
+// mapează fiecare url la promisiunea lui fetch
 let requests = urls.map(url => fetch(url));
 
-// Promise.all waits until all jobs are resolved
+// Promise.all așteaptă până când toate sarcinile sunt resolved
 Promise.all(requests)
   .then(responses => responses.forEach(
     response => alert(`${response.url}: ${response.status}`)
   ));
 ```
 
-A bigger example with fetching user information for an array of GitHub users by their names (we could fetch an array of goods by their ids, the logic is identical):
+Un exemplu mai amplu cu preluarea informațiilor utilizatorilor pentru un array de utilizatori GitHub după numele lor (am putea prelua un array de bunuri după id-urile lor, logica este identică):
 
 ```js run
 let names = ['iliakan', 'remy', 'jeresig'];
@@ -62,47 +62,47 @@ let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
 
 Promise.all(requests)
   .then(responses => {
-    // all responses are resolved successfully
+    // toate răspunsurile sunt rezolvate cu succes
     for(let response of responses) {
-      alert(`${response.url}: ${response.status}`); // shows 200 for every url
+      alert(`${response.url}: ${response.status}`); // arată 200 pentru fiecare url
     }
 
     return responses;
   })
-  // map array of responses into an array of response.json() to read their content
+  // mapează array de răspunsuri într-un array de response.json() pentru a citi conținutul lor
   .then(responses => Promise.all(responses.map(r => r.json())))
-  // all JSON answers are parsed: "users" is the array of them
+  // toate răspunsurile JSON sunt parsate: "users" este array-ul lor
   .then(users => users.forEach(user => alert(user.name)));
 ```
 
-**If any of the promises is rejected, the promise returned by `Promise.all` immediately rejects with that error.**
+**Dacă oricare dintre promisiuni este respinsă, promisiunea returnată de `Promise.all` este respinsă imediat cu acea eroare.**
 
-For instance:
+De exemplu:
 
 ```js run
 Promise.all([
   new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
 *!*
-  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Uuups!")), 2000)),
 */!*
   new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
-]).catch(alert); // Error: Whoops!
+]).catch(alert); // Error: Uuups!
 ```
 
-Here the second promise rejects in two seconds. That leads to an immediate rejection of `Promise.all`, so `.catch` executes: the rejection error becomes the outcome of the entire `Promise.all`.
+Aici a doua promisiune este respinsă în două secunde. Asta duce la o respingere imediată a `Promise.all`, așa că se execută `.catch`: eroarea de respingere devine rezultatul întregii `Promise.all`.
 
-```warn header="In case of an error, other promises are ignored"
-If one promise rejects, `Promise.all` immediately rejects, completely forgetting about the other ones in the list. Their results are ignored.
+```warn header="În cazul unei erori, celelalte promisiuni sunt ignorate"
+Dacă o promisiune este respinsă, `Promise.all` se respinge imediat, uitând complet de celelalte din listă. Rezultatele acestora sunt ignorate.
 
-For example, if there are multiple `fetch` calls, like in the example above, and one fails, the others will still continue to execute, but `Promise.all` won't watch them anymore. They will probably settle, but their results will be ignored.
+De exemplu, dacă sunt mai multe apeluri `fetch`, ca în exemplul de mai sus, și unul eșuează, celelalte vor continua să se execute, dar `Promise.all` nu le va mai urmări. Probabil că se vor soluționa, dar rezultatele lor vor fi ignorate.
 
-`Promise.all` does nothing to cancel them, as there's no concept of "cancellation" in promises. In [another chapter](info:fetch-abort) we'll cover `AbortController` that can help with that, but it's not a part of the Promise API.
+`Promise.all` nu face nimic pentru a le anula, deoarece nu există conceptul de "anulare" în promisiuni. În [un alt capitol](info:fetch-abort) vom acoperi `AbortController` care poate ajuta cu asta, dar nu face parte din Promise API.
 ```
 
-````smart header="`Promise.all(iterable)` allows non-promise \"regular\" values in `iterable`"
-Normally, `Promise.all(...)` accepts an iterable (in most cases an array) of promises. But if any of those objects is not a promise, it's passed to the resulting array "as is".
+````smart header="`Promise.all(iterable)` permite valori non-promise \"regular\" în `iterable`"
+În mod normal, `Promise.all(...)` acceptă un iterabil (în cele mai multe cazuri un array) de promisiuni. Dar dacă unul dintre aceste obiecte nu este o promisiune, este trecut în array-ul rezultat "așa cum este".
 
-For instance, here the results are `[1, 2, 3]`:
+De exemplu, aici rezultatele sunt `[1, 2, 3]`:
 
 ```js run
 Promise.all([
@@ -114,31 +114,31 @@ Promise.all([
 ]).then(alert); // 1, 2, 3
 ```
 
-So we are able to pass ready values to `Promise.all` where convenient.
+Deci putem trece valori pregătite la `Promise.all` unde este convenabil.
 ````
 
 ## Promise.allSettled
 
 [recent browser="new"]
 
-`Promise.all` rejects as a whole if any promise rejects. That's good for "all or nothing" cases, when we need *all* results successful to proceed:
+`Promise.all` se respinge în întregime dacă orice promisiune este respinsă. Acest lucru este bun pentru cazurile "totul sau nimic", când avem nevoie de *toate* rezultatele pozitive pentru a continua:
 
 ```js
 Promise.all([
   fetch('/template.html'),
   fetch('/style.css'),
   fetch('/data.json')
-]).then(render); // render method needs results of all fetches
+]).then(render); // metoda de randare are nevoie de rezultatele tuturor preluărilor
 ```
 
-`Promise.allSettled` just waits for all promises to settle, regardless of the result. The resulting array has:
+`Promise.allSettled` așteaptă doar ca toate promisiunile să fie soluționate, indiferent de rezultat. Array-ul rezultat are:
 
-- `{status:"fulfilled", value:result}` for successful responses,
-- `{status:"rejected", reason:error}` for errors.
+- `{status: "fulfilled", value:result}` pentru răspunsurile reușite,
+- `{status: "rejected", reason:error}` pentru erori.
 
-For example, we'd like to fetch the information about multiple users. Even if one request fails, we're still interested in the others.
+De exemplu, ne-ar plăcea să preluăm informații despre utilizatori multipli. Chiar dacă o cerere eșuează, încă suntem interesați de celelalte.
 
-Let's use `Promise.allSettled`:
+Să folosim `Promise.allSettled`:
 
 ```js run
 let urls = [
@@ -160,7 +160,7 @@ Promise.allSettled(urls.map(url => fetch(url)))
   });
 ```
 
-The `results` in the line `(*)` above will be:
+Rezultatele `results` din linia `(*)` de mai sus vor fi:
 ```js
 [
   {status: 'fulfilled', value: ...response...},
@@ -169,11 +169,11 @@ The `results` in the line `(*)` above will be:
 ]
 ```
 
-So for each promise we get its status and `value/error`.
+Deci pentru fiecare promisiune obținem statusul ei și `valoarea/error`.
 
 ### Polyfill
 
-If the browser doesn't support `Promise.allSettled`, it's easy to polyfill:
+Dacă browserul nu acceptă `Promise.allSettled`, este ușor să facem polyfill:
 
 ```js
 if (!Promise.allSettled) {
@@ -188,91 +188,91 @@ if (!Promise.allSettled) {
 }
 ```
 
-In this code, `promises.map` takes input values, turns them into promises (just in case a non-promise was passed) with `p => Promise.resolve(p)`, and then adds `.then` handler to every one.
+În acest cod, `promises.map` ia valorile de intrare, le transformă în promisiuni (doar în cazul în care a fost trecută o non-promisiune) cu `p => Promise.resolve(p)` și apoi adaugă gestionarul `.then` la fiecare dintre ele.
 
-That handler turns a successful result `value` into `{status:'fulfilled', value}`, and an error `reason` into `{status:'rejected', reason}`. That's exactly the format of `Promise.allSettled`.
+Acel gestionar schimbă un rezultat de succes `value` în `{status:'fulfilled', value}`, iar o eroare `reason` în `{status:'rejected', reason}`. Acesta este exact formatul lui `Promise.allSettled`.
 
-Now we can use `Promise.allSettled` to get the results of *all* given promises, even if some of them reject.
+Acum putem folosi `Promise.allSettled` pentru a obține rezultatele pentru *toate* promisiunile date, chiar dacă unele dintre ele sunt respinse.
 
 ## Promise.race
 
-Similar to `Promise.all`, but waits only for the first settled promise and gets its result (or error).
+Similar cu `Promise.all`, dar așteaptă doar prima promisiune soluționată și obține rezultatul (sau eroarea) acesteia.
 
-The syntax is:
+Sintaxa este:
 
 ```js
 let promise = Promise.race(iterable);
 ```
 
-For instance, here the result will be `1`:
+De exemplu, aici rezultatul va fi `1`:
 
 ```js run
 Promise.race([
   new Promise((resolve, reject) => setTimeout(() => resolve(1), 1000)),
-  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 2000)),
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Uuups!")), 2000)),
   new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
 ]).then(alert); // 1
 ```
 
-The first promise here was fastest, so it became the result. After the first settled promise "wins the race", all further results/errors are ignored.
+Prima promisiune de aici a fost cea mai rapidă, așa că a devenit rezultatul. După ce prima promisiune soluționată "câștigă cursa", toate celelalte rezultate/erori sunt ignorate.
 
 
 ## Promise.any
 
-Similar to `Promise.race`, but waits only for the first fulfilled promise and gets its result. If all of the given promises are rejected, then the returned promise is rejected with [`AggregateError`](mdn:js/AggregateError) - a special error object that stores all promise errors in its `errors` property.
+Similar cu `Promise.race`, dar așteaptă doar prima promisiune fulfilled și obține rezultatul acesteia. Dacă toate promisiunile date sunt respinse, atunci promisiunea returnată este respinsă cu [`AggregateError`](mdn:js/AggregateError) - un obiect special de eroare care stochează toate erorile promisiunii în proprietatea sa `errors`.
 
-The syntax is:
+Sintaxa este:
 
 ```js
 let promise = Promise.any(iterable);
 ```
 
-For instance, here the result will be `1`:
+De exemplu, aici rezultatul va fi `1`:
 
 ```js run
 Promise.any([
-  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Whoops!")), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Uuups!")), 1000)),
   new Promise((resolve, reject) => setTimeout(() => resolve(1), 2000)),
   new Promise((resolve, reject) => setTimeout(() => resolve(3), 3000))
 ]).then(alert); // 1
 ```
 
-The first promise here was fastest, but it was rejected, so the second promise became the result. After the first fulfilled promise "wins the race", all further results are ignored.
+Prima promisiune de aici a fost cea mai rapidă, dar a fost respinsă, așa că a doua promisiune a devenit rezultatul. După ce prima promisiune fulfilled "câștigă cursa", toate rezultatele ulterioare sunt ignorate.
 
-Here's an example when all promises fail:
+Iată un exemplu când toate promisiunile eșuează:
 
 ```js run
 Promise.any([
-  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Ouch!")), 1000)),
-  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Error!")), 2000))
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Au!")), 1000)),
+  new Promise((resolve, reject) => setTimeout(() => reject(new Error("Eroare!")), 2000))
 ]).catch(error => {
   console.log(error.constructor.name); // AggregateError
-  console.log(error.errors[0]); // Error: Ouch!
-  console.log(error.errors[1]); // Error: Error
+  console.log(error.errors[0]); // Error: Au!
+  console.log(error.errors[1]); // Error: Eroare!
 });
 ```
 
-As you can see, error objects for failed promises are available in the `errors` property of the `AggregateError` object.
+După cum puteți vedea, obiectele de eroare pentru promisiunile eșuate sunt disponibile în proprietatea `errors` a obiectului `AggregateError`.
 
 ## Promise.resolve/reject
 
-Methods `Promise.resolve` and `Promise.reject` are rarely needed in modern code, because `async/await` syntax (we'll cover it [a bit later](info:async-await)) makes them somewhat obsolete.
+Metodele `Promise.resolve` și `Promise.reject` sunt rareori necesare în codul modern, deoarece sintaxa `async/await` (o vom acoperi [puțin mai târziu](info:async-await)) le face oarecum depășite.
 
-We cover them here for completeness and for those who can't use `async/await` for some reason.
+Le acoperim aici pentru completitudine și pentru cei care nu pot folosi `async/await` din anumite motive.
 
 ### Promise.resolve
 
-`Promise.resolve(value)` creates a resolved promise with the result `value`.
+`Promise.resolve(value)` creează o promisiune resolved cu rezultatul `value`.
 
-Same as:
+La fel ca și:
 
 ```js
 let promise = new Promise(resolve => resolve(value));
 ```
 
-The method is used for compatibility, when a function is expected to return a promise.
+Metoda este utilizată pentru compatibilitate, atunci când se așteaptă ca o funcție să returneze o promisiune.
 
-For example, the `loadCached` function below fetches a URL and remembers (caches) its content. For future calls with the same URL it immediately gets the previous content from cache, but uses `Promise.resolve` to make a promise of it, so the returned value is always a promise:
+De exemplu, funcția `loadCached` de mai jos preia un URL și îi reține (caches) conținutul. Pentru apelurile viitoare cu același URL aceasta obține imediat conținutul anterior din cache, dar folosește `Promise.resolve` pentru a face o promisiune din acesta, așa că valoarea returnată este întotdeauna o promisiune:
 
 ```js
 let cache = new Map();
@@ -293,31 +293,31 @@ function loadCached(url) {
 }
 ```
 
-We can write `loadCached(url).then(…)`, because the function is guaranteed to return a promise. We can always use `.then` after `loadCached`. That's the purpose of `Promise.resolve` in the line `(*)`.
+Putem scrie `loadCached(url).then(…)`, deoarece funcția este garantată să returneze o promisiune. Putem folosi întotdeauna `.then` după `loadCached`. Acesta este scopul lui `Promise.resolve` din linia `(*)`.
 
 ### Promise.reject
 
-`Promise.reject(error)` creates a rejected promise with `error`.
+`Promise.reject(error)` creează o promisiune respinsă cu `error`.
 
-Same as:
+La fel ca:
 
 ```js
 let promise = new Promise((resolve, reject) => reject(error));
 ```
 
-In practice, this method is almost never used.
+În practică, această metodă nu este aproape niciodată utilizată.
 
-## Summary
+## Sumar
 
-There are 6 static methods of `Promise` class:
+Sunt 6 metode statice ale clasei `Promise`:
 
-1. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, it becomes the error of `Promise.all`, and all other results are ignored.
-2. `Promise.allSettled(promises)` (recently added method) -- waits for all promises to settle and returns their results as an array of objects with:
-    - `status`: `"fulfilled"` or `"rejected"`
-    - `value` (if fulfilled) or `reason` (if rejected).
-3. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
-4. `Promise.any(promises)` (recently added method) -- waits for the first promise to fulfill, and its result becomes the outcome. If all of the given promises are rejected, [`AggregateError`](mdn:js/AggregateError) becomes the error of `Promise.any`.
-5. `Promise.resolve(value)` -- makes a resolved promise with the given value.
-6. `Promise.reject(error)` -- makes a rejected promise with the given error.
+1. `Promise.all(promises)` -- așteaptă ca toate promisiunile să se rezolve și returnează un array cu rezultatele lor. Dacă oricare dintre promisiunile date este respinsă, aceasta devine eroarea din `Promise.all`, iar toate celelalte rezultate sunt ignorate.
+2. `Promise.allSettled(promises)` (metodă adăugată recent) -- așteaptă ca toate promisiunile să se soluționeze și returnează rezultatele lor ca un array de obiecte cu:
+    - `status`: `"fulfilled"` sau `"rejected"`.
+    - `value` (dacă sunt fulfilled) sau `reason` (dacă sunt rejected).
+3. `Promise.race(promises)` -- așteaptă ca prima promisiune să se soluționeze, iar rezultatul/eroarea acesteia devine rezultatul.
+4. `Promise.any(promises)` (metodă adăugată recent) -- așteaptă ca prima promisiune să fie fulfilled, iar rezultatul acesteia devine rezultatul. Dacă toate promisiunile date sunt respinse, [`AggregateError`](mdn:js/AggregateError) devine eroarea din `Promise.any`.
+5. `Promise.resolve(value)` -- realizează o promisiune resolved cu valoarea dată.
+6. `Promise.reject(error)` -- realizează o promisiune rejected cu eroarea dată.
 
-Of all these, `Promise.all` is probably the most common in practice.
+Dintre toate acestea, `Promise.all` este probabil cea mai comună în practică.
