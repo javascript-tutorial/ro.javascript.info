@@ -1,4 +1,4 @@
-# Metoda modernă "use strict"
+# Modul modern, "use strict"
 
 Pentru o perioadă lungă de timp, JavaScript a evoluat fără probleme de compatibilitate. Noi caracteristici au fost adăugate limbajului, în timp ce vechile funcționalități nu s-au schimbat.
 
