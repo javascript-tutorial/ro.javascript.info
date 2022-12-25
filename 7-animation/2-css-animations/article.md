@@ -1,16 +1,16 @@
-# CSS-animations
+# Animații CSS
 
-CSS animations make it possible to do simple animations without JavaScript at all.
+Animațiile CSS fac posibilă realizarea unor animații simple fără JavaScript.
 
-JavaScript can be used to control CSS animations and make them even better, with little code.
+JavaScript poate fi folosit pentru a controla animațiile CSS și pentru a le face chiar mai bune, cu puțin cod.
 
-## CSS transitions [#css-transition]
+## Tranziții CSS [#css-transition]
 
-The idea of CSS transitions is simple. We describe a property and how its changes should be animated. When the property changes, the browser paints the animation.
+Ideea tranzițiilor CSS este simplă. Descriem o proprietate și modul în care modificările acesteia trebuie să fie animate. Când proprietatea se modifică, browserul pictează animația.
 
-That is, all we need is to change the property, and the fluid transition will be done by the browser.
+Adică, tot ce avem nevoie este să modificăm proprietatea, iar tranziția fluidă va fi realizată de browser.
 
-For instance, the CSS below animates changes of `background-color` for 3 seconds:
+De exemplu, CSS-ul de mai jos animează schimbările de `background-color` timp de 3 secunde:
 
 ```css
 .animated {
@@ -19,12 +19,12 @@ For instance, the CSS below animates changes of `background-color` for 3 seconds
 }
 ```
 
-Now if an element has `.animated` class, any change of `background-color` is animated during 3 seconds.
+Acum dacă un element are clasa `.animated`, orice schimbare a `background-color` este animată timp de 3 secunde.
 
-Click the button below to animate the background:
+Faceți clic pe butonul de mai jos pentru a anima fundalul:
 
 ```html run autorun height=60
-<button id="color">Click me</button>
+<button id="color">Apasă-mă</button>
 
 <style>
   #color {
@@ -40,16 +40,16 @@ Click the button below to animate the background:
 </script>
 ```
 
-There are 4 properties to describe CSS transitions:
+Sunt 4 proprietăți pentru a descrie tranzițiile CSS:
 
 - `transition-property`
 - `transition-duration`
 - `transition-timing-function`
 - `transition-delay`
 
-We'll cover them in a moment, for now let's note that the common `transition` property allows declaring them together in the order: `property duration timing-function delay`, as well as animating multiple properties at once.
+Le vom acoperi imediat, deocamdată să observăm că proprietatea comună `transition` permite declararea lor împreună în ordine: `proprietate durată temporizare-funcție întârziere`, precum și animarea mai multor proprietăți în același timp.
 
-For instance, this button animates both `color` and `font-size`:
+De exemplu, acest buton animează atât `color` cât și `font-size`:
 
 ```html run height=80 autorun no-beautify
 <button id="growing">Click me</button>
@@ -70,29 +70,29 @@ growing.onclick = function() {
 </script>
 ```
 
-Now, let's cover animation properties one by one.
+Acum, să acoperim proprietățile de animație una câte una.
 
-## transition-property
+## transition-propriety
 
-In `transition-property`, we write a list of properties to animate, for instance: `left`, `margin-left`, `height`, `color`. Or we could write `all`, which means "animate all properties".
+În `transition-property`, scriem o listă de proprietăți de animat, de exemplu: `left`, `margin-left`, `height`, `color`. Sau putem scrie `all`, ceea ce înseamnă "animă toate proprietățile".
 
-Do note that, there are properties which can not be animated. However, [most of the generally used properties are animatable](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties).
+Notați că, sunt proprietăți care nu pot fi animate. Cu toate acestea, [majoritatea proprietăților utilizate în general pot fi animate](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties).
 
 ## transition-duration
 
-In `transition-duration` we can specify how long the animation should take. The time should be in [CSS time format](https://www.w3.org/TR/css3-values/#time): in seconds `s` or milliseconds `ms`.
+În `transition-duration` putem specifica cât timp trebuie să dureze animația. Timpul trebuie să fie în [CSS time format](https://www.w3.org/TR/css3-values/#time): în secunde `s` sau milisecunde `ms`.
 
 ## transition-delay
 
-In `transition-delay` we can specify the delay *before* the animation. For instance, if `transition-delay` is `1s` and `transition-duration` is `2s`, then the animation starts 1 second after the property change and the total duration will be 2 seconds.
+În `transition-delay` putem specifica întârzierea *înainte* de animație. De exemplu, dacă `transition-delay` este `1s` și `transition-duration` este `2s`, atunci animația începe la 1 secundă după modificarea proprietății iar durata totală va fi de 2 secunde.
 
-Negative values are also possible. Then the animation is shown immediately, but the starting point of the animation will be after given value (time). For example, if `transition-delay` is `-1s` and `transition-duration` is `2s`, then animation starts from the halfway point and total duration will be 1 second.
+Sunt posibile și valori negative. Atunci animația este afișată imediat, dar punctul de pornire al animației va fi după valoarea dată (timpul). De exemplu, dacă `transition-delay` este `-1s` și `transition-duration` este `2s`, atunci animația începe de la jumătatea intervalului și durata totală va fi de 1 secundă.
 
-Here the animation shifts numbers from `0` to `9` using CSS `translate` property:
+Aici animația schimbă numerele din `0` în `9` folosind proprietatea CSS `translate`:
 
 [codetabs src="digits"]
 
-The `transform` property is animated like this:
+Proprietatea `transform` este animată astfel:
 
 ```css
 #stripe.animate {
