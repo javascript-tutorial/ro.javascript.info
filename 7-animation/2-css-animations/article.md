@@ -135,54 +135,54 @@ La început pare a fi cea mai complicată proprietate. Dar devine foarte simplă
 
 Această proprietate acceptă două tipuri de valori: o curbă Bezier sau pași. Să începem cu curba, deoarece este folosită mai des.
 
-### Bezier curve
+### Curba Bezier
 
-The timing function can be set as a [Bezier curve](/bezier-curve) with 4 control points that satisfy the conditions:
+Timing function poate fi setată ca o [curbă Bezier](/bezier-curbă) cu 4 puncte de control care satisfac condițiile:
 
-1. First control point: `(0,0)`.
-2. Last control point: `(1,1)`.
-3. For intermediate points, the values of `x` must be in the interval `0..1`, `y` can be anything.
+1. Primul punct de control: `(0,0)`.
+2. Ultimul punct de control: `(1,1)`.
+3. Pentru punctele intermediare, valorile lui `x` trebuie să fie în intervalul `0..1`, `y` poate fi orice.
 
-The syntax for a Bezier curve in CSS: `cubic-bezier(x2, y2, x3, y3)`. Here we need to specify only 2nd and 3rd control points, because the 1st one is fixed to `(0,0)` and the 4th one is `(1,1)`.
+Sintaxa pentru o curbă Bezier în CSS: `cubic-bezier(x2, y2, x3, y3)`. Aici trebuie să specificăm doar al 2-lea și al 3-lea punct de control, deoarece primul este fixat la `(0,0)` și al 4-lea este `(1,1)`.
 
-The timing function describes how fast the animation process goes.
+Timing function descrie cât de repede se desfășoară procesul de animație.
 
-- The `x` axis is the time: `0` -- the start, `1` -- the end of `transition-duration`.
-- The `y` axis specifies the completion of the process: `0` -- the starting value of the property, `1` -- the final value.
+- Axa `x` este timpul: `0` -- începutul, `1` -- sfârșitul `transition-duration`.
+- Axa `y` specifică finalizarea procesului: `0` -- valoarea inițială a proprietății, `1` -- valoarea finală.
 
-The simplest variant is when the animation goes uniformly, with the same linear speed. That can be specified by the curve `cubic-bezier(0, 0, 1, 1)`.
+Cea mai simplă variantă este atunci când animația merge uniform, cu aceeași viteză liniară. Aceasta poate fi specificată prin curba `cubic-bezier(0, 0, 1, 1)`.
 
-Here's how that curve looks:
+Iată cum arată această curbă:
 
 ![](bezier-linear.svg)
 
-...As we can see, it's just a straight line. As the time (`x`) passes, the completion (`y`) of the animation steadily goes from `0` to `1`.
+...După cum putem vedea, este doar o linie dreaptă. Pe măsură ce trece timpul (`x`), finalizarea animației (`y`) trece constant de la `0` la `1`.
 
-The train in the example below goes from left to right with the permanent speed (click it):
+Trenul din exemplul de mai jos merge de la stânga la dreapta cu viteză constantă (apară-l):
 
 [codetabs src="train-linear"]
 
-The CSS `transition` is based on that curve:
+CSS `transition` se bazează pe această curbă:
 
 ```css
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, 0, 1, 1);
-  /* click on a train sets left to 450px, thus triggering the animation */
+  /* click pe tren setează stânga la 450px, declanșând astfel animația */
 }
 ```
 
-...And how can we show a train slowing down?
+...Și cum putem arăta un tren care încetinește?
 
-We can use another Bezier curve: `cubic-bezier(0.0, 0.5, 0.5 ,1.0)`.
+Putem folosi o altă curbă Bezier: `cubic-bezier(0.0, 0.5, 0.5 ,1.0)`.
 
-The graph:
+Graficul:
 
 ![](train-curve.svg)
 
-As we can see, the process starts fast: the curve soars up high, and then slower and slower.
+După cum putem vedea, procesul începe rapid: curba se înalță foarte sus, apoi din ce în ce mai încet și mai încet.
 
-Here's the timing function in action (click the train):
+Iată timing function în acțiune (apăsați pe tren):
 
 [codetabs src="train"]
 
@@ -191,15 +191,15 @@ CSS:
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, .5, .5, 1);
-  /* click on a train sets left to 450px, thus triggering the animation */
+  /* click pe tren setează stânga la 450px, declanșând astfel animația */
 }
 ```
 
-There are several built-in curves: `linear`, `ease`, `ease-in`, `ease-out` and `ease-in-out`.
+Există mai multe curbe built-in: `linear`, `ease`, `ease-in`, `ease-out` și `ease-in-out`.
 
-The `linear` is a shorthand for `cubic-bezier(0, 0, 1, 1)` -- a straight line, which we described above.
+`linear` este o prescurtare pentru `cubic-bezier(0, 0, 0, 1, 1)` -- o linie dreaptă, pe care am descris-o mai sus.
 
-Other names are shorthands for the following `cubic-bezier`:
+Celelalte denumiri sunt prescurtări pentru următoarele `cubic-bezier`:
 
 | <code>ease</code><sup>*</sup> | <code>ease-in</code> | <code>ease-out</code> | <code>ease-in-out</code> |
 |-------------------------------|----------------------|-----------------------|--------------------------|
