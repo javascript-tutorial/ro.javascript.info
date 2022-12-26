@@ -102,25 +102,25 @@ Proprietatea `transform` este animată astfel:
 }
 ```
 
-In the example above JavaScript adds the class `.animate` to the element -- and the animation starts:
+În exemplul de mai sus JavaScript adaugă clasa `.animate` la element -- și animația începe:
 
 ```js
 stripe.classList.add('animate');
 ```
 
-We could also start it from somewhere in the middle of the transition, from an exact number, e.g. corresponding to the current second, using a negative `transition-delay`.
+Am putea de asemenea să o pornim de undeva de la mijlocul tranziției, de la un număr exact, e.g. corespunzănd secundei curente, folosind un `transition-delay` negativ.
 
-Here if you click the digit -- it starts the animation from the current second:
+Aici dacă faceți clic pe cifră -- va începe animația din secunda curentă:
 
 [codetabs src="digits-negative-delay"]
 
-JavaScript does it with an extra line:
+JavaScript face asta cu o linie suplimentară:
 
 ```js
 stripe.onclick = function() {
   let sec = new Date().getSeconds() % 10;
 *!*
-  // for instance, -3s here starts the animation from the 3rd second
+  // de exemplu, -3s aici pornește animația din a 3-a secundă
   stripe.style.transitionDelay = '-' + sec + 's';
 */!*
   stripe.classList.add('animate');
@@ -129,11 +129,11 @@ stripe.onclick = function() {
 
 ## transition-timing-function
 
-The timing function describes how the animation process is distributed along its timeline. Will it start slowly and then go fast, or vice versa.
+Timing function descrie cum procesul de animație este distribuit de-a lungul cronologiei sale. Va începe încet și apoi va merge repede, sau vice versa.
 
-It appears to be the most complicated property at first. But it becomes very simple if we devote a bit time to it.
+La început pare a fi cea mai complicată proprietate. Dar devine foarte simplă dacă îi devotăm puțin timp.
 
-That property accepts two kinds of values: a Bezier curve or steps. Let's start with the curve, as it's used more often.
+Această proprietate acceptă două tipuri de valori: o curbă Bezier sau pași. Să începem cu curba, deoarece este folosită mai des.
 
 ### Bezier curve
 
