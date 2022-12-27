@@ -206,62 +206,62 @@ Celelalte denumiri sunt prescurtări pentru următoarele `cubic-bezier`:
 | <code>(0.25, 0.1, 0.25, 1.0)</code> | <code>(0.42, 0, 1.0, 1.0)</code> | <code>(0, 0, 0.58, 1.0)</code> | <code>(0.42, 0, 0.58, 1.0)</code> |
 | ![ease, figure](ease.svg) | ![ease-in, figure](ease-in.svg) | ![ease-out, figure](ease-out.svg) | ![ease-in-out, figure](ease-in-out.svg) |
 
-`*` -- by default, if there's no timing function, `ease` is used.
+`*` -- în mod implicit, dacă nu există un timing function, se utilizează `ease`.
 
-So we could use `ease-out` for our slowing down train:
+Deci am putea folosi `ease-out` pentru trenul nostru care încetinește:
 
 ```css
 .train {
   left: 0;
   transition: left 5s ease-out;
-  /* same as transition: left 5s cubic-bezier(0, .5, .5, 1); */
+  /* la fel ca transition: left 5s cubic-bezier(0, .5, .5, 1); */
 }
 ```
 
-But it looks a bit differently.
+Dar arată puțin diferit.
 
-**A Bezier curve can make the animation exceed its range.**
+**O curbă Bezier poate face ca animația să-și depășească intervalul.**
 
-The control points on the curve can have any `y` coordinates: even negative or huge ones. Then the Bezier curve would also extend very low or high, making the animation go beyond its normal range.
+Punctele de control de pe curbă pot avea orice coordonate `y`: chiar și negative sau uriașe. Atunci curba Bezier se va extinde și ea foarte jos sau foarte sus, făcând ca animația să își depășească intervalul normal.
 
-In the example below the animation code is:
+În exemplul de mai jos codul animației este:
 
 ```css
 .train {
   left: 100px;
   transition: left 5s cubic-bezier(.5, -1, .5, 2);
-  /* click on a train sets left to 450px */
+  /* apăsând pe tren setează left la 450px */
 }
 ```
 
-The property `left` should animate from `100px` to `400px`.
+Proprietatea `left` ar trebui să fie animată de la `100px` la `400px`.
 
-But if you click the train, you'll see that:
+Dar dacă apăsați pe tren, veți vedea că:
 
-- First, the train goes *back*: `left` becomes less than `100px`.
-- Then it goes forward, a little bit farther than `400px`.
-- And then back again -- to `400px`.
+- În primul rând, trenul merge *înapoi*: `left` devine mai mic de `100px`.
+- Apoi merge înainte, puțin mai departe de `400px`.
+- Și după aceea iar înapoi -- la `400px`.
 
 [codetabs src="train-over"]
 
-Why it happens is pretty obvious if we look at the graph of the given Bezier curve:
+De ce se întâmplă acest lucru este destul de evident dacă ne uităm la graficul curbei Bezier dat:
 
 ![](bezier-train-over.svg)
 
-We moved the `y` coordinate of the 2nd point below zero, and for the 3rd point we made it over `1`, so the curve goes out of the "regular" quadrant. The `y` is out of the "standard" range `0..1`.
+Am mutat coordonata `y` a celui de-al doilea punct sub zero, iar pentru cel de-al treilea punct am făcut-o peste `1`, astfel încât curba iese din cadranul "obișnuit". `y` a ieșit din intervalul "standard" `0..1`.
 
-As we know, `y` measures "the completion of the animation process". The value `y = 0` corresponds to the starting property value and `y = 1` -- the ending value. So values `y<0` move the property beyond the starting `left` and `y>1` -- past the final `left`.
+După cum știm, `y` măsoară "finalizarea procesului de animație". Valoarea `y = 0` corespunde valorii de început a proprietății iar `y = 1` -- valorii finale. Deci valorile `y<0` mută proprietatea dincolo de începutul `left` și `y>1` -- peste `left` de final.
 
-That's a "soft" variant for sure. If we put `y` values like `-99` and `99` then the train would jump out of the range much more.
+Aceasta este cu siguranță o variantă "soft". Dacă am pune valori `y` ca `-99` și `99` atunci trenul ar sări mult mai mult din interval.
 
-But how do we make a Bezier curve for a specific task? There are many tools.
+Dar cum facem o curbă Bezier pentru o anumită sarcină? Există multe instrumente.
 
-- For instance, we can do it on the site <https://cubic-bezier.com>.
-- Browser developer tools also have special support for Bezier curves in CSS:
-    1. Open the developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
-    2. Select the `Elements` tab, then pay attention to the `Styles` sub-panel at the right side.
-    3. CSS properties with a word `cubic-bezier` will have an icon before this word.
-    4. Click this icon to edit the curve.
+- De exemplu, o putem face pe site-ul <https://cubic-bezier.com>.
+- Instrumentele de dezvoltare a browserului au, de asemenea, un suport special pentru curbele Bezier în CSS:
+    1. Deschideți uneltele dezvoltatorului cu `key:F12` (Mac: `key:Cmd+Opt+I`).
+    2. Selectați tab-ul `Elements`, apoi acordați atenție subpanoului `Styles` din partea dreaptă.
+    3. Proprietățile CSS care au cuvântul `cubic-bezier` vor avea o pictogramă înaintea acestui cuvânt.
+    4. Apăsați pe această pictogramă pentru a edita curba.
 
 
 ### Steps
