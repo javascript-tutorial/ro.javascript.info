@@ -266,15 +266,15 @@ Dar cum facem o curbă Bezier pentru o anumită sarcină? Există multe instrume
 
 ### Steps
 
-The timing function `steps(number of steps[, start/end])` allows splitting an transition into multiple steps.
+Timing function `steps(număr de pași[, start/end])` permite împărțirea unei tranziții în mai mulți pași.
 
-Let's see that in an example with digits.
+Să vedem acest lucru într-un exemplu cu cifre.
 
-Here's a list of digits, without any animations, just as a source:
+Iată o listă de cifre, fără nicio animație, doar ca sursă:
 
 [codetabs src="step-list"]
 
-In the HTML, a stripe of digits is enclosed into a fixed-length `<div id="digits">`:
+În HTML, o bandă de cifre este înglobată într-un `<div id="digits">` de lungime fixă:
 
 ```html
 <div id="digit">
@@ -282,13 +282,13 @@ In the HTML, a stripe of digits is enclosed into a fixed-length `<div id="digits
 </div>
 ```
 
-The `#digit` div has a fixed width and a border, so it looks like a red window.
+Div-ul `#digit` are o lățime fixă și o margine, astfel încât arată ca o fereastră roșie.
 
-We'll make a timer: the digits will appear one by one, in a discrete way.
+Vom face un cronometru: cifrele vor apărea una câte una, într-un mod discret.
 
-To achieve that, we'll hide the `#stripe` outside of `#digit` using `overflow: hidden`, and then shift the `#stripe` to the left step-by-step.
+Pentru a realiza asta, vom ascunde `#stripe` în afara lui `#digit` folosind `overflow: hidden`, apoi vom deplasa `#stripe` spre stânga pas cu pas.
 
-There will be 9 steps, a step-move for each digit:
+Vor fi 9 pași, câte un pas de deplasare pentru fiecare cifră:
 
 ```css
 #stripe.animate  {
@@ -297,48 +297,48 @@ There will be 9 steps, a step-move for each digit:
 }
 ```
 
-The first argument of `steps(9, start)` is the number of steps. The transform will be split into 9 parts (10% each). The time interval is automatically divided into 9 parts as well, so `transition: 9s` gives us 9 seconds for the whole animation – 1 second per digit.
+Primul argument din `steps(9, start)` este numărul de pași. Transform va fi împărțit în 9 părți (10% fiecare). Intervalul de timp este împărțit automat în 9 părți de asemenea, așa că `transition: 9s` ne oferă 9 secunde pentru întreaga animație – 1 secundă pentru fiecare cifră.
 
-The second argument is one of two words: `start` or `end`.
+Al doilea argument este unul dintre cele două cuvinte: `start` sau `end`.
 
-The `start` means that in the beginning of animation we need to make the first step immediately.
+`start` înseamnă că la începutul animației trebuie să facem imediat primul pas.
 
-In action:
+În acțiune:
 
 [codetabs src="step"]
 
-A click on the digit changes it to `1` (the first step) immediately, and then changes in the beginning of the next second.
+Un clic pe cifră o schimbă imediat în `1` (primul pas), iar apoi se schimbă la începutul secundei următoare.
 
-The process is progressing like this:
+Procesul evoluează astfel:
 
-- `0s` -- `-10%` (first change in the beginning of the 1st second, immediately)
+- `0s` -- `-10%` (prima schimbare la începutul primei secunde, imediat)
 - `1s` -- `-20%`
 - ...
 - `8s` -- `-90%`
-- (the last second shows the final value).
+- (în ultima secundă apare valoarea finală).
 
-Here, the first change was immediate because of `start` in the `steps`.
+Aici, prima schimbare a fost imediată din cauza `start` din `steps`.
 
-The alternative value `end` would mean that the change should be applied not in the beginning, but at the end of each second.
+Valoarea alternativă `end` ar însemna că modificarea ar trebui aplicată nu la început, ci la sfârșitul fiecărei secunde.
 
-So the process for `steps(9, end)` would go like this:
+Deci procesul pentru `steps(9, end)` ar merge așa:
 
-- `0s` -- `0` (during the first second nothing changes)
-- `1s` -- `-10%` (first change at the end of the 1st second)
+- `0s` -- `0` (în decursul primei secunde nu se schimbă nimic)
+- `1s` -- `-10%` (prima schimbare la sfârșitul primei secunde)
 - `2s` -- `-20%`
 - ...
 - `9s` -- `-90%`
 
-Here's `steps(9, end)` in action (note the pause before the first digit change):
+Iată `steps(9, end)` în acțiune (notați pauza de dinaintea schimbării primei cifre):
 
 [codetabs src="step-end"]
 
-There are also some pre-defined shorthands for `steps(...)`:
+Sunt de asemenea câteva prescurtări predefinite pentru `steps(...)`:
 
-- `step-start` -- is the same as `steps(1, start)`. That is, the animation starts immediately and takes 1 step. So it starts and finishes immediately, as if there were no animation.
-- `step-end` -- the same as `steps(1, end)`: make the animation in a single step at the end of `transition-duration`.
+- `step-start` -- este același lucru cu `steps(1, start)`. Adică, animația începe imediat și face 1 pas. Deci începe și se termină imediat, ca și cum nu ar exista nicio animație.
+- `step-end` -- la fel ca `steps(1, end)`: face animația într-un singur pas la sfârșitul `transition-duration`.
 
-These values are rarely used, as they represent not a real animation, but rather a single-step change. We mention them here for completeness.
+Aceste valori sunt rareori folosite, deoarece nu reprezintă o animație reală, ci mai degrabă o schimbare într-un singur pas. Le menționăm aici pentru completitudine.
 
 ## Event: "transitionend"
 
