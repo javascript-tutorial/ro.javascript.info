@@ -2,24 +2,39 @@ importance: 3
 
 ---
 
-# Check the login
+# Verifică login-ul
 
-Write the code which asks for a login with `prompt`.
+<<<<<<< Updated upstream
+Scrie un cod care cere ca și login `prompt`.
 
-If the visitor enters `"Admin"`, then `prompt` for a password, if the input is an empty line or `key:Esc` -- show "Canceled", if it's another string -- then show "I don't know you".
+Dacă vizitatorul scrie `"Admin"`, apoi `prompt` ca și parolă, daca input-ul este o linie goală sau `key:Esc` -- afișează "Canceled", dacă este alt string -- afișează "I don't know you".
+=======
+Scrie un cod care cere un login `prompt`.
 
-The password is checked as follows:
+Dacă vizitatorul scrie  `"Admin"`,apoi `prompt` ca și parolă, daca input-ul este o linie goală sau `key:Esc` -- afișează "Canceled", dacă este alt string -- afișează "I don't know you".
+>>>>>>> Stashed changes
 
-- If it equals "TheMaster", then show "Welcome!",
-- Another string -- show "Wrong password",
-- For an empty string or cancelled input, show "Canceled"
+În funcție de parolă afișează următoarele:
 
-The schema:
+- Dacă aceasta este egală cu "TheMaster", afișează "Welcome!",
+<<<<<<< Updated upstream
+- Dacă parola este egala cu alt text -- afișează "Wrong password",
+- Dacă parola este egală cu "" sau un input cancelat , afișează "Canceled"
+=======
+- Alt string -- afișează "Wrong password",
+- Pentru un string gol sau un input cancelat, afișează "Canceled".
+>>>>>>> Stashed changes
+
+Schema:
 
 ![](ifelse_task.svg)
 
-Please use nested `if` blocks. Mind the overall readability of the code.
+<<<<<<< Updated upstream
+Te rog să folosești nested `if` blocks. Este foarte importantă citirea cu ușurință a codului.
+=======
+Te rog să folosești nested `if` blocks. Aveți grijă la lizibilitatea generală a codului.
+>>>>>>> Stashed changes
 
-Hint:  passing an empty input to a prompt returns an empty string `''`. Pressing `key:ESC` during a prompt returns `null`.
+Hint: introducerea unui input gol intr-un prompt returnează `''`. Apăsând `key:ESC` în timpul unui prompt returnează `null`.
 
 [demo]

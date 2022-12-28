@@ -2,15 +2,20 @@ importance: 5
 
 ---
 
-# A question about "if"
+# O întrebare despre "if"
 
-Which of these `alert`s are going to execute?
+<<<<<<< Updated upstream
+Care dintre aceste alerte vor fi executate?
 
-What will the results of the expressions be inside `if(...)`?
+Care va fi rezultatul expresiei `if(...)`?
+=======
+Care dintre aceste `alert`e vor fi executate?
+
+Care vor fi rezultatele expresiilor înăuntrul lui `if(...)`?
+>>>>>>> Stashed changes
 
 ```js
-if (-1 || 0) alert( 'first' );
-if (-1 && 0) alert( 'second' );
-if (null || -1 && 1) alert( 'third' );
+if (-1 || 0) alert("first");
+if (-1 && 0) alert("second");
+if (null || (-1 && 1)) alert("third");
 ```
-

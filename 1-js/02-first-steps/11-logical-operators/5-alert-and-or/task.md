@@ -2,11 +2,16 @@ importance: 5
 
 ---
 
-# The result of OR AND OR
+<<<<<<< Updated upstream
+# Rezultatul OR ȘI AND
 
-What will the result be?
+Care va fi rezultatul?
+=======
+# Rezultatul OR AND OR
+
+Ce va produce codul de mai jos?
+>>>>>>> Stashed changes
 
 ```js
-alert( null || 2 && 3 || 4 );
+alert(null || (2 && 3) || 4);
 ```
-

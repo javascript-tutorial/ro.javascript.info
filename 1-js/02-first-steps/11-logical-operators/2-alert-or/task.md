@@ -2,11 +2,16 @@ importance: 3
 
 ---
 
-# What's the result of OR'ed alerts?
+# Care este rezultatul alertei OR?
+<<<<<<< Updated upstream
 
-What will the code below output?
+Ce va returna codul de mai jos?
+=======
+
+Ce va produce codul de mai jos?
+
+>>>>>>> Stashed changes
 
 ```js
-alert( alert(1) || 2 || alert(3) );
+alert(alert(1) || 2 || alert(3));
 ```
-

@@ -1,6 +1,9 @@
-The answer: `null`, because it's the first falsy value from the list.
+<<<<<<< Updated upstream
+Răspunsul: `null`, deoarece este prima valoare falsă din lista.
+=======
+Răspuns: `null`, deoarece este prima valoare falsy din listă.
+>>>>>>> Stashed changes
 
 ```js run
-alert( 1 && null && 2 );
+alert(1 && null && 2);
 ```
-

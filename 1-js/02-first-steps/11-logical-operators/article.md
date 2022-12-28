@@ -1,47 +1,77 @@
-# Logical operators
+# Operatorii logici
 
-There are four logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT), `??` (Nullish Coalescing). Here we cover the first three, the `??` operator is in the next article.
+<<<<<<< Updated upstream
+Există 4 operatori logici în JavaScript: `||` (OR), `&&` (AND), `!` (NOT), `??` (Nullish Coalescing). În acest articol vom vorbi despre primii trei, urmând ca de `??` să discutăm în următorul articol.
+=======
+Există 4 operatori logici în JavaScript: `||` (OR), `&&` (AND), `!` (NOT), `??` (Nullish Coalescing).  În acest articol vom vorbi despre primii trei, urmând ca de `??` ă discutăm în următorul articol.
+>>>>>>> Stashed changes
 
-Although they are called "logical", they can be applied to values of any type, not only boolean. Their result can also be of any type.
+Deși sunt numiți "logici", pot fi folosiți cu valori de orice tip, nu numai de tip boolean. De asemenea, rezultatul lor poate fi de orice tip.
 
-Let's see the details.
+Să intrăm mai în detaliu.
 
 ## || (OR)
 
-The "OR" operator is represented with two vertical line symbols:
+Operatorul "OR" este reprezentat de două linii verticale.
 
 ```js
 result = a || b;
 ```
 
-In classical programming, the logical OR is meant to manipulate boolean values only. If any of its arguments are `true`, it returns `true`, otherwise it returns `false`.
+<<<<<<< Updated upstream
+În programarea clasică, OR este menit să manipuleze doar valorile de tip boolean. Dacă unul dintre argumentele sale este `true`, atunci va returna `true`, altfel va returna `false`.
 
-In JavaScript, the operator is a little bit trickier and more powerful. But first, let's see what happens with boolean values.
+În JavaScript, acest operatorul este mult mai puternic. Dar pentru început , să vedem ce se întamplă cu valorile de tip boolean.
+=======
+n programarea clasică, OR este menit să manipuleze doar valorile de tip boolean. Dacă unul dintre argumentele sale este `true`, atunci va returna `true`, altfel va returna `false`.
 
-There are four possible logical combinations:
+În JavaScript, acest operator este mult mai puternic. Dar pentru început , să vedem ce se întamplă cu valorile de tip boolean.
+>>>>>>> Stashed changes
+
+Există patru posibile combinații logice:
 
 ```js run
-alert( true || true );   // true
-alert( false || true );  // true
-alert( true || false );  // true
-alert( false || false ); // false
+<<<<<<< Updated upstream
+alert(true || true); // adevărat
+alert(false || true); // adevărat
+alert(true || false); // adevărat
+alert(false || false); // fals
 ```
 
-As we can see, the result is always `true` except for the case when both operands are `false`.
+După cum putem vedea, rezultatul este mereu `true` cu excepția cazului în care ambii operatori vor fi `false`.
+=======
+alert( true || true );   // adevărat
+alert( false || true );  // adevărat
+alert( true || false );  // adevărat
+alert( false || false ); // fals
+```
 
-If an operand is not a boolean, it's converted to a boolean for the evaluation.
+După cum putem vedea, rezultatul este mereu  `true` u excepția cazului în care ambii operatori vor fi  `false`.
+>>>>>>> Stashed changes
 
-For instance, the number `1` is treated as `true`, the number `0` as `false`:
+Dacă un operator nu este de tip boolean, va fi convertit mai întâi în tipul boolean pentru a fi evaluat.
+
+De exemplu, numărul `1` este considerat ca fiind `true`, iar numarul `0` ca fiind `false`:
 
 ```js run
-if (1 || 0) { // works just like if( true || false )
+<<<<<<< Updated upstream
+if (1 || 0) {
+	// works just like if( true || false )
+	alert("truthy!");
+}
+```
+
+De cele mai multe ori , OR `||` este folosit în afirmațiile `if` pentru a testa dacă oricare dintre condițiile date sunt `true`.
+=======
+if (1 || 0) { // funcționează exact ca if( true || false )
   alert( 'truthy!' );
 }
 ```
 
-Most of the time, OR `||` is used in an `if` statement to test if *any* of the given conditions is `true`.
+De cele mai multe ori , OR  `||` este folosit în afirmațiile `if` pentru a testa dacă oricare dintre condițiile date sunt `true`.
+>>>>>>> Stashed changes
 
-For example:
+De exemplu:
 
 ```js run
 let hour = 9;
@@ -53,180 +83,293 @@ if (hour < 10 || hour > 18) {
 }
 ```
 
-We can pass more conditions:
+Putem să îî dam și mai multe condiții:
 
 ```js run
 let hour = 12;
 let isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'The office is closed.' ); // it is the weekend
+	alert("The office is closed."); // pentru că este weekend
 }
 ```
 
-## OR "||" finds the first truthy value [#or-finds-the-first-truthy-value]
+<<<<<<< Updated upstream
+## OR "||" găsește prima valoare adevărată [#or-finds-the-first-truthy-value]
+=======
+##OR "||" găsește prima valoare adevărată[#or-finds-the-first-truthy-value]
+>>>>>>> Stashed changes
 
-The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
+Logica explicată mai sus este ceva clasic. Acum, să trecem la caracteristicele mai "extra" ale JavaScript.
 
-The extended algorithm works as follows.
+Algoritmul extins funcționează după cum urmează.
 
-Given multiple OR'ed values:
+Dacă se compară mai multe valori cu ajutorul OR:
 
 ```js
 result = value1 || value2 || value3;
 ```
 
-The OR `||` operator does the following:
+<<<<<<< Updated upstream
+Operatoul OR `||` face următoarele:
 
-- Evaluates operands from left to right.
-- For each operand, converts it to boolean. If the result is `true`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were `false`), returns the last operand.
+- Evaluează operatorii de la stânga la dreapta.
+- Modifică fiecare operator în cel de tip boolean. Dacă rezultatul este `true`, se oprește și returnează valoarea originală a operatorului .
+- Dacă toți operatorii au fost evaluați(i.e. toți sunt `false`), va fi returnat ultimul operator.
+=======
+Operatoul OR`||` face următoarele:
 
-A value is returned in its original form, without the conversion.
+- Evaluează operatorii de la stânga la dreapta.
+- Modifică fiecare operator în cel de tip boolean. Dacă rezultatul este `true`, se oprește și returnează valoarea originală a operatorului .
+- Dacă toți operatorii au fost evaluați (i.e. toți sunt `false`), va fi returnat ultimul operator.
+>>>>>>> Stashed changes
 
-In other words, a chain of OR `||` returns the first truthy value or the last one if no truthy value is found.
+O valoare va fi returnată în forma sa originală, fără conversie.
+Cu alte cuvinte, o expresie care conține OR `||` returnează prima valoare adevarată sau ultima valoare dacă nu a fost gasită nici o valoare adevarată.
 
-For instance:
+<<<<<<< Updated upstream
+De exemplu:
 
 ```js run
-alert( 1 || 0 ); // 1 (1 is truthy)
+alert(1 || 0); // 1 (1 este adevărat)
 
-alert( null || 1 ); // 1 (1 is the first truthy value)
-alert( null || 0 || 1 ); // 1 (the first truthy value)
+alert(null || 1); // 1 (1 este prima valoare adevărată)
+alert(null || 0 || 1); // 1 (prima valoare adevărată)
 
-alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+alert(undefined || null || 0); // 0 (toate false, returnează ultima valoare)
+=======
+O valoare va fi returnată în forma sa originală, fără conversie. Cu alte cuvinte, o expresie care conține OR `||`  returnează prima valoare adevarată sau ultima valoare dacă nu a fost gasită nici o valoare adevarată.
+
+De exemplu:
+
+```js run
+alert( 1 || 0 ); // 1 (1 este truthy)
+
+alert( null || 1 ); // 1 (1 este prima valoare truthy)
+alert( null || 0 || 1 ); // 1 (prima valoare truthy)
+
+alert( undefined || null || 0 ); // 0 (toate falsy, returnează ultima valoare)
+>>>>>>> Stashed changes
 ```
 
-This leads to some interesting usage compared to a "pure, classical, boolean-only OR".
+Comparând cu "pure, classical, boolean-only OR", aceasta deține o funcționalitate mai mare.
 
-1. **Getting the first truthy value from a list of variables or expressions.**
+<<<<<<< Updated upstream
+1. **Obținerea primei valori adevărate dintr-o listă de variabile sau dintr-o expresie**
 
-    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
+   De exemplu, avem următoarele variabile `firstName`, `lastName` și `nickName`, toate opționale (i.e. pot fi undefined sau pot avea valori false).
 
-    Let's use OR `||` to choose the one that has the data and show it (or `"Anonymous"` if nothing set):
+   Vom folosi OR `||` pentru a o alege și arăta pe cea care este definită. (sau `"Anonymous"` daca nu este nici una definită):
+=======
 
-    ```js run
-    let firstName = "";
-    let lastName = "";
-    let nickName = "SuperCoder";
+1. **Obținerea primei valori adevărate dintr-o listă de variabile sau dintr-o expresie**
 
-    *!*
-    alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
-    */!*
-    ```
+    De exemplu, avem următoarele variabile `firstName`, `lastName` și `nickName` toate opționale (i.e. pot fi undefined sau pot avea valori falsy).
 
-    If all variables were falsy, `"Anonymous"` would show up.
+    Vom folosi OR `||` entru a o alege și arăta pe cea care este definită. (sau `"Anonymous"` daca nu este nici una definită):
+>>>>>>> Stashed changes
+
+   ```js run
+   let firstName = "";
+   let lastName = "";
+   let nickName = "SuperCoder";
+
+   *!*
+   alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
+   */!*
+   ```
+
+<<<<<<< Updated upstream
+   Dacă toate variabilele sunt false, atunci `"Anonymous"` va apărea.
 
 2. **Short-circuit evaluation.**
 
-    Another feature of OR `||` operator is the so-called "short-circuit" evaluation.
+   O altă utilizare a operatorului OR `||` este așa numita evaluare "short-circuit".
 
-    It means that `||` processes its arguments until the first truthy value is reached, and then the value is returned immediately, without even touching the other argument.
+   Aceasta înseamnă ca `||` procesează toate argumentele pâna ce găsește prima valoare adevărată, aceasta fiind returnată imediat.
 
-    The importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
+   Această utilizare devine importantă daca un operator nu este doar o valoare, ci o expresie cu efect secundar, cum ar fi atribuirea variabilelor sau chemarea unei funcții.
 
-    In the example below, only the second message is printed:
+   În exemplul de mai jos, va fi printat cel de al doilea mesaj:
+=======
+    Dacă toate variabilele sunt falsy, atunci `"Anonymous"` va apărea.
 
-    ```js run no-beautify
-    *!*true*/!* || alert("not printed");
-    *!*false*/!* || alert("printed");
-    ```
+2. **Short-circuit evaluation.**
 
-    In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
+    O altă utilizare a operatorului OR  `||`  este așa numita evaluare "short-circuit".
 
-    Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
+    Aceasta înseamnă ca `||` procesează toate argumentele pâna ce găsește prima valoare adevărată, aceasta fiind returnată imediat.
+
+    Această utilizare devine importantă daca un operator nu este doar o valoare, ci o expresie cu efect secundar, cum ar fi atribuirea variabilelor sau chemarea unei funcții.
+
+    În exemplul de mai jos, va fi printat cel de al doilea mesaj:
+>>>>>>> Stashed changes
+
+   ```js run no-beautify
+   *!*true*/!* || alert("not printed");
+   *!*false*/!* || alert("printed");
+   ```
+
+<<<<<<< Updated upstream
+   în prima line , operatorul OR `||` oprește evaluarea imediat cum vede `true`, `alert` nu va rula.
+
+   Uneori, oamenii folosesc această utilitate pentru a executa comenzi doar dacă condiția din stângă este falsă.
+=======
+   în prima line , operatorul OR  `||` oprește evaluarea imediat cum vede `true`, `alert`nu va rula.
+
+   Uneori, oamenii folosesc această utilitate pentru a executa comenzi doar dacă condiția din stângă este falsy.
+>>>>>>> Stashed changes
 
 ## && (AND)
 
-The AND operator is represented with two ampersands `&&`:
+Operatorul AND operator este reprezentat de două ampersands `&&`:
 
 ```js
 result = a && b;
 ```
 
-In classical programming, AND returns `true` if both operands are truthy and `false` otherwise:
+<<<<<<< Updated upstream
+În programarea clasică, AND returnează `true` dacă ambii operatori sunt adevărați și `false` dacă nu sunt:
+=======
+În programarea clasică, AND returnează `true` dacă ambii operatori sunt adevărați și  `false` dacă nu sunt:
+>>>>>>> Stashed changes
 
 ```js run
-alert( true && true );   // true
-alert( false && true );  // false
-alert( true && false );  // false
-alert( false && false ); // false
+alert(true && true); // adevărat
+alert(false && true); // fals
+alert(true && false); // fals
+alert(false && false); // fals
 ```
 
-An example with `if`:
+Un exemplu cu `if`:
 
 ```js run
 let hour = 12;
 let minute = 30;
 
 if (hour == 12 && minute == 30) {
-  alert( 'The time is 12:30' );
+	alert("The time is 12:30");
 }
 ```
 
-Just as with OR, any value is allowed as an operand of AND:
+La fel ca și la operatorul OR, orice valoare este acceptată:
 
 ```js run
-if (1 && 0) { // evaluated as true && false
+<<<<<<< Updated upstream
+if (1 && 0) {
+	// evaluată ca și true && false
+	alert("won't work, because the result is falsy");
+=======
+if (1 && 0) { // evaluată ca  true && false
   alert( "won't work, because the result is falsy" );
+>>>>>>> Stashed changes
 }
 ```
 
+## AND "&&" găsește prima valoare falsă
 
-## AND "&&" finds the first falsy value
+<<<<<<< Updated upstream
+=======
+## AND "&&" găsește prima valoare falsy
 
-Given multiple AND'ed values:
+>>>>>>> Stashed changes
+Dacă avem mai multe valori:
 
 ```js
 result = value1 && value2 && value3;
 ```
 
-The AND `&&` operator does the following:
+<<<<<<< Updated upstream
+Operatorul AND `&&` face următoarele:
 
-- Evaluates operands from left to right.
-- For each operand, converts it to a boolean. If the result is `false`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were truthy), returns the last operand.
+- Evaluează operatorii de la stânga la dreapta.
+- Convertește fiecare operator în unul de tipul boolean. Dacă rezultatul este `false`, se oprește și returnează valoarea originală a operatorului.
+- Dacă toți operatorii au fost evaluați (i.e. toți sunt adevărați), va fi returnat ultimul operator.
 
-In other words, AND returns the first falsy value or the last value if none were found.
+Cu alte cuvinte, AND returnează prima valoare falsă sau ultima valoare dacă nu a fost găsita nici una falsă.
 
-The rules above are similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
+Regulile sunt asemănătoare cu cele de la OR. Diferența o face faptul că AND returnează prima valoare _falsy_ pe când OR returnează prima valoare _truthy_.
+=======
+Operatorul AND `&&` face următoarele:  
 
-Examples:
+- Evaluează operatorii de la stânga la dreapta.
+- Convertește fiecare operator în unul de tipul boolean. Dacă rezultatul este`false`,se oprește și returnează valoarea originală a operatorului.
+-Dacă toți operatorii au fost evaluați (i.e. toți sunt truthy), va fi returnat ultimul operator.
+
+Cu alte cuvinte, AND returnează prima valoare falsă sau ultima valoare dacă nu a fost găsita nici una falsă.
+
+Regulile sunt asemănătoare cu cele de la OR. Diferența o face faptul că AND returnează prima valoare *falsy* pe când OR returnează prima valoare *truthy*.
+>>>>>>> Stashed changes
+
+Exemple:
 
 ```js run
-// if the first operand is truthy,
-// AND returns the second operand:
+<<<<<<< Updated upstream
+// dacă primul operator este adevărat,
+// AND returnează al doilea operator:
+alert(1 && 0); // 0
+alert(1 && 5); // 5
+
+// dacă primul operator este fals,
+// AND îl returnează. Al doilea operator este ignorat
+alert(null && 5); // null
+alert(0 && "no matter what"); // 0
+```
+
+Dacă avem mai multe valori într-un șir, va fi returnată prima valoare falsă.
+=======
+// dacă primul operator este truthy,
+// AND returnează al doilea operator:
 alert( 1 && 0 ); // 0
 alert( 1 && 5 ); // 5
 
-// if the first operand is falsy,
-// AND returns it. The second operand is ignored
+// dacă primul operator este falsy,
+// AND îl returnează. Al doilea operator este ignorat
 alert( null && 5 ); // null
 alert( 0 && "no matter what" ); // 0
 ```
 
-We can also pass several values in a row. See how the first falsy one is returned:
+Dacă avem mai multe valori într-un șir, va fi returnată prima valoare falsy.
+>>>>>>> Stashed changes
 
 ```js run
-alert( 1 && 2 && null && 3 ); // null
+alert(1 && 2 && null && 3); // null
 ```
 
-When all values are truthy, the last value is returned:
+<<<<<<< Updated upstream
+Când toate valorile sunt adevărate, va fi returnată ultima valoare.
 
 ```js run
-alert( 1 && 2 && 3 ); // 3, the last one
+alert(1 && 2 && 3); // 3, ultimul
 ```
 
-````smart header="Precedence of AND `&&` is higher than OR `||`"
-The precedence of AND `&&` operator is higher than OR `||`.
+````smart header="Prioritatea lui `&&`este mai mare față de OR`||`" Operatorul AND `&&`are prioritate mai mare față de operatorul OR`||`.
 
-So the code `a && b || c && d` is essentially the same as if the `&&` expressions were in parentheses: `(a && b) || (c && d)`.
+Codul `a && b || c && d` este același chiar dacă expresiile `&&` ar fi în paranteză: `(a && b) || (c && d)`.
+
+`````
+
+````warn header="Nu înlocui `if` cu `||` sau `&&`"
+Uneori, oamenii folosesc operatorul AND `&&` ca o prescurtare de a scrie `if`.
+
+=======
+Când toate valorile sunt truthy, va fi returnată ultima valoare.
+
+```js run
+alert( 1 && 2 && 3 ); // 3, ultimul
+```
+
+````smart header="Precedence `&&` este mai mare decât OR `||`"
+ Operatorul AND `&&` are precedence mai mare față de OR `||`.
+
+Codul  `a && b || c && d`  este același chiar dacă expresiile `&&` ar fi în paranteză: `(a && b) || (c && d)`.
 ````
 
-````warn header="Don't replace `if` with `||` or `&&`"
-Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
+````warn header="Nu înlocui `if` cu `||` sau `&&`"
+Uneori, oamenii folosesc operatorul AND `&&` ca o prescurtare de a scrie `if`.
 
-For instance:
+>>>>>>> Stashed changes
+De exemplu:
 
 ```js run
 let x = 1;
@@ -234,9 +377,9 @@ let x = 1;
 (x > 0) && alert( 'Greater than zero!' );
 ```
 
-The action in the right part of `&&` would execute only if the evaluation reaches it. That is, only if `(x > 0)` is true.
+Acțiunea din partea dreaptă a operatorului `&&` va fi executată doar dacă evaluarea va ajunge în acel punct. Doar dacă, if `(x > 0)` este adevărat.
 
-So we basically have an analogue for:
+Practic, avem o analogie pentru:
 
 ```js run
 let x = 1;
@@ -244,46 +387,62 @@ let x = 1;
 if (x > 0) alert( 'Greater than zero!' );
 ```
 
-Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want `if` and use `&&` if we want AND.
+Deși , varianta cu `&&` ar fi mai scurtă , `if`  este mult mai evident și mai ușor de citit. Așa că noi recomandăm să folosiți fiecare pentru scopul său `if` dacă vrem `if` și `&&` dacă dorim AND.
+<<<<<<< Updated upstream
+`````
+
+## ! (NOT)
+
+Operatorul boolean NOT este reprezentat de semnul exclamării `!`.
+=======
 ````
 
 
 ## ! (NOT)
 
-The boolean NOT operator is represented with an exclamation sign `!`.
+Operatorul boolean NOT este reprezentat de semnul exclamării  `!`.
+>>>>>>> Stashed changes
 
-The syntax is pretty simple:
+Sintaxa este destul de simplă:
 
 ```js
 result = !value;
 ```
 
-The operator accepts a single argument and does the following:
+Operatorul acceptă doar un singur argument și face următoarele:
 
-1. Converts the operand to boolean type: `true/false`.
-2. Returns the inverse value.
+1. Convertește operatorul în tipul: `true/false`.
+2. Returnează valoarea inversă.
 
-For instance:
-
-```js run
-alert( !true ); // false
-alert( !0 ); // true
-```
-
-A double NOT `!!` is sometimes used for converting a value to boolean type:
+De exemplu:
 
 ```js run
-alert( !!"non-empty string" ); // true
-alert( !!null ); // false
+alert(!true); // fals
+alert(!0); // adevărat
 ```
 
-That is, the first NOT converts the value to boolean and returns the inverse, and the second NOT inverses it again. In the end, we have a plain value-to-boolean conversion.
-
-There's a little more verbose way to do the same thing -- a built-in `Boolean` function:
+Dublu NOT `!!` este folosit uneori pentru a converti o valoare în una de tip boolean:
 
 ```js run
-alert( Boolean("non-empty string") ); // true
-alert( Boolean(null) ); // false
+alert(!!"non-empty string"); // adevărat
+alert(!!null); // fals
 ```
 
-The precedence of NOT `!` is the highest of all logical operators, so it always executes first, before `&&` or `||`.
+Primul NOT convertește valoarea în tipul boolean și returnează valoarea inversă, iar cel de al doilea NOT o inversează din nou. La final, avem value-to-boolean conversion.
+
+<<<<<<< Updated upstream
+Există o metodă mai indirectă pentru a face același lucru-- a built-in `Boolean` function:
+=======
+xistă o metodă mai indirectă pentru a face același lucru-- a built-in `Boolean` function:
+>>>>>>> Stashed changes
+
+```js run
+alert(Boolean("non-empty string")); // adevărat
+alert(Boolean(null)); // fals
+```
+
+<<<<<<< Updated upstream
+Prioritatea lui `!` este mai mare decât a celorlalți operatori logici, deci va fi întotdeauna executată prima, înainte de `&&` sau `||`.
+=======
+ Precedența lui NOT `!` este cea mai mare dintre toți operatorii logici, deci întotdeauna se va executa prima, înainte de  `&&` și `||`.
+>>>>>>> Stashed changes

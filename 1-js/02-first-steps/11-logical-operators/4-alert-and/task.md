@@ -2,11 +2,16 @@ importance: 3
 
 ---
 
-# What is the result of AND'ed alerts?
+<<<<<<< Updated upstream
+# Care este rezultatul alertelor SAU?
 
-What will this code show?
+Ce va returna codul de mai jos?
+=======
+#  Care este rezultatul alertelor AND-uite?
+
+Ce va produce codul de mai jos?
+>>>>>>> Stashed changes
 
 ```js
-alert( alert(1) && alert(2) );
+alert(alert(1) && alert(2));
 ```
-

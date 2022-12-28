@@ -2,11 +2,15 @@ importance: 5
 
 ---
 
-# What's the result of OR?
+# Care este rezultatul operatorului OR?
 
-What is the code below going to output?
+<<<<<<< Updated upstream
+Ce va returna codul de mai jos?
+=======
+
+Ce va produce codul de mai jos?
+>>>>>>> Stashed changes
 
 ```js
-alert( null || 2 || undefined );
+alert(null || 2 || undefined);
 ```
-
