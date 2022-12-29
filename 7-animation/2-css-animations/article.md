@@ -342,15 +342,15 @@ Aceste valori sunt rareori folosite, deoarece nu reprezintă o animație reală,
 
 ## Event: "transitionend"
 
-When the CSS animation finishes, the `transitionend` event triggers.
+Când animația CSS se termină, se declanșează evenimentul `transitionend`.
 
-It is widely used to do an action after the animation is done. Also we can join animations.
+Acesta este utilizat pe scară largă pentru a efectua o acțiune după terminarea animației. De asemenea putem uni animațiile.
 
-For instance, the ship in the example below starts to sail there and back when clicked, each time farther and farther to the right:
+De exemplu, nava din exemplul de mai jos începe să navigheze încolo și înapoi atunci când se face clic, de fiecare dată tot mai departe spre dreapta:
 
 [iframe src="boat" height=300 edit link]
 
-The animation is initiated by the function `go` that re-runs each time the transition finishes, and flips the direction:
+Animația este inițiată de funcția `go` care se reia de fiecare dată când se termină tranziția, și inversează direcția:
 
 ```js
 boat.onclick = function() {
@@ -359,11 +359,11 @@ boat.onclick = function() {
 
   function go() {
     if (times % 2) {
-      // sail to the right
+      // navighează la dreapta
       boat.classList.remove('back');
       boat.style.marginLeft = 100 * times + 200 + 'px';
     } else {
-      // sail to the left
+      // navighează la stânga
       boat.classList.add('back');
       boat.style.marginLeft = 100 * times - 200 + 'px';
     }
@@ -379,40 +379,40 @@ boat.onclick = function() {
 };
 ```
 
-The event object for `transitionend` has a few specific properties:
+Obiectul de eveniment pentru `transitionend` are câteva proprietăți specifice:
 
 `event.propertyName`
-: The property that has finished animating. Can be good if we animate multiple properties simultaneously.
+: Proprietatea a cărei animație s-a încheiat. Poate fi bună dacă animăm mai multe proprietăți simultan.
 
 `event.elapsedTime`
-: The time (in seconds) that the animation took, without `transition-delay`.
+: Timpul (în secunde) cât a durat animația, fără `transition-delay`.
 
 ## Keyframes
 
-We can join multiple simple animations together using the `@keyframes` CSS rule.
+Putem uni mai multe animații simple împreună folosind regula CSS `@keyframes`.
 
-It specifies the "name" of the animation and rules - what, when and where to animate. Then using the `animation` property, we can attach the animation to the element and specify additional parameters for it.
+Aceasta specifică "numele" animației și regulile - ce, când și unde să se anime. Apoi folosind proprietatea `animation`, putem atașa animația la element și specifica parametri adiționali pentru aceasta.
 
-Here's an example with explanations:
+Iată un exemplu cu explicații:
 
 ```html run height=60 autorun="no-epub" no-beautify
 <div class="progress"></div>
 
 <style>
 *!*
-  @keyframes go-left-right {        /* give it a name: "go-left-right" */
-    from { left: 0px; }             /* animate from left: 0px */
-    to { left: calc(100% - 50px); } /* animate to left: 100%-50px */
+  @keyframes go-left-right {        /* dați-i un nume: "go-left-right" */
+    from { left: 0px; }             /* animați din stânga: 0px */
+    to { left: calc(100% - 50px); } /* animați spre stânga: 100%-50px */
   }
 */!*
 
   .progress {
 *!*
     animation: go-left-right 3s infinite alternate;
-    /* apply the animation "go-left-right" to the element
-       duration 3 seconds
-       number of times: infinite
-       alternate direction every time
+    /* aplică animația "go-left-right" elementului
+       durata 3 secunde
+       număr de ori: infinit
+       direcție alternativă de fiecare dată
     */
 */!*
 
@@ -425,45 +425,45 @@ Here's an example with explanations:
 </style>
 ```
 
-There are many articles about `@keyframes` and a [detailed specification](https://drafts.csswg.org/css-animations/).
+Sunt multe articole despre `@keyframes` și o [specificație detaliată](https://drafts.csswg.org/css-animations/).
 
-You probably won't need `@keyframes` often, unless everything is in constant motion on your sites.
+Probabil că nu veți avea nevoie des de `@keyframes`, decât dacă totul este în continuă mișcare pe site-urile dumneavoastră.
 
-## Performance
+## Performanță
 
-Most CSS properties can be animated, because most of them are numeric values. For instance, `width`, `color`, `font-size` are all numbers. When you animate them, the browser gradually changes these numbers frame by frame, creating a smooth effect.
+Majoritatea proprietăților CSS pot fi animate, deoarece majoritatea acestora sunt valori numerice. De exemplu, `width`, `color`, `font-size` sunt toate numere. Atunci când le animați, browserul modifică treptat aceste numere cadru cu cadru, creând un efect lin.
 
-However, not all animations will look as smooth as you'd like, because different CSS properties cost differently to change.
+Cu toate acestea, nu toate animațiile vor arăta la fel de lin pe cât ați dori, deoarece diferite proprietăți CSS costă diferit pentru a fi modificate.
 
-In more technical details, when there's a style change, the browser goes through 3 steps to render the new look:
+În detalii mai tehnice, atunci când există o schimbare de stil, browserul parcurge 3 etape pentru a randa noul aspect:
 
-1. **Layout**: re-compute the geometry and position of each element, then
-2. **Paint**: re-compute how everything should look like at their places, including background, colors,
-3. **Composite**: render the final results into pixels on screen, apply CSS transforms if they exist.
+1. **Layout**: se recalculează geometria și poziția fiecărui element, apoi
+2. **Paint**: se recalculează cum ar trebui să arate fiecare element la locul lui, inclusiv fundalul, culorile,
+3. **Composite**: randează rezultatele finale în pixeli pe ecran, aplică transformările CSS dacă acestea există.
 
-During a CSS animation, this process repeats every frame. However, CSS properties that never affect geometry or position, such as `color`, may skip the Layout step. If a `color` changes, the browser  doesn't calculate any new geometry, it goes to Paint -> Composite. And there are few properties that directly go to Composite. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>.
+În timpul unei animații CSS, acest proces se repetă la fiecare cadru. Cu toate acestea, proprietățile CSS care nu afectează niciodată geometria sau poziția, cum ar fi `color`, pot sări peste etapa Layout. Dacă o `color` se schimbă, browserul nu calculează o nouă geometrie, ci trece la Paint -> Composite. Și există puține proprietăți care merg direct la Composite. Puteți găsi o listă mai lungă de proprietăți CSS și ce etape declanșează la <https://csstriggers.com>.
 
-The calculations may take time, especially on pages with many elements and a complex layout. And the delays are actually visible on most devices, leading to "jittery", less fluid animations.
+Calculele pot dura ceva timp, mai ales în cazul paginilor cu multe elemente și un layout complex. Iar întârzierile sunt de fapt vizibile pe majoritatea dispozitivelor, ceea ce duce la animații "tremurânde", mai puțin fluide.
 
-Animations of properties that skip the Layout step are faster. It's even better if Paint is skipped too.
+Animațiile proprietăților care sar peste etapa Layout sunt mai rapide. Este chiar mai bine dacă este sărit și Paint.
 
-The `transform` property is a great choice, because:
-- CSS transforms affect the target element box as a whole (rotate, flip, stretch, shift it).
-- CSS transforms never affect neighbour elements.
+Proprietatea `transform` este o alegere excelentă, deoarece:
+- Transformările CSS afectează caseta elementului țintă ca întreg (o rotește, o întoarce, o întinde, o deplasează).
+- Transformările CSS nu afectează niciodată elementele vecine.
 
-...So browsers apply `transform` "on top" of existing Layout and Paint calculations, in the Composite stage.
+...Astfel browserele aplică `transform` "peste" calculele existente de Layout și Paint, în etapa Composite.
 
-In other words, the browser calculates the Layout (sizes, positions), paints it with colors, backgrounds, etc at the Paint stage, and then applies `transform` to element boxes that need it.
+Cu alte cuvinte, browserul calculează Layout-ul (dimensiuni, poziții), îl pictează cu culori, fundaluri etc în etapa Paint, iar apoi aplică `transform` la casetele de elemente care au nevoie de ea.
 
-Changes (animations) of the `transform` property never trigger Layout and Paint steps. More than that, the browser  leverages the graphics accelerator (a special chip on the CPU or graphics card) for CSS transforms, thus making them very efficient.
+Modificările (animațiile) proprietății `transform` nu declanșează niciodată pașii Layout și Paint. Mai mult decât atât, browserul avantajează acceleratorul grafic (un cip special de pe CPU sau de pe placa grafică) pentru transformările CSS, făcându-le astfel foarte eficiente.
 
-Luckily, the `transform` property is very powerful. By using `transform` on an element, you could rotate and flip it, stretch and shrink it, move it around, and [much more](https://developer.mozilla.org/docs/Web/CSS/transform#syntax). So instead of `left/margin-left` properties we can use `transform: translateX(…)`, use `transform: scale` for increasing element size, etc.
+Din fericire, proprietatea `transform` este foarte puternică. Utilizând `transform` pe un element, ați putea să-l rotiți și să-l întoarceți, să-l întindeți și să-l micșorați, să-l deplasați și [multe altele](https://developer.mozilla.org/docs/Web/CSS/transform#syntax). Deci în loc de proprietățile `left/margin-left` putem folosi `transform: translateX(…)`, folosi `transform: scale` pentru a mări dimensiunea elementului, etc.
 
-The `opacity` property also never triggers Layout (also skips Paint in Mozilla Gecko). We can use it for show/hide or fade-in/fade-out effects.
+De asemenea proprietatea `opacity` nu declanșează niciodată Layout (de asemenea sare peste Paint în Mozilla Gecko). O putem folosi pentru efecte de afișare/ascundere sau de fade-in/fade-out.
 
-Paring `transform` with `opacity` can usually solve most of our needs, providing fluid, good-looking animations.
+Asocierea `transform` cu `opacity` poate rezolva de obicei majoritatea nevoilor noastre, oferind animații fluide și arătoase.
 
-For example, here clicking on the `#boat` element adds the class with `transform: translateX(300)` and `opacity: 0`, thus making it move `300px` to the right and disappear:
+De exemplu, aici apăsând pe elementul `#boat` adaugă clasa cu `transform: translateX(300)` și `opacity: 0`, făcându-l astfel să se deplaseze `300px` spre dreapta și să dispară:
 
 ```html run height=260 autorun no-beautify
 <img src="https://js.cx/clipart/boat.png" id="boat">
@@ -484,10 +484,10 @@ For example, here clicking on the `#boat` element adds the class with `transform
 </script>
 ```
 
-Here's a more complex example, with `@keyframes`:
+Iată un exemplu mai complex, cu `@keyframes`:
 
 ```html run height=80 autorun no-beautify
-<h2 onclick="this.classList.toggle('animated')">click me to start / stop</h2>
+<h2 onclick="this.classList.toggle('animated')">apasă-mă pentru start / stop</h2>
 <style>
   .animated {
     animation: hello-goodbye 1.8s infinite;
