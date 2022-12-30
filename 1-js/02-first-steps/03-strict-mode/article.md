@@ -8,7 +8,7 @@ Acest aspect a fost valabil până în 2009, când a apărut ECMAScript 5 (ES5).
 
 ## "use strict"
 
-Comanda arată ca un string ("șir de caractere"): `"use strict"` sau `'use strict'`. Atunci când este amplasată în partea de sus a unui script, întregul script funcționează în mod "modern".
+Directiva arată ca un șir: `"use strict"` sau `'use strict'`. Atunci când este situată în partea de sus a unui script, întregul script funcționează în mod "modern".
 
 Exemplu:
 
