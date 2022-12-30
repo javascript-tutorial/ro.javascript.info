@@ -1,6 +1,6 @@
 # Modul modern, "use strict"
 
-Pentru o perioadă lungă de timp, JavaScript a evoluat fără probleme de compatibilitate. Noi caracteristici au fost adăugate limbajului, în timp ce vechile funcționalități nu s-au schimbat.
+Pentru o perioadă lungă de timp, JavaScript a evoluat fără probleme de compatibilitate. Noi caracteristici au fost adăugate limbajului în timp ce vechile funcționalități nu s-au schimbat.
 
 Acest lucru a avut avantajul de a nu strica niciodată codul existent. Dar dezavantajul era că orice greșeală sau decizie imperfectă, luată de creatorii JavaScript, a rămas blocată în limbaj pentru totdeauna.
 
