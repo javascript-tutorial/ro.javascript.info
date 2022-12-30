@@ -510,23 +510,23 @@ Iată un exemplu mai complex, cu `@keyframes`:
 </style>
 ```
 
-## Summary
+## Sumar
 
-CSS animations allow smoothly (or step-by-step) animated changes of one or multiple CSS properties.
+Animațiile CSS permit modificări animate lin (sau pas cu pas) ale uneia sau mai multor proprietăți CSS.
 
-They are good for most animation tasks. We're also able to use JavaScript for animations, the next chapter is devoted to that.
+Ele sunt bune pentru majoritatea sarcinilor de animație. De asemenea putem folosi JavaScript pentru animații, următorul capitol este devotat acestui lucru.
 
-Limitations of CSS animations compared to JavaScript animations:
+Limitări ale animațiilor CSS în comparație cu animațiile JavaScript:
 
-```compare plus="CSS animations" minus="JavaScript animations"
-+ Simple things done simply.
-+ Fast and lightweight for CPU.
-- JavaScript animations are flexible. They can implement any animation logic, like an "explosion" of an element.
-- Not just property changes. We can create new elements in JavaScript as part of the animation.
+```compare plus="Animații CSS" minus="Animații JavaScript"
++ Lucruri simple făcute simplu.
++ Rapid și ușor pentru CPU.
+- Animațiile JavaScript sunt flexibile. Ele pot implementa orice logică de animație, cum ar fi o "explozie" a unui element.
+- Nu doar modificări de proprietăți. Putem crea elemente noi în JavaScript ca parte a animației.
 ```
 
-In early examples in this chapter, we animate `font-size`, `left`, `width`, `height`, etc. In real life projects, we should use `transform: scale()` and `transform: translate()` for better performance.
+În primele exemple din acest capitol, animăm `font-size`, `left`, `width`, `height`, etc. În proiectele din viața reală, ar trebui să folosim `transform: scale()` și `transform: translate()` pentru o performanță mai bună.
 
-The majority of animations can be implemented using CSS as described in this chapter. And the `transitionend` event allows JavaScript to be run after the animation, so it integrates fine with the code.
+Majoritatea animațiilor pot fi implementate folosind CSS așa cum este descris în acest capitol. Iar evenimentul `transitionend` permite ca JavaScript să fie rulat după animație, astfel încât se integrează bine în cod.
 
-But in the next chapter we'll do some JavaScript animations to cover more complex cases.
+Dar în capitolul următor vom face câteva animații JavaScript pentru a acoperi cazuri mai complexe.
