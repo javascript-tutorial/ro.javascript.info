@@ -57,7 +57,7 @@ Așadar, cum se utilizează de fapt `use strict` în consolă?
 ```js
 'use strict'; <Shift+Enter pentru o linie nouă>
 //  ...codul tău
-<Enter pentru a executa>
+<Enter pentru a rula>
 ```
 
 Funcționează în majoritatea browserelor, mai ales în Firefox și Chrome.
