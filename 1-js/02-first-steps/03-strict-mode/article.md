@@ -39,7 +39,7 @@ Doar comentariile pot apărea deasupra `"use strict"`.
 ````
 
 ```warn header="Nu există nicio modalitate de a anula `use strict`"
-Nu există o comandă de tipul `"no use strict"` care să readucă motorul de căutare ("browserul") la vechiul comportament.
+Nu există o directivă ca `"no use strict"` care să readucă motorul la vechiul comportament.
 
 Odată ce am activat modul strict, nu mai există cale de întoarcere.
 ```
