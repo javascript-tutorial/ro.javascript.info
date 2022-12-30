@@ -21,7 +21,7 @@ De exemplu, CSS-ul de mai jos animează schimbările de `background-color` timp 
 
 Acum dacă un element are clasa `.animated`, orice schimbare a `background-color` este animată timp de 3 secunde.
 
-Faceți clic pe butonul de mai jos pentru a anima fundalul:
+Apăsați pe butonul de mai jos pentru a anima fundalul:
 
 ```html run autorun height=60
 <button id="color">Apasă-mă</button>
@@ -47,7 +47,7 @@ Sunt 4 proprietăți pentru a descrie tranzițiile CSS:
 - `transition-timing-function`
 - `transition-delay`
 
-Le vom acoperi imediat, deocamdată să observăm că proprietatea comună `transition` permite declararea lor împreună în ordine: `proprietate durată temporizare-funcție întârziere`, precum și animarea mai multor proprietăți în același timp.
+Le vom acoperi într-un moment, deocamdată să observăm că proprietatea obișnuită `transition` permite declararea lor împreună în ordinea: `property duration timing-function delay`, precum și animarea mai multor proprietăți în același timp.
 
 De exemplu, acest buton animează atât `color` cât și `font-size`:
 
@@ -72,7 +72,7 @@ growing.onclick = function() {
 
 Acum, să acoperim proprietățile de animație una câte una.
 
-## transition-propriety
+## transition-property
 
 În `transition-property`, scriem o listă de proprietăți de animat, de exemplu: `left`, `margin-left`, `height`, `color`. Sau putem scrie `all`, ceea ce înseamnă "animă toate proprietățile".
 
@@ -133,11 +133,11 @@ Timing function descrie cum procesul de animație este distribuit de-a lungul cr
 
 La început pare a fi cea mai complicată proprietate. Dar devine foarte simplă dacă îi devotăm puțin timp.
 
-Această proprietate acceptă două tipuri de valori: o curbă Bezier sau pași. Să începem cu curba, deoarece este folosită mai des.
+Această proprietate acceptă două tipuri de valori: o curbă Bezier sau steps. Să începem cu curba, deoarece este folosită mai des.
 
 ### Curba Bezier
 
-Timing function poate fi setată ca o [curbă Bezier](/bezier-curbă) cu 4 puncte de control care satisfac condițiile:
+Timing function poate fi setată ca o [curbă Bezier](/bezier-curve) cu 4 puncte de control care satisfac condițiile:
 
 1. Primul punct de control: `(0,0)`.
 2. Ultimul punct de control: `(1,1)`.
@@ -152,23 +152,23 @@ Timing function descrie cât de repede se desfășoară procesul de animație.
 
 Cea mai simplă variantă este atunci când animația merge uniform, cu aceeași viteză liniară. Aceasta poate fi specificată prin curba `cubic-bezier(0, 0, 1, 1)`.
 
-Iată cum arată această curbă:
+Iată cum arată acea curbă:
 
 ![](bezier-linear.svg)
 
 ...După cum putem vedea, este doar o linie dreaptă. Pe măsură ce trece timpul (`x`), finalizarea animației (`y`) trece constant de la `0` la `1`.
 
-Trenul din exemplul de mai jos merge de la stânga la dreapta cu viteză constantă (apară-l):
+Trenul din exemplul de mai jos merge de la stânga la dreapta cu viteză constantă (apasă-l):
 
 [codetabs src="train-linear"]
 
-CSS `transition` se bazează pe această curbă:
+CSS `transition` se bazează pe acea curbă:
 
 ```css
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, 0, 1, 1);
-  /* click pe tren setează stânga la 450px, declanșând astfel animația */
+  /* apăsând pe tren setează left la 450px, declanșând astfel animația */
 }
 ```
 
@@ -191,13 +191,13 @@ CSS:
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, .5, .5, 1);
-  /* click pe tren setează stânga la 450px, declanșând astfel animația */
+  /* apăsând pe tren setează left la 450px, declanșând astfel animația */
 }
 ```
 
 Există mai multe curbe built-in: `linear`, `ease`, `ease-in`, `ease-out` și `ease-in-out`.
 
-`linear` este o prescurtare pentru `cubic-bezier(0, 0, 0, 1, 1)` -- o linie dreaptă, pe care am descris-o mai sus.
+`linear` este o prescurtare pentru `cubic-bezier(0, 0, 1, 1)` -- o linie dreaptă, pe care am descris-o mai sus.
 
 Celelalte denumiri sunt prescurtări pentru următoarele `cubic-bezier`:
 
@@ -254,7 +254,7 @@ După cum știm, `y` măsoară "finalizarea procesului de animație". Valoarea `
 
 Aceasta este cu siguranță o variantă "soft". Dacă am pune valori `y` ca `-99` și `99` atunci trenul ar sări mult mai mult din interval.
 
-Dar cum facem o curbă Bezier pentru o anumită sarcină? Există multe instrumente.
+Dar cum facem o curbă Bezier pentru o sarcină specifică? Există multe instrumente.
 
 - De exemplu, o putem face pe site-ul <https://cubic-bezier.com>.
 - Instrumentele de dezvoltare a browserului au, de asemenea, un suport special pentru curbele Bezier în CSS:
@@ -329,7 +329,7 @@ Deci procesul pentru `steps(9, end)` ar merge așa:
 - ...
 - `9s` -- `-90%`
 
-Iată `steps(9, end)` în acțiune (notați pauza de dinaintea schimbării primei cifre):
+Iată `steps(9, end)` în acțiune (notați pauza dintre schimbarea primei cifre):
 
 [codetabs src="step-end"]
 
