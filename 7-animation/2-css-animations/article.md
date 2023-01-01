@@ -1,16 +1,16 @@
-# CSS-animations
+# Animații CSS
 
-CSS animations make it possible to do simple animations without JavaScript at all.
+Animațiile CSS fac posibilă realizarea unor animații simple fără JavaScript.
 
-JavaScript can be used to control CSS animations and make them even better, with little code.
+JavaScript poate fi folosit pentru a controla animațiile CSS și pentru a le face chiar mai bune, cu puțin cod.
 
-## CSS transitions [#css-transition]
+## Tranziții CSS [#css-transition]
 
-The idea of CSS transitions is simple. We describe a property and how its changes should be animated. When the property changes, the browser paints the animation.
+Ideea tranzițiilor CSS este simplă. Descriem o proprietate și modul în care modificările acesteia trebuie să fie animate. Când proprietatea se modifică, browserul pictează animația.
 
-That is, all we need is to change the property, and the fluid transition will be done by the browser.
+Adică, tot ce avem nevoie este să modificăm proprietatea, iar tranziția fluidă va fi realizată de browser.
 
-For instance, the CSS below animates changes of `background-color` for 3 seconds:
+De exemplu, CSS-ul de mai jos animează schimbările de `background-color` timp de 3 secunde:
 
 ```css
 .animated {
@@ -19,12 +19,12 @@ For instance, the CSS below animates changes of `background-color` for 3 seconds
 }
 ```
 
-Now if an element has `.animated` class, any change of `background-color` is animated during 3 seconds.
+Acum dacă un element are clasa `.animated`, orice schimbare a `background-color` este animată timp de 3 secunde.
 
-Click the button below to animate the background:
+Apăsați pe butonul de mai jos pentru a anima fundalul:
 
 ```html run autorun height=60
-<button id="color">Click me</button>
+<button id="color">Apasă-mă</button>
 
 <style>
   #color {
@@ -40,16 +40,16 @@ Click the button below to animate the background:
 </script>
 ```
 
-There are 4 properties to describe CSS transitions:
+Sunt 4 proprietăți pentru a descrie tranzițiile CSS:
 
 - `transition-property`
 - `transition-duration`
 - `transition-timing-function`
 - `transition-delay`
 
-We'll cover them in a moment, for now let's note that the common `transition` property allows declaring them together in the order: `property duration timing-function delay`, as well as animating multiple properties at once.
+Le vom acoperi într-un moment, deocamdată să observăm că proprietatea obișnuită `transition` permite declararea lor împreună în ordinea: `property duration timing-function delay`, precum și animarea mai multor proprietăți în același timp.
 
-For instance, this button animates both `color` and `font-size`:
+De exemplu, acest buton animează atât `color` cât și `font-size`:
 
 ```html run height=80 autorun no-beautify
 <button id="growing">Click me</button>
@@ -70,29 +70,29 @@ growing.onclick = function() {
 </script>
 ```
 
-Now, let's cover animation properties one by one.
+Acum, să acoperim proprietățile de animație una câte una.
 
 ## transition-property
 
-In `transition-property`, we write a list of properties to animate, for instance: `left`, `margin-left`, `height`, `color`. Or we could write `all`, which means "animate all properties".
+În `transition-property`, scriem o listă de proprietăți de animat, de exemplu: `left`, `margin-left`, `height`, `color`. Sau putem scrie `all`, ceea ce înseamnă "animă toate proprietățile".
 
-Do note that, there are properties which can not be animated. However, [most of the generally used properties are animatable](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties).
+Notați că, sunt proprietăți care nu pot fi animate. Cu toate acestea, [majoritatea proprietăților utilizate în general pot fi animate](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties).
 
 ## transition-duration
 
-In `transition-duration` we can specify how long the animation should take. The time should be in [CSS time format](http://www.w3.org/TR/css3-values/#time): in seconds `s` or milliseconds `ms`.
+În `transition-duration` putem specifica cât timp trebuie să dureze animația. Timpul trebuie să fie în [CSS time format](https://www.w3.org/TR/css3-values/#time): în secunde `s` sau milisecunde `ms`.
 
 ## transition-delay
 
-In `transition-delay` we can specify the delay *before* the animation. For instance, if `transition-delay` is `1s` and `transition-duration` is `2s`, then the animation starts 1 second after the property change and the total duration will be 2 seconds.
+În `transition-delay` putem specifica întârzierea *înainte* de animație. De exemplu, dacă `transition-delay` este `1s` și `transition-duration` este `2s`, atunci animația începe la 1 secundă după modificarea proprietății iar durata totală va fi de 2 secunde.
 
-Negative values are also possible. Then the animation is shown immediately, but the starting point of the animation will be after given value (time). For example, if `transition-delay` is `-1s` and `transition-duration` is `2s`, then animation starts from the halfway point and total duration will be 1 second.
+Sunt posibile și valori negative. Atunci animația este afișată imediat, dar punctul de pornire al animației va fi după valoarea dată (timpul). De exemplu, dacă `transition-delay` este `-1s` și `transition-duration` este `2s`, atunci animația începe de la jumătatea intervalului și durata totală va fi de 1 secundă.
 
-Here the animation shifts numbers from `0` to `9` using CSS `translate` property:
+Aici animația schimbă numerele din `0` în `9` folosind proprietatea CSS `translate`:
 
 [codetabs src="digits"]
 
-The `transform` property is animated like this:
+Proprietatea `transform` este animată astfel:
 
 ```css
 #stripe.animate {
@@ -102,25 +102,25 @@ The `transform` property is animated like this:
 }
 ```
 
-In the example above JavaScript adds the class `.animate` to the element -- and the animation starts:
+În exemplul de mai sus JavaScript adaugă clasa `.animate` la element -- și animația începe:
 
 ```js
 stripe.classList.add('animate');
 ```
 
-We could also start it from somewhere in the middle of the transition, from an exact number, e.g. corresponding to the current second, using a negative `transition-delay`.
+Am putea de asemenea să o pornim de undeva de la mijlocul tranziției, de la un număr exact, e.g. corespunzănd secundei curente, folosind un `transition-delay` negativ.
 
-Here if you click the digit -- it starts the animation from the current second:
+Aici dacă faceți clic pe cifră -- va începe animația din secunda curentă:
 
 [codetabs src="digits-negative-delay"]
 
-JavaScript does it with an extra line:
+JavaScript face asta cu o linie suplimentară:
 
 ```js
 stripe.onclick = function() {
   let sec = new Date().getSeconds() % 10;
 *!*
-  // for instance, -3s here starts the animation from the 3rd second
+  // de exemplu, -3s aici pornește animația din a 3-a secundă
   stripe.style.transitionDelay = '-' + sec + 's';
 */!*
   stripe.classList.add('animate');
@@ -129,60 +129,60 @@ stripe.onclick = function() {
 
 ## transition-timing-function
 
-The timing function describes how the animation process is distributed along its timeline. Will it start slowly and then go fast, or vice versa.
+Timing function descrie cum procesul de animație este distribuit de-a lungul cronologiei sale. Va începe încet și apoi va merge repede, sau vice versa.
 
-It appears to be the most complicated property at first. But it becomes very simple if we devote a bit time to it.
+La început pare a fi cea mai complicată proprietate. Dar devine foarte simplă dacă îi devotăm puțin timp.
 
-That property accepts two kinds of values: a Bezier curve or steps. Let's start with the curve, as it's used more often.
+Această proprietate acceptă două tipuri de valori: o curbă Bezier sau steps. Să începem cu curba, deoarece este folosită mai des.
 
-### Bezier curve
+### Curba Bezier
 
-The timing function can be set as a [Bezier curve](/bezier-curve) with 4 control points that satisfy the conditions:
+Timing function poate fi setată ca o [curbă Bezier](/bezier-curve) cu 4 puncte de control care satisfac condițiile:
 
-1. First control point: `(0,0)`.
-2. Last control point: `(1,1)`.
-3. For intermediate points, the values of `x` must be in the interval `0..1`, `y` can be anything.
+1. Primul punct de control: `(0,0)`.
+2. Ultimul punct de control: `(1,1)`.
+3. Pentru punctele intermediare, valorile lui `x` trebuie să fie în intervalul `0..1`, `y` poate fi orice.
 
-The syntax for a Bezier curve in CSS: `cubic-bezier(x2, y2, x3, y3)`. Here we need to specify only 2nd and 3rd control points, because the 1st one is fixed to `(0,0)` and the 4th one is `(1,1)`.
+Sintaxa pentru o curbă Bezier în CSS: `cubic-bezier(x2, y2, x3, y3)`. Aici trebuie să specificăm doar al 2-lea și al 3-lea punct de control, deoarece primul este fixat la `(0,0)` și al 4-lea este `(1,1)`.
 
-The timing function describes how fast the animation process goes.
+Timing function descrie cât de repede se desfășoară procesul de animație.
 
-- The `x` axis is the time: `0` -- the start, `1` -- the end of `transition-duration`.
-- The `y` axis specifies the completion of the process: `0` -- the starting value of the property, `1` -- the final value.
+- Axa `x` este timpul: `0` -- începutul, `1` -- sfârșitul `transition-duration`.
+- Axa `y` specifică finalizarea procesului: `0` -- valoarea inițială a proprietății, `1` -- valoarea finală.
 
-The simplest variant is when the animation goes uniformly, with the same linear speed. That can be specified by the curve `cubic-bezier(0, 0, 1, 1)`.
+Cea mai simplă variantă este atunci când animația merge uniform, cu aceeași viteză liniară. Aceasta poate fi specificată prin curba `cubic-bezier(0, 0, 1, 1)`.
 
-Here's how that curve looks:
+Iată cum arată acea curbă:
 
 ![](bezier-linear.svg)
 
-...As we can see, it's just a straight line. As the time (`x`) passes, the completion (`y`) of the animation steadily goes from `0` to `1`.
+...După cum putem vedea, este doar o linie dreaptă. Pe măsură ce trece timpul (`x`), finalizarea animației (`y`) trece constant de la `0` la `1`.
 
-The train in the example below goes from left to right with the permanent speed (click it):
+Trenul din exemplul de mai jos merge de la stânga la dreapta cu viteză constantă (apasă-l):
 
 [codetabs src="train-linear"]
 
-The CSS `transition` is based on that curve:
+CSS `transition` se bazează pe acea curbă:
 
 ```css
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, 0, 1, 1);
-  /* click on a train sets left to 450px, thus triggering the animation */
+  /* apăsând pe tren setează left la 450px, declanșând astfel animația */
 }
 ```
 
-...And how can we show a train slowing down?
+...Și cum putem arăta un tren care încetinește?
 
-We can use another Bezier curve: `cubic-bezier(0.0, 0.5, 0.5 ,1.0)`.
+Putem folosi o altă curbă Bezier: `cubic-bezier(0.0, 0.5, 0.5 ,1.0)`.
 
-The graph:
+Graficul:
 
 ![](train-curve.svg)
 
-As we can see, the process starts fast: the curve soars up high, and then slower and slower.
+După cum putem vedea, procesul începe rapid: curba se înalță foarte sus, apoi din ce în ce mai încet și mai încet.
 
-Here's the timing function in action (click the train):
+Iată timing function în acțiune (apăsați pe tren):
 
 [codetabs src="train"]
 
@@ -191,84 +191,104 @@ CSS:
 .train {
   left: 0;
   transition: left 5s cubic-bezier(0, .5, .5, 1);
-  /* click on a train sets left to 450px, thus triggering the animation */
+  /* apăsând pe tren setează left la 450px, declanșând astfel animația */
 }
 ```
 
-There are several built-in curves: `linear`, `ease`, `ease-in`, `ease-out` and `ease-in-out`.
+Există mai multe curbe built-in: `linear`, `ease`, `ease-in`, `ease-out` și `ease-in-out`.
 
-The `linear` is a shorthand for `cubic-bezier(0, 0, 1, 1)` -- a straight line, which we described above.
+`linear` este o prescurtare pentru `cubic-bezier(0, 0, 1, 1)` -- o linie dreaptă, pe care am descris-o mai sus.
 
-Other names are shorthands for the following `cubic-bezier`:
+Celelalte denumiri sunt prescurtări pentru următoarele `cubic-bezier`:
 
 | <code>ease</code><sup>*</sup> | <code>ease-in</code> | <code>ease-out</code> | <code>ease-in-out</code> |
 |-------------------------------|----------------------|-----------------------|--------------------------|
 | <code>(0.25, 0.1, 0.25, 1.0)</code> | <code>(0.42, 0, 1.0, 1.0)</code> | <code>(0, 0, 0.58, 1.0)</code> | <code>(0.42, 0, 0.58, 1.0)</code> |
 | ![ease, figure](ease.svg) | ![ease-in, figure](ease-in.svg) | ![ease-out, figure](ease-out.svg) | ![ease-in-out, figure](ease-in-out.svg) |
 
-`*` -- by default, if there's no timing function, `ease` is used.
+`*` -- în mod implicit, dacă nu există un timing function, se utilizează `ease`.
 
-So we could use `ease-out` for our slowing down train:
-
+Deci am putea folosi `ease-out` pentru trenul nostru care încetinește:
 
 ```css
 .train {
   left: 0;
   transition: left 5s ease-out;
-  /* same as transition: left 5s cubic-bezier(0, .5, .5, 1); */
+  /* la fel ca transition: left 5s cubic-bezier(0, .5, .5, 1); */
 }
 ```
 
-But it looks a bit differently.
+Dar arată puțin diferit.
 
-**A Bezier curve can make the animation exceed its range.**
+**O curbă Bezier poate face ca animația să-și depășească intervalul.**
 
-The control points on the curve can have any `y` coordinates: even negative or huge ones. Then the Bezier curve would also extend very low or high, making the animation go beyond its normal range.
+Punctele de control de pe curbă pot avea orice coordonate `y`: chiar și negative sau uriașe. Atunci curba Bezier se va extinde și ea foarte jos sau foarte sus, făcând ca animația să își depășească intervalul normal.
 
-In the example below the animation code is:
+În exemplul de mai jos codul animației este:
+
 ```css
 .train {
   left: 100px;
   transition: left 5s cubic-bezier(.5, -1, .5, 2);
-  /* click on a train sets left to 450px */
+  /* apăsând pe tren setează left la 450px */
 }
 ```
 
-The property `left` should animate from `100px` to `400px`.
+Proprietatea `left` ar trebui să fie animată de la `100px` la `400px`.
 
-But if you click the train, you'll see that:
+Dar dacă apăsați pe tren, veți vedea că:
 
-- First, the train goes *back*: `left` becomes less than `100px`.
-- Then it goes forward, a little bit farther than `400px`.
-- And then back again -- to `400px`.
+- În primul rând, trenul merge *înapoi*: `left` devine mai mic de `100px`.
+- Apoi merge înainte, puțin mai departe de `400px`.
+- Și după aceea iar înapoi -- la `400px`.
 
 [codetabs src="train-over"]
 
-Why it happens is pretty obvious if we look at the graph of the given Bezier curve:
+De ce se întâmplă acest lucru este destul de evident dacă ne uităm la graficul curbei Bezier dat:
 
 ![](bezier-train-over.svg)
 
-We moved the `y` coordinate of the 2nd point below zero, and for the 3rd point we made it over `1`, so the curve goes out of the "regular" quadrant. The `y` is out of the "standard" range `0..1`.
+Am mutat coordonata `y` a celui de-al doilea punct sub zero, iar pentru cel de-al treilea punct am făcut-o peste `1`, astfel încât curba iese din cadranul "obișnuit". `y` a ieșit din intervalul "standard" `0..1`.
 
-As we know, `y` measures "the completion of the animation process". The value `y = 0` corresponds to the starting property value and `y = 1` -- the ending value. So values `y<0` move the property beyond the starting `left` and `y>1` -- past the final `left`.
+După cum știm, `y` măsoară "finalizarea procesului de animație". Valoarea `y = 0` corespunde valorii de început a proprietății iar `y = 1` -- valorii finale. Deci valorile `y<0` mută proprietatea dincolo de începutul `left` și `y>1` -- peste `left` de final.
 
-That's a "soft" variant for sure. If we put `y` values like `-99` and `99` then the train would jump out of the range much more.
+Aceasta este cu siguranță o variantă "soft". Dacă am pune valori `y` ca `-99` și `99` atunci trenul ar sări mult mai mult din interval.
 
-But how do we make a Bezier curve for a specific task? There are many tools. For instance, we can do it on the site <http://cubic-bezier.com/>.
+Dar cum facem o curbă Bezier pentru o sarcină specifică? Există multe instrumente.
+
+- De exemplu, o putem face pe site-ul <https://cubic-bezier.com>.
+- Instrumentele de dezvoltare a browserului au, de asemenea, un suport special pentru curbele Bezier în CSS:
+    1. Deschideți uneltele dezvoltatorului cu `key:F12` (Mac: `key:Cmd+Opt+I`).
+    2. Selectați tab-ul `Elements`, apoi acordați atenție subpanoului `Styles` din partea dreaptă.
+    3. Proprietățile CSS care au cuvântul `cubic-bezier` vor avea o pictogramă înaintea acestui cuvânt.
+    4. Apăsați pe această pictogramă pentru a edita curba.
+
 
 ### Steps
 
-The timing function `steps(number of steps[, start/end])` allows splitting an transition into multiple steps.
+Timing function `steps(număr de pași[, start/end])` permite împărțirea unei tranziții în mai mulți pași.
 
-Let's see that in an example with digits.
+Să vedem acest lucru într-un exemplu cu cifre.
 
-Here's a list of digits, without any animations, just as a source:
+Iată o listă de cifre, fără nicio animație, doar ca sursă:
 
 [codetabs src="step-list"]
 
-We'll make the digits appear in a discrete way by making the part of the list outside of the red "window" invisible and shifting the list to the left with each step.
+În HTML, o bandă de cifre este înglobată într-un `<div id="digits">` de lungime fixă:
 
-There will be 9 steps, a step-move for each digit:
+```html
+<div id="digit">
+  <div id="stripe">0123456789</div>
+</div>
+```
+
+Div-ul `#digit` are o lățime fixă și o margine, astfel încât arată ca o fereastră roșie.
+
+Vom face un cronometru: cifrele vor apărea una câte una, într-un mod discret.
+
+Pentru a realiza asta, vom ascunde `#stripe` în afara lui `#digit` folosind `overflow: hidden`, apoi vom deplasa `#stripe` spre stânga pas cu pas.
+
+Vor fi 9 pași, câte un pas de deplasare pentru fiecare cifră:
 
 ```css
 #stripe.animate  {
@@ -277,58 +297,60 @@ There will be 9 steps, a step-move for each digit:
 }
 ```
 
-In action:
+Primul argument din `steps(9, start)` este numărul de pași. Transform va fi împărțit în 9 părți (10% fiecare). Intervalul de timp este împărțit automat în 9 părți de asemenea, așa că `transition: 9s` ne oferă 9 secunde pentru întreaga animație – 1 secundă pentru fiecare cifră.
+
+Al doilea argument este unul dintre cele două cuvinte: `start` sau `end`.
+
+`start` înseamnă că la începutul animației trebuie să facem imediat primul pas.
+
+În acțiune:
 
 [codetabs src="step"]
 
-The first argument of `steps(9, start)` is the number of steps. The transform will be split into 9 parts (10% each). The time interval is automatically divided into 9 parts as well, so `transition: 9s` gives us 9 seconds for the whole animation – 1 second per digit.
+Un clic pe cifră o schimbă imediat în `1` (primul pas), iar apoi se schimbă la începutul secundei următoare.
 
-The second argument is one of two words: `start` or `end`.
+Procesul evoluează astfel:
 
-The `start` means that in the beginning of animation we need to make the first step immediately.
-
-We can observe that during the animation: when we click on the digit it changes to `1` (the first step) immediately, and then changes in the beginning of the next second.
-
-The process is progressing like this:
-
-- `0s` -- `-10%` (first change in the beginning of the 1st second, immediately)
+- `0s` -- `-10%` (prima schimbare la începutul primei secunde, imediat)
 - `1s` -- `-20%`
 - ...
-- `8s` -- `-80%`
-- (the last second shows the final value).
+- `8s` -- `-90%`
+- (în ultima secundă apare valoarea finală).
 
-The alternative value `end` would mean that the change should be applied not in the beginning, but at the end of each second.
+Aici, prima schimbare a fost imediată din cauza `start` din `steps`.
 
-So the process for `steps(9, end)` would go like this:
+Valoarea alternativă `end` ar însemna că modificarea ar trebui aplicată nu la început, ci la sfârșitul fiecărei secunde.
 
-- `0s` -- `0` (during the first second nothing changes)
-- `1s` -- `-10%` (first change at the end of the 1st second)
+Deci procesul pentru `steps(9, end)` ar merge așa:
+
+- `0s` -- `0` (în decursul primei secunde nu se schimbă nimic)
+- `1s` -- `-10%` (prima schimbare la sfârșitul primei secunde)
 - `2s` -- `-20%`
 - ...
 - `9s` -- `-90%`
 
-Here's `steps(9, end)` in action (note the pause between the first digit change):
+Iată `steps(9, end)` în acțiune (notați pauza dintre schimbarea primei cifre):
 
 [codetabs src="step-end"]
 
-There are also shorthand values:
+Sunt de asemenea câteva prescurtări predefinite pentru `steps(...)`:
 
-- `step-start` -- is the same as `steps(1, start)`. That is, the animation starts immediately and takes 1 step. So it starts and finishes immediately, as if there were no animation.
-- `step-end` -- the same as `steps(1, end)`: make the animation in a single step at the end of `transition-duration`.
+- `step-start` -- este același lucru cu `steps(1, start)`. Adică, animația începe imediat și face 1 pas. Deci începe și se termină imediat, ca și cum nu ar exista nicio animație.
+- `step-end` -- la fel ca `steps(1, end)`: face animația într-un singur pas la sfârșitul `transition-duration`.
 
-These values are rarely used, because that's not really animation, but rather a single-step change.
+Aceste valori sunt rareori folosite, deoarece nu reprezintă o animație reală, ci mai degrabă o schimbare într-un singur pas. Le menționăm aici pentru completitudine.
 
-## Event transitionend
+## Event: "transitionend"
 
-When the CSS animation finishes the `transitionend` event triggers.
+Când animația CSS se termină, se declanșează evenimentul `transitionend`.
 
-It is widely used to do an action after the animation is done. Also we can join animations.
+Acesta este utilizat pe scară largă pentru a efectua o acțiune după terminarea animației. De asemenea putem uni animațiile.
 
-For instance, the ship in the example below starts to sail there and back when clicked, each time farther and farther to the right:
+De exemplu, nava din exemplul de mai jos începe să navigheze încolo și înapoi atunci când se face clic, de fiecare dată tot mai departe spre dreapta:
 
 [iframe src="boat" height=300 edit link]
 
-The animation is initiated by the function `go` that re-runs each time the transition finishes, and flips the direction:
+Animația este inițiată de funcția `go` care se reia de fiecare dată când se termină tranziția, și inversează direcția:
 
 ```js
 boat.onclick = function() {
@@ -337,11 +359,11 @@ boat.onclick = function() {
 
   function go() {
     if (times % 2) {
-      // sail to the right
+      // navighează la dreapta
       boat.classList.remove('back');
       boat.style.marginLeft = 100 * times + 200 + 'px';
     } else {
-      // sail to the left
+      // navighează la stânga
       boat.classList.add('back');
       boat.style.marginLeft = 100 * times - 200 + 'px';
     }
@@ -357,40 +379,40 @@ boat.onclick = function() {
 };
 ```
 
-The event object for `transitionend` has a few specific properties:
+Obiectul de eveniment pentru `transitionend` are câteva proprietăți specifice:
 
 `event.propertyName`
-: The property that has finished animating. Can be good if we animate multiple properties simultaneously.
+: Proprietatea a cărei animație s-a încheiat. Poate fi bună dacă animăm mai multe proprietăți simultan.
 
 `event.elapsedTime`
-: The time (in seconds) that the animation took, without `transition-delay`.
+: Timpul (în secunde) cât a durat animația, fără `transition-delay`.
 
 ## Keyframes
 
-We can join multiple simple animations together using the `@keyframes` CSS rule.
+Putem uni mai multe animații simple împreună folosind regula CSS `@keyframes`.
 
-It specifies the "name" of the animation and rules - what, when and where to animate. Then using the `animation` property, we can attach the animation to the element and specify additional parameters for it.
+Aceasta specifică "numele" animației și regulile - ce, când și unde să se anime. Apoi folosind proprietatea `animation`, putem atașa animația la element și specifica parametri adiționali pentru aceasta.
 
-Here's an example with explanations:
+Iată un exemplu cu explicații:
 
 ```html run height=60 autorun="no-epub" no-beautify
 <div class="progress"></div>
 
 <style>
 *!*
-  @keyframes go-left-right {        /* give it a name: "go-left-right" */
-    from { left: 0px; }             /* animate from left: 0px */
-    to { left: calc(100% - 50px); } /* animate to left: 100%-50px */
+  @keyframes go-left-right {        /* dați-i un nume: "go-left-right" */
+    from { left: 0px; }             /* animați din stânga: 0px */
+    to { left: calc(100% - 50px); } /* animați spre stânga: 100%-50px */
   }
 */!*
 
   .progress {
 *!*
     animation: go-left-right 3s infinite alternate;
-    /* apply the animation "go-left-right" to the element
-       duration 3 seconds
-       number of times: infinite
-       alternate direction every time
+    /* aplică animația "go-left-right" elementului
+       durata 3 secunde
+       număr de ori: infinit
+       direcție alternativă de fiecare dată
     */
 */!*
 
@@ -403,45 +425,45 @@ Here's an example with explanations:
 </style>
 ```
 
-There are many articles about `@keyframes` and a [detailed specification](https://drafts.csswg.org/css-animations/).
+Sunt multe articole despre `@keyframes` și o [specificație detaliată](https://drafts.csswg.org/css-animations/).
 
-You probably won't need `@keyframes` often, unless everything is in constant motion on your sites.
+Probabil că nu veți avea nevoie des de `@keyframes`, decât dacă totul este în continuă mișcare pe site-urile dumneavoastră.
 
-## Performance
+## Performanță
 
-Most CSS properties can be animated, because most of them are numeric values. For instance, `width`, `color`, `font-size` are all numbers. When you animate them, the browser gradually changes these numbers frame by frame, creating a smooth effect.
+Majoritatea proprietăților CSS pot fi animate, deoarece majoritatea acestora sunt valori numerice. De exemplu, `width`, `color`, `font-size` sunt toate numere. Atunci când le animați, browserul modifică treptat aceste numere cadru cu cadru, creând un efect lin.
 
-However, not all animations will look as smooth as you'd like, because different CSS properties cost differently to change.
+Cu toate acestea, nu toate animațiile vor arăta la fel de lin pe cât ați dori, deoarece diferite proprietăți CSS costă diferit pentru a fi modificate.
 
-In more technical details, when there's a style change, the browser goes through 3 steps to render the new look:
+În detalii mai tehnice, atunci când există o schimbare de stil, browserul parcurge 3 etape pentru a randa noul aspect:
 
-1. **Layout**: re-compute the geometry and position of each element, then
-2. **Paint**: re-compute how everything should look like at their places, including background, colors,
-3. **Composite**: render the final results into pixels on screen, apply CSS transforms if they exist.
+1. **Layout**: se recalculează geometria și poziția fiecărui element, apoi
+2. **Paint**: se recalculează cum ar trebui să arate fiecare element la locul lui, inclusiv fundalul, culorile,
+3. **Composite**: randează rezultatele finale în pixeli pe ecran, aplică transformările CSS dacă acestea există.
 
-During a CSS animation, this process repeats every frame. However, CSS properties that never affect geometry or position, such as `color`, may skip the Layout step. If a `color` changes, the browser  doesn't calculate any new geometry, it goes to Paint -> Composite. And there are few properties that directly go to Composite. You can find a longer list of CSS properties and which stages they trigger at <https://csstriggers.com>.
+În timpul unei animații CSS, acest proces se repetă la fiecare cadru. Cu toate acestea, proprietățile CSS care nu afectează niciodată geometria sau poziția, cum ar fi `color`, pot sări peste etapa Layout. Dacă o `color` se schimbă, browserul nu calculează o nouă geometrie, ci trece la Paint -> Composite. Și există puține proprietăți care merg direct la Composite. Puteți găsi o listă mai lungă de proprietăți CSS și ce etape declanșează la <https://csstriggers.com>.
 
-The calculations may take time, especially on pages with many elements and a complex layout. And the delays are actually visible on most devices, leading to "jittery", less fluid animations.
+Calculele pot dura ceva timp, mai ales în cazul paginilor cu multe elemente și un layout complex. Iar întârzierile sunt de fapt vizibile pe majoritatea dispozitivelor, ceea ce duce la animații "tremurânde", mai puțin fluide.
 
-Animations of properties that skip the Layout step are faster. It's even better if Paint is skipped too.
+Animațiile proprietăților care sar peste etapa Layout sunt mai rapide. Este chiar mai bine dacă este sărit și Paint.
 
-The `transform` property is a great choice, because:
-- CSS transforms affect the target element box as a whole (rotate, flip, stretch, shift it).
-- CSS transforms never affect neighbour elements.
+Proprietatea `transform` este o alegere excelentă, deoarece:
+- Transformările CSS afectează caseta elementului țintă ca întreg (o rotește, o întoarce, o întinde, o deplasează).
+- Transformările CSS nu afectează niciodată elementele vecine.
 
-...So browsers apply `transform` "on top" of existing Layout and Paint calculations, in the Composite stage.
+...Astfel browserele aplică `transform` "peste" calculele existente de Layout și Paint, în etapa Composite.
 
-In other words, the browser calculates the Layout (sizes, positions), paints it with colors, backgrounds, etc at the Paint stage, and then applies `transform` to element boxes that need it.
+Cu alte cuvinte, browserul calculează Layout-ul (dimensiuni, poziții), îl pictează cu culori, fundaluri etc în etapa Paint, iar apoi aplică `transform` la casetele de elemente care au nevoie de ea.
 
-Changes (animations) of the `transform` property never trigger Layout and Paint steps. More than that, the browser  leverages the graphics accelerator (a special chip on the CPU or graphics card) for CSS transforms, thus making them very efficient.
+Modificările (animațiile) proprietății `transform` nu declanșează niciodată pașii Layout și Paint. Mai mult decât atât, browserul avantajează acceleratorul grafic (un cip special de pe CPU sau de pe placa grafică) pentru transformările CSS, făcându-le astfel foarte eficiente.
 
-Luckily, the `transform` property is very powerful. By using `transform` on an element, you could rotate and flip it, stretch and shrink it, move it around, and [much more](https://developer.mozilla.org/docs/Web/CSS/transform#syntax). So instead of `left/margin-left` properties we can use `transform: translateX(…)`, use `transform: scale` for increasing element size, etc.
+Din fericire, proprietatea `transform` este foarte puternică. Utilizând `transform` pe un element, ați putea să-l rotiți și să-l întoarceți, să-l întindeți și să-l micșorați, să-l deplasați și [multe altele](https://developer.mozilla.org/docs/Web/CSS/transform#syntax). Deci în loc de proprietățile `left/margin-left` putem folosi `transform: translateX(…)`, folosi `transform: scale` pentru a mări dimensiunea elementului, etc.
 
-The `opacity` property also never triggers Layout (also skips Paint in Mozilla Gecko). We can use it for show/hide or fade-in/fade-out effects.
+De asemenea proprietatea `opacity` nu declanșează niciodată Layout (de asemenea sare peste Paint în Mozilla Gecko). O putem folosi pentru efecte de afișare/ascundere sau de fade-in/fade-out.
 
-Paring `transform` with `opacity` can usually solve most of our needs, providing fluid, good-looking animations.
+Asocierea `transform` cu `opacity` poate rezolva de obicei majoritatea nevoilor noastre, oferind animații fluide și arătoase.
 
-For example, here clicking on the `#boat` element adds the class with `transform: translateX(300)` and `opacity: 0`, thus making it move `300px` to the right and disappear:
+De exemplu, aici apăsând pe elementul `#boat` adaugă clasa cu `transform: translateX(300)` și `opacity: 0`, făcându-l astfel să se deplaseze `300px` spre dreapta și să dispară:
 
 ```html run height=260 autorun no-beautify
 <img src="https://js.cx/clipart/boat.png" id="boat">
@@ -462,10 +484,10 @@ For example, here clicking on the `#boat` element adds the class with `transform
 </script>
 ```
 
-Here's a more complex example, with `@keyframes`:
+Iată un exemplu mai complex, cu `@keyframes`:
 
 ```html run height=80 autorun no-beautify
-<h2 onclick="this.classList.toggle('animated')">click me to start / stop</h2>
+<h2 onclick="this.classList.toggle('animated')">apasă-mă pentru start / stop</h2>
 <style>
   .animated {
     animation: hello-goodbye 1.8s infinite;
@@ -488,23 +510,23 @@ Here's a more complex example, with `@keyframes`:
 </style>
 ```
 
-## Summary
+## Sumar
 
-CSS animations allow smoothly (or step-by-step) animated changes of one or multiple CSS properties.
+Animațiile CSS permit modificări animate lin (sau pas cu pas) ale uneia sau mai multor proprietăți CSS.
 
-They are good for most animation tasks. We're also able to use JavaScript for animations, the next chapter is devoted to that.
+Ele sunt bune pentru majoritatea sarcinilor de animație. De asemenea putem folosi JavaScript pentru animații, următorul capitol este devotat acestui lucru.
 
-Limitations of CSS animations compared to JavaScript animations:
+Limitări ale animațiilor CSS în comparație cu animațiile JavaScript:
 
-```compare plus="CSS animations" minus="JavaScript animations"
-+ Simple things done simply.
-+ Fast and lightweight for CPU.
-- JavaScript animations are flexible. They can implement any animation logic, like an "explosion" of an element.
-- Not just property changes. We can create new elements in JavaScript as part of the animation.
+```compare plus="Animații CSS" minus="Animații JavaScript"
++ Lucruri simple făcute simplu.
++ Rapid și ușor pentru CPU.
+- Animațiile JavaScript sunt flexibile. Ele pot implementa orice logică de animație, cum ar fi o "explozie" a unui element.
+- Nu doar modificări de proprietăți. Putem crea elemente noi în JavaScript ca parte a animației.
 ```
 
-In early examples in this chapter, we animate `font-size`, `left`, `width`, `height`, etc. In real life projects, we should use `transform: scale()` and `transform: translate()` for better performance.
+În primele exemple din acest capitol, animăm `font-size`, `left`, `width`, `height`, etc. În proiectele din viața reală, ar trebui să folosim `transform: scale()` și `transform: translate()` pentru o performanță mai bună.
 
-The majority of animations can be implemented using CSS as described in this chapter. And the `transitionend` event allows JavaScript to be run after the animation, so it integrates fine with the code.
+Majoritatea animațiilor pot fi implementate folosind CSS așa cum este descris în acest capitol. Iar evenimentul `transitionend` permite ca JavaScript să fie rulat după animație, astfel încât se integrează bine în cod.
 
-But in the next chapter we'll do some JavaScript animations to cover more complex cases.
+Dar în capitolul următor vom face câteva animații JavaScript pentru a acoperi cazuri mai complexe.

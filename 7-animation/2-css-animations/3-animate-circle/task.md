@@ -2,15 +2,15 @@ importance: 5
 
 ---
 
-# Animated circle
+# Cerc animat
 
-Create a function `showCircle(cx, cy, radius)` that shows an animated growing circle.
+Creați o funcție `showCircle(cx, cy, radius)` care arată un cerc animat în creștere.
 
-- `cx,cy` are window-relative coordinates of the center of the circle,
-- `radius` is the radius of the circle.
+- `cx,cy` sunt coordonatele relative la fereastră ale centrului cercului,
+- `radius` este raza cercului.
 
-Click the button below to see how it should look like:
+Faceți clic pe butonul de mai jos pentru a vedea cum ar trebui să arate:
 
 [iframe src="solution" height=260]
 
-The source document has an example of a circle with right styles, so the task is precisely to do the animation right.
+Documentul sursă are un exemplu de cerc cu stiluri corecte, deci sarcina este tocmai de a face animația corect.

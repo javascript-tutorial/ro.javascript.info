@@ -1,7 +1,7 @@
-We need to choose the right Bezier curve for that animation. It should have `y>1` somewhere for the plane to "jump out".
+Trebuie să alegem curba Bezier potrivită pentru acea animație. Aceasta ar trebui să aibă `y>1` undeva pentru ca avionul să "sară".
 
-For instance, we can take both control points with `y>1`, like: `cubic-bezier(0.25, 1.5, 0.75, 1.5)`.
+De exemplu, putem lua ambele puncte de control cu `y>1`, ca: `cubic-bezier(0.25, 1.5, 0.75, 1.5)`.
 
-The graph:
+Graficul:
 
 ![](bezier-up.svg)
