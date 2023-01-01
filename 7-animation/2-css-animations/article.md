@@ -52,7 +52,7 @@ Le vom acoperi într-un moment, deocamdată să observăm că proprietatea obiș
 De exemplu, acest buton animează atât `color` cât și `font-size`:
 
 ```html run height=80 autorun no-beautify
-<button id="growing">Click me</button>
+<button id="growing">Apasă-mă</button>
 
 <style>
 #growing {
@@ -80,7 +80,7 @@ Notați că, sunt proprietăți care nu pot fi animate. Cu toate acestea, [major
 
 ## transition-duration
 
-În `transition-duration` putem specifica cât timp trebuie să dureze animația. Timpul trebuie să fie în [CSS time format](https://www.w3.org/TR/css3-values/#time): în secunde `s` sau milisecunde `ms`.
+În `transition-duration` putem specifica cât timp trebuie să dureze animația. Timpul trebuie să fie în [format de timp CSS](https://www.w3.org/TR/css3-values/#time): în secunde `s` sau milisecunde `ms`.
 
 ## transition-delay
 
