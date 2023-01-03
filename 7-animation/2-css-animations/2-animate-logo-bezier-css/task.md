@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Animate the flying plane (CSS)
+# Animați avionul care zboară (CSS)
 
-Modify the solution of the previous task <info:task/animate-logo-css> to make the plane grow more than its original size 400x240px (jump out), and then return to that size.
+Modificați soluția din sarcina anterioară <info:task/animate-logo-css> pentru a face avionul să crească mai mult decât dimensiunea sa originală de 400x240px (să sară în afară), apoi să revină la această dimensiune.
 
-Here's how it should look (click on the plane):
+Iată cum ar trebui să arate (faceți clic pe avion):
 
 [iframe src="solution" height=350]
 
-Take the solution of the previous task as the source.
+Luați ca sursă soluția din sarcina anterioară.

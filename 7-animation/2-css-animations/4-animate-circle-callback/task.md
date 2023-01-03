@@ -1,20 +1,20 @@
 
-# Animated circle with callback
+# Cerc animat cu callback
 
-In the task <info:task/animate-circle> an animated growing circle is shown.
+În sarcina <info:task/animate-circle> este afișat un cerc animat în creștere.
 
-Now let's say we need not just a circle, but to show a message inside it. The message should appear *after* the animation is complete (the circle is fully grown), otherwise it would look ugly.
+Acum să spunem că avem nevoie nu doar de un cerc, ci și de un mesaj în interiorul acestuia. Mesajul ar trebui să apară *după* finalizarea animației (cercul a crescut complet), altfel ar arăta urât.
 
-In the solution of the task, the function `showCircle(cx, cy, radius)` draws the circle, but gives no way to track when it's ready.
+În soluția sarcinii, funcția `showCircle(cx, cy, radius)` desenează cercul, dar nu oferă nicio modalitate de a urmări când este gata.
 
-Add a callback argument: `showCircle(cx, cy, radius, callback)` to be called when the animation is complete. The `callback` should receive the circle `<div>` as an argument.
+Adăugați un argument de callback: `showCircle(cx, cy, radius, callback)` care va fi apelată atunci când animația este finalizată. `callback`-ul trebuie să primească `<div>`-ul cercului ca argument.
 
-Here's the example:
+Iată exemplul:
 
 ```js
 showCircle(150, 150, 100, div => {
   div.classList.add('message-ball');
-  div.append("Hello, world!");
+  div.append("Salut, lume!");
 });
 ```
 
@@ -22,4 +22,4 @@ Demo:
 
 [iframe src="solution" height=260]
 
-Take the solution of the task <info:task/animate-circle> as the base.
+Luați ca bază soluția sarcinii <info:task/animate-circle>.
