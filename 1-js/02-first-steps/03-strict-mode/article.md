@@ -78,7 +78,7 @@ Dacă nu funcționează, de exemplu într-un browser vechi, există o modalitate
 
 Cineva ar putea recomanda a începe scripturile cu `"use strict"`... Dar știi ce este grozav?
 
-JavaScriptul modern suportă "classes" și "modules" -  structuri avansate de limbaj (vom ajunge cu siguranță la ele), care activează `use strict` automat. Astfel nu este nevoie să adăugăm directiva `"use strict"`, dacă le folosim.
+JavaScriptul modern suportă "classes" și "modules" - structuri avansate de limbaj (vom ajunge cu siguranță la ele), care activează `use strict` automat. Astfel nu este nevoie să adăugăm directiva `"use strict"`, dacă le folosim.
 
 **Deci, deocamdată `"use strict";` este un oaspete binevenit în partea de sus a scripturilor tale. Mai târziu, când tot codul tău va cuprinde "classes" și "modules", îl vei putea omite.**
 
