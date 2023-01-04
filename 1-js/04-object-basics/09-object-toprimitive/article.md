@@ -9,7 +9,7 @@ JavaScript nu prea permite să personalizeze cum operatorii lucrează pe obiecte
 
 Aceasta este o limitare importantă, deoarece rezultatul a `obj1 + obj2` nu poate fi un alt obiect!
 
-E.g., nu putem crea obiecte reprezentând vectori sau matrici (sau realizări sau orice altceva), să le adunăm și să ne așteptăm ca rezultat un obiect "însumat". Astfel de realizări arhitecturale sunt automat "în afara discuției".
+E.g. nu putem crea obiecte reprezentând vectori sau matrici (sau realizări sau orice altceva), să le adunăm și să ne așteptăm ca rezultat un obiect "însumat". Astfel de realizări arhitecturale sunt automat "în afara discuției".
 
 Așadar, pentru că nu putem face mare lucru aici, nu există matematică cu obiecte în proiectele reale. Atunci când se întâmplă, de obicei, este din cauza unei greșeli de codare.
 
