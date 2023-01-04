@@ -1,7 +1,7 @@
 
 # Conversia obiectelor la primitive
 
-Ce se întâmplă atunci când obiectele sunt adunate `obj1 + obj2`, scăzute` obj1 - obj2` sau tipărite folosind `alert (obj)`?
+Ce se întâmplă atunci când obiectele sunt adunate `obj1 + obj2`, scăzute `obj1 - obj2` sau tipărite folosind `alert(obj)`?
 
 JavaScript doesn't exactly allow to customize how operators work on objects. Unlike some other programming languages, such as Ruby or C++, we can't implement a special object method to handle an addition (or other operators).
 
