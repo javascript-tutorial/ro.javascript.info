@@ -28,11 +28,11 @@ Avem două scopuri:
 2. Conversia numerică are loc atunci când scădem obiecte sau aplicăm funcții matematice. De exemplu, obiectele de tip `Date` (ce vor fi studiate în capitolul <info:date>) pot fi scăzute, iar rezultatul  `date1 - date2` este diferența de timp dintre cele două date.
 3. În ceea ce privește conversia șirului - se întâmplă de obicei atunci când afișăm un obiect precum `alert(obj)` și în contexte similare.
 
-We can fine-tune string and numeric conversion, using special object methods.
+Putem regla fin șirurile și conversia numerică, folosind metode speciale de obiecte. 
 
-There are three variants of type conversion, that happen in various situations.
+Există trei variante de conversie de tip, care se întâmplă în diferite situații. 
 
-They're called "hints", as described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
+Se numesc "indicii", așa cum sunt descrise în [specificația](https://tc39.github.io/ecma262/#sec-toprimitive):
 
 `"string"`
 : Pentru o conversie obiect-la-șir, atunci când efectuăm o operație asupra unui obiect care se așteaptă la un șir, cum ar fi `alert`:
@@ -120,7 +120,7 @@ let user = {
   }
 };
 
-// demo conversie:
+// conversie demo:
 alert(user); // indiciu: string -> {name: "John"}
 alert(+user); // indiciu: number -> 1000
 alert(user + 500); // indiciu: default -> 1500
