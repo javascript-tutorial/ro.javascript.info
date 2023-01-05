@@ -1,55 +1,59 @@
 
-# Object to primitive conversion
+# Conversia obiectelor la primitive
 
-What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
+Ce se întâmplă atunci când obiectele sunt adunate `obj1 + obj2`, scăzute `obj1 - obj2` sau tipărite folosind `alert(obj)`?
 
-JavaScript doesn't exactly allow to customize how operators work on objects. Unlike some other programming languages, such as Ruby or C++, we can't implement a special object method to handle an addition (or other operators).
+JavaScript nu vă permite să personalizați modul în care operatorii lucrează pe obiecte. Spre deosebire de alte limbaje de programare, cum ar fi Ruby sau C++, nu putem implementa o metodă specială de obiect pentru a gestiona o adunare (sau alți operatori).
 
-In case of such operations, objects are auto-converted to primitives, and then the operation is carried out over these primitives and results in a primitive value.
+În cazul unor astfel de operații, obiectele sunt convertite automat în primitive, iar apoi operația este efectuată asupra acestor primitive și are ca rezultat o valoare primitivă.
 
-That's an important limitation, as the result of `obj1 + obj2` can't be another object!
+Aceasta este o limitare importantă: rezultatul lui `obj1 + obj2` (sau altă operație matematică) nu poate fi un alt obiect!
 
-E.g. we can't make objects representing vectors or matrices (or achievements or whatever), add them and expect a "summed" object as the result. Such architectural feats are automatically "off the board".
+E.g. nu putem crea obiecte reprezentând vectori sau matrici (sau realizări sau orice altceva), să le adunăm și să ne așteptăm ca rezultat un obiect "însumat". Astfel de realizări arhitecturale sunt automat "în afara discuției".
 
-So, because we can't do much here, there's no maths with objects in real projects. When it happens, it's usually because of a coding mistake.
+Așadar, pentru că nu putem face mare lucru aici, nu există matematică cu obiecte în proiectele reale. Atunci când se întâmplă, de obicei, este din cauza unei greșeli de codare.
 
-In this chapter we'll cover how an object converts to primitive and how to customize it.
+În acest capitol vom acoperi modul în care un obiect se convertește în primitivă și cum să îl personalizăm.
 
-We have two purposes:
+Avem două scopuri:
 
-1. It will allow us to understand what's going on in case of coding mistakes, when such an operation happened accidentally.
-2. There are exceptions, where such operations are possible and look good. E.g. subtracting or comparing dates (`Date` objects). We'll come across them later.
+1. Ne va permite să înțelegem ce se întâmplă în cazul unor greșeli de codare, atunci când o astfel de operațiune s-a întâmplat accidental.
+2. Există excepții, unde astfel de operații sunt posibile și arată bine. E.g. scăderea sau compararea datelor (obiecte `Date`). Le vom întâlni mai târziu.
 
-## Conversion rules
+## Reguli de conversie
 
-In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to fill it.
+În capitolul <info:type-conversions> am văzut regulile pentru conversiile numerice, string și booleane ale primitivelor. Dar am lăsat un gol pentru obiecte. Acum, după cum știm despre metode și simboluri, devine posibil să o completăm.
 
-1. All objects are `true` in a boolean context. There are only numeric and string conversions.
-2. The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
-3. As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
+1. Într-un context boolean toate obiectele sunt `true` (adevărate). Există doar conversii numerice și conversii de șiruri.
+2. Conversia numerică are loc atunci când scădem obiecte sau aplicăm funcții matematice. De exemplu, obiectele de tip `Date` (ce vor fi studiate în capitolul <info:date>) pot fi scăzute, iar rezultatul  `date1 - date2` este diferența de timp dintre cele două date.
+3. În ceea ce privește conversia șirului -- se întâmplă de obicei atunci când afișăm un obiect precum `alert(obj)` și în contexte similare.
 
-We can fine-tune string and numeric conversion, using special object methods.
+Putem implementa singuri conversia șirurilor de caractere și a numerelor, folosind metode de obiect speciale.
 
-There are three variants of type conversion, that happen in various situations.
+Acum să intrăm în detalii tehnice, pentru că este singura modalitate de a acoperi subiectul în profunzime.
 
-They're called "hints", as described in the [specification](https://tc39.github.io/ecma262/#sec-toprimitive):
+## Hints
+
+Cum decide JavaScript ce conversie să aplice?
+
+Există trei variante de conversie de tip, care se întâmplă în diverse situații. Acestea se numesc "indicii", așa cum sunt descrise în [specificație](https://tc39.github.io/ecma262/#sec-toprimitive):
 
 `"string"`
-: For an object-to-string conversion, when we're doing an operation on an object that expects a string, like `alert`:
+: Pentru o conversie obiect-la-șir, atunci când efectuăm o operație asupra unui obiect care se așteaptă la un șir, cum ar fi `alert`:
 
     ```js
-    // output
+    // afișare
     alert(obj);
 
-    // using object as a property key
+    // folosind obiectul ca și cheie de proprietate
     anotherObj[obj] = 123;
     ```
 
 `"number"`
-: For an object-to-number conversion, like when we're doing maths:
+: Pentru o conversie obiect-la-număr, ca atunci când facem matematică:
 
     ```js
-    // explicit conversion
+    // conversie explicită
     let num = Number(obj);
 
     // maths (except binary plus)
@@ -60,54 +64,54 @@ They're called "hints", as described in the [specification](https://tc39.github.
     let greater = user1 > user2;
     ```
 
+    Majoritatea funcțiilor matematice încorporate includ, de asemenea, o astfel de conversie.
+
 `"default"`
-: Occurs in rare cases when the operator is "not sure" what type to expect.
+: Se întâmplă în cazuri rare când operatorul nu este „sigur” la ce tip să se aștepte.
 
-    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. So if a binary plus gets an object as an argument, it uses the `"default"` hint to convert it.
+    De exemplu, operatorul binar plus `+` poate funcționa atât cu șiruri (le concatenează) cât și cu numere (le adună), deci atât șirurile cât și numerele se acceptă. Așadar dacă un plus binar obține un obiect ca argument, acesta folosește indiciul `"default"` pentru a-l converti.
 
-    Also, if an object is compared using `==` with a string, number or a symbol, it's also unclear which conversion should be done, so the `"default"` hint is used.
+    De asemenea, dacă un obiect este comparat folosind `==` cu un șir, un număr sau un simbol, nu este clar ce conversie ar trebui efectuată, deci se utilizează indiciul `"default"`.
 
     ```js
-    // binary plus uses the "default" hint
+    // binary plus utilizează indiciul "default".
     let total = obj1 + obj2;
 
-    // obj == number uses the "default" hint
+    // obj == number utilizează indiciul "default"
     if (user == 1) { ... };
     ```
 
-    The greater and less comparison operators, such as `<` `>`, can work with both strings and numbers too. Still, they use the `"number"` hint, not `"default"`. That's for historical reasons.
+    Operatorii de comparație mai mare și mai mic, cum ar fi `<` `>`, pot funcționa atât cu șiruri cât și cu numere. Totuși, ei folosesc indiciul `"number"`, nu `"default"`. Asta din motive istorice.
 
-    In practice though, we don't need to remember these peculiar details, because all built-in objects except for one case (`Date` object, we'll learn it later) implement `"default"` conversion the same way as `"number"`. And we can do the same.
+În practică însă, lucrurile sunt puțin mai simple.
 
-```smart header="No `\"boolean\"` hint"
-Please note -- there are only three hints. It's that simple.
+Toate obiectele încorporate cu excepția unui singur caz (obiectul `Date`, îl vom învăța mai târziu), implementează conversia `"default"` în același mod ca și `"number"`. Și probabil că ar trebui să facem la fel.
 
-There is no "boolean" hint (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
-```
+Totuși, este important să cunoaștem toate cele 3 indicații, în curând vom vedea de ce.
 
-**To do the conversion, JavaScript tries to find and call three object methods:**
+**Pentru a face conversia, JavaScript încearcă să găsească și să apeleze trei metode obiect:**
 
-1. Call `obj[Symbol.toPrimitive](hint)` - the method with the symbolic key `Symbol.toPrimitive` (system symbol), if such method exists,
-2. Otherwise if hint is `"string"`
-    - try `obj.toString()` and `obj.valueOf()`, whatever exists.
-3. Otherwise if hint is `"number"` or `"default"`
-    - try `obj.valueOf()` and `obj.toString()`, whatever exists.
+1. Apelează `obj[Symbol.toPrimitive](indiciu)` - metoda cu cheia simbolică `Symbol.toPrimitive` (simbol de sistem), dacă o astfel de metodă există,
+2. În caz contrar, dacă indiciul este `"string"`
+    - încearcă să apeleze `obj.toString()` sau `obj.valueOf()`, oricare dintre ele există.
+3. Altfel dacă indiciul este `"number"` sau `"default"`
+    - încearcă să apeleze `obj.valueOf()` sau `obj.toString()`, oricare dintre ele există.
 
 ## Symbol.toPrimitive
 
-Let's start from the first method. There's a built-in symbol named `Symbol.toPrimitive` that should be used to name the conversion method, like this:
+Să începem de la prima metodă. Există un simbol încorporat numit `Symbol.toPrimitive` care ar trebui utilizat pentru a denumi metoda de conversie, astfel:
 
 ```js
 obj[Symbol.toPrimitive] = function(hint) {
-  // here goes the code to convert this object to a primitive
-  // it must return a primitive value
-  // hint = one of "string", "number", "default"
+  // iată codul pentru a converti acest obiect într-o primitivă
+  // trebuie să returneze o valoare primitivă
+  // indiciu = unul dintre "string", "number", "default"
 };
 ```
 
-If the method `Symbol.toPrimitive` exists, it's used for all hints, and no more methods are needed.
+Dacă există metoda `Symbol.toPrimitive`, aceasta este utilizată pentru toate indiciile, și nu mai sunt necesare alte metode.
 
-For instance, here `user` object implements it:
+De exemplu, aici obiectul `user` o implementează:
 
 ```js run
 let user = {
@@ -115,37 +119,36 @@ let user = {
   money: 1000,
 
   [Symbol.toPrimitive](hint) {
-    alert(`hint: ${hint}`);
+    alert(`indiciu: ${hint}`);
     return hint == "string" ? `{name: "${this.name}"}` : this.money;
   }
 };
 
-// conversions demo:
-alert(user); // hint: string -> {name: "John"}
-alert(+user); // hint: number -> 1000
-alert(user + 500); // hint: default -> 1500
+// conversii demo:
+alert(user); // indiciu: string -> {name: "John"}
+alert(+user); // indiciu: number -> 1000
+alert(user + 500); // indiciu: default -> 1500
 ```
 
-As we can see from the code, `user` becomes a self-descriptive string or a money amount depending on the conversion. The single method `user[Symbol.toPrimitive]` handles all conversion cases.
-
+După cum putem vedea din cod, obiectul `user` devine un șir autodescriptiv sau o sumă de bani în funcție de conversie. Metoda unică `user[Symbol.toPrimitive]` gestionează toate cazurile de conversie.
 
 ## toString/valueOf
 
-If there's no `Symbol.toPrimitive` then JavaScript tries to find methods `toString` and `valueOf`:
+Dacă nu există `Symbol.toPrimitive`, atunci JavaScript încearcă să găsească metodele `toString` și `valueOf`:
 
-- For the "string" hint: `toString`, and if it doesn't exist, then `valueOf` (so `toString` has the priority for string conversions).
-- For other hints: `valueOf`, and if it doesn't exist, then `toString` (so `valueOf` has the priority for maths).
+- Pentru indiciul "string": apelează metoda `toString`, și dacă nu există sau dacă returnează un obiect în loc de o valoare primitivă, atunci apelează `valueOf` (deci `toString` are prioritate pentru conversiile de șiruri).
+- Pentru alte indicii: apelează `valueOf`, iar dacă acesta nu există sau dacă returnează un obiect în loc de o valoare primitivă, atunci apelează `toString` (deci `valueOf` are prioritate pentru matematică).
 
-Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
+Metodele `toString` și `valueOf` provin din timpuri străvechi. Ele nu sunt simboluri (simbolurile nu existau cu mult timp în urmă), ci mai degrabă metode "obișnuite" cu nume de șiruri. Ele oferă o modalitate alternativă "în stil vechi" de a implementa conversia.
 
-These methods must return a primitive value. If `toString` or `valueOf` returns an object, then it's ignored (same as if there were no method).
+Aceste metode trebuie să returneze o valoare primitivă. Dacă `toString` sau `valueOf` returnează un obiect, atunci este ignorată (la fel ca în cazul în care nu ar exista nicio metodă).
 
-By default, a plain object has following `toString` and `valueOf` methods:
+În mod implicit, un obiect simplu are următoarele metode `toString` și `valueOf`:
 
-- The `toString` method returns a string `"[object Object]"`.
-- The `valueOf` method returns the object itself.
+- Metoda `toString` returnează un șir `"[object Object]"`.
+- Metoda `valueOf` returnează obiectul în sine.
 
-Here's the demo:
+Iată demonstrația:
 
 ```js run
 let user = {name: "John"};
@@ -154,25 +157,25 @@ alert(user); // [object Object]
 alert(user.valueOf() === user); // true
 ```
 
-So if we try to use an object as a string, like in an `alert` or so, then by default we see `[object Object]`.
+Așadar, dacă încercăm să folosim un obiect ca șir de caractere, cum ar fi într-un `alert` sau așa ceva, atunci vom vedea în mod implicit `[object Object]`.
 
-The default `valueOf` is mentioned here only for the sake of completeness, to avoid any confusion. As you can see, it returns the object itself, and so is ignored. Don't ask me why, that's for historical reasons. So we can assume it doesn't exist.
+Valoarea implicită `valueOf` este menționată aici doar de dragul completării, pentru a evita orice confuzie. După cum puteți vedea, acesta returnează obiectul în sine, deci este ignorat. Nu mă întrebați de ce, aceea este din motive istorice. Deci putem presupune că nu există.
 
-Let's implement these methods to customize the conversion.
+Haideți să implementăm aceste metode pentru a personaliza conversia.
 
-For instance, here `user` does the same as above using a combination of `toString` and `valueOf` instead of `Symbol.toPrimitive`:
+De exemplu, aici `user` face același lucru ca mai sus, folosind o combinație de `toString` și `valueOf` în loc de `Symbol.toPrimitive`:
 
 ```js run
 let user = {
   name: "John",
-  money: 1000,
+  bani: 1000,
 
-  // for hint="string"
+  // pentru indiciu="string"
   toString() {
-    return `{name: "${this.name}"}`;
+    return `{nume: "${acest.nume}"}`;
   },
 
-  // for hint="number" or "default"
+  // pentru indiciu="number" sau "default"
   valueOf() {
     return this.money;
   }
@@ -184,9 +187,9 @@ alert(+user); // valueOf -> 1000
 alert(user + 500); // valueOf -> 1500
 ```
 
-As we can see, the behavior is the same as the previous example with `Symbol.toPrimitive`.
+După cum putem vedea, comportamentul este același cu cel din exemplul precedent cu `Symbol.toPrimitive`.
 
-Often we want a single "catch-all" place to handle all primitive conversions. In this case, we can implement `toString` only, like this:
+Deseori ne dorim un singur loc "catch-all" care să se ocupe de toate conversiile primitive. În acest caz, putem implementa doar `toString`, astfel:
 
 ```js run
 let user = {
@@ -201,47 +204,47 @@ alert(user); // toString -> John
 alert(user + 500); // toString -> John500
 ```
 
-In the absence of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
+În absența metodelor `Symbol.toPrimitive` și `valueOf`, `toString` va gestiona toate conversiile primitive.
 
-### A conversion can return any primitive type
+### O conversie poate returna orice tip primitiv
 
-The important thing to know about all primitive-conversion methods is that they do not necessarily return the "hinted" primitive.
+Lucrul important de știut despre toate metodele de conversie primitivă este că nu returnează neapărat primitiva "indicată".
 
-There is no control whether `toString` returns exactly a string, or whether `Symbol.toPrimitive` method returns a number for a hint `"number"`.
+Nu se poate controla dacă `toString` returnează exact un șir, sau dacă metoda `Symbol.toPrimitive` returnează un număr pentru un indiciu `"number"`.
 
-The only mandatory thing: these methods must return a primitive, not an object.
+Singurul lucru obligatoriu: aceste metode trebuie să returneze o primitivă, nu un obiect.
 
-```smart header="Historical notes"
-For historical reasons, if `toString` or `valueOf` returns an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
+```smart header="Note istorice"
+Din motive istorice, dacă `toString` sau `valueOf` returnează un obiect, nu este o eroare, dar o astfel de valoare este ignorată (ca și cum metoda nu ar exista). Asta deoarece în vremuri străvechi nu exista un concept de "eroare" bun în JavaScript.
 
-In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there will be an error.
+În contrast, `Symbol.toPrimitive` *trebuie* să returneze o primitivă, altfel va exista o eroare.
 ```
 
-## Further conversions
+## Alte conversii
 
-As we know already, many operators and functions perform type conversions, e.g. multiplication `*` converts operands to numbers.
+După cum știm deja, mulți operatori și funcții efectuează conversii de tip, e.g. înmulțirea `*` convertește operanzii în numere.
 
-If we pass an object as an argument, then there are two stages:
-1. The object is converted to a primitive (using the rules described above).
-2. If the resulting primitive isn't of the right type, it's converted.
+Dacă transmitem un obiect ca argument, atunci există două etape de calcul:
+1. Obiectul este convertit într-o primitivă (folosind regulile descrise mai sus).
+2. Dacă este necesar pentru calcule ulterioare, primitivul rezultat este de asemenea convertit.
 
-For instance:
+De exemplu:
 
 ```js run
 let obj = {
-  // toString handles all conversions in the absence of other methods
+  // toString gestionează toate conversiile în absența altor metode
   toString() {
     return "2";
   }
 };
 
-alert(obj * 2); // 4, object converted to primitive "2", then multiplication made it a number
+alert(obj * 2); // 4, obiect convertit în primitivul "2", apoi înmulțirea l-a transformat în număr
 ```
 
-1. The multiplication `obj * 2` first converts the object to primitive (that's a string `"2"`).
-2. Then `"2" * 2` becomes `2 * 2` (the string is converted to number).
+1. Înmulțirea `obj * 2` convertește mai întâi obiectul în primitivă (care este un șir de caractere `"2"`).
+2. Apoi `"2" * 2` devine `2 * 2` (șirul este convertit în număr).
 
-Binary plus will concatenate strings in the same situation, as it gladly accepts a string:
+Binary plus va concatena șiruri de caractere în aceeași situație, deoarece acceptă cu plăcere un șir de caractere:
 
 ```js run
 let obj = {
@@ -250,28 +253,28 @@ let obj = {
   }
 };
 
-alert(obj + 2); // 22 ("2" + 2), conversion to primitive returned a string => concatenation
+alert(obj + 2); // 22 ("2" + 2), conversia în primitivă a returnat un șir => concatenare
 ```
 
-## Summary
+## Sumar
 
-The object-to-primitive conversion is called automatically by many built-in functions and operators that expect a primitive as a value.
+Conversia obiect-la-primitivă este apelată automat de multe funcții și operatori încorporați care așteaptă ca valoare o primitivă.
 
-There are 3 types (hints) of it:
-- `"string"` (for `alert` and other operations that need a string)
-- `"number"` (for maths)
-- `"default"` (few operators)
+Există trei tipuri (indicii) ale acesteia:
+- `"string"` (pentru `alert` sau altă instrucțiune care are nevoie de un șir)
+- `"number"` (pentru matematică)
+- `"default"` (câțiva operatori, de obicei obiectele îl implementează în același mod ca și `"number"`.)
 
-The specification describes explicitly which operator uses which hint. There are very few operators that "don't know what to expect" and use the `"default"` hint. Usually for built-in objects `"default"` hint is handled the same way as `"number"`, so in practice the last two are often merged together.
+Specificația descrie explicit ce operator folosește ce indiciu.
 
-The conversion algorithm is:
+Algoritmul de conversie este:
 
-1. Call `obj[Symbol.toPrimitive](hint)` if the method exists,
-2. Otherwise if hint is `"string"`
-    - try `obj.toString()` and `obj.valueOf()`, whatever exists.
-3. Otherwise if hint is `"number"` or `"default"`
-    - try `obj.valueOf()` and `obj.toString()`, whatever exists.
+1. Apelează `obj[Symbol.toPrimitive](indiciu)` dacă metoda există,
+2. În caz contrar, dacă indiciul este `"string"`
+    - încearcă să apeleze `obj.toString()` sau `obj.valueOf()`, oricare dintre ele există.
+3. Altfel dacă indiciul este `"number"` sau `"default"`
+    - încearcă să apeleze `obj.valueOf()` sau `obj.toString()`, oricare dintre ele există.
 
-In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for string conversions that should return a "human-readable" representation of an object, for logging or debugging purposes.  
+Toate aceste metode trebuie să returneze o primitivă pentru a funcționa (dacă sunt definite).
 
-As for math operations, JavaScript doesn't provide a way to "override" them using methods, so real life projects rarely use them on objects.
+În practică, este adesea suficient să implementăm doar `obj.toString()` ca metodă "catch-all" pentru conversiile de șiruri care ar trebui să returneze o reprezentare "lizibilă pentru oameni" a unui obiect, în scopuri de logare sau de depanare. 
