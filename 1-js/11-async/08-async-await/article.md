@@ -1,10 +1,10 @@
 # Async/await
 
-There's a special syntax to work with promises in a more comfortable fashion, called "async/await". It's surprisingly easy to understand and use.
+Există o sintaxă specială pentru a lucra cu promisiuni într-un mod mai confortabil, numită "async/await". Este surprinzător de ușor de înțeles și de utilizat.
 
-## Async functions
+## Funcții Async
 
-Let's start with the `async` keyword. It can be placed before a function, like this:
+Să începem de la cuvântul cheie `async`. Acesta poate fi plasat înaintea unei funcții, astfel:
 
 ```js
 async function f() {
@@ -12,9 +12,9 @@ async function f() {
 }
 ```
 
-The word "async" before a function means one simple thing: a function always returns a promise. Other values are wrapped in a resolved promise automatically.
+Cuvântul "async" înaintea unei funcții înseamnă un lucru simplu: o funcție returnează întotdeauna o promisiune. Alte valori sunt incluse automat într-o promisiune rezolvată.
 
-For instance, this function returns a resolved promise with the result of `1`; let's test it:
+De exemplu, această funcție returnează o promisiune rezolvată cu rezultatul `1`; haideți să o testăm:
 
 ```js run
 async function f() {
@@ -24,7 +24,7 @@ async function f() {
 f().then(alert); // 1
 ```
 
-...We could explicitly return a promise, which would be the same:
+...Am putea returna în mod explicit o promisiune, ceea ce ar fi la fel:
 
 ```js run
 async function f() {
@@ -34,20 +34,20 @@ async function f() {
 f().then(alert); // 1
 ```
 
-So, `async` ensures that the function returns a promise, and wraps non-promises in it. Simple enough, right? But not only that. There's another keyword, `await`, that works only inside `async` functions, and it's pretty cool.
+Deci, `async` se asigură că funcția returnează o promisiune, și înfășoară în ea non-promisiuni. Destul de simplu, nu? Dar nu numai atât. Mai există un alt cuvânt cheie, `await`, care funcționează numai în interiorul funcțiilor `async`, și este destul de cool.
 
 ## Await
 
-The syntax:
+Sintaxa:
 
 ```js
-// works only inside async functions
+// funcționează numai în interiorul funcțiilor async
 let value = await promise;
 ```
 
-The keyword `await` makes JavaScript wait until that promise settles and returns its result.
+Cuvântul cheie `await` face ca JavaScript să aștepte până când promisiunea respectivă se soluționează și îi returnează rezultatul.
 
-Here's an example with a promise that resolves in 1 second:
+Iată un exemplu cu o promisiune care se rezolvă în 1 secundă:
 ```js run
 async function f() {
 
@@ -56,23 +56,23 @@ async function f() {
   });
 
 *!*
-  let result = await promise; // wait until the promise resolves (*)
+  let result = await promise; // așteptă până când promisiunea se rezolvă (*)
 */!*
 
-  alert(result); // "done!"
+  alert(result); // "gata!"
 }
 
 f();
 ```
 
-The function execution "pauses" at the line `(*)` and resumes when the promise settles, with `result` becoming its result. So the code above shows "done!" in one second.
+Executarea funcției "se oprește" la linia `(*)` și se reia când promisiunea se soluționează, `result` devenind rezultatul acesteia. Astfel, codul de mai sus arată "gata!" într-o secundă.
 
-Let's emphasize: `await` literally suspends the function execution until the promise settles, and then resumes it with the promise result. That doesn't cost any CPU resources, because the JavaScript engine can do other jobs in the meantime: execute other scripts, handle events, etc.
+Să subliniem: `await` suspendă literalmente execuția funcției până când promisiunea se soluționează, iar apoi o reia cu rezultatul promisiunii. Acest lucru nu costă nicio resursă de CPU, deoarece motorul JavaScript poate face între timp și alte sarcini: să execute alte scripturi, să gestioneze evenimente etc.
 
-It's just a more elegant syntax of getting the promise result than `promise.then`. And, it's easier to read and write.
+Este doar o sintaxă mai elegantă de a obține rezultatul promisiunii decât `promise.then`. Și, este mai ușor de citit și de scris.
 
-````warn header="Can't use `await` in regular functions"
-If we try to use `await` in a non-async function, there would be a syntax error:
+````warn header="Nu se poate folosi `await` în funcții obișnuite"
+Dacă am încerca să folosim `await` într-o funcție non-async, ar apărea o eroare de sintaxă:
 
 ```js run
 function f() {
@@ -83,32 +83,32 @@ function f() {
 }
 ```
 
-We may get this error if we forget to put `async` before a function. As stated earlier, `await` only works inside an `async` function.
+Putem primi această eroare dacă uităm să punem `async` înaintea unei funcții. După cum am menționat mai devreme, `await` funcționează numai în interiorul unei funcții `async`.
 ````
 
-Let's take the `showAvatar()` example from the chapter <info:promise-chaining> and rewrite it using `async/await`:
+Să luăm exemplul `showAvatar()` din capitolul <info:promise-chaining> și să îl rescriem folosind `async/await`:
 
-1. We'll need to replace `.then` calls with `await`.
-2. Also we should make the function `async` for them to work.
+1. Va trebui să înlocuim apelurile `.then` cu `await`.
+2. De asemenea ar trebui să facem funcția `async` pentru ca acestea să funcționeze.
 
 ```js run
 async function showAvatar() {
 
-  // read our JSON
+  // citeșțe JSON-ul nostru
   let response = await fetch('/article/promise-chaining/user.json');
   let user = await response.json();
 
-  // read github user
+  // citește utilizatorul github
   let githubResponse = await fetch(`https://api.github.com/users/${user.name}`);
   let githubUser = await githubResponse.json();
 
-  // show the avatar
+  // arată avatarul
   let img = document.createElement('img');
   img.src = githubUser.avatar_url;
   img.className = "promise-avatar-example";
   document.body.append(img);
 
-  // wait 3 seconds
+  // așteaptă 3 secunde
   await new Promise((resolve, reject) => setTimeout(resolve, 3000));
 
   img.remove();
@@ -119,7 +119,7 @@ async function showAvatar() {
 showAvatar();
 ```
 
-Pretty clean and easy to read, right? Much better than before.
+Destul de curat și ușor de citit, nu? Mult mai bine decât înainte.
 
 ````smart header="Modern browsers allow top-level `await` in modules"
 In modern browsers, `await` on top level works just fine, when we're inside a module. We'll cover modules in article <info:modules-intro>.
