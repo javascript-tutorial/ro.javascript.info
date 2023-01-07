@@ -121,22 +121,22 @@ showAvatar();
 
 Destul de curat și ușor de citit, nu? Mult mai bine decât înainte.
 
-````smart header="Modern browsers allow top-level `await` in modules"
-In modern browsers, `await` on top level works just fine, when we're inside a module. We'll cover modules in article <info:modules-intro>.
+````smart header="Browserele moderne permit top-level `await` în module"
+În browserele moderne, top-level `await` funcționează chiar bine, atunci când ne aflăm în interiorul unui modul. Vom aborda modulele în articolul <info:modules-intro>.
 
-For instance:
+De exemplu:
 
 ```js run module
-// we assume this code runs at top level, inside a module
+// presupunem că acest cod rulează la top-level, în interiorul unui modul
 let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
 
 console.log(user);
 ```
 
-If we're not using modules, or [older browsers](https://caniuse.com/mdn-javascript_operators_await_top_level) must be supported, there's a universal recipe: wrapping into an anonymous async function.
+Dacă nu folosim module, sau [browsere mai vechi](https://caniuse.com/mdn-javascript_operators_await_top_level) trebuie să fie suportate, există o rețetă universală: înfășurarea într-o funcție asincronă anonimă.
 
-Like this:
+Astfel:
 
 ```js
 (async () => {
@@ -148,10 +148,10 @@ Like this:
 
 ````
 
-````smart header="`await` accepts \"thenables\""
-Like `promise.then`, `await` allows us to use thenable objects (those with a callable `then` method). The idea is that a third-party object may not be a promise, but promise-compatible: if it supports `.then`, that's enough to use it with `await`.
+````smart header="`await` acceptă \"thenables\""
+La fel ca `promise.then`, `await` ne permite să folosim obiecte thenable (cele care au o metodă `then` apelabilă). Ideea este că un obiect terț poate să nu fie o promisiune, dar să fie compatibil cu promisiunile: dacă acceptă `.then`, este suficient pentru a-l folosi cu `await`.
 
-Here's a demo `Thenable` class; the `await` below accepts its instances:
+Iată o clasă demo `Thenable`; `await` de mai jos acceptă instanțele sale:
 
 ```js run
 class Thenable {
@@ -160,13 +160,13 @@ class Thenable {
   }
   then(resolve, reject) {
     alert(resolve);
-    // resolve with this.num*2 after 1000ms
+    // rezolvă cu this.num*2 după 1000ms
     setTimeout(() => resolve(this.num * 2), 1000); // (*)
   }
 }
 
 async function f() {
-  // waits for 1 second, then result becomes 2
+  // așteaptă 1 secundă, apoi result devine 2
   let result = await new Thenable(1);
   alert(result);
 }
@@ -174,11 +174,11 @@ async function f() {
 f();
 ```
 
-If `await` gets a non-promise object with `.then`, it calls that method providing the built-in functions `resolve` and `reject` as arguments (just as it does for a regular `Promise` executor). Then `await` waits until one of them is called (in the example above it happens in the line `(*)`) and then proceeds with the result.
+Dacă `await` obține un obiect non-promise cu `.then`, apelează metoda respectivă oferind ca argumente funcțiile integrate `resolve` și `reject` (la fel cum o face în cazul unui executor `Promise` obișnuit). Apoi `await` așteaptă până când una dintre ele este apelată (în exemplul de mai sus se întâmplă în linia `(*)`) și apoi continuă cu rezultatul.
 ````
 
-````smart header="Async class methods"
-To declare an async class method, just prepend it with `async`:
+````smart header="Metode de clasă asincrone"
+Pentru a declara o metodă de clasă asincronă, trebuie doar să o precedați cu `async`.:
 
 ```js run
 class Waiter {
@@ -191,9 +191,9 @@ class Waiter {
 
 new Waiter()
   .wait()
-  .then(alert); // 1 (this is the same as (result => alert(result)))
+  .then(alert); // 1 (acesta este același cu (result => alert(result)))
 ```
-The meaning is the same: it ensures that the returned value is a promise and enables `await`.
+Semnificația este aceeași: se asigură că valoarea returnată este o promisiune și permite `await`.
 
 ````
 ## Error handling
