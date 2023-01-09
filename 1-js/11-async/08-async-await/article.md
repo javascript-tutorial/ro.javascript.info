@@ -127,7 +127,7 @@ Destul de curat și ușor de citit, nu? Mult mai bine decât înainte.
 De exemplu:
 
 ```js run module
-// presupunem că acest cod rulează la top-level, în interiorul unui modul
+// presupunem că acest cod rulează la top level, în interiorul unui modul
 let response = await fetch('/article/promise-chaining/user.json');
 let user = await response.json();
 
