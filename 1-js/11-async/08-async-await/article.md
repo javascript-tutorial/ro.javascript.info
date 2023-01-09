@@ -294,18 +294,18 @@ let results = await Promise.all([
 
 ````
 
-## Summary
+## Sumar
 
-The `async` keyword before a function has two effects:
+Cuvântul cheie `async` înaintea unei funcții are două efecte:
 
-1. Makes it always return a promise.
-2. Allows `await` to be used in it.
+1. Face ca aceasta să returneze întotdeauna o promisiune.
+2. Permite ca `await` să fie folosit în ea.
 
-The `await` keyword before a promise makes JavaScript wait until that promise settles, and then:
+Cuvântul cheie `await` înaintea unei promisiuni face ca JavaScript să aștepte până când promisiunea respectivă se soluționează, iar apoi:
 
-1. If it's an error, an exception is generated — same as if `throw error` were called at that very place.
-2. Otherwise, it returns the result.
+1. Dacă este o eroare, se generează o excepție — la fel ca și cum `throw error` ar fi fost apelat chiar în acel loc.
+2. În caz contrar, se returnează rezultatul.
 
-Together they provide a great framework to write asynchronous code that is easy to both read and write.
+Împreună acestea oferă un cadru excelent pentru a scrie cod asincron care este ușor de citit și de scris.
 
-With `async/await` we rarely need to write `promise.then/catch`, but we still shouldn't forget that they are based on promises, because sometimes (e.g. in the outermost scope) we have to use these methods. Also `Promise.all` is nice when we are waiting for many tasks simultaneously.
+Cu `async/await` avem rareori nevoie să scriem `promise.then/catch`, dar tot nu trebuie să uităm că acestea se bazează pe promisiuni, deoarece uneori (e.g. în domeniul de aplicare cel mai îndepărtat) trebuie să folosim aceste metode. De asemenea `Promise.all` este util atunci când așteptăm mai multe sarcini simultan.
