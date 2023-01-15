@@ -54,58 +54,58 @@ Pentru a crea un nou obiect `Date` apelați `new Date()` cu unul dintre următoa
     // Wed Jan 25 2017 16:00:00 GMT-0800 (Pacific Standard Time)
     ```
 
-`new Date(year, month, date, hours, minutes, seconds, ms)`
-: Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
+`new Date(an, lună, date, ore, minute, secunde, ms)`
+: Creează data cu componentele date în fusul orar local. Doar primele două argumente sunt obligatorii.
 
-    - The `year` should have 4 digits. For compatibility, 2 digits are also accepted and considered `19xx`, e.g. `98` is the same as `1998` here, but always using 4 digits is strongly encouraged.
-    - The `month` count starts with `0` (Jan), up to `11` (Dec).
-    - The `date` parameter is actually the day of month, if absent then `1` is assumed.
-    - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
+    - Anul `year` trebuie să aibă 4 cifre. Pentru compatibilitate, sunt acceptate și 2 cifre, care sunt considerate `19xx`, e.g.`98` este același lucru cu `1998` aici, dar este întotdeauna puternic încurajată folosirea a 4 cifre.
+    - Numărătoarea "lunilor" începe cu `0` (Ian), până la `11` (Dec).
+    - Parametrul `date` este de fapt ziua lunii, dacă nu există atunci se presupune `1`.
+    - Dacă `ore/minute/secunde/ms` este absent, se presupune că sunt egale cu `0`.
 
-    For instance:
+    De exemplu:
 
     ```js
     new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Jan 2011, 00:00:00
-    new Date(2011, 0, 1); // the same, hours etc are 0 by default
+    new Date(2011, 0, 1); // la fel, orele etc sunt 0 în mod implicit
     ```
 
-    The maximal precision is 1 ms (1/1000 sec):
+    Precizia maximă este 1 ms (1/1000 sec):
 
     ```js run
     let date = new Date(2011, 0, 1, 2, 3, 4, 567);
     alert( date ); // 1.01.2011, 02:03:04.567
     ```
 
-## Access date components
+## Accesarea componentelor de date
 
-There are methods to access the year, month and so on from the `Date` object:
+Există metode pentru a accesa anul, luna și așa mai departe din obiectul `Date`:
 
 [getFullYear()](mdn:js/Date/getFullYear)
-: Get the year (4 digits)
+: Obține anul (4 cifre)
 
 [getMonth()](mdn:js/Date/getMonth)
-: Get the month, **from 0 to 11**.
+: Obține luna, **de la 0 la 11**.
 
 [getDate()](mdn:js/Date/getDate)
-: Get the day of month, from 1 to 31, the name of the method does look a little bit strange.
+: Obține ziua lunii, de la 1 la 31, numele metodei pare puțin ciudat.
 
 [getHours()](mdn:js/Date/getHours), [getMinutes()](mdn:js/Date/getMinutes), [getSeconds()](mdn:js/Date/getSeconds), [getMilliseconds()](mdn:js/Date/getMilliseconds)
-: Get the corresponding time components.
+: Obține componentele de timp corespunzătoare.
 
-```warn header="Not `getYear()`, but `getFullYear()`"
-Many JavaScript engines implement a non-standard method `getYear()`. This method is deprecated. It returns 2-digit year sometimes. Please never use it. There is `getFullYear()` for the year.
+```warn header="Nu `getYear()`, ci `getFullYear()`"
+Multe motoare JavaScript implementează o metodă non-standard `getYear()`. Această metodă este depreciată. Ea returnează uneori anul din 2 cifre. Vă rugăm să nu o folosiți niciodată. Există `getFullYear()` pentru an.
 ```
 
-Additionally, we can get a day of week:
+Adițional, putem obține o zi a săptămânii:
 
 [getDay()](mdn:js/Date/getDay)
-: Get the day of week, from `0` (Sunday) to `6` (Saturday). The first day is always Sunday, in some countries that's not so, but can't be changed.
+: Obține ziua săptămânii, de la `0` (Duminică) la `6` (Sâmbătă). Prima zi este întotdeauna Duminică, în unele țări nu este așa, dar nu poate fi schimbată.
 
-**All the methods above return the components relative to the local time zone.**
+**Toate metodele de mai sus returnează componentele în raport cu fusul orar local.**
 
-There are also their UTC-counterparts, that return day, month, year and so on for the time zone UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Just insert the `"UTC"` right after `"get"`.
+Există de asemenea omologii lor UTC, care returnează ziua, luna, anul și așa mai departe pentru fusul orar UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Doar introduceți `"UTC"` imediat după `"get"`.
 
-If your local time zone is shifted relative to UTC, then the code below shows different hours:
+Dacă fusul orar local este decalat față de UTC, atunci codul de mai jos afișează ore diferite:
 
 ```js run
 // current date
