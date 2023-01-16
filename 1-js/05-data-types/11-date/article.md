@@ -108,34 +108,34 @@ Există de asemenea omologii lor UTC, care returnează ziua, luna, anul și așa
 Dacă fusul orar local este decalat față de UTC, atunci codul de mai jos afișează ore diferite:
 
 ```js run
-// current date
+// data curentă
 let date = new Date();
 
-// the hour in your current time zone
+// ora în fusul vostru orar
 alert( date.getHours() );
 
-// the hour in UTC+0 time zone (London time without daylight savings)
+// ora în fusul orar UTC+0 (ora Londrei fără ora de vară)
 alert( date.getUTCHours() );
 ```
 
-Besides the given methods, there are two special ones that do not have a UTC-variant:
+În afară de metodele date, există două metode speciale care nu au o variantă UTC:
 
 [getTime()](mdn:js/Date/getTime)
-: Returns the timestamp for the date -- a number of milliseconds passed from the January 1st of 1970 UTC+0.
+: Returnează timestamp-ul pentru dată -- un număr de milisecunde trecute de la 1 Ianuarie 1970 UTC+0.
 
 [getTimezoneOffset()](mdn:js/Date/getTimezoneOffset)
-: Returns the difference between UTC and the local time zone, in minutes:
+: Returnează diferența dintre UTC și fusul orar local, în minute:
 
     ```js run
-    // if you are in timezone UTC-1, outputs 60
-    // if you are in timezone UTC+3, outputs -180
+    // dacă vă aflați în fusul orar UTC-1, produce 60
+    // dacă vă aflați în fusul orar UTC+3, produce -180
     alert( new Date().getTimezoneOffset() );
 
     ```
 
-## Setting date components
+## Stabilirea componentelor datei
 
-The following methods allow to set date/time components:
+Următoarele metode permit stabilirea componentelor de dată/ora:
 
 - [`setFullYear(year, [month], [date])`](mdn:js/Date/setFullYear)
 - [`setMonth(month, [date])`](mdn:js/Date/setMonth)
@@ -144,38 +144,38 @@ The following methods allow to set date/time components:
 - [`setMinutes(min, [sec], [ms])`](mdn:js/Date/setMinutes)
 - [`setSeconds(sec, [ms])`](mdn:js/Date/setSeconds)
 - [`setMilliseconds(ms)`](mdn:js/Date/setMilliseconds)
-- [`setTime(milliseconds)`](mdn:js/Date/setTime) (sets the whole date by milliseconds since 01.01.1970 UTC)
+- [`setTime(milliseconds)`](mdn:js/Date/setTime) (setează întreaga dată cu milisecunde începând cu 01.01.1970 UTC)
 
-Every one of them except `setTime()` has a UTC-variant, for instance: `setUTCHours()`.
+Fiecare dintre ele cu excepția `setTime()` au o variantă UTC, de exemplu: `setUTCHours()`.
 
-As we can see, some methods can set multiple components at once, for example `setHours`. The components that are not mentioned are not modified.
+După cum putem vedea, unele metode pot seta mai multe componente deodată, de exemplu `setHours`. Componentele care nu sunt menționate nu sunt modificate.
 
-For instance:
+De exemplu:
 
 ```js run
 let today = new Date();
 
 today.setHours(0);
-alert(today); // still today, but the hour is changed to 0
+alert(today); // tot astăzi, dar ora este schimbată la 0
 
 today.setHours(0, 0, 0, 0);
-alert(today); // still today, now 00:00:00 sharp.
+alert(today); // tot astăzi, la ora 00:00:00 fix.
 ```
 
-## Autocorrection
+## Autocorecție
 
-The *autocorrection* is a very handy feature of `Date` objects. We can set out-of-range values, and it will auto-adjust itself.
+*Autocorecția* este o caracteristică foarte utilă a obiectelor `Date`. Putem seta valori în afara intervalelor, iar aceasta se va auto-ajusta.
 
-For instance:
+De exemplu:
 
 ```js run
 let date = new Date(2013, 0, *!*32*/!*); // 32 Jan 2013 ?!?
-alert(date); // ...is 1st Feb 2013!
+alert(date); // ...este 1 Feb 2013!
 ```
 
-Out-of-range date components are distributed automatically.
+Componentele de date în afara intervalului sunt distribuite automat.
 
-Let's say we need to increase the date "28 Feb 2016" by 2 days. It may be "2 Mar" or "1 Mar" in case of a leap-year. We don't need to think about it. Just add 2 days. The `Date` object will do the rest:
+Să spunem că trebuie să mărim data "28 Feb 2016" cu 2 zile. Aceasta poate fi "2 Mar" sau "1 Mar" în cazul unui an bisect. Nu trebuie să ne gândim la asta. Doar adăugăm 2 zile. Obiectul `Date` se va ocupa de restul:
 
 ```js run
 let date = new Date(2016, 1, 28);
@@ -186,24 +186,24 @@ date.setDate(date.getDate() + 2);
 alert( date ); // 1 Mar 2016
 ```
 
-That feature is often used to get the date after the given period of time. For instance, let's get the date for "70 seconds after now":
+Acea caracteristică este adesea utilizată pentru a obține data după o perioadă de timp dată. De exemplu, să obținem data pentru "70 de secunde de acum încolo":
 
 ```js run
 let date = new Date();
 date.setSeconds(date.getSeconds() + 70);
 
-alert( date ); // shows the correct date
+alert( date ); // afișează data corectă
 ```
 
-We can also set zero or even negative values. For example:
+De asemenea putem seta valori zero sau chiar negative. De exemplu:
 
 ```js run
 let date = new Date(2016, 0, 2); // 2 Jan 2016
 
-date.setDate(1); // set day 1 of month
+date.setDate(1); // setează ziua 1 a lunii
 alert( date );
 
-date.setDate(0); // min day is 1, so the last day of the previous month is assumed
+date.setDate(0); // ziua minimă este 1, deci se presupune ultima zi a lunii precedente
 alert( date ); // 31 Dec 2015
 ```
 
