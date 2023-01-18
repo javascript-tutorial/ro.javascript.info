@@ -2,25 +2,25 @@ importance: 4
 
 ---
 
-# Rewrite the function using '?' or '||'
+# Rescrieți funcția folosind '?' sau '||'
 
-The following function returns `true` if the parameter `age` is greater than `18`.
+Următoarea funcție returnează `true` dacă parametrul `age` este mai mare decât `18`.
 
-Otherwise it asks for a confirmation and returns its result.
+În caz contrar, solicită o confirmare și returnează rezultatul.
 
 ```js
 function checkAge(age) {
   if (age > 18) {
     return true;
   } else {
-    return confirm('Did parents allow you?');
+    return confirm('Ți-au permis părinții?');
   }
 }
 ```
 
-Rewrite it, to perform the same, but without `if`, in a single line.
+Rescrie-l, pentru a efectua la fel, dar fără `if`, într-o singură linie.
 
-Make two variants of `checkAge`:
+Faceți două variante de `checkAge`:
 
-1. Using a question mark operator `?`
-2. Using OR `||`
+1. Folosind un operator de semn de întrebare `?`
+2. Folosind SAU `||`

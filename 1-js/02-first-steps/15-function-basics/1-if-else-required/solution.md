@@ -1,1 +1,1 @@
-No difference.
+Nicio diferenta.

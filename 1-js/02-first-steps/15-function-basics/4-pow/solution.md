@@ -14,7 +14,7 @@ let x = prompt("x?", '');
 let n = prompt("n?", '');
 
 if (n < 1) {
-  alert(`Power ${n} is not supported, use a positive integer`);
+  alert(`Puterea ${n} nu este acceptată, utilizați un număr întreg pozitiv`);
 } else {
   alert( pow(x, n) );
 }

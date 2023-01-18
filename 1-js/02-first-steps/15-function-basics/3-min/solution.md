@@ -1,4 +1,4 @@
-A solution using `if`:
+O soluție folosind `if`:
 
 ```js
 function min(a, b) {
@@ -10,7 +10,7 @@ function min(a, b) {
 }
 ```
 
-A solution with a question mark operator `'?'`:
+O soluție cu un operator de semn de întrebare `'?'`:
 
 ```js
 function min(a, b) {
@@ -18,4 +18,4 @@ function min(a, b) {
 }
 ```
 
-P.S. In the case of an equality `a == b` it does not matter what to return.
+P.S. În cazul unei egalităţi `a == b` nu contează ce returnează.

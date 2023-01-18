@@ -1,17 +1,17 @@
-Using a question mark operator `'?'`:
+Folosind un operator de semn de întrebare `'?'`:
 
 ```js
 function checkAge(age) {
-  return (age > 18) ? true : confirm('Did parents allow you?');
+  return (age > 18) ? true : confirm('Ți-au permis părinții?');
 }
 ```
 
-Using OR `||` (the shortest variant):
+Folosind SAU `||` (cea mai scurtă variantă):
 
 ```js
 function checkAge(age) {
-  return (age > 18) || confirm('Did parents allow you?');
+  return (age > 18) || confirm('Ți-au permis părinții?');
 }
 ```
 
-Note that the parentheses around `age > 18` are not required here. They exist for better readability.
+Rețineți că parantezele din jurul `age > 18` nu sunt necesare aici. Ele există pentru o mai bună lizibilitate.
