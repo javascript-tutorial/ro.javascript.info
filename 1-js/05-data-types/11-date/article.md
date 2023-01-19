@@ -209,57 +209,57 @@ alert( date ); // 31 Dec 2015
 
 ## Date to number, date diff
 
-When a `Date` object is converted to number, it becomes the timestamp same as `date.getTime()`:
+Atunci când un obiect `Date` este convertit în număr, acesta devine timestamp-ul la fel ca `date.getTime()`:
 
 ```js run
 let date = new Date();
-alert(+date); // the number of milliseconds, same as date.getTime()
+alert(+date); // numărul de milisecunde, la fel ca date.getTime()
 ```
 
-The important side effect: dates can be subtracted, the result is their difference in ms.
+Efect secundar important: datele se pot scădea, rezultatul fiind diferența lor în ms.
 
-That can be used for time measurements:
+Acesta poate fi folosit pentru măsurători de timp:
 
 ```js run
-let start = new Date(); // start measuring time
+let start = new Date(); // începe măsurarea timpului
 
-// do the job
+// face treaba
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
-let end = new Date(); // end measuring time
+let end = new Date(); // încheie măsurarea timpului
 
-alert( `The loop took ${end - start} ms` );
+alert( `Bucla a durat ${end - start} ms` );
 ```
 
 ## Date.now()
 
-If we only want to measure time, we don't need the `Date` object.
+Dacă dorim doar să măsurăm timpul, nu avem nevoie de obiectul `Date`.
 
-There's a special method `Date.now()` that returns the current timestamp.
+Există o metodă specială `Date.now()` care returnează timestamp-ul curent.
 
-It is semantically equivalent to `new Date().getTime()`, but it doesn't create an intermediate `Date` object. So it's faster and doesn't put pressure on garbage collection.
+Aceasta este semantic echivalentă cu `new Date().getTime()`, dar nu creează un obiect `Date` intermediar. Astfel este mai rapidă și nu pune presiune pe garbage collection.
 
-It is used mostly for convenience or when performance matters, like in games in JavaScript or other specialized applications.
+Este folosit în mare parte pentru conveniență sau când performanța contează, cum ar fi în jocuri în JavaScript sau alte aplicații specializate.
 
-So this is probably better:
+Așa că este probabil mai bine așa:
 
 ```js run
 *!*
-let start = Date.now(); // milliseconds count from 1 Jan 1970
+let start = Date.now(); // milisecundele se numără de la 1 Ian 1970
 */!*
 
-// do the job
+// face treaba
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
 *!*
-let end = Date.now(); // done
+let end = Date.now(); // gata
 */!*
 
-alert( `The loop took ${end - start} ms` ); // subtract numbers, not dates
+alert( `Bucla a durat ${end - start} ms` ); // scade numere, nu date
 ```
 
 ## Benchmarking
