@@ -264,31 +264,31 @@ alert( `Bucla a durat ${end - start} ms` ); // scade numere, nu date
 
 ## Benchmarking
 
-If we want a reliable benchmark of CPU-hungry function, we should be careful.
+Dacă dorim un benchmark fiabil al unei funcții care consumă mult CPU, trebuie să fim atenți.
 
-For instance, let's measure two functions that calculate the difference between two dates: which one is faster?
+De exemplu, să măsurăm două funcții care calculează diferența dintre două date: care dintre ele este mai rapidă?
 
-Such performance measurements are often called "benchmarks".
+Astfel de măsurători de performanță sunt adesea numite "benchmarks".
 
 ```js
-// we have date1 and date2, which function faster returns their difference in ms?
+// avem date1 și date2, care funcție returnează mai repede diferența lor în ms?
 function diffSubtract(date1, date2) {
   return date2 - date1;
 }
 
-// or
+// sau
 function diffGetTime(date1, date2) {
   return date2.getTime() - date1.getTime();
 }
 ```
 
-These two do exactly the same thing, but one of them uses an explicit `date.getTime()` to get the date in ms, and the other one relies on a date-to-number transform. Their result is always the same.
+Acestea două fac exact același lucru, dar una dintre ele folosește `date.getTime()` explicit pentru a obține data în ms, iar cealaltă se bazează pe o transformare dată-la-număr. Rezultatul lor este întotdeauna același.
 
-So, which one is faster?
+Așadar, care dintre ele este mai rapidă?
 
-The first idea may be to run them many times in a row and measure the time difference. For our case, functions are very simple, so we have to do it at least 100000 times.
+Prima idee ar putea fi să le rulăm de multe ori la rând și să măsurăm diferența de timp. Pentru cazul nostru, funcțiile sunt foarte simple, așa că trebuie să o facem de cel puțin 100000 de ori.
 
-Let's measure:
+Să măsurăm:
 
 ```js run
 function diffSubtract(date1, date2) {
@@ -312,19 +312,19 @@ alert( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
 alert( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );
 ```
 
-Wow! Using `getTime()` is so much faster! That's because there's no type conversion, it is much easier for engines to optimize.
+Wow! Utilizând `getTime()` este mult mai rapid! Asta pentru că nu există conversie de tip, este mult mai ușor de optimizat pentru motoare.
 
-Okay, we have something. But that's not a good benchmark yet.
+Bine, avem ceva. Dar acesta nu este un benchmark bun încă.
 
-Imagine that at the time of running `bench(diffSubtract)` CPU was doing something in parallel, and it was taking resources. And by the time of running `bench(diffGetTime)` that work has finished.
+Imaginați-vă că în momentul rulării `bench(diffSubtract)` CPU-ul făcea ceva în paralel, și acesta consuma resurse. Iar până în momentul în care se execută `bench(diffGetTime)` acea sarcină s-a terminat.
 
-A pretty real scenario for a modern multi-process OS.
+Un scenariu destul de real pentru un multiproces modern de OS.
 
-As a result, the first benchmark will have less CPU resources than the second. That may lead to wrong results.
+Ca urmare, primul benchmark va avea mai puține resurse CPU decât al doilea. Acest lucru poate duce la rezultate greșite.
 
-**For more reliable benchmarking, the whole pack of benchmarks should be rerun multiple times.**
+**Pentru un benchmarking mai fiabil, întregul pachet de benchmarks ar trebui rulat de mai multe ori.**
 
-For example, like this:
+De exemplu, cam așa:
 
 ```js run
 function diffSubtract(date1, date2) {
@@ -348,35 +348,35 @@ let time1 = 0;
 let time2 = 0;
 
 *!*
-// run bench(diffSubtract) and bench(diffGetTime) each 10 times alternating
+// execută bench(diffSubtract) și bench(diffGetTime) fiecare de 10 ori alternativ
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 */!*
 
-alert( 'Total time for diffSubtract: ' + time1 );
-alert( 'Total time for diffGetTime: ' + time2 );
+alert( 'Timp total pentru diffSubtract: ' + time1 );
+alert( 'Timp total pentru diffGetTime: ' + time2 );
 ```
 
-Modern JavaScript engines start applying advanced optimizations only to "hot code" that executes many times (no need to optimize rarely executed things). So, in the example above, first executions are not well-optimized. We may want to add a heat-up run:
+Motoarele JavaScript moderne încep să aplice optimizări avansate doar pentru "codul fierbinte" care se execută de mai multe ori (nu este nevoie să optimizeze lucruri executate rar). Așadar, în exemplul de mai sus, primele execuții nu sunt bine optimizate. Am vrea să adăugăm o execuție de încălzire:
 
 ```js
-// added for "heating up" prior to the main loop
+// adăugată pentru "încălzire" înainte de bucla principală
 bench(diffSubtract);
 bench(diffGetTime);
 
-// now benchmark
+// acum benchmark
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 ```
 
-```warn header="Be careful doing microbenchmarking"
-Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
+```warn header="Aveți grijă când faceți microbenchmarking"
+Motoarele JavaScript moderne efectuează multe optimizări. Acestea ar putea ajusta rezultatele "testelor artificiale" în comparație cu "utilizarea normală", în special atunci când efectuăm benchmark-uri pentru ceva foarte mic, cum ar fi modul în care funcționează un operator sau o funcție încorporată. Deci dacă vreți să înțelegeți în mod serios performanța, atunci vă rugăm să studiați modul în care funcționează motorul JavaScript. Și atunci probabil că nu veți avea nevoie deloc de microbenchmarks.
 
-The great pack of articles about V8 can be found at <https://mrale.ph>.
+Marele pachet de articole despre V8 poate fi găsit la <https://mrale.ph>.
 ```
 
 ## Date.parse from a string
