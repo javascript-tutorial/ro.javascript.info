@@ -1,29 +1,29 @@
-There are many algorithms for this task.
+Există mulți algoritmi pentru aceast exercițiu.
 
-Let's use a nested loop:
+Hai să folosim o buclă imbricată (nested loop):
 
 ```js
-For each i in the interval {
-  check if i has a divisor from 1..i
-  if yes => the value is not a prime
-  if no => the value is a prime, show it
+Pentru fiecare i din interval {
+  verifică dacă i are un divizor de la 1 la i
+  dacă da => numărul nu este prim
+  dacă nu => numărul este prim, afișează-l
 }
 ```
 
-The code using a label:
+Codul folosind o etichetă:
 
-```js run
+```js
 let n = 10;
 
-nextPrime:
-for (let i = 2; i <= n; i++) { // for each i...
+următorulNrPrim:
+for (let i = 2; i <= n; i++) { // pentru fiecare i...
 
-  for (let j = 2; j < i; j++) { // look for a divisor..
-    if (i % j == 0) continue nextPrime; // not a prime, go next i
+  for (let j = 2; j < i; j++) { // caută un divizor..
+    if (i % j == 0) continue următorulNrPrim; // nu e prim, treci la următorul i
   }
 
-  alert( i ); // a prime
+  alert( i ); // e prim
 }
 ```
 
-There's a lot of space to optimize it. For instance, we could look for the divisors from `2` to square root of `i`. But anyway, if we want to be really efficient for large intervals, we need to change the approach and rely on advanced maths and complex algorithms like [Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve), [General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve) etc.
+Aici există foarte multe oportunități de optimizare. De exemplu, am putea căuta divizorii de la `2` la radical din `i`. În orice caz, dacă vrem să fim extrem de eficienți pentru intervale mari, trebuie să schimbăm abordarea și să ne bazăm pe matematică avansată și algoritmi complecși precum [Quadratic sieve](https://en.wikipedia.org/wiki/Quadratic_sieve), [General number field sieve](https://en.wikipedia.org/wiki/General_number_field_sieve), etc.

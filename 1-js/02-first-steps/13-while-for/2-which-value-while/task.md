@@ -2,21 +2,21 @@ importance: 4
 
 ---
 
-# Which values does the while loop show?
+# Ce valori afișează bucla while?
 
-For every loop iteration, write down which value it outputs and then compare it with the solution.
+Pentru fiecare iterație a buclei, scrie ce valori afișează și apoi compară-le cu soluția.
 
-Both loops `alert` the same values, or not?
+Ambele bucle afișează prin funcția `alert` aceleași valori, sau nu?
 
-1. The prefix form `++i`:
+1. Forma cu prefix `++i`:
 
-    ```js
-    let i = 0;
-    while (++i < 5) alert( i );
-    ```
-2. The postfix form `i++`
+   ```js
+   let i = 0;
+   while (++i < 5) alert( i );
+   ```
+2. Forma cu sufix `i++`
 
-    ```js
-    let i = 0;
-    while (i++ < 5) alert( i );
-    ```
+   ```js
+   let i = 0;
+   while (i++ < 5) alert( i );
+   ```

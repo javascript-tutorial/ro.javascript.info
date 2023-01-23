@@ -2,12 +2,10 @@ importance: 5
 
 ---
 
-# Repeat until the input is correct
+# Repetă până numărul introdus e corect
 
-Write a loop which prompts for a number greater than `100`. If the visitor enters another number -- ask them to input again.
+Scrie o buclă care să ceară utilizatorului un număr mai mare decât `100`. Dacă utilizatorul introduce alt număr -- cere-i să încerce din nou.
 
-The loop must ask for a number until either the visitor enters a number greater than `100` or cancels the input/enters an empty line.
-
-Here we can assume that the visitor only inputs numbers. There's no need to implement a special handling for a non-numeric input in this task.
+Bucla trebuie să ceară un număr fie până vizitatorul introduce un număr mai mare decât `100` fie anulează introducerea sau introduce un string gol.
 
 [demo]

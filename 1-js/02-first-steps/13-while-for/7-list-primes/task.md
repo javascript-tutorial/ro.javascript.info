@@ -2,16 +2,14 @@ importance: 3
 
 ---
 
-# Output prime numbers
+# Afișează numere prime
 
-An integer number greater than `1` is called a [prime](https://en.wikipedia.org/wiki/Prime_number) if it cannot be divided without a remainder by anything except `1` and itself.
+Un număr de tip întreg mai mare decât `1` se numește [prim](https://ro.wikipedia.org/wiki/Num%C4%83r_prim) dacă nu se poate împărți fără rest cu nimic în afară de 1 și el însuși.
 
-In other words, `n > 1` is a prime if it can't be evenly divided by anything except `1` and `n`.
+Cu alte cuvinte, `n > 1` este prim dacă nu se poate împărți exact cu nimic în afară de `1` și `n`.
 
-For example, `5` is a prime, because it cannot be divided without a remainder by `2`, `3` and `4`.
+**Scrie codul care afișează numerele prime în intervalul de la 2 la `n`.**
 
-**Write the code which outputs prime numbers in the interval from `2` to `n`.**
+Pentru `n = 10` rezultatul va fi `2,3,5,7`.
 
-For `n = 10` the result will be `2,3,5,7`.
-
-P.S. The code should work for any `n`, not be hard-tuned for any fixed value.
+P.S. Codul ar trebui să funcționeze pentru orice `n`, nu să fie scris pentru o anume valoare.
