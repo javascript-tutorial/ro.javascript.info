@@ -15,6 +15,7 @@
 .cache
 .project
 .settings
+.vscode
 .tmproj
 .nvmrc
 sftp-config.json
