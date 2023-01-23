@@ -2,8 +2,8 @@ importance: 4
 
 ---
 
-# A simple page
+# O pagină simplă
 
-Create a web-page that asks for a name and outputs it.
+Creează o pagină web simplă care cere numele utilizatorului și apoi îl afișează.
 
 [demo]
