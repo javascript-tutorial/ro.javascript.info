@@ -379,30 +379,30 @@ Motoarele JavaScript moderne efectuează multe optimizări. Acestea ar putea aju
 Marele pachet de articole despre V8 poate fi găsit la <https://mrale.ph>.
 ```
 
-## Date.parse from a string
+## Date.parse dintr-un șir
 
-The method [Date.parse(str)](mdn:js/Date/parse) can read a date from a string.
+Metoda [Date.parse(str)](mdn:js/Date/parse) poate citi o dată dintr-un șir.
 
-The string format should be: `YYYY-MM-DDTHH:mm:ss.sssZ`, where:
+Formatul șirului trebuie să fie: `YYYY-MM-DDTHH:mm:ss.sssZ`, unde:
 
-- `YYYY-MM-DD` -- is the date: year-month-day.
-- The character `"T"` is used as the delimiter.
-- `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
-- The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` would mean UTC+0.
+- `YYYY-MM-DD` -- este data: an-lună-zi.
+- Caracterul `"T"` este utilizat ca delimitator.
+- `HH:mm:ss.sss` -- este timpul: ore, minute, secunde și milisecunde.
+- Partea opțională `'Z'` denotă fusul orar în formatul `+-hh:mm`. O singură literă `Z` ar însemna UTC+0.
 
-Shorter variants are also possible, like `YYYY-MM-DD` or `YYYY-MM` or even `YYYY`.
+Sunt posibile și variante mai scurte, precum `YYYY-MM-DD` sau `YYYY-MM` sau chiar `YYYY`.
 
-The call to `Date.parse(str)` parses the string in the given format and returns the timestamp (number of milliseconds from 1 Jan 1970 UTC+0). If the format is invalid, returns `NaN`.
+Apelul la `Date.parse(str)` parsează șirul în formatul dat și returnează timestamp-ul (numărul de milisecunde de la 1 ianuarie 1970 UTC+0). Dacă formatul nu este valid, se returnează `NaN`.
 
-For instance:
+De exemplu:
 
 ```js run
 let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
 
-alert(ms); // 1327611110417  (timestamp)
+alert(ms); // 1327611110417 (timestamp)
 ```
 
-We can instantly create a `new Date` object from the timestamp:
+Putem crea instantaneu un obiect `new Date` din timestamp:
 
 ```js run
 let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
@@ -410,24 +410,24 @@ let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
 alert(date);
 ```
 
-## Summary
+## Sumar
 
-- Date and time in JavaScript are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
-- Months are counted from zero (yes, January is a zero month).
-- Days of week in `getDay()` are also counted from zero (that's Sunday).
-- `Date` auto-corrects itself when out-of-range components are set. Good for adding/subtracting days/months/hours.
-- Dates can be subtracted, giving their difference in milliseconds. That's because a `Date` becomes the timestamp when converted to a number.
-- Use `Date.now()` to get the current timestamp fast.
+- Data și ora în JavaScript sunt reprezentate cu obiectul [Date](mdn:js/Date). Nu putem crea "doar data" sau "doar ora": Obiectele `Date` le conțin întotdeauna pe amândouă.
+- Lunile sunt numărate de la zero (da, Ianuarie este o lună zero).
+- Zilele săptămânii în `getDay()` sunt de asemenea numărate de la zero (asta-i Duminică).
+- `Date` se autocorectează atunci când sunt setate componente în afara intervalului. Bună pentru adăugarea/subtragerea zilelor/lunilor/orelor.
+- Datele pot fi sustrase, dând diferența lor în milisecunde. Asta pentru că un `Date` devine timestamp-ul atunci când este convertit într-un număr.
+- Folosiți `Date.now()` pentru a obține rapid timestamp-ul curent.
 
-Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
+Rețineți că spre deosebire de multe alte sisteme, timestamp-urile din JavaScript sunt în milisecunde, nu în secunde.
 
-Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
+Uneori avem nevoie de măsurători de timp mai precise. JavaScript în sine nu are o modalitate de a măsura timpul în microsecunde (1 milionime dintr-o secundă), dar majoritatea mediilor o oferă. De exemplu, browserul are [performance.now()](mdn:api/Performance/now) care oferă numărul de milisecunde de la începutul încărcării paginii cu precizie de microsecunde (3 cifre după punct):
 
 ```js run
-alert(`Loading started ${performance.now()}ms ago`);
-// Something like: "Loading started 34731.26000000001ms ago"
-// .26 is microseconds (260 microseconds)
-// more than 3 digits after the decimal point are precision errors, only the first 3 are correct
+alert(`Încărcarea a început cu ${performance.now()}ms în urmă`);
+// Ceva precum: "Încărcarea a început acum 34731.26000000001ms"
+// .26 reprezintă microsecunde (260 microsecunde)
+// mai mult de 3 cifre după virgulă sunt erori de precizie, doar primele 3 sunt corecte
 ```
 
-Node.js has `microtime` module and other ways. Technically, almost any device and environment allows to get more precision, it's just not in `Date`.
+Node.js are modulul `microtime` și alte modalități. Tehnic, aproape orice dispozitiv și mediu permite obținerea unei precizii mai mare, doar că nu este în `Date`.
