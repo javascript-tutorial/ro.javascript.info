@@ -2,14 +2,14 @@ Acest exercițiu demonstrează cum prefixele/sufixele pot duce la rezultate dife
 
 1. **De la 1 la 4**
 
-   ```js
+   ```js run
    let i = 0;
    while (++i < 5) alert( i );
    ```
    Prima valoare este `i = 1` pentru că `++i` incrementează prima dată `i` și apoi returnează noua valoare. Așadar prima comparație este `1 < 5`  și funcția `alert` afișează `1`.
 2. **De la 1 la 5**
 
-   ```js
+   ```js run
    let i = 0;
    while (i++ < 5) alert( i );
    ```

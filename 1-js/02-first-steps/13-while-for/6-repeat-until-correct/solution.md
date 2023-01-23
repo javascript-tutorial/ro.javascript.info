@@ -1,4 +1,4 @@
-```js
+```js run demo
 let num;
 
 do {

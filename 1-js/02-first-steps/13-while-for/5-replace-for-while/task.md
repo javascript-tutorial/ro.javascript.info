@@ -6,7 +6,7 @@ importance: 5
 
 Rescrie codul schimbând bucla `for` cu `while` fără să schimbi comportamentul codului (ceea ce se afișează ar trebui să rămână neschimbat).
 
-```js
+```js run
 for (let i = 0; i < 3; i++) {
   alert( `numărul ${i}!` );
 }

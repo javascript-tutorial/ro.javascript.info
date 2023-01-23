@@ -12,7 +12,7 @@ Pentru fiecare i din interval {
 
 Codul folosind o etichetă:
 
-```js
+```js run
 let n = 10;
 
 următorulNrPrim:

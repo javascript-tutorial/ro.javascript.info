@@ -1,6 +1,6 @@
 Răspunsul: `1`.
 
-```js
+```js run
 let i = 3;
 
 while (i) {

@@ -1,6 +1,6 @@
 **Răspunsul: de la 0 la 4 în ambele cazuri.**
 
-```js
+```js run
 for (let i = 0; i < 5; ++i) alert( i );
 
 for (let i = 0; i < 5; i++) alert( i );

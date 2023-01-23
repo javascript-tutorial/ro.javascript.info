@@ -21,7 +21,7 @@ Atâta timp cât `condiția` e truthy, `codul` din corpul buclei este excutat.
 
 De exemplu, bucla de mai jos afișează `i` cât timp `i < 3`:
 
-```js
+```js run
 let i = 0;
 while (i < 3) { // afișează 0, apoi 1, apoi 2
   alert( i );
@@ -37,7 +37,7 @@ Orice expresie sau variabilă poate fi o condiție a unei bucle, nu doar compara
 
 De exemplu, putem scrie mai scurt `while (i != 0)` ca `while (i)`:
 
-```js
+```js run
 let i = 3;
 *!*
 while (i) { // atunci când i devine 0, condiția devine falsy, iar bucla se oprește
@@ -47,7 +47,7 @@ while (i) { // atunci când i devine 0, condiția devine falsy, iar bucla se opr
 }
 ```
 
-````smart
+````smart header="Acoladele nu sunt necesare pentru un corp care conține o singură linie de cod"
 Dacă corpul buclei are o singură linie de cod, putem omite acoladele `{…}`:
 
 ```js run
@@ -96,7 +96,7 @@ for (inițializator; condiție; pas) {
 
 Hai să înțelegem ce înseamnă toate aceste părți printr-un exemplu. Bucla de mai jos rulează `alert(i)` pentru `i` de la `0` până la (dar nu inclusiv) `3`:
 
-```js
+```js run
 for (let i = 0; i < 3; i++) { // afișează 0, apoi 1, apoi 2
   alert(i);
 }
@@ -141,7 +141,7 @@ if (i < 3) { alert(i); i++ }
 // ...sfârșit, deoarece acum i == 3
 ```
 
-````smart
+````smart header="Declararea de variabile inline"
 Aici, variabila "contor" `i` este declarată direct în buclă. Asta se numește o declarare de varibilă "inline". Astfel de variabile sunt vizibile numai în interiorul buclei.
 
 ```js run
@@ -173,7 +173,7 @@ De exemplu, putem omite `inițializator` dacă nu avem nevoie să facem nimic la
 
 Precum aici:
 
-```js
+```js run
 let i = 0; // deja îl avem pe i declarat și inițializat
 
 for (; i < 3; i++) { // nu avem nevoie de "inițializator"
@@ -211,21 +211,21 @@ Dar putem forța întreruperea în orice moment prin folosirea instrucțiunii `b
 
 De exemplu, bucla de mai jos îi cere utilizatorului o serie de numere, "întrerupându-se" atunci când nici-un număr nu a fost furnizat:
 
-```js
+```js run
 let sum = 0;
 
 while (true) {
 
-  let valoare = +prompt("Introdu un număr", '');
+  let value = +prompt("Introdu un număr", '');
 
 *!*
-  if (!valoare) break; // (*)
+  if (!value) break; // (*)
 */!*
 
-  sumă += valoare;
+  sum += value;
 
 }
-alert( 'Sumă: ' + sumă );
+alert( 'Sumă: ' + sum );
 ```
 
 Instrucțiunea `break` e activată de linia `{*}` dacă utilizatorul nu introduce nimic sau dacă anulează introducerea. Bucla se întrerupe imediat și este rulată ultima linie de cod de după buclă.
@@ -240,7 +240,7 @@ O putem folosi dacă am terminat cu iterația curentă și vrem să trecem la ur
 
 Bucla de mai jos folosește `continue` ca să afișeze numai valorile impare:
 
-```js
+```js run no-beautify
 for (let i = 0; i < 10; i++) {
 
   // dacă e adevărat, treci peste restul corpului buclei
@@ -252,10 +252,10 @@ for (let i = 0; i < 10; i++) {
 
 Pentru valorile pare ale lui `i`, instrucțiunea `continue` oprește executarea corpului și rulează următoarea iterație a lui `for` (cu următorul număr). Astfel funcția `alert` e apelată numai pentru valorile impare.
 
-````smart header="Instrucțiunea `continue` ajută la diminuarea nestingului"
+````smart header="Instrucțiunea `continue` ajută la diminuarea nesting-ului"
 O buclă care afișează valorile impare ar putea arăta așa:
 
-```js
+```js run
 for (let i = 0; i < 10; i++) {
 
   if (i % 2) {
@@ -300,7 +300,7 @@ Uneori avem nevoie să întrerupem mai multe bucle odată.
 
 De exemplu, în codul de mai jos iterăm pentru `i` și `j`, afișând coordonatele `(i, j)` de la `(0, 0)` la `(2, 2)`:
 
-```js
+```js run no-beautify
 for (let i = 0; i < 3; i++) {
 
   for (let j = 0; j < 3; j++) {
@@ -321,22 +321,22 @@ Banalul `break` pus după `input` ar întrerupe doar bucla din interior. Asta nu
 O *etichetă* este un indentificator urmat de două puncte înainte de o buclă:
 
 ```js
-numeleEtichetei: for (...) {
+labelName: for (...) {
   ...
 }
 ```
 
-Expresia `break <numeleEtichetei>` din bucla de mai jos întrerupe bucla etichetată:
+Expresia `break <labelName>` din bucla de mai jos întrerupe bucla etichetată:
 
-```js
-*!*exterior:*/!* for (let i = 0; i < 3; i++) {
+```js run no beautify
+*!*outer:*/!* for (let i = 0; i < 3; i++) {
 
   for (let j = 0; j < 3; j++) {
 
     let input = prompt(`Valoare la coordonatele (${i},${j})`, '');
 
     // dacă e un string gol sau e anulat, atunci întrerupe
-    if (!input) *!*break exterior*/!*; // (*)
+    if (!input) *!*break outer*/!*; // (*)
 
     // fă ceva cu valorea...
   }
@@ -344,20 +344,20 @@ Expresia `break <numeleEtichetei>` din bucla de mai jos întrerupe bucla etichet
 alert('Gata!');
 ```
 
-În codul de mai sus, `break exterior` caută eticheta cu numele `exterior` și întreupe acea buclă.
+În codul de mai sus, `break outer` caută eticheta cu numele `outer` și întreupe acea buclă.
 
 Deci execuția codului sare de la `(*)` la `alert('Gata!')`.
 
 De asemenea, putem să mutăm eticheta pe o linie separată:
 
-```js
+```js no-beautify
 exterior:
 for (let i = 0; i < 3; i++) { ... }
 ```
 
 Și instrucțiunea `continue` poate să fie folosită cu o etichetă. În acest caz, execuția codului sare la următoarea iterație a buclei etichetate.
 
-````warn
+````warn header="Etichetele nu ne permit să \"sărim\" oriune"
 Etichetele nu ne permit să sărim la locuri din cod alese arbitrar.
 
 De exemplu, e imposibil să facem asta:
@@ -371,7 +371,7 @@ Instrucțiunea `break` trebuie să fie în interiorul unui code block. Practic, 
 ```js
 etichetă: {
   // ...
-  break etichetă; // funcționează
+  break label; // funcționează
   // ...
 }
 ```
