@@ -1,8 +1,8 @@
 JavaScript-code:
 
-```js
-let nume = prompt("Cum te numești?", "");
-alert(nume);
+```js demo run
+let name = prompt("What is your name?", "");
+alert(name);
 ```
 
 The full page:
@@ -15,8 +15,8 @@ The full page:
   <script>
     'use strict';
 
-    let nume = prompt("Cum te numești?", "");
-    alert(nume);
+    let name = prompt("What is your name?", "");
+    alert(name);
   </script>
 
 </body>
