@@ -6,7 +6,7 @@ importance: 4
 
 Următoarea funcție returnează `true` dacă parametrul `age` este mai mare decât `18`.
 
-În caz contrar, solicită o confirmare și returnează rezultatul:
+În caz contrar aceasta cere o confirmare și îi returnează rezultatul:
 
 ```js
 function checkAge(age) {

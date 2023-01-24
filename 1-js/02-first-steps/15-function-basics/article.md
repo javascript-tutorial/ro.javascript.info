@@ -1,16 +1,16 @@
 # Funcții
 
-Destul de des avem nevoie să realizăm o acțiune similară în multe locuri ale secvenței de instrucțiuni.
+Destul de des avem nevoie să realizăm o acțiune similară în multe locuri ale script-ului.
 
 De exemplu, avem nevoie să arătăm un mesaj frumos când un vizitator se conectează, se deconectează și poate în altă parte.
 
 Funcțiile sunt principalele "blocuri de construcție" ale programului. Ele permit apelarea codului de mai multe ori fără repetare.
 
-Am văzut deja exemple de funcții încorporate, precum `alert(message)`, `prompt(message, default)` și `confirm(question)`. Dar putem crea și funcții proprii.
+Am văzut deja exemple de funcții încorporate, precum `alert(message)`, `prompt(message, default)` și `confirm(question)`. Dar putem crea și funcții proprii de asemenea.
 
-## Declararea Funcției
+## Funcție Declarată
 
-Pentru a crea o funcție putem folosi  *declararea funcției*.
+Pentru a crea o funcție putem folosi o *funcție declarată*.
 
 Arata cam așa:
 
@@ -58,15 +58,15 @@ De exemplu:
 ```js run
 function showMessage() {
 *!*
-  let message = "Bună, sunt JavaScript!"; // local variable
+   let message = "Bună, sunt JavaScript!"; // variabilă locală
 */!*
 
   alert( message );
 }
 
-showMessage(); // Hello, I'm JavaScript!
+showMessage(); // Bună, sunt JavaScript!
 
-alert( message ); // <-- Error! The variable is local to the function
+alert( message ); // <-- Eroare! Variabila este locală funcției
 ```
 
 ## Variabile exterioare
@@ -81,7 +81,7 @@ function showMessage() {
   alert(message);
 }
 
-showMessage(); // Hello, John
+showMessage(); // Bună, John
 ```
 
 Funcția are acces complet la variabila exterioară. Il poate modifica si ea.
@@ -92,43 +92,43 @@ De exemplu:
 let *!*userName*/!* = 'John';
 
 function showMessage() {
-  *!*userName*/!* = "Bob"; // (1) changed the outer variable
+  *!*userName*/!* = "Bob"; // (1) a schimbat variabila exterioară
 
   let message = 'Bună, ' + *!*userName*/!*;
   alert(message);
 }
 
-alert( userName ); // *!*John*/!* before the function call
+alert( userName ); // *!*John*/!* înainte de apelul funcției
 
 showMessage();
 
-alert( userName ); // *!*Bob*/!*, the value was modified by the function
+alert( userName ); // *!*Bob*/!*, valoarea a fost modificată de funcție
 ```
 
 Variabila exterioară este utilizată numai dacă nu există una locală.
 
-Dacă o variabilă cu același nume este declarată în interiorul funcției, atunci aceasta *pune în umbră* pe cea exterioară. De exemplu, în codul de mai jos, funcția folosește localul `userName`. Cel exterior este ignorat:
+Dacă o variabilă cu același nume este declarată în interiorul funcției atunci aceasta o *pune în umbră* pe cea exterioară. De exemplu, în codul de mai jos funcția folosește `userName`-ul local. Cel exterior este ignorat:
 
 ```js run
 let userName = 'John';
 
 function showMessage() {
 *!*
-  let userName = "Bob"; // declare a local variable
+  let userName = "Bob"; // declară o variabilă locală
 */!*
 
   let message = 'Bună, ' + userName; // *!*Bob*/!*
   alert(message);
 }
 
-// the function will create and use its own userName
+// funcția va crea și va folosi propriul userName
 showMessage();
 
-alert( userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
+alert( userName ); // *!*John*/!*, neschimbat, funcția nu a accesat variabila exterioară
 ```
 
 ```smart header="Variabile globale"
-Variabile declarate în afara oricărei funcții, precum cel exterior `userName` în codul de mai sus, se numesc *globale*.
+Variabile declarate în afara oricărei funcții, precum acel `userName` exterior în codul de mai sus, se numesc *globale*.
 
 Variabilele globale sunt vizibile din orice funcție (dacă nu sunt umbrite de cele locale).
 
@@ -142,15 +142,15 @@ Putem transmite date arbitrare funcțiilor folosind parametri.
 În exemplul de mai jos, funcția are doi parametri: `from` și `text`.
 
 ```js run
-function showMessage(*!*from, text*/!*) { // parameters: from, text
+function showMessage(*!*from, text*/!*) { // parametrii: from, text
   alert(from + ': ' + text);
 }
 
-*!*showMessage('Ann', 'Bună!');*/!* // Ann: Hello! (*)
-*!*showMessage('Ann', "Ce faci?");*/!* // Ann: What's up? (**)
+*!*showMessage('Ann', 'Bună!');*/!* // Ann: Bună! (*)
+*!*showMessage('Ann', "Ce faci?");*/!* // Ann: Ce faci? (**)
 ```
 
-Când funcția este apelată în liniile `(*)` și `(**)`, valorile date sunt copiate în variabilele locale `from` și `text`. Atunci funcția le folosește.
+Când funcția este apelată în liniile `(*)` și `(**)`, valorile date sunt copiate în variabile locale `from` și `text`. Atunci funcția le folosește.
 
 Iată încă un exemplu: avem o variabilă `from` și este transmis funcției. Vă rugăm să rețineți: functia schimbă `from`, dar schimbarea nu se vede afară, deoarece o funcție primește întotdeauna o copie a valorii:
 
@@ -158,7 +158,7 @@ Iată încă un exemplu: avem o variabilă `from` și este transmis funcției. V
 function showMessage(from, text) {
 
 *!*
-  from = '*' + from + '*'; // make "from" look nicer
+  from = '*' + from + '*'; // face ca "from" să pară mai frumos
 */!*
 
   alert( from + ': ' + text );
@@ -166,9 +166,9 @@ function showMessage(from, text) {
 
 let from = "Ann";
 
-showMessage(from, "Bună"); // *Ann*: Hello
+showMessage(from, "Bună"); // *Ann*: Bună
 
-// the value of "from" is the same, the function modified a local copy
+// valoarea lui "from" este aceeași, funcția a modificat o copie locală
 alert( from ); // Ann
 ```
 
@@ -176,8 +176,8 @@ Când o valoare este transmisă ca parametru de funcție, se mai numește *argum
 
 Cu alte cuvinte, pentru a clarifica acești termeni:
 
-- Un parametru este variabila listată între paranteze în declarația funcției (este un termen de declarare)
-- Un argument este valoarea care este transmisă funcției atunci când este apelată (este un termen de apelare).
+- Un parametru este variabila listată între paranteze în funcția declarată (este un termen din timpul declarației)
+-Un argument este valoarea care este transmisă funcției atunci când este apelată (este un termen din timpul apelării).
 
 Declarăm funcții care listează parametrii lor, apoi le numim argumente de trecere.
 
@@ -203,17 +203,17 @@ function showMessage(from, *!*text = "nu este dat niciun text"*/!*) {
   alert( from + ": " + text );
 }
 
-showMessage("Ann"); // Ann: no text given
+showMessage("Ann"); // Ann: nu este dat niciun text
 ```
 
-Acum, dacă parametrul`text` nu este trecut, va primi valoarea `"nu este dat niciun text"`
+Acum dacă parametrul`text` nu este trecut, va primi valoarea `"nu este dat niciun text"
 
 Aici `"nu este dat niciun text"` este un șir, dar poate fi o expresie mai complexă, care este evaluată și atribuită doar dacă parametrul lipsește. Deci, acest lucru este posibil:
 
 ```js run
 function showMessage(from, text = anotherFunction()) {
-  // anotherFunction() only executed if no text given
-  // its result becomes the value of text
+  // anotherFunction() executat numai dacă nu este dat text
+  // rezultatul său devine valoarea textului
 }
 ```
 
@@ -222,7 +222,7 @@ function showMessage(from, text = anotherFunction()) {
 
 În exemplul de mai sus, `anotherFunction()` nu este apelat deloc, dacă este furnizat parametrul `text`.
 
-Pe de altă parte, este numit independent de fiecare dată când lipsește `text`.
+Pe de altă parte, este apelat independent de fiecare dată când lipsește `text`.
 ```
 
 ### Parametri impliciți alternativi
@@ -236,7 +236,7 @@ function showMessage(text) {
   // ...
 
 *!*
-  if (text === undefined) { // if the parameter is missing
+  if (text === undefined) { // dacă parametrul lipsește
     text = 'mesaj gol';
   }
 */!*
@@ -244,30 +244,30 @@ function showMessage(text) {
   alert(text);
 }
 
-showMessage(); // empty message
+showMessage(); // mesaj gol
 ```
 
 ...Sau am putea folosi operatorul `||`:
 
 ```js
 function showMessage(text) {
-  // if text is undefined or otherwise falsy, set it to 'empty'
+  // dacă textul este nedefinit sau fals, setați-l ca „gol”
   text = text || 'empty';
   ...
 }
 ```
 
-Motoarele JavaScript moderne acceptă [nullish coalescing operator](info:nullish-coalescing-operator) `??`, este mai bine atunci când majoritatea valorilor false, cum ar fi `0`, ar trebui considerate „normale”:
+Motoarele JavaScript moderne susțin [nullish coalescing operator](info:nullish-coalescing-operator) `??`, este mai bine atunci când majoritatea valorilor false, cum ar fi `0`, ar trebui considerate „normale”:
 
 ```js run
 function showCount(count) {
-  // if count is undefined or null, show "unknown"
+  // dacă numărul este nedefinit sau nul, afișază „necunoscut”
   alert(count ?? "unknown");
 }
 
 showCount(0); // 0
-showCount(null); // unknown
-showCount(); // unknown
+showCount(null); // necunoscut
+showCount(); // necunoscut
 ```
 
 ## Returnarea unei valori
@@ -285,7 +285,7 @@ let result = sum(1, 2);
 alert( result ); // 3
 ```
 
-Directiva `return` poate fi în orice loc al funcției. Când execuția ajunge la el, funcția se oprește, iar valoarea este returnată codului de apelare (atribuit lui `result`).
+Directiva `return` poate fi în orice loc al funcției. Când execuția ajunge la el, funcția se oprește, iar valoarea este returnată codului de apelare (atribuit lui `result` de mai sus).
 
 Pot exista multe apariții ale lui `return` întro singura funcție. De exemplu:
 
@@ -311,7 +311,7 @@ if ( checkAge(age) ) {
 }
 ```
 
-Este posibil să utilizați `return` făra o valoare. Acesta face ca funcția să iasă imediat.
+Este posibil să utilizați `return` făra o valoare. Acesta face ca funcția să se încheie imediat.
 
 De exemplu:
 
@@ -330,13 +330,13 @@ function showMovie(age) {
 
 În codul de mai sus, dacă `checkAge(age)` returnează `false`, atunci `showMovie` nu va trece la `alert`.
 
-```smart header=" O funcție cu un 'return' gol sau fara o returnare este 'undefined'"
+````smart header=" O funcție cu un 'return' gol sau fara o returnare este 'undefined'"
 Dacă o funcție nu returnează o valoare, este la fel ca și când returnează `undefined`:
 
 ```js run
 function doNothing() { /* empty */ }
 
-alert( doNothing() === undefined ); // true
+alert( doNothing() === undefined ); // adevărat
 ```
 
 Un `return` gol este același cu `return undefined`:
@@ -346,7 +346,7 @@ function doNothing() {
   return;
 }
 
-alert( doNothing() === undefined ); // true
+alert( doNothing() === undefined ); // adevărat
 ```
 ````
 
@@ -364,7 +364,7 @@ return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
 
-Deci, devine efectiv un 'return' gol.
+Deci, devine efectiv un `return` gol.
 
 Dacă dorim ca expresia returnată să se înfășoare pe mai multe linii, ar trebui să o începem pe aceeași linie cu`return`. Sau cel puțin puneți parantezele de deschidere acolo, după cum urmează:
 
@@ -380,7 +380,7 @@ return (
 
 ## Denumirea unei funcții [#function-naming]
 
-Funcțiile sunt acțiuni. Deci, numele lor este de obicei un verb. Ar trebui să fie scurt, cât mai precis posibil și să descrie ceea ce face funcția, astfel încât cineva care citește codul să obțină o indicație despre ceea ce face funcția.
+Funcțiile sunt acțiuni. Deci numele lor este de obicei un verb. Ar trebui să fie scurt, cât mai precis posibil și să descrie ceea ce face funcția, astfel încât cineva care citește codul să obțină o indicație despre ceea ce face funcția.
 
 Este o practică larg răspândită de a începe o funcție cu un prefix verbal care descrie vag acțiunea. Trebuie să existe un acord în cadrul echipei cu privire la semnificația prefixelor.
 
@@ -396,11 +396,11 @@ Funcția care începe cu...
 Exemple de astfel de nume:
 
 ```js no-beautify
-showMessage(..)     // shows a message
-getAge(..)          // returns the age (gets it somehow)
-calcSum(..)         // calculates a sum and returns the result
-createForm(..)      // creates a form (and usually returns it)
-checkPermission(..) // checks a permission, returns true/false
+showMessage(..)     // arată un mesaj
+getAge(..)          // returnează vârsta (o primește cumva)
+calcSum(..)         // calculează o sumă și returnează rezultatul
+createForm(..)      // creează un Form (și de obicei îl returnează)
+checkPermission(..) // verifică o permisiune, returnează true/false
 ```
 
 Cu prefixele la loc, o privire asupra numelui unei funcții oferă o înțelegere a ce fel de activitate face și ce fel de valoare returnează.
@@ -412,7 +412,7 @@ Două acțiuni independente deservesc de obicei două funcții, chiar dacă de o
 
 Câteva exemple de încălcare a acestei reguli:
 
-- `getAge` -- ar fi rău dacă arată o `alertă` cu vârsta (ar trebui doar să obțină).
+- `getAge` -- ar fi rău dacă arată o `alert` cu vârsta (ar trebui doar să obțină).
 - `createForm` -- ar fi rău dacă ar modifica documentul, adăugându-i o formă (ar trebui doar să-l creeze și să-l returneze).
 - `checkPermission` -- ar fi rău dacă afișează mesajul „acces acordat/refuzat”. (ar trebui să efectueze doar verificarea și să returneze rezultatul).
 
@@ -433,7 +433,7 @@ Funcțiile ar trebui să fie scurte și să facă un lucru exact. Dacă acel luc
 
 O funcție separată este mai ușor de testat și de depanat -- însăși existența sa este un comentariu grozav!
 
-De exemplu, compara cele două funcții `showPrimes(n)` de mai jos. Fiecare iese [prime numbers](https://en.wikipedia.org/wiki/Prime_number) pâna la`n`.
+De exemplu, compară cele două funcții `showPrimes(n)` de mai jos. Fiecare emite [numere prime](https://ro.wikipedia.org/wiki/Num%C4%83r_prim) pâna la`n`.
 
 Prima variantă folosește o etichetă:
 
@@ -450,7 +450,7 @@ function showPrimes(n) {
 }
 ```
 
-A doua variantă folosește o funcție suplimentară `isPrime(n)` pentru a testa primalitatea:
+A doua variantă folosește o funcție adițională `isPrime(n)` pentru a testa primalitatea:
 
 ```js
 function showPrimes(n) {
@@ -470,7 +470,7 @@ function isPrime(n) {
 }
 ```
 
-A doua variantă este mai ușor de înțeles, nu-i aşa? În loc de piesa de cod, vedem un nume al acțiunii (`isPrime`). Uneori, oamenii se referă la un astfel de cod ca la *auto-descriere*.
+A doua variantă este mai ușor de înțeles, nu-i aşa? În loc de piesa de cod, vedem un nume al acțiunii (`isPrime`). Uneori, oamenii se referă la un astfel de cod ca *auto-descriptiv*.
 
 Deci, funcțiile pot fi create chiar dacă nu intenționăm să le reutilizam. Ele structurează codul și îl fac lizibil.
 
@@ -479,18 +479,18 @@ Deci, funcțiile pot fi create chiar dacă nu intenționăm să le reutilizam. E
 O declarație de funcție arată astfel:
 
 ```js
-function name(parameters, delimited, by, comma) {
-  /* code */
+function name(parametri, delimitați, de, virgulă) {
+  /* cod */
 }
 ```
 
 - Valorile transmise unei funcții ca parametri sunt copiate în variabilele locale.
-- funcția poate accesa variabile exterioare. Dar funcționează numai din interior spre exterior. Codul din afara funcției nu vede variabilele locale.
+- Funcția poate accesa variabile exterioare. Dar funcționează numai din interior spre exterior. Codul din afara funcției nu vede variabilele locale.
 - O funcție poate returna o valoare. Dacă nu, atunci rezultatul ei este `undefined`.
 
 Pentru a face codul curat și ușor de înțeles, este recomandat să folosiți în principal variabile și parametri locali în funcție, nu variabile exterioare.
 
-Este întotdeauna mai ușor de înțeles o funcție care primește parametri, lucrează cu ele și returnează un rezultat, decât o funcție care nu primește niciun parametru, dar modifică variabilele exterioare ca efect secundar.
+Este întotdeauna mai ușor de înțeles o funcție care primește parametri, lucrează cu ei și returnează un rezultat, decât o funcție care nu primește niciun parametru, dar modifică variabilele exterioare ca efect secundar.
 
 Denumirea funcției:
 
