@@ -58,7 +58,7 @@ De exemplu:
 ```js run
 function showMessage() {
 *!*
-   let message = "Bună, sunt JavaScript!"; // variabilă locală
+  let message = "Bună, sunt JavaScript!"; // variabilă locală
 */!*
 
   alert( message );
@@ -186,7 +186,7 @@ Declarăm funcții care listează parametrii lor, apoi le numim argumente de tre
 
 ## Valori implicite
 
-Dacă o funcție este apelată, dar nu este oferit un argument, atunci valoarea corespunzătoare devine `nedefinită`.
+Dacă o funcție este apelată, dar nu este oferit un argument, atunci valoarea corespunzătoare devine `undefined`.
 
 De exemplu, funcția menționată mai sus `showMessage(from, text)` poate fi apelată cu un singur argument:
 
@@ -330,7 +330,7 @@ function showMovie(age) {
 
 În codul de mai sus, dacă `checkAge(age)` returnează `false`, atunci `showMovie` nu va trece la `alert`.
 
-````smart header=" O funcție cu un 'return' gol sau fara o returnare este 'undefined'"
+````smart header=" O funcție cu un 'return' gol sau fara o returnare este `undefined`"
 Dacă o funcție nu returnează o valoare, este la fel ca și când returnează `undefined`:
 
 ```js run
@@ -350,7 +350,7 @@ alert( doNothing() === undefined ); // adevărat
 ```
 ````
 
-````warn header="Nu adăugați niciodată o linie nouă între `return` și o valoare"
+````warn header="Nu adăugați niciodată o linie nouă între `return` și valoare"
 Pentru o expresie lungă în `return`, ai putea fi tentant să-l pui pe o linie separată, așa:
 
 ```js
@@ -364,7 +364,7 @@ return*!*;*/!*
  (some + long + expression + or + whatever * f(a) + f(b))
 ```
 
-Deci, devine efectiv un `return` gol.
+Deci, devine efectiv un return gol.
 
 Dacă dorim ca expresia returnată să se înfășoare pe mai multe linii, ar trebui să o începem pe aceeași linie cu`return`. Sau cel puțin puneți parantezele de deschidere acolo, după cum urmează:
 
@@ -378,7 +378,7 @@ return (
 Și va funcționa așa cum ne așteptăm.
 ````
 
-## Denumirea unei funcții [#function-naming]
+## Denumind o funcție [#function-naming]
 
 Funcțiile sunt acțiuni. Deci numele lor este de obicei un verb. Ar trebui să fie scurt, cât mai precis posibil și să descrie ceea ce face funcția, astfel încât cineva care citește codul să obțină o indicație despre ceea ce face funcția.
 
