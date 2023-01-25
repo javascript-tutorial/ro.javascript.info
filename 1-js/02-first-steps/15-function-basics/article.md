@@ -208,10 +208,10 @@ showMessage("Ann"); // Ann: nu este dat niciun text
 
 Acum dacă parametrul `text` nu este trecut, va primi valoarea `"nu este dat niciun text"
 
-The default value also jumps in if the parameter exists, but strictly equals `undefined`, like this:
+Valoarea implicită apare și în cazul în care parametrul există, dar este strict egal cu `undefined`, astfel:
 
 ```js
-showMessage("Ann", undefined); // Ann: no text given
+showMessage("Ann", undefined); // Ann: nu a fost dat niciun text
 ```
 
 Aici `"nu este dat niciun text"` este un șir, dar poate fi o expresie mai complexă, care este evaluată și atribuită doar dacă parametrul lipsește. Deci, acest lucru este posibil:
@@ -231,18 +231,18 @@ function showMessage(from, text = anotherFunction()) {
 Pe de altă parte, este apelat independent de fiecare dată când lipsește `text`.
 ```
 
-````smart header="Default parameters in old JavaScript code"
-Several years ago, JavaScript didn't support the syntax for default parameters. So people used other ways to specify them.
+````smart header="Parametrii impliciți în vechiul cod JavaScript"
+Cu câțiva ani în urmă, JavaScript nu a acceptat sintaxa pentru parametrii impliciți. Deci oamenii au folosit alte moduri de a le specifica.
 
-Nowadays, we can come across them in old scripts.
+În zilele noastre, le putem întâlni în scripturi vechi.
 
-For example, an explicit check for `undefined`:
+De exemplu, o verificare explicită pentru `undefined`:
 
 ```js
 function showMessage(from, text) {
 *!*
   if (text === undefined) {
-    text = 'no text given';
+    text = 'nu a fost dat niciun text';
   }
 */!*
 
@@ -250,22 +250,22 @@ function showMessage(from, text) {
 }
 ```
 
-...Or using the `||` operator:
+...Sau folosind operatorul `||`:
 
 ```js
 function showMessage(from, text) {
-  // If the value of text is falsy, assign the default value
-  // this assumes that text == "" is the same as no text at all
-  text = text || 'no text given';
+  // Dacă valoarea textului este falsă, atribuiți valoarea implicită
+  // aceasta presupune că text == "" este la fel ca nici un text
+  text = text || 'nu a fost dat niciun text';
   ...
 }
 ```
 ````
 
 
-### Alternative default parameters
+### Parametri impliciți alternativi
 
-Sometimes it makes sense to assign default values for parameters at a later stage after the function declaration.
+Uneori este logic să atribuiți valori implicite pentru parametrii într-o etapă ulterioară după declararea funcției.
 
 Putem verifica dacă parametrul este transmis în timpul execuției funcției, comparându-l cu `undefined`:
 
@@ -289,17 +289,18 @@ showMessage(); // mesaj gol
 
 ```js
 function showMessage(text) {
-  // dacă textul este nedefinit sau fals, setați-l ca „gol”
+  // dacă textul este nedefinit sau fals, setați-l ca 'empty'
+
   text = text || 'empty';
   ...
 }
 ```
 
-Motoarele JavaScript moderne susțin [nullish coalescing operator](info:nullish-coalescing-operator) `??`, este mai bine atunci când majoritatea valorilor false, cum ar fi `0`, ar trebui considerate „normale”:
+Motoarele JavaScript moderne susțin [nullish coalescing operator](info:nullish-coalescing-operator) `??`, este mai bine atunci când majoritatea valorilor false, cum ar fi `0`, ar trebui considerate "normale":
 
 ```js run
 function showCount(count) {
-  // dacă numărul este nedefinit sau nul, afișază „necunoscut”
+  // dacă numărul este nedefinit sau nul, afișază "necunoscut"
   alert(count ?? "unknown");
 }
 
@@ -393,13 +394,13 @@ Pentru o expresie lungă în `return`, ai putea fi tentant să-l pui pe o linie 
 
 ```js
 return
- (some + long + expression + or + whatever * f(a) + f(b))
+ (unele + lung + expresie + sau + orice * f(a) + f(b))
 ```
 Asta nu funcționează, deoarece JavaScript presupune un punct și virgulă după `return`. Asta va funcționa la fel ca:
 
 ```js
 return*!*;*/!*
- (some + long + expression + or + whatever * f(a) + f(b))
+ (unele + lung + expresie + sau + orice * f(a) + f(b))
 ```
 
 Deci, devine efectiv un return gol.
