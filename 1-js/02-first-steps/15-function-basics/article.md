@@ -24,7 +24,7 @@ Cuvântul cheie `function` este primul, apoi urmează *numele funcției*, apoi o
 
 ```js
 function name(parameter1, parameter2, ... parameterN) {
-  ...body...
+ // body
 }
 ```
 
@@ -177,7 +177,7 @@ Când o valoare este transmisă ca parametru de funcție, se mai numește *argum
 Cu alte cuvinte, pentru a clarifica acești termeni:
 
 - Un parametru este variabila listată între paranteze în funcția declarată (este un termen din timpul declarației)
--Un argument este valoarea care este transmisă funcției atunci când este apelată (este un termen din timpul apelării).
+- Un argument este valoarea care este transmisă funcției atunci când este apelată (este un termen din timpul apelării).
 
 Declarăm funcții care listează parametrii lor, apoi le numim argumente de trecere.
 
@@ -206,7 +206,13 @@ function showMessage(from, *!*text = "nu este dat niciun text"*/!*) {
 showMessage("Ann"); // Ann: nu este dat niciun text
 ```
 
-Acum dacă parametrul`text` nu este trecut, va primi valoarea `"nu este dat niciun text"
+Acum dacă parametrul `text` nu este trecut, va primi valoarea `"nu este dat niciun text"
+
+The default value also jumps in if the parameter exists, but strictly equals `undefined`, like this:
+
+```js
+showMessage("Ann", undefined); // Ann: no text given
+```
 
 Aici `"nu este dat niciun text"` este un șir, dar poate fi o expresie mai complexă, care este evaluată și atribuită doar dacă parametrul lipsește. Deci, acest lucru este posibil:
 
@@ -225,9 +231,41 @@ function showMessage(from, text = anotherFunction()) {
 Pe de altă parte, este apelat independent de fiecare dată când lipsește `text`.
 ```
 
-### Parametri impliciți alternativi
+````smart header="Default parameters in old JavaScript code"
+Several years ago, JavaScript didn't support the syntax for default parameters. So people used other ways to specify them.
 
-Uneori este logic să atribuiți valori implicite pentru parametrii nu în declarația funcției, ci într-o etapă ulterioară.
+Nowadays, we can come across them in old scripts.
+
+For example, an explicit check for `undefined`:
+
+```js
+function showMessage(from, text) {
+*!*
+  if (text === undefined) {
+    text = 'no text given';
+  }
+*/!*
+
+  alert( from + ": " + text );
+}
+```
+
+...Or using the `||` operator:
+
+```js
+function showMessage(from, text) {
+  // If the value of text is falsy, assign the default value
+  // this assumes that text == "" is the same as no text at all
+  text = text || 'no text given';
+  ...
+}
+```
+````
+
+
+### Alternative default parameters
+
+Sometimes it makes sense to assign default values for parameters at a later stage after the function declaration.
 
 Putem verifica dacă parametrul este transmis în timpul execuției funcției, comparându-l cu `undefined`:
 
