@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# European weekday
+# Zi lucrătoare europeană
 
-European countries have days of week starting with Monday (number 1), then Tuesday (number 2) and till Sunday (number 7). Write a function `getLocalDay(date)` that returns the "European" day of week for `date`.
+Țările europene au zile ale săptămânii care încep cu Monday (numărul 1), apoi Tuesday (numărul 2) și până Sunday (numărul 7). Scrieți o funcție `getLocalDay(date)` care returnează ziua săptămânii "Europene" pentru `date`.
 
 ```js no-beautify
 let date = new Date(2012, 0, 3);  // 3 Jan 2012
-alert( getLocalDay(date) );       // tuesday, should show 2
+alert( getLocalDay(date) );       // tuesday, ar trebui să arate 2
 ```
