@@ -2,14 +2,14 @@ importance: 5
 
 ---
 
-# How many seconds have passed today?
+# Câte secunde au trecut astăzi?
 
-Write a function `getSecondsToday()` that returns the number of seconds from the beginning of today.
+Scrieți o funcție `getSecondsToday()` care returnează numărul de secunde de la începutul zilei de astăzi.
 
-For instance, if now were `10:00 am`, and there was no daylight savings shift, then:
+De exemplu, dacă acum este `10:00 am`, și nu a fost schimbată ora de vară, atunci:
 
 ```js
 getSecondsToday() == 36000 // (3600 * 10)
 ```
 
-The function should work in any day. That is, it should not have a hard-coded value of "today".
+Funcția ar trebui să funcționeze în orice zi. Adică, nu ar trebui să aibă o valoare "astăzi" hard-coded.

@@ -2,13 +2,13 @@ importance: 4
 
 ---
 
-# Which day of month was many days ago?
+# Ce zi a lunii a fost acum multe zile?
 
-Create a function `getDateAgo(date, days)` to return the day of month `days` ago from the `date`.
+Creați o funcție `getDateAgo(date, days)` pentru a returna ziua din lună de acum `days` din `date`.
 
-For instance, if today is 20th, then `getDateAgo(new Date(), 1)` should be 19th and `getDateAgo(new Date(), 2)` should be 18th.
+De exemplu, dacă astăzi este 20, atunci `getDateAgo(new Date(), 1)` ar trebui să fie 19 și `getDateAgo(new Date(), 2)` ar trebui să fie 18.
 
-Should work reliably for `days=365` or more:
+Ar trebui să funcționeze în mod fiabil pentru `days=365` sau mai mult:
 
 ```js
 let date = new Date(2015, 0, 2);
@@ -18,4 +18,4 @@ alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
 alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
 ```
 
-P.S. The function should not modify the given `date`.
+P.S. Funcția nu trebuie să modifice `date`-ul dat.
