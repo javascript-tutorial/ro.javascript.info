@@ -2,14 +2,14 @@ importance: 5
 
 ---
 
-# How many seconds till tomorrow?
+# Câte secunde până mâine?
 
-Create a function `getSecondsToTomorrow()` that returns the number of seconds till tomorrow.
+Creați o funcție `getSecondsToTomorrow()` care returnează numărul de secunde până mâine.
 
-For instance, if now is `23:00`, then:
+De exemplu, dacă acum este `23:00`, atunci:
 
 ```js
 getSecondsToTomorrow() == 3600
 ```
 
-P.S. The function should work at any day, the "today" is not hardcoded.
+P.S. Funcția ar trebui să funcționeze în orice zi, "astăzi" nu este hardcoded.

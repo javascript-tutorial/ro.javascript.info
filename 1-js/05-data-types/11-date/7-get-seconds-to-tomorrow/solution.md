@@ -1,20 +1,20 @@
-To get the number of milliseconds till tomorrow, we can from "tomorrow 00:00:00" substract the current date.
+Pentru a obține numărul de milisecunde până mâine, putem scădea din "mâine 00:00:00" data curentă.
 
-First, we generate that "tomorrow", and then do it:
+Mai întâi, generăm acel "mâine", și apoi facem acest lucru:
 
 ```js run
 function getSecondsToTomorrow() {
   let now = new Date();
 
-  // tomorrow date
+  // data de mâine
   let tomorrow = new Date(now.getFullYear(), now.getMonth(), *!*now.getDate()+1*/!*);
 
-  let diff = tomorrow - now; // difference in ms
-  return Math.round(diff / 1000); // convert to seconds
+  let diff = tomorrow - now; // diferența în ms
+  return Math.round(diff / 1000); // convertește în secunde
 }
 ```
 
-Alternative solution:
+Soluție alternativă:
 
 ```js run
 function getSecondsToTomorrow() {
@@ -29,4 +29,4 @@ function getSecondsToTomorrow() {
 }
 ```
 
-Please note that many countries have Daylight Savings Time (DST), so there may be days with 23 or 25 hours. We may want to treat such days separately.
+Vă rugăm să rețineți că multe țări au ora de vară (DST), astfel încât pot exista zile cu 23 sau 25 de ore. Este posibil să dorim să tratăm aceste zile separat.
