@@ -1,6 +1,6 @@
-The method `date.getDay()` returns the number of the weekday, starting from sunday.
+Metoda `date.getDay()` returnează numărul zilei săptămânii, începând de duminică.
 
-Let's make an array of weekdays, so that we can get the proper day name by its number:
+Să creăm o matrice de zile ale săptămânii, astfel încât să putem obține numele zilei corespunzătoare prin numărul ei:
 
 ```js run demo
 function getWeekDay(date) {

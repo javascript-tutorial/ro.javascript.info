@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Last day of month?
+# Ultima zi a lunii?
 
-Write a function `getLastDayOfMonth(year, month)` that returns the last day of month. Sometimes it is 30th, 31st or even 28/29th for Feb.
+Scrieți o funcție `getLastDayOfMonth(year, month)` care să returneze ultima zi a lunii. Uneori este 30, 31 sau chiar 28/29 pentru Feb.
 
-Parameters:
+Parametrii:
 
-- `year` -- four-digits year, for instance 2012.
-- `month` -- month, from 0 to 11.
+- `year` -- anul din patru cifre, de exemplu 2012.
+- `month` -- luna, de la 0 la 11.
 
-For instance, `getLastDayOfMonth(2012, 1) = 29` (leap year, Feb).
+De exemplu, `getLastDayOfMonth(2012, 1) = 29` (an bisect, Feb).

@@ -1,141 +1,141 @@
-# Date and time
+# Data și ora
 
-Let's meet a new built-in object: [Date](mdn:js/Date). It stores the date, time and provides methods for date/time management.
+Să cunoaștem un nou obiect încorporat: [Date](mdn:js/Date). Acesta stochează data, ora și oferă metode de administrare a datei/orei.
 
-For instance, we can use it to store creation/modification times, to measure time, or just to print out the current date.
+De exemplu, îl putem utiliza pentru a stoca timpul de creare/modificare, pentru a măsura timpul, sau pur și simplu pentru a imprima data curentă.
 
-## Creation
+## Creare
 
-To create a new `Date` object call `new Date()` with one of the following arguments:
+Pentru a crea un nou obiect `Date` apelați `new Date()` cu unul dintre următoarele argumente:
 
 `new Date()`
-: Without arguments -- create a `Date` object for the current date and time:
+: Fără argumente -- creează un obiect `Date` pentru data și ora curentă:
 
     ```js run
     let now = new Date();
-    alert( now ); // shows current date/time
+    alert( now ); // afișează data/ora curentă
     ```
 
-`new Date(milliseconds)`
-: Create a `Date` object with the time equal to number of milliseconds (1/1000 of a second) passed after the Jan 1st of 1970 UTC+0.
+`new Date(milisecunde)`
+: Creează un obiect `Date` cu timpul egal cu numărul de milisecunde (1/1000 dintr-o secundă) care au trecut de la 1 ianuarie 1970 UTC+0.
 
     ```js run
-    // 0 means 01.01.1970 UTC+0
+    // 0 înseamnă 01.01.1970 UTC+0
     let Jan01_1970 = new Date(0);
     alert( Jan01_1970 );
 
-    // now add 24 hours, get 02.01.1970 UTC+0
+    // acum adaugă 24 de ore, get 02.01.1970 UTC+0
     let Jan02_1970 = new Date(24 * 3600 * 1000);
     alert( Jan02_1970 );
     ```
 
-    An integer number representing the number of milliseconds that has passed since the beginning of 1970 is called a *timestamp*.
+    Un număr întreg care reprezintă numărul de milisecunde care au trecut de la începutul anului 1970 se numește *timestamp*.
 
-    It's a lightweight numeric representation of a date. We can always create a date from a timestamp using `new Date(timestamp)` and convert the existing `Date` object to a timestamp using the `date.getTime()` method (see below).
+    Este o reprezentare numerică ușoară a unei date. Putem oricând să creăm o dată dintr-un timestamp folosind `new Date(timestamp)` și să convertim obiectul `Date` existent într-un timestamp folosind metoda `date.getTime()` (a se vedea mai jos).
 
-    Dates before 01.01.1970 have negative timestamps, e.g.:
+    Datele anterioare 01.01.1970 au timestamp-uri negative, e.g.:
     ```js run
     // 31 Dec 1969
     let Dec31_1969 = new Date(-24 * 3600 * 1000);
     alert( Dec31_1969 );
     ```
 
-`new Date(datestring)`
-: If there is a single argument, and it's a string, then it is parsed automatically. The algorithm is the same as `Date.parse` uses, we'll cover it later.
+`new Date(șir de date)`
+: Dacă există un singur argument, și acesta este un șir de caractere, atunci acesta este parsat automat. Algoritmul este același pe care îl folosește `Date.parse`, îl vom acoperi mai târziu.
 
     ```js run
     let date = new Date("2017-01-26");
     alert(date);
-    // The time is not set, so it's assumed to be midnight GMT and
-    // is adjusted according to the timezone the code is run in
-    // So the result could be
+    // Ora nu este setată, așa că se presupune că este miezul nopții GMT și
+    // este ajustată în funcție de fusul orar în care este rulat codul
+    // Astfel rezultatul ar putea fi
     // Thu Jan 26 2017 11:00:00 GMT+1100 (Australian Eastern Daylight Time)
-    // or
+    // sau
     // Wed Jan 25 2017 16:00:00 GMT-0800 (Pacific Standard Time)
     ```
 
-`new Date(year, month, date, hours, minutes, seconds, ms)`
-: Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
+`new Date(an, lună, date, ore, minute, secunde, ms)`
+: Creează data cu componentele date în fusul orar local. Doar primele două argumente sunt obligatorii.
 
-    - The `year` must have 4 digits: `2013` is okay, `98` is not.
-    - The `month` count starts with `0` (Jan), up to `11` (Dec).
-    - The `date` parameter is actually the day of month, if absent then `1` is assumed.
-    - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
+    - Anul `year` trebuie să aibă 4 cifre. Pentru compatibilitate, sunt acceptate și 2 cifre, care sunt considerate `19xx`, e.g.`98` este același lucru cu `1998` aici, dar este întotdeauna puternic încurajată folosirea a 4 cifre.
+    - Numărătoarea "lunilor" începe cu `0` (Ian), până la `11` (Dec).
+    - Parametrul `date` este de fapt ziua lunii, dacă nu există atunci se presupune `1`.
+    - Dacă `ore/minute/secunde/ms` este absent, se presupune că sunt egale cu `0`.
 
-    For instance:
+    De exemplu:
 
     ```js
     new Date(2011, 0, 1, 0, 0, 0, 0); // 1 Jan 2011, 00:00:00
-    new Date(2011, 0, 1); // the same, hours etc are 0 by default
+    new Date(2011, 0, 1); // la fel, orele etc sunt 0 în mod implicit
     ```
 
-    The maximal precision is 1 ms (1/1000 sec):
+    Precizia maximă este 1 ms (1/1000 sec):
 
     ```js run
     let date = new Date(2011, 0, 1, 2, 3, 4, 567);
     alert( date ); // 1.01.2011, 02:03:04.567
     ```
 
-## Access date components
+## Accesarea componentelor de date
 
-There are methods to access the year, month and so on from the `Date` object:
+Există metode pentru a accesa anul, luna și așa mai departe din obiectul `Date`:
 
 [getFullYear()](mdn:js/Date/getFullYear)
-: Get the year (4 digits)
+: Obține anul (4 cifre)
 
 [getMonth()](mdn:js/Date/getMonth)
-: Get the month, **from 0 to 11**.
+: Obține luna, **de la 0 la 11**.
 
 [getDate()](mdn:js/Date/getDate)
-: Get the day of month, from 1 to 31, the name of the method does look a little bit strange.
+: Obține ziua lunii, de la 1 la 31, numele metodei pare puțin ciudat.
 
 [getHours()](mdn:js/Date/getHours), [getMinutes()](mdn:js/Date/getMinutes), [getSeconds()](mdn:js/Date/getSeconds), [getMilliseconds()](mdn:js/Date/getMilliseconds)
-: Get the corresponding time components.
+: Obține componentele de timp corespunzătoare.
 
-```warn header="Not `getYear()`, but `getFullYear()`"
-Many JavaScript engines implement a non-standard method `getYear()`. This method is deprecated. It returns 2-digit year sometimes. Please never use it. There is `getFullYear()` for the year.
+```warn header="Nu `getYear()`, ci `getFullYear()`"
+Multe motoare JavaScript implementează o metodă non-standard `getYear()`. Această metodă este depreciată. Ea returnează uneori anul din 2 cifre. Vă rugăm să nu o folosiți niciodată. Există `getFullYear()` pentru an.
 ```
 
-Additionally, we can get a day of week:
+Adițional, putem obține o zi a săptămânii:
 
 [getDay()](mdn:js/Date/getDay)
-: Get the day of week, from `0` (Sunday) to `6` (Saturday). The first day is always Sunday, in some countries that's not so, but can't be changed.
+: Obține ziua săptămânii, de la `0` (Duminică) la `6` (Sâmbătă). Prima zi este întotdeauna Duminică, în unele țări nu este așa, dar nu poate fi schimbată.
 
-**All the methods above return the components relative to the local time zone.**
+**Toate metodele de mai sus returnează componentele în raport cu fusul orar local.**
 
-There are also their UTC-counterparts, that return day, month, year and so on for the time zone UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Just insert the `"UTC"` right after `"get"`.
+Există de asemenea omologii lor UTC, care returnează ziua, luna, anul și așa mai departe pentru fusul orar UTC+0: [getUTCFullYear()](mdn:js/Date/getUTCFullYear), [getUTCMonth()](mdn:js/Date/getUTCMonth), [getUTCDay()](mdn:js/Date/getUTCDay). Doar introduceți `"UTC"` imediat după `"get"`.
 
-If your local time zone is shifted relative to UTC, then the code below shows different hours:
+Dacă fusul orar local este decalat față de UTC, atunci codul de mai jos afișează ore diferite:
 
 ```js run
-// current date
+// data curentă
 let date = new Date();
 
-// the hour in your current time zone
+// ora în fusul vostru orar
 alert( date.getHours() );
 
-// the hour in UTC+0 time zone (London time without daylight savings)
+// ora în fusul orar UTC+0 (ora Londrei fără ora de vară)
 alert( date.getUTCHours() );
 ```
 
-Besides the given methods, there are two special ones that do not have a UTC-variant:
+În afară de metodele date, există două metode speciale care nu au o variantă UTC:
 
 [getTime()](mdn:js/Date/getTime)
-: Returns the timestamp for the date -- a number of milliseconds passed from the January 1st of 1970 UTC+0.
+: Returnează timestamp-ul pentru dată -- un număr de milisecunde trecute de la 1 Ianuarie 1970 UTC+0.
 
 [getTimezoneOffset()](mdn:js/Date/getTimezoneOffset)
-: Returns the difference between UTC and the local time zone, in minutes:
+: Returnează diferența dintre UTC și fusul orar local, în minute:
 
     ```js run
-    // if you are in timezone UTC-1, outputs 60
-    // if you are in timezone UTC+3, outputs -180
+    // dacă vă aflați în fusul orar UTC-1, produce 60
+    // dacă vă aflați în fusul orar UTC+3, produce -180
     alert( new Date().getTimezoneOffset() );
 
     ```
 
-## Setting date components
+## Stabilirea componentelor datei
 
-The following methods allow to set date/time components:
+Următoarele metode permit stabilirea componentelor de dată/ora:
 
 - [`setFullYear(year, [month], [date])`](mdn:js/Date/setFullYear)
 - [`setMonth(month, [date])`](mdn:js/Date/setMonth)
@@ -144,38 +144,38 @@ The following methods allow to set date/time components:
 - [`setMinutes(min, [sec], [ms])`](mdn:js/Date/setMinutes)
 - [`setSeconds(sec, [ms])`](mdn:js/Date/setSeconds)
 - [`setMilliseconds(ms)`](mdn:js/Date/setMilliseconds)
-- [`setTime(milliseconds)`](mdn:js/Date/setTime) (sets the whole date by milliseconds since 01.01.1970 UTC)
+- [`setTime(milliseconds)`](mdn:js/Date/setTime) (setează întreaga dată cu milisecunde începând cu 01.01.1970 UTC)
 
-Every one of them except `setTime()` has a UTC-variant, for instance: `setUTCHours()`.
+Fiecare dintre ele cu excepția `setTime()` au o variantă UTC, de exemplu: `setUTCHours()`.
 
-As we can see, some methods can set multiple components at once, for example `setHours`. The components that are not mentioned are not modified.
+După cum putem vedea, unele metode pot seta mai multe componente deodată, de exemplu `setHours`. Componentele care nu sunt menționate nu sunt modificate.
 
-For instance:
+De exemplu:
 
 ```js run
 let today = new Date();
 
 today.setHours(0);
-alert(today); // still today, but the hour is changed to 0
+alert(today); // tot astăzi, dar ora este schimbată la 0
 
 today.setHours(0, 0, 0, 0);
-alert(today); // still today, now 00:00:00 sharp.
+alert(today); // tot astăzi, la ora 00:00:00 fix.
 ```
 
-## Autocorrection
+## Autocorecție
 
-The *autocorrection* is a very handy feature of `Date` objects. We can set out-of-range values, and it will auto-adjust itself.
+*Autocorecția* este o caracteristică foarte utilă a obiectelor `Date`. Putem seta valori în afara intervalelor, iar aceasta se va auto-ajusta.
 
-For instance:
+De exemplu:
 
 ```js run
 let date = new Date(2013, 0, *!*32*/!*); // 32 Jan 2013 ?!?
-alert(date); // ...is 1st Feb 2013!
+alert(date); // ...este 1 Feb 2013!
 ```
 
-Out-of-range date components are distributed automatically.
+Componentele de date în afara intervalului sunt distribuite automat.
 
-Let's say we need to increase the date "28 Feb 2016" by 2 days. It may be "2 Mar" or "1 Mar" in case of a leap-year. We don't need to think about it. Just add 2 days. The `Date` object will do the rest:
+Să spunem că trebuie să mărim data "28 Feb 2016" cu 2 zile. Aceasta poate fi "2 Mar" sau "1 Mar" în cazul unui an bisect. Nu trebuie să ne gândim la asta. Doar adăugăm 2 zile. Obiectul `Date` se va ocupa de restul:
 
 ```js run
 let date = new Date(2016, 1, 28);
@@ -186,109 +186,109 @@ date.setDate(date.getDate() + 2);
 alert( date ); // 1 Mar 2016
 ```
 
-That feature is often used to get the date after the given period of time. For instance, let's get the date for "70 seconds after now":
+Acea caracteristică este adesea utilizată pentru a obține data după o perioadă de timp dată. De exemplu, să obținem data pentru "70 de secunde de acum încolo":
 
 ```js run
 let date = new Date();
 date.setSeconds(date.getSeconds() + 70);
 
-alert( date ); // shows the correct date
+alert( date ); // afișează data corectă
 ```
 
-We can also set zero or even negative values. For example:
+De asemenea putem seta valori zero sau chiar negative. De exemplu:
 
 ```js run
 let date = new Date(2016, 0, 2); // 2 Jan 2016
 
-date.setDate(1); // set day 1 of month
+date.setDate(1); // setează ziua 1 a lunii
 alert( date );
 
-date.setDate(0); // min day is 1, so the last day of the previous month is assumed
+date.setDate(0); // ziua minimă este 1, deci se presupune ultima zi a lunii precedente
 alert( date ); // 31 Dec 2015
 ```
 
 ## Date to number, date diff
 
-When a `Date` object is converted to number, it becomes the timestamp same as `date.getTime()`:
+Atunci când un obiect `Date` este convertit în număr, acesta devine timestamp-ul la fel ca `date.getTime()`:
 
 ```js run
 let date = new Date();
-alert(+date); // the number of milliseconds, same as date.getTime()
+alert(+date); // numărul de milisecunde, la fel ca date.getTime()
 ```
 
-The important side effect: dates can be subtracted, the result is their difference in ms.
+Efect secundar important: datele se pot scădea, rezultatul fiind diferența lor în ms.
 
-That can be used for time measurements:
+Acesta poate fi folosit pentru măsurători de timp:
 
 ```js run
-let start = new Date(); // start measuring time
+let start = new Date(); // începe măsurarea timpului
 
-// do the job
+// face treaba
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
-let end = new Date(); // end measuring time
+let end = new Date(); // încheie măsurarea timpului
 
-alert( `The loop took ${end - start} ms` );
+alert( `Bucla a durat ${end - start} ms` );
 ```
 
 ## Date.now()
 
-If we only want to measure time, we don't need the `Date` object.
+Dacă dorim doar să măsurăm timpul, nu avem nevoie de obiectul `Date`.
 
-There's a special method `Date.now()` that returns the current timestamp.
+Există o metodă specială `Date.now()` care returnează timestamp-ul curent.
 
-It is semantically equivalent to `new Date().getTime()`, but it doesn't create an intermediate `Date` object. So it's faster and doesn't put pressure on garbage collection.
+Aceasta este semantic echivalentă cu `new Date().getTime()`, dar nu creează un obiect `Date` intermediar. Astfel este mai rapidă și nu pune presiune pe garbage collection.
 
-It is used mostly for convenience or when performance matters, like in games in JavaScript or other specialized applications.
+Este folosit în mare parte pentru conveniență sau când performanța contează, cum ar fi în jocuri în JavaScript sau alte aplicații specializate.
 
-So this is probably better:
+Așa că este probabil mai bine așa:
 
 ```js run
 *!*
-let start = Date.now(); // milliseconds count from 1 Jan 1970
+let start = Date.now(); // milisecundele se numără de la 1 Ian 1970
 */!*
 
-// do the job
+// face treaba
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
 *!*
-let end = Date.now(); // done
+let end = Date.now(); // gata
 */!*
 
-alert( `The loop took ${end - start} ms` ); // subtract numbers, not dates
+alert( `Bucla a durat ${end - start} ms` ); // scade numere, nu date
 ```
 
 ## Benchmarking
 
-If we want a reliable benchmark of CPU-hungry function, we should be careful.
+Dacă dorim un benchmark fiabil al unei funcții care consumă mult CPU, trebuie să fim atenți.
 
-For instance, let's measure two functions that calculate the difference between two dates: which one is faster?
+De exemplu, să măsurăm două funcții care calculează diferența dintre două date: care dintre ele este mai rapidă?
 
-Such performance measurements are often called "benchmarks".
+Astfel de măsurători de performanță sunt adesea numite "benchmarks".
 
 ```js
-// we have date1 and date2, which function faster returns their difference in ms?
+// avem date1 și date2, care funcție returnează mai repede diferența lor în ms?
 function diffSubtract(date1, date2) {
   return date2 - date1;
 }
 
-// or
+// sau
 function diffGetTime(date1, date2) {
   return date2.getTime() - date1.getTime();
 }
 ```
 
-These two do exactly the same thing, but one of them uses an explicit `date.getTime()` to get the date in ms, and the other one relies on a date-to-number transform. Their result is always the same.
+Acestea două fac exact același lucru, dar una dintre ele folosește `date.getTime()` explicit pentru a obține data în ms, iar cealaltă se bazează pe o transformare dată-la-număr. Rezultatul lor este întotdeauna același.
 
-So, which one is faster?
+Așadar, care dintre ele este mai rapidă?
 
-The first idea may be to run them many times in a row and measure the time difference. For our case, functions are very simple, so we have to do it at least 100000 times.
+Prima idee ar putea fi să le rulăm de multe ori la rând și să măsurăm diferența de timp. Pentru cazul nostru, funcțiile sunt foarte simple, așa că trebuie să o facem de cel puțin 100000 de ori.
 
-Let's measure:
+Să măsurăm:
 
 ```js run
 function diffSubtract(date1, date2) {
@@ -312,19 +312,19 @@ alert( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
 alert( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );
 ```
 
-Wow! Using `getTime()` is so much faster! That's because there's no type conversion, it is much easier for engines to optimize.
+Wow! Utilizând `getTime()` este mult mai rapid! Asta pentru că nu există conversie de tip, este mult mai ușor de optimizat pentru motoare.
 
-Okay, we have something. But that's not a good benchmark yet.
+Bine, avem ceva. Dar acesta nu este un benchmark bun încă.
 
-Imagine that at the time of running `bench(diffSubtract)` CPU was doing something in parallel, and it was taking resources. And by the time of running `bench(diffGetTime)` that work has finished.
+Imaginați-vă că în momentul rulării `bench(diffSubtract)` CPU-ul făcea ceva în paralel, și acesta consuma resurse. Iar până în momentul în care se execută `bench(diffGetTime)` acea sarcină s-a terminat.
 
-A pretty real scenario for a modern multi-process OS.
+Un scenariu destul de real pentru un multiproces modern de OS.
 
-As a result, the first benchmark will have less CPU resources than the second. That may lead to wrong results.
+Ca urmare, primul benchmark va avea mai puține resurse CPU decât al doilea. Acest lucru poate duce la rezultate greșite.
 
-**For more reliable benchmarking, the whole pack of benchmarks should be rerun multiple times.**
+**Pentru un benchmarking mai fiabil, întregul pachet de benchmarks ar trebui rulat de mai multe ori.**
 
-For example, like this:
+De exemplu, cam așa:
 
 ```js run
 function diffSubtract(date1, date2) {
@@ -348,86 +348,86 @@ let time1 = 0;
 let time2 = 0;
 
 *!*
-// run bench(diffSubtract) and bench(diffGetTime) each 10 times alternating
+// execută bench(diffSubtract) și bench(diffGetTime) fiecare de 10 ori alternativ
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 */!*
 
-alert( 'Total time for diffSubtract: ' + time1 );
-alert( 'Total time for diffGetTime: ' + time2 );
+alert( 'Timp total pentru diffSubtract: ' + time1 );
+alert( 'Timp total pentru diffGetTime: ' + time2 );
 ```
 
-Modern JavaScript engines start applying advanced optimizations only to "hot code" that executes many times (no need to optimize rarely executed things). So, in the example above, first executions are not well-optimized. We may want to add a heat-up run:
+Motoarele JavaScript moderne încep să aplice optimizări avansate doar pentru "codul fierbinte" care se execută de mai multe ori (nu este nevoie să optimizeze lucruri executate rar). Așadar, în exemplul de mai sus, primele execuții nu sunt bine optimizate. Am vrea să adăugăm o execuție de încălzire:
 
 ```js
-// added for "heating up" prior to the main loop
+// adăugată pentru "încălzire" înainte de bucla principală
 bench(diffSubtract);
 bench(diffGetTime);
 
-// now benchmark
+// acum benchmark
 for (let i = 0; i < 10; i++) {
   time1 += bench(diffSubtract);
   time2 += bench(diffGetTime);
 }
 ```
 
-```warn header="Be careful doing microbenchmarking"
-Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
+```warn header="Aveți grijă când faceți microbenchmarking"
+Motoarele JavaScript moderne efectuează multe optimizări. Acestea ar putea ajusta rezultatele "testelor artificiale" în comparație cu "utilizarea normală", în special atunci când efectuăm benchmark-uri pentru ceva foarte mic, cum ar fi modul în care funcționează un operator sau o funcție încorporată. Deci dacă vreți să înțelegeți în mod serios performanța, atunci vă rugăm să studiați modul în care funcționează motorul JavaScript. Și atunci probabil că nu veți avea nevoie deloc de microbenchmarks.
 
-The great pack of articles about V8 can be found at <http://mrale.ph>.
+Marele pachet de articole despre V8 poate fi găsit la <https://mrale.ph>.
 ```
 
-## Date.parse from a string
+## Date.parse dintr-un șir
 
-The method [Date.parse(str)](mdn:js/Date/parse) can read a date from a string.
+Metoda [Date.parse(str)](mdn:js/Date/parse) poate citi o dată dintr-un șir.
 
-The string format should be: `YYYY-MM-DDTHH:mm:ss.sssZ`, where:
+Formatul șirului trebuie să fie: `YYYY-MM-DDTHH:mm:ss.sssZ`, unde:
 
-- `YYYY-MM-DD` -- is the date: year-month-day.
-- The character `"T"` is used as the delimiter.
-- `HH:mm:ss.sss` -- is the time: hours, minutes, seconds and milliseconds.
-- The optional `'Z'` part denotes the time zone in the format `+-hh:mm`. A single letter `Z` would mean UTC+0.
+- `YYYY-MM-DD` -- este data: an-lună-zi.
+- Caracterul `"T"` este utilizat ca delimitator.
+- `HH:mm:ss.sss` -- este timpul: ore, minute, secunde și milisecunde.
+- Partea opțională `'Z'` denotă fusul orar în formatul `+-hh:mm`. O singură literă `Z` ar însemna UTC+0.
 
-Shorter variants are also possible, like `YYYY-MM-DD` or `YYYY-MM` or even `YYYY`.
+Sunt posibile și variante mai scurte, precum `YYYY-MM-DD` sau `YYYY-MM` sau chiar `YYYY`.
 
-The call to `Date.parse(str)` parses the string in the given format and returns the timestamp (number of milliseconds from 1 Jan 1970 UTC+0). If the format is invalid, returns `NaN`.
+Apelul la `Date.parse(str)` parsează șirul în formatul dat și returnează timestamp-ul (numărul de milisecunde de la 1 ianuarie 1970 UTC+0). Dacă formatul nu este valid, se returnează `NaN`.
 
-For instance:
+De exemplu:
 
 ```js run
 let ms = Date.parse('2012-01-26T13:51:50.417-07:00');
 
-alert(ms); // 1327611110417  (timestamp)
+alert(ms); // 1327611110417 (timestamp)
 ```
 
-We can instantly create a `new Date` object from the timestamp:
+Putem crea instantaneu un obiect `new Date` din timestamp:
 
 ```js run
 let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
 
-alert(date);  
+alert(date);
 ```
 
-## Summary
+## Sumar
 
-- Date and time in JavaScript are represented with the [Date](mdn:js/Date) object. We can't create "only date" or "only time": `Date` objects always carry both.
-- Months are counted from zero (yes, January is a zero month).
-- Days of week in `getDay()` are also counted from zero (that's Sunday).
-- `Date` auto-corrects itself when out-of-range components are set. Good for adding/subtracting days/months/hours.
-- Dates can be subtracted, giving their difference in milliseconds. That's because a `Date` becomes the timestamp when converted to a number.
-- Use `Date.now()` to get the current timestamp fast.
+- Data și ora în JavaScript sunt reprezentate cu obiectul [Date](mdn:js/Date). Nu putem crea "doar data" sau "doar ora": Obiectele `Date` le conțin întotdeauna pe amândouă.
+- Lunile sunt numărate de la zero (da, Ianuarie este o lună zero).
+- Zilele săptămânii în `getDay()` sunt de asemenea numărate de la zero (asta-i Duminică).
+- `Date` se autocorectează atunci când sunt setate componente în afara intervalului. Bună pentru adăugarea/subtragerea zilelor/lunilor/orelor.
+- Datele pot fi sustrase, dând diferența lor în milisecunde. Asta pentru că un `Date` devine timestamp-ul atunci când este convertit într-un număr.
+- Folosiți `Date.now()` pentru a obține rapid timestamp-ul curent.
 
-Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
+Rețineți că spre deosebire de multe alte sisteme, timestamp-urile din JavaScript sunt în milisecunde, nu în secunde.
 
-Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
+Uneori avem nevoie de măsurători de timp mai precise. JavaScript în sine nu are o modalitate de a măsura timpul în microsecunde (1 milionime dintr-o secundă), dar majoritatea mediilor o oferă. De exemplu, browserul are [performance.now()](mdn:api/Performance/now) care oferă numărul de milisecunde de la începutul încărcării paginii cu precizie de microsecunde (3 cifre după punct):
 
 ```js run
-alert(`Loading started ${performance.now()}ms ago`);
-// Something like: "Loading started 34731.26000000001ms ago"
-// .26 is microseconds (260 microseconds)
-// more than 3 digits after the decimal point are precision errors, only the first 3 are correct
+alert(`Încărcarea a început cu ${performance.now()}ms în urmă`);
+// Ceva precum: "Încărcarea a început acum 34731.26000000001ms"
+// .26 reprezintă microsecunde (260 microsecunde)
+// mai mult de 3 cifre după virgulă sunt erori de precizie, doar primele 3 sunt corecte
 ```
 
-Node.js has `microtime` module and other ways. Technically, almost any device and environment allows to get more precision, it's just not in `Date`.
+Node.js are modulul `microtime` și alte modalități. Tehnic, aproape orice dispozitiv și mediu permite obținerea unei precizii mai mare, doar că nu este în `Date`.

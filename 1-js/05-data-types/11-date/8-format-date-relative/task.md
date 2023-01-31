@@ -2,24 +2,24 @@ importance: 4
 
 ---
 
-# Format the relative date
+# Formatați data relativă
 
-Write a function `formatDate(date)` that should format `date` as follows:
+Scrieți o funcție `formatDate(date)` care ar trebui să formateze `date` după cum urmează:
 
-- If since `date` passed less than 1 second, then `"right now"`.
-- Otherwise, if since `date` passed less than 1 minute, then `"n sec. ago"`.
-- Otherwise, if less than an hour, then `"m min. ago"`.
-- Otherwise, the full date in the format `"DD.MM.YY HH:mm"`. That is: `"day.month.year hours:minutes"`, all in 2-digit format, e.g. `31.12.16 10:00`.
+- Dacă a trecut mai puțin de 1 secundă din `date`, atunci `"chiar acum"`.
+- În caz contrar, dacă a trecut mai puțin de 1 minut de la `date`, atunci `"n sec. ago"`.
+- În caz contrar, dacă a trecut mai puțin de o oră, atunci `"m min. ago"`.
+- În caz contrar, data completă în formatul `"DD.MM.YY HH:mm"`. Adică: `"zi.lună.an ore:minute"`, toate în format de 2 cifre, de exemplu `31.12.16 10:00`.
 
-For instance:
+De exemplu:
 
 ```js
-alert( formatDate(new Date(new Date - 1)) ); // "right now"
+alert( formatDate(new Date(new Date(new Date - 1)) ) ); // "chiar acum"
 
-alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 sec. ago"
+alert( formatDate(new Date(new Date(new Date - 30 * 1000)) ); // "acum 30 sec."
 
-alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 min. ago"
+alert( formatDate(new Date(new Date(new Date - 5 * 60 * 1000)) ); // "5 min în urmă"
 
-// yesterday's date like 31.12.16 20:00
-alert( formatDate(new Date(new Date - 86400 * 1000)) );
+// data de ieri precum 31.12.16 20:00
+alert( formatDate(new Date(new Date(new Date - 86400 * 1000)) ) );
 ```

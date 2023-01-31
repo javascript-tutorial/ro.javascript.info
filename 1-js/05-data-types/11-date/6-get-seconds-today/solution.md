@@ -1,22 +1,22 @@
-To get the number of seconds, we can generate a date using the current day and time 00:00:00, then substract it from "now".
+Pentru a obține numărul de secunde, putem genera o dată folosind ziua și ora curentă 00:00:00, apoi să o scădem din "now".
 
-The difference is the number of milliseconds from the beginning of the day, that we should divide by 1000 to get seconds:
+Diferența este numărul de milisecunde de la începutul zilei, pe care trebuie să-l împărțim la 1000 pentru a obține secundele:
 
 ```js run
 function getSecondsToday() {
   let now = new Date();
 
-  // create an object using the current day/month/year
+  // creați un obiect folosind ziua/luna/anul curent
   let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 
-  let diff = now - today; // ms difference
-  return Math.round(diff / 1000); // make seconds
+  let diff = now - today; // diferența de ms
+  return Math.round(diff / 1000); // face secunde
 }
 
 alert( getSecondsToday() );
 ```
 
-An alternative solution would be to get hours/minutes/seconds and convert them to seconds:
+O soluție alternativă ar fi să se obțină ore/minute/secunde și să se convertească în secunde:
 
 ```js run
 function getSecondsToday() {
