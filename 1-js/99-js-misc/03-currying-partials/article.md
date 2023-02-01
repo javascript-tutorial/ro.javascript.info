@@ -17,7 +17,7 @@ Vom crea o funcție ajutătoare `curry(f)` care realizează currying pentru o fu
 
 ```js run
 *!*
-function curry(f) { // curry(f) does the currying transform
+function curry(f) { // curry(f) face transformarea currying
   return function(a) {
     return function(b) {
       return f(a, b);
@@ -26,7 +26,7 @@ function curry(f) { // curry(f) does the currying transform
 }
 */!*
 
-// usage
+// utilizare
 function sum(a, b) {
   return a + b;
 }
@@ -36,11 +36,11 @@ let curriedSum = curry(sum);
 alert( curriedSum(1)(2) ); // 3
 ```
 
-As you can see, the implementation is straightforward: it's just two wrappers.
+După cum puteți vedea, implementarea este directă: este vorba doar de două wrappere.
 
-- The result of `curry(func)` is a wrapper `function(a)`.
-- When it is called like `curriedSum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
-- Then this wrapper is called with `2` as an argument, and it passes the call to the original `sum`.
+- Rezultatul lui `curry(func)` este un wrapper `function(a)`.
+- Atunci când este apelat ca `currySum(1)`, argumentul este salvat în mediul lexical și se returnează un nou wrapper `function(b)`.
+- Apoi, acest wrapper este apelat cu `2` ca argument, iar apelul este transmis către `sum` original.
 
 More advanced implementations of currying, such as [_.curry](https://lodash.com/docs#curry) from lodash library, return a wrapper that allows a function to be called both normally and partially:
 
