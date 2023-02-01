@@ -5,15 +5,15 @@ libs:
 
 # Currying
 
-[Currying](https://en.wikipedia.org/wiki/Currying) is an advanced technique of working with functions. It's used not only in JavaScript, but in other languages as well.
+[Currying](https://en.wikipedia.org/wiki/Currying) este o tehnică avansată de lucru cu funcții. Este utilizată nu numai în JavaScript, dar și în alte limbaje.
 
-Currying is a transformation of functions that translates a function from callable as `f(a, b, c)` into callable as `f(a)(b)(c)`.
+Currying este o transformare a funcțiilor care transpune o funcție apelabilă ca `f(a, b, c)` în apelabilă ca `f(a)(b)(c)`.
 
-Currying doesn't call a function. It just transforms it.
+Currying nu apelează o funcție. Pur și simplu o transformă.
 
-Let's see an example first, to better understand what we're talking about, and then practical applications.
+Să vedem mai întâi un exemplu, pentru a înțelege mai bine despre ce vorbim, și apoi aplicațiile practice.
 
-We'll create a helper function `curry(f)` that performs currying for a two-argument `f`. In other words, `curry(f)` for two-argument `f(a, b)` translates it into a function that runs as `f(a)(b)`:
+Vom crea o funcție ajutătoare `curry(f)` care realizează currying pentru o funcție `f` cu două argumente. Cu alte cuvinte, `curry(f)` pentru `f(a, b)` cu două argumente îl traduce într-o funcție care se execută ca `f(a)(b)`:
 
 ```js run
 *!*
