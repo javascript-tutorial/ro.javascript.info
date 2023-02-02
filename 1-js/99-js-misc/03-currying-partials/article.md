@@ -42,24 +42,24 @@ După cum puteți vedea, implementarea este directă: este vorba doar de două w
 - Atunci când este apelat ca `currySum(1)`, argumentul este salvat în mediul lexical și se returnează un nou wrapper `function(b)`.
 - Apoi, acest wrapper este apelat cu `2` ca argument, iar apelul este transmis către `sum` original.
 
-More advanced implementations of currying, such as [_.curry](https://lodash.com/docs#curry) from lodash library, return a wrapper that allows a function to be called both normally and partially:
+Implementările mai avansate de currying, cum ar fi [_.curry](https://lodash.com/docs#curry) din biblioteca lodash, returnează un wrapper care permite ca o funcție să fie apelată atât în mod normal, cât și parțial:
 
 ```js run
 function sum(a, b) {
   return a + b;
 }
 
-let curriedSum = _.curry(sum); // using _.curry from lodash library
+let curriedSum = _.curry(sum); // folosind _.curry din biblioteca lodash
 
 alert( curriedSum(1, 2) ); // 3, still callable normally
 alert( curriedSum(1)(2) ); // 3, called partially
 ```
 
-## Currying? What for?
+## Currying? Pentru ce?
 
-To understand the benefits we need a worthy real-life example.
+Pentru a înțelege beneficiile, avem nevoie de un exemplu demn din viața reală.
 
-For instance, we have the logging function `log(date, importance, message)` that formats and outputs the information. In real projects such functions have many useful features like sending logs over the network, here we'll just use `alert`:
+De exemplu, avem funcția de logare `log(date, importance, message)` care formatează și produce informații. În proiectele reale astfel de funcții au multe caracteristici utile cum ar fi trimiterea de loguri prin rețea, aici vom folosi doar `alert`:
 
 ```js
 function log(date, importance, message) {
@@ -67,47 +67,47 @@ function log(date, importance, message) {
 }
 ```
 
-Let's curry it!
+Haideți să o facem curry!
 
 ```js
 log = _.curry(log);
 ```
 
-After that `log` works normally:
+După aceea `log` funcționează normal:
 
 ```js
-log(new Date(), "DEBUG", "some debug"); // log(a, b, c)
+log(new Date(), "DEBUG", "ceva debug"); // log(a, b, c)
 ```
 
-...But also works in the curried form:
+...Dar funcționează și în forma curried:
 
 ```js
-log(new Date())("DEBUG")("some debug"); // log(a)(b)(c)
+log(new Date())("DEBUG")("ceva debug"); // log(a)(b)(c)
 ```
 
-Now we can easily make a convenience function for current logs:
+Acum putem realiza cu ușurință o funcție de conveniență pentru logurile curente:
 
 ```js
-// logNow will be the partial of log with fixed first argument
+// logNow va fi logul parțial cu primul argument fix
 let logNow = log(new Date());
 
-// use it
-logNow("INFO", "message"); // [HH:mm] INFO message
+// folosiți-l
+logNow("INFO", "mesaj"); // [HH:mm] INFO mesaj
 ```
 
-Now `logNow` is `log` with fixed first argument, in other words "partially applied function" or "partial" for short.
+Acum `logNow` este `log` cu primul argument fix, cu alte cuvinte "funcție parțial aplicată" sau "parțială" pe scurt.
 
-We can go further and make a convenience function for current debug logs:
+Putem merge mai departe și să facem o funcție de conveniență pentru logurile curente de debug:
 
 ```js
 let debugNow = logNow("DEBUG");
 
-debugNow("message"); // [HH:mm] DEBUG message
+debugNow("mesaj"); // [HH:mm] DEBUG mesaj
 ```
 
-So:
-1. We didn't lose anything after currying: `log` is still callable normally.
-2. We can easily generate partial functions such as for today's logs.
+Deci:
+1. Nu am pierdut nimic după curry: `log` este încă apelabil în mod normal.
+2. Putem genera cu ușurință funcții parțiale, cum ar fi pentru logurile de astăzi.
 
 ## Advanced curry implementation
 
