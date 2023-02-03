@@ -36,13 +36,13 @@ let curriedSum = curry(sum);
 alert( curriedSum(1)(2) ); // 3
 ```
 
-După cum puteți vedea, implementarea este directă: este vorba doar de două wrappere.
+După cum puteți vedea, implementarea este directă: este vorba doar de două învelișuri.
 
-- Rezultatul lui `curry(func)` este un wrapper `function(a)`.
-- Atunci când este apelat ca `currySum(1)`, argumentul este salvat în mediul lexical și se returnează un nou wrapper `function(b)`.
-- Apoi, acest wrapper este apelat cu `2` ca argument, iar apelul este transmis către `sum` original.
+- Rezultatul lui `curry(func)` este un înveliș `function(a)`.
+- Atunci când este apelat ca `currySum(1)`, argumentul este salvat în mediul lexical și se returnează un nou înveliș `function(b)`.
+- Apoi, acest înveliș este apelat cu `2` ca argument, iar apelul este transmis către `sum` original.
 
-Implementările mai avansate de currying, cum ar fi [_.curry](https://lodash.com/docs#curry) din biblioteca lodash, returnează un wrapper care permite ca o funcție să fie apelată atât în mod normal, cât și parțial:
+Implementările mai avansate de currying, cum ar fi [_.curry](https://lodash.com/docs#curry) din biblioteca lodash, returnează un înveliș care permite ca o funcție să fie apelată atât în mod normal, cât și parțial:
 
 ```js run
 function sum(a, b) {
@@ -109,11 +109,11 @@ Deci:
 1. Nu am pierdut nimic după curry: `log` este încă apelabil în mod normal.
 2. Putem genera cu ușurință funcții parțiale, cum ar fi pentru logurile de astăzi.
 
-## Advanced curry implementation
+## Implementarea curry avansată
 
-In case you'd like to get in to the details, here's the "advanced" curry implementation for multi-argument functions that we could use above.
+În cazul în care doriți să intrați în detalii, iată implementarea curry "avansată" pentru funcții cu argumente multiple pe care am putea-o folosi mai sus.
 
-It's pretty short:
+Este destul de scurtă:
 
 ```js
 function curry(func) {
@@ -131,7 +131,7 @@ function curry(func) {
 }
 ```
 
-Usage examples:
+Exemple de utilizare:
 
 ```js
 function sum(a, b, c) {
@@ -140,17 +140,17 @@ function sum(a, b, c) {
 
 let curriedSum = curry(sum);
 
-alert( curriedSum(1, 2, 3) ); // 6, still callable normally
-alert( curriedSum(1)(2,3) ); // 6, currying of 1st arg
-alert( curriedSum(1)(2)(3) ); // 6, full currying
+alert( curriedSum(1, 2, 3) ); // 6, încă apelabil în mod normal
+alert( curriedSum(1)(2,3) ); // 6, curry de la primul argument
+alert( curriedSum(1)(2)(3) ); // 6, currying complet
 ```
 
-The new `curry` may look complicated, but it's actually easy to understand.
+Noul `curry` poate părea complicat, dar este de fapt ușor de înțeles.
 
-The result of `curry(func)` call is the wrapper `curried` that looks like this:
+Rezultatul apelului `curry(func)` este învelișul `curried` care arată astfel:
 
 ```js
-// func is the function to transform
+// func este funcția de transformat
 function curried(...args) {
   if (args.length >= func.length) { // (1)
     return func.apply(this, args);
@@ -162,23 +162,23 @@ function curried(...args) {
 };
 ```
 
-When we run it, there are two `if` execution branches:
+Când îl rulăm, există două ramuri de execuție `if`:
 
-1. If passed `args` count is the same or more than the original function has in its definition (`func.length`) , then just pass the call to it using `func.apply`. 
-2. Otherwise, get a partial: we don't call `func` just yet. Instead, another wrapper is returned, that will re-apply `curried` providing previous arguments together with the new ones. 
+1. Dacă numărul de `args` transmis este același sau mai mare decât numărul de funcții originale din definiția sa (`func.length`) , atunci doar transmite apelul la aceasta folosind `func.apply`.
+2. În caz contrar, obține o parțială: nu apelăm `func` deocamdată. În schimb, este returnat un alt înveliș, care va aplica din nou `curried` furnizând argumentele anterioare împreună cu cele noi.
 
-Then, if we call it, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
+Apoi, dacă îl apelăm, din nou, vom obține fie un nou parțial (dacă nu sunt suficiente argumente), fie, în final, rezultatul.
 
-```smart header="Fixed-length functions only"
-The currying requires the function to have a fixed number of arguments.
+```smart header="Numai funcții cu lungime fixă"
+Currying necesită ca funcția să aibă un număr fix de argumente.
 
-A function that uses rest parameters, such as `f(...args)`, can't be curried this way.
+O funcție care utilizează parametri rest, cum ar fi `f(...args)`, nu poate fi curryată în acest mod.
 ```
 
-```smart header="A little more than currying"
-By definition, currying should convert `sum(a, b, c)` into `sum(a)(b)(c)`.
+```smart header="Un pic mai mult decât currying"
+Prin definiție, currying ar trebui să convertească `sum(a, b, c)` în `sum(a)(b)(c)`.
 
-But most implementations of currying in JavaScript are advanced, as described: they also keep the function callable in the multi-argument variant.
+Dar majoritatea implementărilor de currying în JavaScript sunt avansate, așa cum este descris: ele de asemenea păstrează funcția apelabilă și în varianta cu mai multe argumente.
 ```
 
 ## Summary
