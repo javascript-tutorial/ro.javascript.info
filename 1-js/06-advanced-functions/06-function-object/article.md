@@ -1,20 +1,20 @@
 
-# Function object, NFE
+# Obiectul  funcției, NFE
 
-As we already know, a function in JavaScript is a value.
+După cum știm deja, o funcție în JavaScript este o valoare.
 
-Every value in JavaScript has a type. What type is a function?
+Fiecare valoare în JavaScript are un tip. Ce tip are o funcție?
 
-In JavaScript, functions are objects.
+În JavaScript, funcțiile sunt obiecte.
 
-A good way to imagine functions is as callable "action objects". We can not only call them, but also treat them as objects: add/remove properties, pass by reference etc.
+Un mod bun de a ne imagina funcțiile este ca "obiecte de acțiune" apelabile. Putem nu doar să le apelăm, ci și să le tratăm ca pe niște obiecte: să adăugăm/eliminăm proprietăți, să le transmitem prin referință etc.
 
 
-## The "name" property
+## Proprietatea "name"
 
-Function objects contain some useable properties.
+Obiectele funcție conțin câteva proprietăți utilizabile.
 
-For instance, a function's name is accessible as the "name" property:
+De exemplu, numele unei funcții este accesibil sub forma proprietății "name":
 
 ```js run
 function sayHi() {
@@ -24,29 +24,29 @@ function sayHi() {
 alert(sayHi.name); // sayHi
 ```
 
-What's kind of funny, the name-assigning logic is smart. It also assigns the correct name to a function even if it's created without one, and then immediately assigned:
+Ceea ce este oarecum amuzant, logica de atribuire a numelui este inteligentă. De asemenea îi atribuie numele corect unei funcții chiar dacă aceasta este creată fără nume, și apoi este atribuită imediat:
 
 ```js run
 let sayHi = function() {
-  alert("Hi");
+  alert("Salut");
 };
 
-alert(sayHi.name); // sayHi (there's a name!)
+alert(sayHi.name); // sayHi (există un nume!)
 ```
 
-It also works if the assignment is done via a default value:
+De asemenea funcționează și în cazul în care atribuirea se face printr-o valoare implicită:
 
 ```js run
 function f(sayHi = function() {}) {
-  alert(sayHi.name); // sayHi (works!)
+  alert(sayHi.name); // sayHi (funcționează!)
 }
 
 f();
 ```
 
-In the specification, this feature is called a "contextual name". If the function does not provide one, then in an assignment it is figured out from the context.
+În specificație, această trăsătură se numește "nume contextual". Dacă funcția nu oferă unul, atunci acesta este dedus din context într-o atribuire.
 
-Object methods have names too:
+Metodele obiectelor au și ele nume:
 
 ```js run
 let user = {
@@ -65,17 +65,17 @@ alert(user.sayHi.name); // sayHi
 alert(user.sayBye.name); // sayBye
 ```
 
-There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property is empty, like here:
+Totuși nu există magie. Există cazuri în care nu există nicio modalitate de a afla numele corect. În acest caz, proprietatea name este goală, ca aici:
 
 ```js run
-// function created inside array
+// funcție creată în interiorul unui array
 let arr = [function() {}];
 
-alert( arr[0].name ); // <empty string>
-// the engine has no way to set up the right name, so there is none
+alert( arr[0].name ); // <șir gol>
+// motorul nu are cum să stabilească numele corect, așa că nu există niciunul
 ```
 
-In practice, however, most functions do have a name.
+În practică, însă, majoritatea funcțiilor au un nume.
 
 ## The "length" property
 
