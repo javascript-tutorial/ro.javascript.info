@@ -183,6 +183,6 @@ Dar majoritatea implementărilor de currying în JavaScript sunt avansate, așa 
 
 ## Summary
 
-*Currying* is a transform that makes `f(a,b,c)` callable as `f(a)(b)(c)`. JavaScript implementations usually both keep the function callable normally and return the partial if the arguments count is not enough.
+*Currying* este o transformare care face `f(a,b,c)` apelabilă ca `f(a)(b)(c)`. De obicei, implementările JavaScript păstrează funcția apelabilă în mod normal și în același timp returnează funcția parțială dacă numărul de argumente nu este suficient.
 
-Currying allows us to easily get partials. As we've seen in the logging example, after currying the three argument universal function `log(date, importance, message)` gives us partials when called with one argument (like `log(date)`) or two arguments (like `log(date, importance)`).  
+Currying ne permite să obținem cu ușurință parțiale. După cum am văzut în exemplul de logare, după currying, funcția universală cu trei argumente `log(date, importance, message)` ne oferă parțiale când este apelată cu un singur argument (cum ar fi `log(date)`) sau cu două argumente (cum ar fi `log(date, importance)`).  
