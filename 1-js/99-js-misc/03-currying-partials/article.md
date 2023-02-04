@@ -51,8 +51,8 @@ function sum(a, b) {
 
 let curriedSum = _.curry(sum); // folosind _.curry din biblioteca lodash
 
-alert( curriedSum(1, 2) ); // 3, still callable normally
-alert( curriedSum(1)(2) ); // 3, called partially
+alert( curriedSum(1, 2) ); // 3, încă apelabilă în mod normal
+alert( curriedSum(1)(2) ); // 3, apelată parțial
 ```
 
 ## Currying? Pentru ce?
