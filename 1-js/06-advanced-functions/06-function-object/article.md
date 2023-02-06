@@ -77,9 +77,9 @@ alert( arr[0].name ); // <șir gol>
 
 În practică, însă, majoritatea funcțiilor au un nume.
 
-## The "length" property
+## Proprietatea "length"
 
-There is another built-in property "length" that returns the number of function parameters, for instance:
+Există o altă proprietate încorporată "length" care returnează numărul de parametri ai funcției, de exemplu:
 
 ```js run
 function f1(a) {}
@@ -91,20 +91,20 @@ alert(f2.length); // 2
 alert(many.length); // 2
 ```
 
-Here we can see that rest parameters are not counted.
+Aici putem vedea că parametrii rest nu sunt numărați.
 
-The `length` property is sometimes used for [introspection](https://en.wikipedia.org/wiki/Type_introspection) in functions that operate on other functions.
+Proprietatea `length` este uneori utilizată pentru [introspecție](https://en.wikipedia.org/wiki/Type_introspection) în funcțiile care operează pe alte funcții.
 
-For instance, in the code below the `ask` function accepts a `question` to ask and an arbitrary number of `handler` functions to call.
+De exemplu, în codul de mai jos funcția `ask` acceptă o `question` pentru a întreba și un număr arbitrar de funcții `handler` pentru a fi apelate.
 
-Once a user provides their answer, the function calls the handlers. We can pass two kinds of handlers:
+Odată ce un utilizator le oferă răspunsul, funcția apelează handlerii. Putem trece două tipuri de handlers:
 
-- A zero-argument function, which is only called when the user gives a positive answer.
-- A function with arguments, which is called in either case and returns an answer.
+- O funcție cu zero argumente, care este apelată doar atunci când utilizatorul dă un răspuns pozitiv.
+- O funcție cu argumente, care este apelată în oricare caz și care returnează un răspuns.
 
-To call `handler` the right way, we examine the `handler.length` property.
+Pentru a apela `handler` în mod corect, examinăm proprietatea `handler.length`.
 
-The idea is that we have a simple, no-arguments handler syntax for positive cases (most frequent variant), but are able to support universal handlers as well:
+Ideea este că avem o sintaxă handler simplă, fără argumente pentru cazurile pozitive (varianta cea mai frecventă), dar suntem capabili să suportăm și handlere universale:
 
 ```js run
 function ask(question, ...handlers) {
@@ -120,47 +120,47 @@ function ask(question, ...handlers) {
 
 }
 
-// for positive answer, both handlers are called
-// for negative answer, only the second one
-ask("Question?", () => alert('You said yes'), result => alert(result));
+// pentru răspuns pozitiv, ambii gestionari sunt apelați
+// pentru răspuns negativ, doar al doilea
+ask("Întrebare?", () => alert('Ai spus da'), result => alert(result));
 ```
 
-This is a particular case of so-called [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) -- treating arguments differently depending on their type or, in our case depending on the `length`. The idea does have a use in JavaScript libraries.
+Acesta este un caz particular al așa-numitului [polimorfism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) -- tratarea argumentelor diferit în funcție de tipul lor sau, în cazul nostru în funcție de `length`. Ideea are o utilizare în bibliotecile JavaScript.
 
-## Custom properties
+## Proprietăți custom
 
-We can also add properties of our own.
+De asemenea putem adăuga proprietăți proprii.
 
-Here we add the `counter` property to track the total calls count:
+Aici adăugăm proprietatea `counter` pentru a urmări numărul total de apeluri:
 
 ```js run
 function sayHi() {
-  alert("Hi");
+  alert("Salut");
 
   *!*
-  // let's count how many times we run
+  // să numărăm de câte ori se execută
   sayHi.counter++;
   */!*
 }
-sayHi.counter = 0; // initial value
+sayHi.counter = 0; // valoare inițială
 
-sayHi(); // Hi
-sayHi(); // Hi
+sayHi(); // Salut
+sayHi(); // Salut
 
-alert( `Called ${sayHi.counter} times` ); // Called 2 times
+alert( `Apelat de ${sayHi.counter} ori` ); // Apelat de 2 ori
 ```
 
-```warn header="A property is not a variable"
-A property assigned to a function like `sayHi.counter = 0` does *not* define a local variable `counter` inside it. In other words, a property `counter` and a variable `let counter` are two unrelated things.
+```warn header="O proprietate nu este o variabilă"
+O proprietate atribuită unei funcții precum `sayHi.counter = 0`  *nu* definește o variabilă locală `counter` în interiorul ei. Cu alte cuvinte, o proprietate `counter` și o variabilă `let counter` sunt două lucruri fără legătură.
 
-We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables are not function properties and vice versa. These are just parallel worlds.
+Putem trata o funcție ca pe un obiect, putem stoca proprietăți în ea, dar acest lucru nu are niciun efect asupra execuției sale. Variabilele nu sunt proprietăți ale funcțiilor și viceversa. Acestea sunt doar lumi paralele.
 ```
 
-Function properties can replace closures sometimes. For instance, we can rewrite the counter function example from the chapter <info:closure> to use a function property:
+Proprietățile funcțiilor pot înlocui closures uneori. De exemplu, putem rescrie exemplul funcției counter din capitolul <info:closure> pentru a folosi o proprietate de funcție:
 
 ```js run
 function makeCounter() {
-  // instead of:
+  // în loc de:
   // let count = 0
 
   function counter() {
@@ -177,11 +177,11 @@ alert( counter() ); // 0
 alert( counter() ); // 1
 ```
 
-The `count` is now stored in the function directly, not in its outer Lexical Environment.
+Acum `count` este stocat direct în funcție, nu în mediul său Lexical Environment.
 
-Is it better or worse than using a closure?
+Este mai bine sau mai rău decât utilizarea unui closure?
 
-The main difference is that if the value of `count` lives in an outer variable, then external code is unable to access it. Only nested functions may modify it. And if it's bound to a function, then such a thing is possible:
+Principala diferență este că dacă valoarea lui `count` trăiește într-o variabilă exterioară, atunci codul extern nu o poate accesa. Doar funcțiile nested o pot modifica. Iar dacă este legată de o funcție, atunci un astfel de lucru este posibil:
 
 ```js run
 function makeCounter() {
@@ -203,7 +203,7 @@ alert( counter() ); // 10
 */!*
 ```
 
-So the choice of implementation depends on our aims.
+Așadar alegerea implementării depinde de obiectivele noastre.
 
 ## Named Function Expression
 
