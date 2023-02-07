@@ -207,9 +207,9 @@ Așadar alegerea implementării depinde de obiectivele noastre.
 
 ## Named Function Expression
 
-Named Function Expression, or NFE, is a term for Function Expressions that have a name.
+Named Function Expression, sau NFE, este un termen pentru Function Expressions care au un nume.
 
-For instance, let's take an ordinary Function Expression:
+De exemplu, să luăm o Function Expression obișnuită:
 
 ```js
 let sayHi = function(who) {
@@ -217,58 +217,58 @@ let sayHi = function(who) {
 };
 ```
 
-And add a name to it:
+Și adăugați-i un nume:
 
 ```js
 let sayHi = function *!*func*/!*(who) {
-  alert(`Hello, ${who}`);
+  alert(`Bună ziua, ${who}`);
 };
 ```
 
-Did we achieve anything here? What's the purpose of that additional `"func"` name?
+Am realizat ceva aici? Care este scopul acelui nume suplimentar `"func"`?
 
-First let's note, that we still have a Function Expression. Adding the name `"func"` after `function` did not make it a Function Declaration, because it is still created as a part of an assignment expression.
+În primul rând, să notăm că avem încă o Function Expression. Adăugarea numelui `"func"` după `function` nu a făcut-o Function Declaration, deoarece aceasta este încă creată ca parte a unei expresii de atribuire.
 
-Adding such a name also did not break anything.
+De asemenea adăugarea unui astfel de nume nu a stricat nimic.
 
-The function is still available as `sayHi()`:
+Funcția este în continuare disponibilă ca `sayHi()`:
 
 ```js run
 let sayHi = function *!*func*/!*(who) {
-  alert(`Hello, ${who}`);
+  alert(`Bună ziua, ${who}`);
 };
 
-sayHi("John"); // Hello, John
+sayHi("John"); // Bună ziua, John
 ```
 
-There are two special things about the name `func`, that are the reasons for it:
+Există două lucruri speciale în legătură cu numele `func`, care sunt motivele pentru acesta:
 
-1. It allows the function to reference itself internally.
-2. It is not visible outside of the function.
+1. Acesta permite funcției să facă referire la ea însăși în mod intern.
+2. Nu este vizibil în afara funcției.
 
-For instance, the function `sayHi` below calls itself again with `"Guest"` if no `who` is provided:
+De exemplu, funcția `sayHi` de mai jos se apelează din nou pe sine cu `"Guest"` dacă nu este furnizat `who`:
 
 ```js run
 let sayHi = function *!*func*/!*(who) {
   if (who) {
-    alert(`Hello, ${who}`);
+    alert(`Bună ziua, ${who}`);
   } else {
 *!*
-    func("Guest"); // use func to re-call itself
+    func("Guest"); // folosește func pentru a se re-apela pe sine însăși
 */!*
   }
 };
 
-sayHi(); // Hello, Guest
+sayHi(); // Bună ziua, Guest
 
-// But this won't work:
-func(); // Error, func is not defined (not visible outside of the function)
+// Dar acest lucru nu va funcționa:
+func(); // Error, func is not defined (nu este vizibil în afara funcției)
 ```
 
-Why do we use `func`? Maybe just use `sayHi` for the nested call?
+De ce folosim `func`? Poate doar să folosim `sayHi` pentru apelul nested?
 
 
-Actually, in most cases we can:
+De fapt, în majoritatea cazurilor putem:
 
 ```js
 let sayHi = function(who) {
@@ -282,12 +282,12 @@ let sayHi = function(who) {
 };
 ```
 
-The problem with that code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
+Problema cu acel cod este că `sayHi` se poate schimba în codul exterior. Dacă în schimb funcția este atribuită unei alte variabile, codul va începe să dea erori:
 
 ```js run
 let sayHi = function(who) {
   if (who) {
-    alert(`Hello, ${who}`);
+    alert(`Bună ziua, ${who}`);
   } else {
 *!*
     sayHi("Guest"); // Error: sayHi is not a function
@@ -298,22 +298,22 @@ let sayHi = function(who) {
 let welcome = sayHi;
 sayHi = null;
 
-welcome(); // Error, the nested sayHi call doesn't work any more!
+welcome(); // Eroare, apelul nested sayHi nu mai funcționează!
 ```
 
-That happens because the function takes `sayHi` from its outer lexical environment. There's no local `sayHi`, so the outer variable is used. And at the moment of the call that outer `sayHi` is `null`.
+Asta se întâmplă deoarece funcția preia `sayHi` din mediul său lexical extern. Nu există un `sayHi` local, așa că se folosește variabila exterioară. Iar în momentul apelului, acea `sayHi` exterioară este `null`.
 
-The optional name which we can put into the Function Expression is meant to solve exactly these kinds of problems.
+Numele opțional pe care îl putem pune în Function Expression este menit să rezolve exact acest tip de probleme.
 
-Let's use it to fix our code:
+Să-l folosim pentru a ne corecta codul:
 
 ```js run
 let sayHi = function *!*func*/!*(who) {
   if (who) {
-    alert(`Hello, ${who}`);
+    alert(`Bună ziua, ${who}`);
   } else {
 *!*
-    func("Guest"); // Now all fine
+    func("Guest"); // Acum totul este în regulă
 */!*
   }
 };
@@ -321,17 +321,17 @@ let sayHi = function *!*func*/!*(who) {
 let welcome = sayHi;
 sayHi = null;
 
-welcome(); // Hello, Guest (nested call works)
+welcome(); // Bună ziua, Guest (apelul nested funcționează)
 ```
 
-Now it works, because the name `"func"` is function-local. It is not taken from outside (and not visible there). The specification guarantees that it will always reference the current function.
+Acum funcționează, deoarece numele `"func"` este local pentru funcții. Nu este preluat din exterior (și nu este vizibil acolo). Specificația garantează că va face întotdeauna referire la funcția curentă.
 
-The outer code still has its variable `sayHi` or `welcome`. And `func` is an "internal function name", the way for the function to can call itself reliably.
+Codul exterior are în continuare variabila `sayHi` sau `welcome`. Iar `func` este un "nume de funcție intern", modul în care funcția se poate apela singură în mod fiabil.
 
-```smart header="There's no such thing for Function Declaration"
-The "internal name" feature described here is only available for Function Expressions, not for Function Declarations. For Function Declarations, there is no syntax for adding an "internal" name.
+```smart header="Nu există așa ceva pentru Function Declaration"
+Caracteristica "nume intern" descrisă aici este disponibilă doar pentru Function Expressions, nu și pentru Function Declarations. Pentru Function Declarations, nu există o sintaxă pentru adăugarea unui nume "intern".
 
-Sometimes, when we need a reliable internal name, it's the reason to rewrite a Function Declaration to Named Function Expression form.
+Uneori, atunci când avem nevoie de un nume intern fiabil, acesta este motivul pentru a rescrie o Function Declaration sub forma unei Named Function Expression.
 ```
 
 ## Summary
