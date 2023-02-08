@@ -2,14 +2,14 @@ importance: 5
 
 ---
 
-# Set and decrease for counter
+# Set și decrease pentru counter
 
-Modify the code of `makeCounter()` so that the counter can also decrease and set the number:
+Modificați codul din `makeCounter()` astfel încât numărătorul să poată de asemenea să scadă și să seteze numărul:
 
-- `counter()` should return the next number (as before).
-- `counter.set(value)` should set the counter to `value`.
-- `counter.decrease()` should decrease the counter by 1.
+- `counter()` ar trebui să returneze următorul număr (ca înainte).
+- `counter.set(value)` ar trebui să seteze counter la `value`.
+- `counter.decrease()` ar trebui să scadă counter cu 1.
 
-See the sandbox code for the complete usage example.
+Consultați codul sandbox pentru exemplul complet de utilizare.
 
-P.S. You can use either a closure or the function property to keep the current count. Or write both variants.
+P.S. Puteți utiliza fie un closure sau proprietatea funcției pentru a păstra numărul curent. Ori scrieți ambele variante.

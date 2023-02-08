@@ -1,2 +1,2 @@
 
-The solution uses `count` in the local variable, but addition methods are written right into the `counter`. They share the same outer lexical environment and also can access the current `count`.
+Soluția folosește `count` în variabila locală, dar metodele de adăugare sunt scrise direct în `counter`. Acestea împart același mediu lexical extern și pot accesa de asemenea `count` curent.
