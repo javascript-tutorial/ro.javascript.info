@@ -334,20 +334,20 @@ Caracteristica "nume intern" descrisă aici este disponibilă doar pentru Functi
 Uneori, atunci când avem nevoie de un nume intern fiabil, acesta este motivul pentru a rescrie o Function Declaration sub forma unei Named Function Expression.
 ```
 
-## Summary
+## Sumar
 
-Functions are objects.
+Funcțiile sunt obiecte.
 
-Here we covered their properties:
+Aici am acoperit proprietățile acestora:
 
-- `name` -- the function name. Usually taken from the function definition, but if there's none, JavaScript tries to guess it from the context (e.g. an assignment).
-- `length` -- the number of arguments in the function definition. Rest parameters are not counted.
+- `name` -- numele funcției. De obicei este preluat din definiția funcției, dar dacă nu există, JavaScript încearcă să îl ghicească din context (e.g. o atribuire).
+- `length` -- numărul de argumente din definiția funcției. Parametrii rest nu sunt numărați.
 
-If the function is declared as a Function Expression (not in the main code flow), and it carries the name, then it is called a Named Function Expression. The name can be used inside to reference itself, for recursive calls or such.
+Dacă funcția este declarată ca o Function Expression (nu în fluxul principal de cod), și poartă numele, atunci se numește Named Function Expression. Numele poate fi utilizat în interiorul funcției pentru a se referi la ea însăși, pentru apeluri recursive sau așa ceva.
 
-Also, functions may carry additional properties. Many well-known JavaScript libraries make great use of this feature.
+De asemenea, funcțiile pot purta proprietăți suplimentare. Multe biblioteci JavaScript bine cunoscute utilizează foarte bine această caracteristică.
 
-They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`, and then adds `_.clone`, `_.keyBy` and other properties to it (see the [docs](https://lodash.com/docs) when you want to learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+Acestea creează o funcție "principală" și îi atașează multe alte funcții "ajutătoare". De exemplu, biblioteca [jQuery](https://jquery.com) creează o funcție numită `$`. Biblioteca [lodash](https://lodash.com) creează o funcție `_`, apoi îi adaugă `_.clone`, `_.keyBy` și alte proprietăți (consultați [docs](https://lodash.com/docs) când doriți să aflați mai multe despre acestea). De fapt, o fac pentru ași diminua poluarea spațiului global, astfel încât o singură bibliotecă să ofere o singură variabilă globală. Asta reduce posibilitatea apariției conflictelor de denumire.
 
 
-So, a function can do a useful job by itself and also carry a bunch of other functionality in properties.
+Așadar, o funcție poate face o treabă utilă de una singură și de asemenea poartă o mulțime de alte funcționalități în proprietăți.
