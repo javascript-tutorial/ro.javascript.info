@@ -1,9 +1,9 @@
 
-1. For the whole thing to work *anyhow*, the result of `sum` must be function.
-2. That function must keep in memory the current value between calls.
-3. According to the task, the function must become the number when used in `==`. Functions are objects, so the conversion happens as described in the chapter <info:object-toprimitive>, and we can provide our own method that returns the number.
+1. Pentru ca totul să funcționeze *oricum*, rezultatul lui `sum` trebuie să fie o funcție.
+2. Funcția respectivă trebuie să păstreze în memorie valoarea curentă între apeluri.
+3. Conform sarcinii, funcția trebuie să devină număr atunci când este folosită în `==`. Funcțiile sunt obiecte, deci conversia are loc așa cum este descrisă în capitolul <info:object-toprimitive>, iar noi putem furniza propria noastră metodă care returnează numărul.
 
-Now the code:
+Acum codul:
 
 ```js demo run
 function sum(a) {
@@ -28,28 +28,28 @@ alert( sum(6)(-1)(-2)(-3) ); // 0
 alert( sum(0)(1)(2)(3)(4)(5) ); // 15
 ```
 
-Please note that the `sum` function actually works only once. It returns function `f`.
+Vă rugăm să rețineți că funcția `sum` funcționează de fapt o singură dată. Ea returnează funcția `f`.
 
-Then, on each subsequent call, `f` adds its parameter to the sum `currentSum`, and returns itself.
+Apoi, la fiecare apelare ulterioară, `f` adaugă parametrul său la suma `currentSum` și se returnează pe sine.
 
-**There is no recursion in the last line of `f`.**
+**Nu există recursivitate în ultima linie a funcției `f`.**
 
-Here is what recursion looks like:
-
-```js
-function f(b) {
-  currentSum += b;
-  return f(); // <-- recursive call
-}
-```
-
-And in our case, we just return the function, without calling it:
+Iată cum arată recursivitatea:
 
 ```js
 function f(b) {
   currentSum += b;
-  return f; // <-- does not call itself, returns itself
+  return f(); // <-- apel recursiv
 }
 ```
 
-This `f` will be used in the next call, again return itself, as many times as needed. Then, when used as a number or a string -- the `toString` returns the `currentSum`. We could also use `Symbol.toPrimitive` or `valueOf` here for the conversion.
+Și în cazul nostru, returnăm doar funcția, fără să o apelăm:
+
+```js
+function f(b) {
+  currentSum += b;
+  return f; // <-- nu se apelează pe sine, se returnează pe sine
+}
+```
+
+Acest `f`  va fi folosit în apelul următor, returnându-se din nou pe sine, de câte ori este nevoie. Apoi, atunci când este folosit ca număr sau șir --- `toString` returnează `currentSum`. De asemenea am putea folosi `Symbol.toPrimitive` sau `valueOf` aici pentru conversie.

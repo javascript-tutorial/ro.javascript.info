@@ -1,20 +1,20 @@
 
-# Function object, NFE
+# Obiectul  funcției, NFE
 
-As we already know, a function in JavaScript is a value.
+După cum știm deja, o funcție în JavaScript este o valoare.
 
-Every value in JavaScript has a type. What type is a function?
+Fiecare valoare în JavaScript are un tip. Ce tip are o funcție?
 
-In JavaScript, functions are objects.
+În JavaScript, funcțiile sunt obiecte.
 
-A good way to imagine functions is as callable "action objects". We can not only call them, but also treat them as objects: add/remove properties, pass by reference etc.
+Un mod bun de a ne imagina funcțiile este ca "obiecte de acțiune" apelabile. Putem nu doar să le apelăm, ci și să le tratăm ca pe niște obiecte: să adăugăm/eliminăm proprietăți, să le transmitem prin referință etc.
 
 
-## The "name" property
+## Proprietatea "name"
 
-Function objects contain some useable properties.
+Obiectele funcție conțin câteva proprietăți utilizabile.
 
-For instance, a function's name is accessible as the "name" property:
+De exemplu, numele unei funcții este accesibil sub forma proprietății "name":
 
 ```js run
 function sayHi() {
@@ -24,29 +24,29 @@ function sayHi() {
 alert(sayHi.name); // sayHi
 ```
 
-What's kind of funny, the name-assigning logic is smart. It also assigns the correct name to a function even if it's created without one, and then immediately assigned:
+Ceea ce este oarecum amuzant, logica de atribuire a numelui este inteligentă. De asemenea îi atribuie numele corect unei funcții chiar dacă aceasta este creată fără nume, și apoi este atribuită imediat:
 
 ```js run
 let sayHi = function() {
-  alert("Hi");
+  alert("Salut");
 };
 
-alert(sayHi.name); // sayHi (there's a name!)
+alert(sayHi.name); // sayHi (există un nume!)
 ```
 
-It also works if the assignment is done via a default value:
+De asemenea funcționează și în cazul în care atribuirea se face printr-o valoare implicită:
 
 ```js run
 function f(sayHi = function() {}) {
-  alert(sayHi.name); // sayHi (works!)
+  alert(sayHi.name); // sayHi (funcționează!)
 }
 
 f();
 ```
 
-In the specification, this feature is called a "contextual name". If the function does not provide one, then in an assignment it is figured out from the context.
+În specificație, această trăsătură se numește "nume contextual". Dacă funcția nu oferă unul, atunci acesta este dedus din context într-o atribuire.
 
-Object methods have names too:
+Metodele obiectelor au și ele nume:
 
 ```js run
 let user = {
@@ -65,21 +65,21 @@ alert(user.sayHi.name); // sayHi
 alert(user.sayBye.name); // sayBye
 ```
 
-There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property is empty, like here:
+Totuși nu există magie. Există cazuri în care nu există nicio modalitate de a afla numele corect. În acest caz, proprietatea name este goală, ca aici:
 
 ```js run
-// function created inside array
+// funcție creată în interiorul unui array
 let arr = [function() {}];
 
-alert( arr[0].name ); // <empty string>
-// the engine has no way to set up the right name, so there is none
+alert( arr[0].name ); // <șir gol>
+// motorul nu are cum să stabilească numele corect, așa că nu există niciunul
 ```
 
-In practice, however, most functions do have a name.
+În practică, însă, majoritatea funcțiilor au un nume.
 
-## The "length" property
+## Proprietatea "length"
 
-There is another built-in property "length" that returns the number of function parameters, for instance:
+Există o altă proprietate încorporată "length" care returnează numărul de parametri ai funcției, de exemplu:
 
 ```js run
 function f1(a) {}
@@ -91,20 +91,20 @@ alert(f2.length); // 2
 alert(many.length); // 2
 ```
 
-Here we can see that rest parameters are not counted.
+Aici putem vedea că parametrii rest nu sunt numărați.
 
-The `length` property is sometimes used for [introspection](https://en.wikipedia.org/wiki/Type_introspection) in functions that operate on other functions.
+Proprietatea `length` este uneori utilizată pentru [introspecție](https://en.wikipedia.org/wiki/Type_introspection) în funcțiile care operează pe alte funcții.
 
-For instance, in the code below the `ask` function accepts a `question` to ask and an arbitrary number of `handler` functions to call.
+De exemplu, în codul de mai jos funcția `ask` acceptă o `question` pentru a întreba și un număr arbitrar de funcții `handler` pentru a fi apelate.
 
-Once a user provides their answer, the function calls the handlers. We can pass two kinds of handlers:
+Odată ce un utilizator le oferă răspunsul, funcția apelează handlerii. Putem trece două tipuri de handlers:
 
-- A zero-argument function, which is only called when the user gives a positive answer.
-- A function with arguments, which is called in either case and returns an answer.
+- O funcție cu zero argumente, care este apelată doar atunci când utilizatorul dă un răspuns pozitiv.
+- O funcție cu argumente, care este apelată în oricare caz și care returnează un răspuns.
 
-To call `handler` the right way, we examine the `handler.length` property.
+Pentru a apela `handler` în mod corect, examinăm proprietatea `handler.length`.
 
-The idea is that we have a simple, no-arguments handler syntax for positive cases (most frequent variant), but are able to support universal handlers as well:
+Ideea este că avem o sintaxă handler simplă, fără argumente pentru cazurile pozitive (varianta cea mai frecventă), dar suntem capabili să suportăm și handlere universale:
 
 ```js run
 function ask(question, ...handlers) {
@@ -120,47 +120,47 @@ function ask(question, ...handlers) {
 
 }
 
-// for positive answer, both handlers are called
-// for negative answer, only the second one
-ask("Question?", () => alert('You said yes'), result => alert(result));
+// pentru răspuns pozitiv, ambii gestionari sunt apelați
+// pentru răspuns negativ, doar al doilea
+ask("Întrebare?", () => alert('Ai spus da'), result => alert(result));
 ```
 
-This is a particular case of so-called [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) -- treating arguments differently depending on their type or, in our case depending on the `length`. The idea does have a use in JavaScript libraries.
+Acesta este un caz particular al așa-numitului [polimorfism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) -- tratarea argumentelor diferit în funcție de tipul lor sau, în cazul nostru în funcție de `length`. Ideea are o utilizare în bibliotecile JavaScript.
 
-## Custom properties
+## Proprietăți custom
 
-We can also add properties of our own.
+De asemenea putem adăuga proprietăți proprii.
 
-Here we add the `counter` property to track the total calls count:
+Aici adăugăm proprietatea `counter` pentru a urmări numărul total de apeluri:
 
 ```js run
 function sayHi() {
-  alert("Hi");
+  alert("Salut");
 
   *!*
-  // let's count how many times we run
+  // să numărăm de câte ori se execută
   sayHi.counter++;
   */!*
 }
-sayHi.counter = 0; // initial value
+sayHi.counter = 0; // valoare inițială
 
-sayHi(); // Hi
-sayHi(); // Hi
+sayHi(); // Salut
+sayHi(); // Salut
 
-alert( `Called ${sayHi.counter} times` ); // Called 2 times
+alert( `Apelat de ${sayHi.counter} ori` ); // Apelat de 2 ori
 ```
 
-```warn header="A property is not a variable"
-A property assigned to a function like `sayHi.counter = 0` does *not* define a local variable `counter` inside it. In other words, a property `counter` and a variable `let counter` are two unrelated things.
+```warn header="O proprietate nu este o variabilă"
+O proprietate atribuită unei funcții precum `sayHi.counter = 0`  *nu* definește o variabilă locală `counter` în interiorul ei. Cu alte cuvinte, o proprietate `counter` și o variabilă `let counter` sunt două lucruri fără legătură.
 
-We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables are not function properties and vice versa. These are just parallel worlds.
+Putem trata o funcție ca pe un obiect, putem stoca proprietăți în ea, dar acest lucru nu are niciun efect asupra execuției sale. Variabilele nu sunt proprietăți ale funcțiilor și viceversa. Acestea sunt doar lumi paralele.
 ```
 
-Function properties can replace closures sometimes. For instance, we can rewrite the counter function example from the chapter <info:closure> to use a function property:
+Proprietățile funcțiilor pot înlocui closures uneori. De exemplu, putem rescrie exemplul funcției counter din capitolul <info:closure> pentru a folosi o proprietate de funcție:
 
 ```js run
 function makeCounter() {
-  // instead of:
+  // în loc de:
   // let count = 0
 
   function counter() {
@@ -177,11 +177,11 @@ alert( counter() ); // 0
 alert( counter() ); // 1
 ```
 
-The `count` is now stored in the function directly, not in its outer Lexical Environment.
+Acum `count` este stocat direct în funcție, nu în mediul său Lexical Environment.
 
-Is it better or worse than using a closure?
+Este mai bine sau mai rău decât utilizarea unui closure?
 
-The main difference is that if the value of `count` lives in an outer variable, then external code is unable to access it. Only nested functions may modify it. And if it's bound to a function, then such a thing is possible:
+Principala diferență este că dacă valoarea lui `count` trăiește într-o variabilă exterioară, atunci codul extern nu o poate accesa. Doar funcțiile nested o pot modifica. Iar dacă este legată de o funcție, atunci un astfel de lucru este posibil:
 
 ```js run
 function makeCounter() {
@@ -203,13 +203,13 @@ alert( counter() ); // 10
 */!*
 ```
 
-So the choice of implementation depends on our aims.
+Așadar alegerea implementării depinde de obiectivele noastre.
 
 ## Named Function Expression
 
-Named Function Expression, or NFE, is a term for Function Expressions that have a name.
+Named Function Expression, sau NFE, este un termen pentru Function Expressions care au un nume.
 
-For instance, let's take an ordinary Function Expression:
+De exemplu, să luăm o Function Expression obișnuită:
 
 ```js
 let sayHi = function(who) {
@@ -217,58 +217,58 @@ let sayHi = function(who) {
 };
 ```
 
-And add a name to it:
+Și adăugați-i un nume:
 
 ```js
 let sayHi = function *!*func*/!*(who) {
-  alert(`Hello, ${who}`);
+  alert(`Bună ziua, ${who}`);
 };
 ```
 
-Did we achieve anything here? What's the purpose of that additional `"func"` name?
+Am realizat ceva aici? Care este scopul acelui nume suplimentar `"func"`?
 
-First let's note, that we still have a Function Expression. Adding the name `"func"` after `function` did not make it a Function Declaration, because it is still created as a part of an assignment expression.
+În primul rând, să notăm că avem încă o Function Expression. Adăugarea numelui `"func"` după `function` nu a făcut-o Function Declaration, deoarece aceasta este încă creată ca parte a unei expresii de atribuire.
 
-Adding such a name also did not break anything.
+De asemenea adăugarea unui astfel de nume nu a stricat nimic.
 
-The function is still available as `sayHi()`:
+Funcția este în continuare disponibilă ca `sayHi()`:
 
 ```js run
 let sayHi = function *!*func*/!*(who) {
-  alert(`Hello, ${who}`);
+  alert(`Bună ziua, ${who}`);
 };
 
-sayHi("John"); // Hello, John
+sayHi("John"); // Bună ziua, John
 ```
 
-There are two special things about the name `func`, that are the reasons for it:
+Există două lucruri speciale în legătură cu numele `func`, care sunt motivele pentru acesta:
 
-1. It allows the function to reference itself internally.
-2. It is not visible outside of the function.
+1. Acesta permite funcției să facă referire la ea însăși în mod intern.
+2. Nu este vizibil în afara funcției.
 
-For instance, the function `sayHi` below calls itself again with `"Guest"` if no `who` is provided:
+De exemplu, funcția `sayHi` de mai jos se apelează din nou pe sine cu `"Guest"` dacă nu este furnizat `who`:
 
 ```js run
 let sayHi = function *!*func*/!*(who) {
   if (who) {
-    alert(`Hello, ${who}`);
+    alert(`Bună ziua, ${who}`);
   } else {
 *!*
-    func("Guest"); // use func to re-call itself
+    func("Guest"); // folosește func pentru a se re-apela pe sine însăși
 */!*
   }
 };
 
-sayHi(); // Hello, Guest
+sayHi(); // Bună ziua, Guest
 
-// But this won't work:
-func(); // Error, func is not defined (not visible outside of the function)
+// Dar acest lucru nu va funcționa:
+func(); // Error, func is not defined (nu este vizibil în afara funcției)
 ```
 
-Why do we use `func`? Maybe just use `sayHi` for the nested call?
+De ce folosim `func`? Poate doar să folosim `sayHi` pentru apelul nested?
 
 
-Actually, in most cases we can:
+De fapt, în majoritatea cazurilor putem:
 
 ```js
 let sayHi = function(who) {
@@ -282,12 +282,12 @@ let sayHi = function(who) {
 };
 ```
 
-The problem with that code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
+Problema cu acel cod este că `sayHi` se poate schimba în codul exterior. Dacă în schimb funcția este atribuită unei alte variabile, codul va începe să dea erori:
 
 ```js run
 let sayHi = function(who) {
   if (who) {
-    alert(`Hello, ${who}`);
+    alert(`Bună ziua, ${who}`);
   } else {
 *!*
     sayHi("Guest"); // Error: sayHi is not a function
@@ -298,22 +298,22 @@ let sayHi = function(who) {
 let welcome = sayHi;
 sayHi = null;
 
-welcome(); // Error, the nested sayHi call doesn't work any more!
+welcome(); // Eroare, apelul nested sayHi nu mai funcționează!
 ```
 
-That happens because the function takes `sayHi` from its outer lexical environment. There's no local `sayHi`, so the outer variable is used. And at the moment of the call that outer `sayHi` is `null`.
+Asta se întâmplă deoarece funcția preia `sayHi` din mediul său lexical extern. Nu există un `sayHi` local, așa că se folosește variabila exterioară. Iar în momentul apelului, acea `sayHi` exterioară este `null`.
 
-The optional name which we can put into the Function Expression is meant to solve exactly these kinds of problems.
+Numele opțional pe care îl putem pune în Function Expression este menit să rezolve exact acest tip de probleme.
 
-Let's use it to fix our code:
+Să-l folosim pentru a ne corecta codul:
 
 ```js run
 let sayHi = function *!*func*/!*(who) {
   if (who) {
-    alert(`Hello, ${who}`);
+    alert(`Bună ziua, ${who}`);
   } else {
 *!*
-    func("Guest"); // Now all fine
+    func("Guest"); // Acum totul este în regulă
 */!*
   }
 };
@@ -321,33 +321,33 @@ let sayHi = function *!*func*/!*(who) {
 let welcome = sayHi;
 sayHi = null;
 
-welcome(); // Hello, Guest (nested call works)
+welcome(); // Bună ziua, Guest (apelul nested funcționează)
 ```
 
-Now it works, because the name `"func"` is function-local. It is not taken from outside (and not visible there). The specification guarantees that it will always reference the current function.
+Acum funcționează, deoarece numele `"func"` este local pentru funcții. Nu este preluat din exterior (și nu este vizibil acolo). Specificația garantează că va face întotdeauna referire la funcția curentă.
 
-The outer code still has its variable `sayHi` or `welcome`. And `func` is an "internal function name", how the function can call itself internally.
+Codul exterior are în continuare variabila `sayHi` sau `welcome`. Iar `func` este un "nume de funcție intern", modul în care funcția se poate apela singură în mod fiabil.
 
-```smart header="There's no such thing for Function Declaration"
-The "internal name" feature described here is only available for Function Expressions, not for Function Declarations. For Function Declarations, there is no syntax for adding an "internal" name.
+```smart header="Nu există așa ceva pentru Function Declaration"
+Caracteristica "nume intern" descrisă aici este disponibilă doar pentru Function Expressions, nu și pentru Function Declarations. Pentru Function Declarations, nu există o sintaxă pentru adăugarea unui nume "intern".
 
-Sometimes, when we need a reliable internal name, it's the reason to rewrite a Function Declaration to Named Function Expression form.
+Uneori, atunci când avem nevoie de un nume intern fiabil, acesta este motivul pentru a rescrie o Function Declaration sub forma unei Named Function Expression.
 ```
 
-## Summary
+## Sumar
 
-Functions are objects.
+Funcțiile sunt obiecte.
 
-Here we covered their properties:
+Aici am acoperit proprietățile acestora:
 
-- `name` -- the function name. Usually taken from the function definition, but if there's none, JavaScript tries to guess it from the context (e.g. an assignment).
-- `length` -- the number of arguments in the function definition. Rest parameters are not counted.
+- `name` -- numele funcției. De obicei este preluat din definiția funcției, dar dacă nu există, JavaScript încearcă să îl ghicească din context (e.g. o atribuire).
+- `length` -- numărul de argumente din definiția funcției. Parametrii rest nu sunt numărați.
 
-If the function is declared as a Function Expression (not in the main code flow), and it carries the name, then it is called a Named Function Expression. The name can be used inside to reference itself, for recursive calls or such.
+Dacă funcția este declarată ca o Function Expression (nu în fluxul principal de cod), și poartă numele, atunci se numește Named Function Expression. Numele poate fi utilizat în interiorul funcției pentru a se referi la ea însăși, pentru apeluri recursive sau așa ceva.
 
-Also, functions may carry additional properties. Many well-known JavaScript libraries make great use of this feature.
+De asemenea, funcțiile pot purta proprietăți suplimentare. Multe biblioteci JavaScript bine cunoscute utilizează foarte bine această caracteristică.
 
-They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`, and then adds `_.clone`, `_.keyBy` and other properties to it (see the [docs](https://lodash.com/docs) when you want to learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+Acestea creează o funcție "principală" și îi atașează multe alte funcții "ajutătoare". De exemplu, biblioteca [jQuery](https://jquery.com) creează o funcție numită `$`. Biblioteca [lodash](https://lodash.com) creează o funcție `_`, apoi îi adaugă `_.clone`, `_.keyBy` și alte proprietăți (consultați [docs](https://lodash.com/docs) când doriți să aflați mai multe despre acestea). De fapt, o fac pentru ași diminua poluarea spațiului global, astfel încât o singură bibliotecă să ofere o singură variabilă globală. Asta reduce posibilitatea apariției conflictelor de denumire.
 
 
-So, a function can do a useful job by itself and also carry a bunch of other functionality in properties.
+Așadar, o funcție poate face o treabă utilă de una singură și de asemenea poartă o mulțime de alte funcționalități în proprietăți.
