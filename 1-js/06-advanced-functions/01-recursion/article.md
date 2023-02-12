@@ -1,14 +1,14 @@
-# Recursion and stack
+# Recursion și stack
 
-Let's return to functions and study them more in-depth.
+Să ne întoarcem la funcții și să le studiem mai în profunzime.
 
-Our first topic will be *recursion*.
+Primul nostru subiect va fi *recursiunea*.
 
-If you are not new to programming, then it is probably familiar and you could skip this chapter.
+Dacă nu sunteți noi în programare, atunci probabil că vă este familiar și puteți sări peste acest capitol.
 
-Recursion is a programming pattern that is useful in situations when a task can be naturally split into several tasks of the same kind, but simpler. Or when a task can be simplified into an easy action plus a simpler variant of the same task. Or, as we'll see soon, to deal with certain data structures.
+Recursiunea este un tipar de programare care este util în situațiile în care o sarcină poate fi împărțită în mod natural în mai multe sarcini de același tip, dar mai simple. Sau atunci când o sarcină poate fi simplificată într-o acțiune ușoară plus o variantă mai simplă a aceleiași sarcini. Sau, după cum vom vedea în curând, pentru a trata anumite structuri de date.
 
-When a function solves a task, in the process it can call many other functions. A partial case of this is when a function calls *itself*. That's called *recursion*.
+Atunci când o funcție îndeplinește o sarcină, în acest proces poate apela multe alte funcții. Un caz parțial este atunci când o funcție se apelează pe sine *însăși*. Acest lucru se numește *recursiune*.
 
 ## Two ways of thinking
 
