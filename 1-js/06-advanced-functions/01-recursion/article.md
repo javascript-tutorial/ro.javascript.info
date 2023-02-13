@@ -73,19 +73,19 @@ Putem de asemenea spune că `pow` *se apelează recursiv pe sine* până când `
 ![recursive diagram of pow](recursion-pow.svg)
 
 
-For example, to calculate `pow(2, 4)` the recursive variant does these steps:
+De exemplu, pentru a calcula `pow(2, 4)`, varianta recursivă face acești pași:
 
 1. `pow(2, 4) = 2 * pow(2, 3)`
 2. `pow(2, 3) = 2 * pow(2, 2)`
 3. `pow(2, 2) = 2 * pow(2, 1)`
 4. `pow(2, 1) = 2`
 
-So, the recursion reduces a function call to a simpler one, and then -- to even more simpler, and so on, until the result becomes obvious.
+Așadar, recursivitatea reduce un apel de funcție la unul mai simplu, și apoi -- la unul și mai simplu, și așa mai departe, până când rezultatul devine evident.
 
-````smart header="Recursion is usually shorter"
-A recursive solution is usually shorter than an iterative one.
+````smart header="Recursiunea este de obicei mai scurtă"
+O soluție recursivă este de obicei mai scurtă decât una iterativă.
 
-Here we can rewrite the same using the conditional operator `?` instead of `if` to make `pow(x, n)` more terse and still very readable:
+Aici putem rescrie același lucru folosind operatorul condițional `?` în loc de `if` pentru a face `pow(x, n)` mai consic și totuși foarte ușor de citit:
 
 ```js run
 function pow(x, n) {
@@ -94,11 +94,11 @@ function pow(x, n) {
 ```
 ````
 
-The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.
+Numărul maxim de apeluri nested (inclusiv primul apel) se numește *profunzime de recursiune*. În cazul nostru, acesta va fi exact `n`.
 
-The maximal recursion depth is limited by JavaScript engine. We can rely on it being 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+Profunzimea maximă de recursivitate este limitată de motorul JavaScript. Ne putem baza pe faptul că este 10000, unele motoare permit mai mult, dar 100000 este probabil în afara limitei pentru majoritatea acestora. Există optimizări automate care ajută la atenuarea acestui aspect ("tail calls optimizations"), dar acestea nu sunt încă acceptate peste tot și funcționează doar în cazuri simple.
 
-That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
+Acest lucru limitează aplicarea recursivității, dar aceasta rămâne totuși foarte largă. Există multe sarcini în care modul recursiv de gândire oferă un cod mai simplu, mai ușor de întreținut.
 
 ## The execution context and stack
 
