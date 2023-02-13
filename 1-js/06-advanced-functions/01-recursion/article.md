@@ -10,9 +10,9 @@ Recursiunea este un tipar de programare care este util în situațiile în care 
 
 Atunci când o funcție îndeplinește o sarcină, în acest proces poate apela multe alte funcții. Un caz parțial este atunci când o funcție se apelează pe sine *însăși*. Acest lucru se numește *recursiune*.
 
-## Two ways of thinking
+## Două moduri de a gândi
 
-For something simple to start with -- let's write a function `pow(x, n)` that raises `x` to a natural power of `n`. In other words, multiplies `x` by itself `n` times.
+Pentru a începe cu ceva simplu -- să scriem o funcție `pow(x, n)` care ridică `x` la o putere naturală a lui `n`. Cu alte cuvinte, înmulțește `x` cu el însuși de `n` ori.
 
 ```js
 pow(2, 2) = 4
@@ -20,15 +20,15 @@ pow(2, 3) = 8
 pow(2, 4) = 16
 ```
 
-There are two ways to implement it.
+Există două moduri de a o implementa.
 
-1. Iterative thinking: the `for` loop:
+1. Gândire iterativă: `for` loop:
 
     ```js run
     function pow(x, n) {
       let result = 1;
 
-      // multiply result by x n times in the loop
+      // înmulțește rezultatul cu x de n ori în loop
       for (let i = 0; i < n; i++) {
         result *= x;
       }
@@ -39,7 +39,7 @@ There are two ways to implement it.
     alert( pow(2, 3) ); // 8
     ```
 
-2. Recursive thinking: simplify the task and call self:
+2. Gândire recursivă: simplificând sarcină și apelânduse pe sine:
 
     ```js run
     function pow(x, n) {
@@ -53,9 +53,9 @@ There are two ways to implement it.
     alert( pow(2, 3) ); // 8
     ```
 
-Please note how the recursive variant is fundamentally different.
+Vă rugăm să observați că varianta recursivă este fundamental diferită.
 
-When `pow(x, n)` is called, the execution splits into two branches:
+Atunci când `pow(x, n)` este apelată, execuția se împarte în două ramuri:
 
 ```js
               if n==1  = x
@@ -65,10 +65,10 @@ pow(x, n) =
               else     = x * pow(x, n - 1)
 ```
 
-1. If `n == 1`, then everything is trivial. It is called *the base* of recursion, because it immediately produces the obvious result: `pow(x, 1)` equals `x`.
-2. Otherwise, we can represent `pow(x, n)` as `x * pow(x, n - 1)`. In maths, one would write <code>x<sup>n</sup> = x * x<sup>n-1</sup></code>. This is called *a recursive step*: we transform the task into a simpler action (multiplication by `x`) and a simpler call of the same task (`pow` with lower `n`). Next steps simplify it further and further until `n` reaches `1`.
+1. Dacă `n == 1`, atunci totul este trivial. Se numește *baza* recursiunii, pentru că produce imediat rezultatul cel evident: `pow(x, 1)` egal cu `x`.
+2. În caz contrar, putem reprezenta `pow(x, n)` ca și `x * pow(x, n - 1)`. În matematică, am putea scrie <code>x<sup>n</sup> = x * x<sup>n-1</sup></code>. Acesta se numește *un pas recursiv*: transformăm sarcina într-o acțiune mai simplă (multiplicare cu `x`) și un apel mai simplu al aceleiași sarcini (`pow` cu `n` mai mic). Următorii pași o simplifică mai mult și mai mult până când `n` ajunge la `1`.
 
-We can also say that `pow` *recursively calls itself* till `n == 1`.
+Putem de asemenea spune că `pow` *se apelează recursiv pe sine* până când `n == 1`.
 
 ![recursive diagram of pow](recursion-pow.svg)
 
