@@ -100,39 +100,39 @@ Profunzimea maximă de recursivitate este limitată de motorul JavaScript. Ne pu
 
 Acest lucru limitează aplicarea recursivității, dar aceasta rămâne totuși foarte largă. Există multe sarcini în care modul recursiv de gândire oferă un cod mai simplu, mai ușor de întreținut.
 
-## The execution context and stack
+## Execution context și stack
 
-Now let's examine how recursive calls work. For that we'll look under the hood of functions.
+Acum să examinăm modul în care funcționează apelurile recursive. Pentru aceasta ne vom uita sub capota funcțiilor.
 
-The information about the process of execution of a running function is stored in its *execution context*.
+Informațiile despre procesul de execuție a unei funcții în curs de execuție sunt stocate în *execution context* al acesteia.
 
-The [execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of `this` (we don't use it here) and few other internal details.
+[Execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) este o structură internă de date care conține detalii despre execuția unei funcții: unde se află acum fluxul de control, variabilele curente, valoarea lui `this` (nu o folosim aici) și alte câteva detalii interne.
 
-One function call has exactly one execution context associated with it.
+Un apel de funcție are asociat exact un context de execuție.
 
-When a function makes a nested call, the following happens:
+Atunci când o funcție face un apel nested, se întâmplă următoarele:
 
-- The current function is paused.
-- The execution context associated with it is remembered in a special data structure called *execution context stack*.
-- The nested call executes.
-- After it ends, the old execution context is retrieved from the stack, and the outer function is resumed from where it stopped.
+- Funcția curentă este pusă pe pauză.
+- Contextul de execuție asociat acesteia este reținut într-o structură de date specială numită *execution context stack*.
+- Se execută apelul nested.
+- După ce se termină, vechiul context de execuție este regăsit din stack, iar funcția exterioară este reluată de unde s-a oprit.
 
-Let's see what happens during the `pow(2, 3)` call.
+Să vedem ce se întâmplă în timpul apelului `pow(2, 3)`.
 
 ### pow(2, 3)
 
-In the beginning of the call `pow(2, 3)` the execution context will store variables: `x = 2, n = 3`, the execution flow is at line `1` of the function.
+La începutul apelului `pow(2, 3)` contextul de execuție va stoca variabilele: `x = 2, n = 3`, fluxul de execuție se află la linia `1` a funcției.
 
-We can sketch it as:
+Îl putem schița precum:
 
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 1 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 3, la linia 1 }</span>
     <span class="function-execution-context-call">pow(2, 3)</span>
   </li>
 </ul>
 
-That's when the function starts to execute. The condition `n == 1` is falsy, so the flow continues into the second branch of `if`:
+Asta este când funcția începe să se execute. Condiția `n == 1` este falsy, așa că fluxul continuă în a doua ramură a lui `if`:
 
 ```js run
 function pow(x, n) {
@@ -149,48 +149,48 @@ alert( pow(2, 3) );
 ```
 
 
-The variables are same, but the line changes, so the context is now:
+Variabilele sunt aceleași, dar linia se schimbă, deci contextul este acum:
 
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 3, la linia 5 }</span>
     <span class="function-execution-context-call">pow(2, 3)</span>
   </li>
 </ul>
 
-To calculate `x * pow(x, n - 1)`, we need to make a subcall of `pow` with new arguments `pow(2, 2)`.
+Pentru a calcula `x * pow(x, n - 1)`, trebuie să facem un subapel la `pow` cu noi argumente `pow(2, 2)`.
 
 ### pow(2, 2)
 
-To do a nested call, JavaScript remembers the current execution context in the *execution context stack*.
+Pentru a efectua un apel nested, JavaScript își amintește contextul de execuție curent în *execution context stack*.
 
-Here we call the same function `pow`, but it absolutely doesn't matter. The process is the same for all functions:
+Aici apelăm aceeași funcție `pow`, dar acest lucru nu contează absolut deloc. Procesul este același pentru toate funcțiile:
 
-1. The current context is "remembered" on top of the stack.
-2. The new context is created for the subcall.
-3. When the subcall is finished -- the previous context is popped from the stack, and its execution continues.
+1. Contextul curent este "reținut" deasupra stack-ului.
+2. Noul context este creat pentru subapelare.
+3. Când subapelul este terminat -- contextul anterior este săltat din stack, iar execuția sa continuă.
 
-Here's the context stack when we entered the subcall `pow(2, 2)`:
+Acesta este context stack când am intrat în subapelul `pow(2, 2)`:
 
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 2, at line 1 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 2, la linia 1 }</span>
     <span class="function-execution-context-call">pow(2, 2)</span>
   </li>
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 3, la linia 5 }</span>
     <span class="function-execution-context-call">pow(2, 3)</span>
   </li>
 </ul>
 
-The new current execution context is on top (and bold), and previous remembered contexts are below.
+Noul context de execuție curent este în partea de sus (cu caractere îngroșate), iar contextele memorate anterior sunt mai jos.
 
-When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped.
+Când terminăm subapelul -- este ușor să reluăm contextul anterior, deoarece acesta păstrează atât variabilele cât și locul exact al codului în care s-a oprit.
 
 ```smart
-Here in the picture we use the word "line", as in our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
+Aici în imagine folosim cuvântul "linie", deoarece în exemplul nostru există un singur subapel în linie, dar în general o singură linie de cod poate conține mai multe subapelări, cum ar fi `pow(...) + pow(...) + somethingElse(…)`.
 
-So it would be more precise to say that the execution resumes "immediately after the subcall".
+Deci ar fi mai precis să spunem că execuția se reia "imediat după subapelare".
 ```
 
 ### pow(2, 1)
