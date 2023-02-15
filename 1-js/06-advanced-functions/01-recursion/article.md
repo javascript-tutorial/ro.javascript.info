@@ -195,30 +195,30 @@ Deci ar fi mai precis să spunem că execuția se reia "imediat după subapelare
 
 ### pow(2, 1)
 
-The process repeats: a new subcall is made at line `5`, now with arguments `x=2`, `n=1`.
+Procesul se repetă: se face un nou subapel la linia `5`, acum cu argumentele `x=2`, `n=1`.
 
-A new execution context is created, the previous one is pushed on top of the stack:
+Se creează un nou context de execuție, iar cel anterior este împins în partea de sus a stack-ului:
 
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 1, at line 1 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 1, la linia 1 }</span>
     <span class="function-execution-context-call">pow(2, 1)</span>
   </li>
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 2, at line 5 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 2, la linia 5 }</span>
     <span class="function-execution-context-call">pow(2, 2)</span>
   </li>
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 3, la linia 5 }</span>
     <span class="function-execution-context-call">pow(2, 3)</span>
   </li>
 </ul>
 
-There are 2 old contexts now and 1 currently running for `pow(2, 1)`.
+Acum există 2 contexte vechi și 1 în curs de desfășurare pentru `pow(2, 1)`.
 
-### The exit
+### Ieșirea
 
-During the execution of `pow(2, 1)`, unlike before, the condition `n == 1` is truthy, so the first branch of `if` works:
+În timpul execuției lui `pow(2, 1)`, spre deosebire de înainte, condiția `n == 1` este truthy, astfel încât prima ramură din `if` funcționează:
 
 ```js
 function pow(x, n) {
@@ -232,42 +232,42 @@ function pow(x, n) {
 }
 ```
 
-There are no more nested calls, so the function finishes, returning `2`.
+Nu mai există alte apeluri nested, așa că funcția se termină, returnând `2`.
 
-As the function finishes, its execution context is not needed anymore, so it's removed from the memory. The previous one is restored off the top of the stack:
+Deoarece funcția se termină, contextul său de execuție nu mai este necesar, așa că este șters din memorie. Cel anterior este restaurat din vârful stack-ului:
 
 
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 2, at line 5 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 2, la linia 5 }</span>
     <span class="function-execution-context-call">pow(2, 2)</span>
   </li>
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 3, la linia 5 }</span>
     <span class="function-execution-context-call">pow(2, 3)</span>
   </li>
 </ul>
 
-The execution of `pow(2, 2)` is resumed. It has the result of the subcall `pow(2, 1)`, so it also can finish the evaluation of `x * pow(x, n - 1)`, returning `4`.
+Se reia execuția lui `pow(2, 2)`. Ea are rezultatul subapelării `pow(2, 1)`, astfel încât poate termina evaluarea lui `x * pow(x, n - 1)`, returnând `4`.
 
-Then the previous context is restored:
+Apoi se restabilește contextul anterior:
 
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
+    <span class="function-execution-context">Context: { x: 2, n: 3, la linia 5 }</span>
     <span class="function-execution-context-call">pow(2, 3)</span>
   </li>
 </ul>
 
-When it finishes, we have a result of `pow(2, 3) = 8`.
+Când se termină, avem un rezultat `pow(2, 3) = 8`.
 
-The recursion depth in this case was: **3**.
+Adâncimea de recursivitate în acest caz a fost: **3**.
 
-As we can see from the illustrations above, recursion depth equals the maximal number of context in the stack.
+După cum putem vedea din ilustrațiile de mai sus, adâncimea de recursivitate este egală cu numărul maxim de contexte din stack.
 
-Note the memory requirements. Contexts take memory. In our case, raising to the power of `n` actually requires the memory for `n` contexts, for all lower values of `n`.
+Observați cerințele de memorie. Contextele ocupă memorie. În cazul nostru, ridicarea la puterea lui `n` necesită de fapt memorie pentru `n` contexte, pentru toate valorile mai mici ale lui `n`.
 
-A loop-based algorithm is more memory-saving:
+Un algoritm bazat pe loop este mai economic pentru memorie:
 
 ```js
 function pow(x, n) {
@@ -281,13 +281,13 @@ function pow(x, n) {
 }
 ```
 
-The iterative `pow` uses a single context changing `i` and `result` in the process. Its memory requirements are small, fixed and do not depend on `n`.
+Iterativul `pow` utilizează un singur context care schimbă `i` și `result` în timpul procesului. Cerințele sale de memorie sunt mici, fixe și nu depind de `n`.
 
-**Any recursion can be rewritten as a loop. The loop variant usually can be made more effective.**
+**Orice recursivitate poate fi rescrisă ca un loop. De obicei, varianta loop poate fi făcută mai eficientă.**
 
-...But sometimes the rewrite is non-trivial, especially when a function uses different recursive subcalls depending on conditions and merges their results or when the branching is more intricate. And the optimization may be unneeded and totally not worth the efforts.
+...Dar uneori rescrierea nu este trivială, în special atunci când o funcție utilizează diferite subapelări recursive în funcție de condiții și fuzionează rezultatele acestora sau când ramificarea este mai complexă. Iar optimizarea poate fi inutilă și nu merită în totalitate eforturile depuse.
 
-Recursion can give a shorter code, easier to understand and support. Optimizations are not required in every place, mostly we need a good code, that's why it's used.
+Recursivitatea poate oferi un cod mai scurt, ușor de înțeles și de susținut. Optimizările nu sunt necesare în orice loc, de cele mai multe ori avem nevoie de un cod bun, de aceea este folosit.
 
 ## Recursive traversals
 
