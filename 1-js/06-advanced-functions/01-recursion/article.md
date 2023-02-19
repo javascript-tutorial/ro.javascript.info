@@ -289,11 +289,11 @@ Iterativul `pow` utilizează un singur context care schimbă `i` și `result` î
 
 Recursivitatea poate oferi un cod mai scurt, ușor de înțeles și de susținut. Optimizările nu sunt necesare în orice loc, de cele mai multe ori avem nevoie de un cod bun, de aceea este folosit.
 
-## Recursive traversals
+## Traversări recursive
 
-Another great application of the recursion is a recursive traversal.
+O altă aplicație excelentă a recursivității este traversarea recursivă.
 
-Imagine, we have a company. The staff structure can be presented as an object:
+Imaginați-vă, că avem o companie. Structura personalului poate fi prezentată ca un object:
 
 ```js
 let company = {
@@ -322,30 +322,30 @@ let company = {
 };
 ```
 
-In other words, a company has departments.
+Cu alte cuvinte, o companie are departamente.
 
-- A department may have an array of staff. For instance, `sales` department has 2 employees: John and Alice.
-- Or a department may split into subdepartments, like `development` has two branches: `sites` and `internals`. Each of them has their own staff.
-- It is also possible that when a subdepartment grows, it divides into subsubdepartments (or teams).
+- Un departament poate avea o serie de angajați. De exemplu, departamentul `sales` are 2 angajați: John și Alice.
+- Sau un departament poate fi împărțit în subdepartamente, cum ar fi `development` care are două ramuri: `sites` și `internals`. Fiecare dintre ele are propriul personal.
+- De asemenea este posibil ca atunci când un subdepartament se dezvoltă, să se împartă în subdepartamente (sau echipe).
 
-    For instance, the `sites` department in the future may be split into teams for `siteA` and `siteB`. And they, potentially, can split even more. That's not on the picture, just something to have in mind.
+    De exemplu, în viitor departamentul `sites` se poate împărți în echipe pentru `siteA` și `siteB`. Și acestea, potențial, se pot împărți și mai mult. Asta nu este pe imagine, doar ceva de avut în vedere.
 
-Now let's say we want a function to get the sum of all salaries. How can we do that?
+Acum să spunem că dorim o funcție care să obțină suma tuturor salariilor. Cum putem face acest lucru?
 
-An iterative approach is not easy, because the structure is not simple. The first idea may be to make a `for` loop over `company` with nested subloop over 1st level departments. But then we need more nested subloops to iterate over the staff in 2nd level departments like `sites`... And then another subloop inside those for 3rd level departments that might appear in the future? If we put 3-4 nested subloops in the code to traverse a single object, it becomes rather ugly.
+O abordare iterativă nu este ușoară, deoarece structura nu este simplă. Prima idee ar putea fi să facem un `for` loop pe `company` cu o subbuclă nested pe departamentele de nivelul 1. Dar apoi avem nevoie de mai multe bucle secundare nested pentru a itera peste personalul din departamentele de al doilea nivel cum ar fi `sites`... Și apoi o altă sub buclă în interiorul acestora pentru departamentele de al treilea nivel care ar putea apărea în viitor? Dacă punem 3-4 subbucle nested în cod pentru a traversa un singur obiect, devine destul de urât.
 
-Let's try recursion.
+Să încercăm recursivitatea.
 
-As we can see, when our function gets a department to sum, there are two possible cases:
+După cum putem vedea, atunci când funcția noastră primește un departament pentru a însuma, există două cazuri posibile:
 
-1. Either it's a "simple" department with an *array* of people -- then we can sum the salaries in a simple loop.
-2. Or it's *an object* with `N` subdepartments -- then we can make `N` recursive calls to get the sum for each of the subdeps and combine the results.
+1. Fie este vorba de un departament "simplu" cu un *array* de persoane -- atunci putem însuma salariile într-un simplu loop.
+2. Fie este *un obiect* cu `N` subdepartamente -- atunci putem face `N` apeluri recursive pentru a obține suma pentru fiecare dintre subdepartamente și combina rezultatele.
 
-The 1st case is the base of recursion, the trivial case, when we get an array.
+Primul caz este baza recursivității, cazul trivial, când obținem un array.
 
-The 2nd case when we get an object is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+Al 2-lea caz, când obținem un obiect, este pasul recursiv. O sarcină complexă este împărțită în subsarcini pentru departamente mai mici. La rândul lor acestea se pot împăsți din nou, dar mai devreme sau mai târziu împărțirea se va termina la (1).
 
-The algorithm is probably even easier to read from the code:
+Algoritmul este probabil și mai ușor de citit din cod:
 
 
 ```js run
