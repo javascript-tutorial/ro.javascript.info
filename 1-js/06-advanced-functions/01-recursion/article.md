@@ -349,7 +349,7 @@ Algoritmul este probabil și mai ușor de citit din cod:
 
 
 ```js run
-let company = { // the same object, compressed for brevity
+let company = { // același obiect, comprimat pentru simplificare
   sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 1600 }],
   development: {
     sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
@@ -357,15 +357,15 @@ let company = { // the same object, compressed for brevity
   }
 };
 
-// The function to do the job
+// Funcția care face treaba
 *!*
 function sumSalaries(department) {
-  if (Array.isArray(department)) { // case (1)
-    return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
-  } else { // case (2)
+  if (Array.isArray(department)) { // cazul (1)
+    return department.reduce((prev, current) => prev + current.salary, 0); // însumează array-ul
+  } else { // cazul (2)
     let sum = 0;
     for (let subdep of Object.values(department)) {
-      sum += sumSalaries(subdep); // recursively call for subdepartments, sum the results
+      sum += sumSalaries(subdep); // apelează recursiv pentru subdepartamente, însumează rezultatele
     }
     return sum;
   }
@@ -375,18 +375,18 @@ function sumSalaries(department) {
 alert(sumSalaries(company)); // 7700
 ```
 
-The code is short and easy to understand (hopefully?). That's the power of recursion. It also works for any level of subdepartment nesting.
+Codul este scurt și ușor de înțeles (sperăm?). Aceasta este puterea recursivității. Funcționează de asemenea pentru orice nivel nested a subdepartamentului.
 
-Here's the diagram of calls:
+Iată diagrama de apeluri:
 
 ![recursive salaries](recursive-salaries.svg)
 
-We can easily see the principle: for an object `{...}` subcalls are made, while arrays `[...]` are the "leaves" of the recursion tree, they give immediate result.
+Putem vedea cu ușurință principiul: pentru un obiect `{...}` se fac subapeluri, în timp ce array-urile `[...]` sunt "frunzele" din recursion tree, ele dau un rezultat imediat.
 
-Note that the code uses smart features that we've covered before:
+Observați că codul folosește caracteristici inteligente pe care le-am mai acoperit:
 
-- Method `arr.reduce` explained in the chapter <info:array-methods> to get the sum of the array.
-- Loop `for(val of Object.values(obj))` to iterate over object values: `Object.values` returns an array of them.
+- Metoda `arr.reduce` explicată în capitolul <info:array-methods> pentru a obține suma array-ului.
+- Bucla `for(val of Object.values(obj))` pentru a itera peste valorile obiectului: `Object.values` returnează un array al acestora.
 
 
 ## Recursive structures
