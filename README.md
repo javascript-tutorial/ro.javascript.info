@@ -30,7 +30,7 @@ Dacă vedeți că versiunea în limba engleză poate fi îmbunătățită - groz
 
 - Traduceți comentariile și mesajele din string.
 - Nu traduceți variabile, clase, identificatori.
-- Verificați dacă funcționează codului după traducere :)
+- Verificați dacă funcționează codul după traducere :)
 
 Exemplu de cod:
 
