@@ -293,7 +293,7 @@ Recursivitatea poate oferi un cod mai scurt, ușor de înțeles și de susținut
 
 O altă aplicație excelentă a recursivității este traversarea recursivă.
 
-Imaginați-vă, că avem o companie. Structura personalului poate fi prezentată ca un object:
+Imaginați-vă, că avem o companie. Structura personalului poate fi prezentată ca un obiect:
 
 ```js
 let company = {
@@ -389,48 +389,48 @@ Observați că codul folosește caracteristici inteligente pe care le-am mai aco
 - Bucla `for(val of Object.values(obj))` pentru a itera peste valorile obiectului: `Object.values` returnează un array al acestora.
 
 
-## Recursive structures
+## Structuri recursive
 
-A recursive (recursively-defined) data structure is a structure that replicates itself in parts.
+O structură de date recursivă (definită în mod recursiv) este o structură care se reproduce pe sine în părți.
 
-We've just seen it in the example of a company structure above.
+Tocmai am văzut-o în exemplul structurii unei companii de mai sus.
 
-A company *department* is:
-- Either an array of people.
-- Or an object with *departments*.
+Un *departament* al unei companii este:
+- Fie un array de persoane.
+- Ori un obiect cu *departamente*.
 
-For web-developers there are much better-known examples: HTML and XML documents.
+Pentru dezvoltatorii web există exemple mult mai bine cunoscute: Documentele HTML și XML.
 
-In the HTML document, an *HTML-tag* may contain a list of:
-- Text pieces.
-- HTML-comments.
-- Other *HTML-tags* (that in turn may contain text pieces/comments or other tags etc).
+În documentul HTML, un *HTML-tag* poate conține o listă de:
+- Bucăți de text.
+- Comentarii HTML.
+- Alte *tag-uri HTML* (care, la rândul lor, pot conține bucăți de text/comentarii sau alte tag-uri etc).
 
-That's once again a recursive definition.
+Aceasta este din nou o definiție recursivă.
 
-For better understanding, we'll cover one more recursive structure named "Linked list" that might be a better alternative for arrays in some cases.
+Pentru o mai bună înțelegere, vom acoperi încă o structură recursivă numită "Linked list" care ar putea fi o alternativă mai bună pentru array-uri în anumite cazuri.
 
 ### Linked list
 
-Imagine, we want to store an ordered list of objects.
+Imaginați-vă, că dorim să stocăm o listă ordonată de obiecte.
 
-The natural choice would be an array:
+Alegerea naturală ar fi un array:
 
 ```js
 let arr = [obj1, obj2, obj3];
 ```
 
-...But there's a problem with arrays. The "delete element" and "insert element" operations are expensive. For instance, `arr.unshift(obj)` operation has to renumber all elements to make room for a new `obj`, and if the array is big, it takes time. Same with `arr.shift()`.
+...Dar există o problemă cu array-urile. Operațiile "delete element" și "insert element" sunt costisitoare. De exemplu, operația `arr.unshift(obj)` trebuie să renumere toate elementele pentru a face loc unui nou `obj`, iar dacă array-ul este mare, durează mult. La fel cu `arr.shift()`.
 
-The only structural modifications that do not require mass-renumbering are those that operate with the end of array: `arr.push/pop`. So an array can be quite slow for big queues, when we have to work with the beginning.
+Singurele modificări structurale care nu necesită renumerotare în masă sunt cele care operează la sfârșitul array-ului: `arr.push/pop`. Deci un array poate fi destul de lent pentru cozile mari, atunci când trebuie să lucrăm cu începutul.
 
-Alternatively, if we really need fast insertion/deletion, we can choose another data structure called a [linked list](https://en.wikipedia.org/wiki/Linked_list).
+Alternativ, dacă avem cu adevărat nevoie de inserție/ștergere rapidă, putem alege o altă structură de date numită [linked list](https://en.wikipedia.org/wiki/Linked_list).
 
-The *linked list element* is recursively defined as an object with:
+*Elementul linked list* este definit recursiv ca un obiect cu:
 - `value`.
-- `next` property referencing the next *linked list element* or `null` if that's the end.
+- proprietatea `next` care face referire la următorul *element din linked list* sau `null` dacă acesta este sfârșitul.
 
-For instance:
+De exemplu:
 
 ```js
 let list = {
@@ -448,11 +448,11 @@ let list = {
 };
 ```
 
-Graphical representation of the list:
+Reprezentarea grafică a listei:
 
 ![linked list](linked-list.svg)
 
-An alternative code for creation:
+Un cod alternativ pentru creare:
 
 ```js no-beautify
 let list = { value: 1 };
@@ -462,9 +462,9 @@ list.next.next.next = { value: 4 };
 list.next.next.next.next = null;
 ```
 
-Here we can even more clearly see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following `next` pointers from it we can reach any element.
+Aici putem vedea și mai clar că există mai multe obiecte, fiecare dintre ele având `value` și `next` care indică vecinul. Variabila `list` este primul obiect din lanț, deci urmărind indicatoarele `next` de la ea putem ajunge la orice element.
 
-The list can be easily split into multiple parts and later joined back:
+Lista poate fi ușor împărțită în mai multe părți și ulterior reunită la loc:
 
 ```js
 let secondList = list.next.next;
@@ -473,15 +473,15 @@ list.next.next = null;
 
 ![linked list split](linked-list-split.svg)
 
-To join:
+Pentru a se uni:
 
 ```js
 list.next.next = secondList;
 ```
 
-And surely we can insert or remove items in any place.
+Și cu siguranță putem introduce sau elimina elemente în orice loc.
 
-For instance, to prepend a new value, we need to update the head of the list:
+De exemplu, pentru a o prelungi cu o valoare nouă, trebuie să actualizăm capul listei:
 
 ```js
 let list = { value: 1 };
@@ -490,14 +490,14 @@ list.next.next = { value: 3 };
 list.next.next.next = { value: 4 };
 
 *!*
-// prepend the new value to the list
+// se prelungește noua valoare la listă
 list = { value: "new item", next: list };
 */!*
 ```
 
 ![linked list](linked-list-0.svg)
 
-To remove a value from the middle, change `next` of the previous one:
+Pentru a elimina o valoare din mijloc, schimbați `next` din cea anterioară:
 
 ```js
 list.next = list.next.next;
@@ -505,11 +505,11 @@ list.next = list.next.next;
 
 ![linked list](linked-list-remove-1.svg)
 
-We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If it's not stored anywhere else, it will be automatically removed from the memory.
+Am făcut ca `list.next` să sară peste `1` la valoarea `2`. Valoarea `1` este acum exclusă din lanț. Dacă nu este stocată în altă parte, ea va fi eliminată automat din memorie.
 
-Unlike arrays, there's no mass-renumbering, we can easily rearrange elements.
+Spre deosebire de array-uri, nu există o renumerotare în masă, putem rearanja cu ușurință elementele.
 
-Naturally, lists are not always better than arrays. Otherwise everyone would use only lists.
+Firește, listele nu sunt întotdeauna mai bune decât array-urile. Altfel toată lumea ar folosi numai liste.
 
 The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the list we need to start from the first item and go `next` `N` times to get the Nth element.
 
