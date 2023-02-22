@@ -511,32 +511,32 @@ Spre deosebire de array-uri, nu există o renumerotare în masă, putem rearanja
 
 Firește, listele nu sunt întotdeauna mai bune decât array-urile. Altfel toată lumea ar folosi numai liste.
 
-The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the list we need to start from the first item and go `next` `N` times to get the Nth element.
+Principalul dezavantaj este că nu putem accesa cu ușurință un element prin numărul său. Într-un array asta este ușor: `arr[n]` este o referință directă. Dar în listă trebuie să începem de la primul element și să parcurgem `next` de `N` ori pentru a obține al N-lea element.
 
-...But we don't always need such operations. For instance, when we need a queue or even a [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- the ordered structure that must allow very fast adding/removing elements from both ends, but access to its middle is not needed.
+...Dar nu avem întotdeauna nevoie de astfel de operații. De exemplu, când avem nevoie de un queue sau chiar de un [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- structura ordonată care trebuie să permită adăugarea/eliminarea foarte rapidă a elementelor de la ambele capete, dar accesul la mijlocul ei nu este necesar.
 
-Lists can be enhanced:
-- We can add property `prev` in addition to `next` to reference the previous element, to move back easily.
-- We can also add a variable named `tail` referencing the last element of the list (and update it when adding/removing elements from the end).
-- ...The data structure may vary according to our needs.
+Listele pot fi îmbunătățite:
+- Putem adăuga proprietatea `prev` în plus față de `next` pentru a face referire la elementul anterior, pentru a ne deplasa cu ușurință înapoi.
+- De asemenea putem adăuga o variabilă numită `tail` care să facă referire la ultimul element al listei (și să o actualizăm atunci când adăugăm/eliminăm elemente de la sfârșit).
+- ...Structura datelor poate varia în funcție de nevoile noastre.
 
-## Summary
+## Sumar
 
-Terms:
-- *Recursion*  is a programming term that means calling a function from itself. Recursive functions can be used to solve tasks in elegant ways.
+Termeni:
+- *Recursiune* este un termen de programare care înseamnă apelarea unei funcții din ea însăși. Funcțiile recursive pot fi utilizate pentru a rezolva sarcini în moduri elegante.
 
-    When a function calls itself, that's called a *recursion step*. The *basis* of recursion is function arguments that make the task so simple that the function does not make further calls.
+    Atunci când o funcție se apelează pe sine însăși, acest lucru se numește un *pas de recursivitate*. *Baza* recursivității o constituie argumentele funcției care fac sarcina atât de simplă încât funcția nu mai face apeluri ulterioare.
 
-- A [recursively-defined](https://en.wikipedia.org/wiki/Recursive_data_type) data structure is a data structure that can be defined using itself.
+- O structură de date [definită recursiv](https://en.wikipedia.org/wiki/Recursive_data_type) este o structură de date care poate fi definită folosindu-se pe ea însăși.
 
-    For instance, the linked list can be defined as a data structure consisting of an object referencing a list (or null).
+    De exemplu, linked list poate fi definită ca o structură de date care constă dintr-un obiect care face referire la o listă (sau null).
 
     ```js
     list = { value, next -> list }
     ```
 
-    Trees like HTML elements tree or the department tree from this chapter are also naturally recursive: they have branches and every branch can have other branches.
+    Arborii cum ar fi arborele elementelor HTML sau arborele departamentelor din acest capitol sunt de asemenea recursivi în mod natural: au ramuri și fiecare ramură poate avea alte ramuri.
 
-    Recursive functions can be used to walk them as we've seen in the `sumSalary` example.
+    Funcțiile recursive pot fi folosite pentru a le parcurge așa cum am văzut în exemplul `sumSalary`.
 
-Any recursive function can be rewritten into an iterative one. And that's sometimes required to optimize stuff. But for many tasks a recursive solution is fast enough and easier to write and support.
+Orice funcție recursivă poate fi rescrisă într-una iterativă. Iar acest lucru este uneori necesar pentru a optimiza lucrurile. Dar pentru multe sarcini o soluție recursivă este suficient de rapidă și mai ușor de scris și de susținut.
