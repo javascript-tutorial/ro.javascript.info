@@ -2,24 +2,24 @@ importance: 5
 
 ---
 
-# Fibonacci numbers
+# Numere Fibonacci
 
-The sequence of [Fibonacci numbers](https://en.wikipedia.org/wiki/Fibonacci_number) has the formula <code>F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub></code>. In other words, the next number is a sum of the two preceding ones.
+Secvența [numerelor Fibonacci](https://en.wikipedia.org/wiki/Fibonacci_number) are formula <code>F<sub>n</sub> = F<sub>n-1</sub> + F<sub>n-2</sub></code>. Cu alte cuvinte, următorul număr este suma celor două numere precedente.
 
-First two numbers are `1`, then `2(1+1)`, then `3(1+2)`, `5(2+3)` and so on: `1, 1, 2, 3, 5, 8, 13, 21...`.
+Primele două numere sunt `1`, apoi `2(1+1)`, apoi `3(1+2)`, `5(2+3)` și așa mai departe: `1, 1, 2, 3, 5, 8, 13, 21...`.
 
-Fibonacci numbers are related to the [Golden ratio](https://en.wikipedia.org/wiki/Golden_ratio) and many natural phenomena around us.
+Numerele Fibonacci sunt legate de [Golden ratio](https://en.wikipedia.org/wiki/Golden_ratio) și de multe fenomene naturale din jurul nostru.
 
-Write a function `fib(n)` that returns the `n-th` Fibonacci number.
+Scrieți o funcție `fib(n)` care să returneze al `n-lea` număr Fibonacci.
 
-An example of work:
+Un exemplu de lucrare:
 
 ```js
-function fib(n) { /* your code */ }
+function fib(n) { /* codul tău */ } }
 
 alert(fib(3)); // 2
 alert(fib(7)); // 13
 alert(fib(77)); // 5527939700884757
 ```
 
-P.S. The function should be fast. The call to `fib(77)` should take no more than a fraction of a second.
+P.S. Funcția ar trebui să fie rapidă. Apelul la `fib(77)` nu ar trebui să dureze mai mult de o fracțiune de secundă.
