@@ -1,4 +1,4 @@
-The solution using a loop:
+Soluția folosind un loop:
 
 ```js run
 function sumTo(n) {
@@ -12,7 +12,7 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-The solution using recursion:
+Soluția folosind recursivitatea:
 
 ```js run
 function sumTo(n) {
@@ -23,7 +23,7 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-The solution using the formula: `sumTo(n) = n*(n+1)/2`:
+Soluția folosind formula: `sumTo(n) = n*(n+1)/2`:
 
 ```js run
 function sumTo(n) {
@@ -33,8 +33,8 @@ function sumTo(n) {
 alert( sumTo(100) );
 ```
 
-P.S. Naturally, the formula is the fastest solution. It uses only 3 operations for any number `n`. The math helps!
+P.S. Firește, formula este cea mai rapidă soluție. Ea folosește doar 3 operații pentru orice număr `n`. Matematica ajută!
 
-The loop variant is the second in terms of speed. In both the recursive and the loop variant we sum the same numbers. But the recursion involves nested calls and execution stack management. That also takes resources, so it's slower.
+Varianta cu bucle este a doua în ceea ce privește viteza. Atât în varianta recursivă cât și în varianta loop adunăm aceleași numere. Dar recursivitatea implică apeluri nested și gestionare de execution stack. Și asta necesită resurse, deci este mai lent.
 
-P.P.S. Some engines support the "tail call" optimization: if a recursive call is the very last one in the function, with no other calculations performed, then the outer function will not need to resume the execution, so the engine doesn't need to remember its execution context. That removes the burden on memory. But if the JavaScript engine does not support tail call optimization (most of them don't), there will be an error: maximum stack size exceeded, because there's usually a limitation on the total stack size.
+P.P.S. Unele motoare suportă optimizarea "tail call": dacă un apel recursiv este chiar ultimul din funcție, fără alte calcule efectuate, atunci funcția exterioară nu va trebui să reia execuția, astfel încât motorul nu trebuie să își amintească contextul de execuție. Asta elimină povara asupra memoriei. Dar dacă motorul JavaScript nu acceptă optimizarea tail call (majoritatea nu o fac), va apărea o eroare: maximum stack size exceeded, deoarece există de obicei o limitare a dimensiunii totale din stack.
