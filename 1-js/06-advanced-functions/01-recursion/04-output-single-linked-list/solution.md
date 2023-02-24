@@ -1,6 +1,6 @@
-# Loop-based solution
+# Soluție bazată pe loop
 
-The loop-based variant of the solution:
+Varianta soluției bazată pe loop:
 
 ```js run
 let list = {
@@ -30,7 +30,7 @@ function printList(list) {
 printList(list);
 ```
 
-Please note that we use a temporary variable `tmp` to walk over the list. Technically, we could use a function parameter `list` instead:
+Vă rugăm să rețineți că folosim o variabilă temporară `tmp` pentru a parcurge lista. Din punct de vedere tehnic, am putea folosi în schimb un parametru de funcție `list`:
 
 ```js
 function printList(list) {
@@ -43,15 +43,15 @@ function printList(list) {
 }
 ```
 
-...But that would be unwise. In the future we may need to extend a function, do something else with the list. If we change `list`, then we lose such ability.
+...Dar asta ar fi neînțelept. În viitor s-ar putea să avem nevoie să extindem o funcție, să facem altceva cu lista. Dacă schimbăm `list`, atunci pierdem o astfel de abilitate.
 
-Talking about good variable names, `list` here is the list itself. The first element of it. And it should remain like that. That's clear and reliable.
+Vorbind despre nume de variabile bune, `list` aici este lista însăși. Primul element al acesteia. Și ar trebui să rămână așa. Este clar și de încredere.
 
-From the other side, the role of `tmp` is exclusively a list traversal, like `i` in the `for` loop.
+De cealaltă parte, rolul lui `tmp` este exclusiv o traversare a listei, ca și `i` în bucla `for`.
 
-# Recursive solution
+# Soluție recursivă
 
-The recursive variant of `printList(list)` follows a simple logic: to output a list we should output the current element `list`, then do the same for `list.next`:
+Varianta recursivă a `printList(list)` urmează o logică simplă: pentru a scoate o listă trebuie să scoatem elementul curent `list`, apoi să facem același lucru pentru `list.next`:
 
 ```js run
 let list = {
@@ -70,10 +70,10 @@ let list = {
 
 function printList(list) {
 
-  alert(list.value); // output the current item
+  alert(list.value); // afișează elementul curent
 
   if (list.next) {
-    printList(list.next); // do the same for the rest of the list
+    printList(list.next); // procedează la fel pentru restul listei
   }
 
 }
@@ -81,8 +81,8 @@ function printList(list) {
 printList(list);
 ```
 
-Now what's better?
+Acum ce este mai bine?
 
-Technically, the loop is more effective. These two variants do the same, but the loop does not spend resources for nested function calls.
+Din punct de vedere tehnic, un loop este mai eficient. Aceste două variante fac același lucru, dar loop-ul nu consumă resurse pentru apeluri de funcții nested.
 
-From the other side, the recursive variant is shorter and sometimes easier to understand.
+De partea cealaltă, varianta recursivă este mai scurtă și uneori mai ușor de înțeles.
