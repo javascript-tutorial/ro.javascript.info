@@ -1,8 +1,8 @@
-# Using a recursion
+# Folosind o recursiune
 
-The recursive logic is a little bit tricky here.
+Logica recursivă este un pic mai înșelătore aici.
 
-We need to first output the rest of the list and *then* output the current one:
+Trebuie să scoatem mai întâi restul listei și *apoi* să o scoatem pe cea curentă:
 
 ```js run
 let list = {
@@ -31,13 +31,13 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
-# Using a loop
+# Utilizarea unui loop
 
-The loop variant is also a little bit more complicated than the direct output.
+Varianta loop este de asemenea un pic mai complicată decât scoaterea directă.
 
-There is no way to get the last value in our `list`. We also can't "go back".
+Nu există nicio modalitate de a obține ultima valoare din `list`. De asemenea nu putem "merge înapoi".
 
-So what we can do is to first go through the items in the direct order and remember them in an array, and then output what we remembered in the reverse order:
+Așadar, ceea ce putem face este să parcurgem mai întâi elementele în ordine directă și să le reținem într-un array, iar apoi să scoatem ceea ce am reținut în ordine inversă:
 
 ```js run
 let list = {
@@ -71,4 +71,4 @@ function printReverseList(list) {
 printReverseList(list);
 ```
 
-Please note that the recursive solution actually does exactly the same: it follows the list, remembers the items in the chain of nested calls (in the execution context stack), and then outputs them. 
+Vă rugăm să notați că soluția recursivă face de fapt exact la fel: urmărește lista, își amintește elementele din lanțul de apeluri nested (în execution context stack) și apoi le scoate.

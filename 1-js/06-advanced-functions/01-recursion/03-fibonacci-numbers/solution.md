@@ -1,6 +1,6 @@
-The first solution we could try here is the recursive one.
+Prima soluție pe care am putea-o încerca aici este cea recursivă.
 
-Fibonacci numbers are recursive by definition:
+Numerele Fibonacci sunt recursive prin definiție:
 
 ```js run
 function fib(n) {
@@ -9,14 +9,14 @@ function fib(n) {
 
 alert( fib(3) ); // 2
 alert( fib(7) ); // 13
-// fib(77); // will be extremely slow!
+// fib(77); // va fi extrem de lent!
 ```
 
-...But for big values of `n` it's very slow. For instance, `fib(77)` may hang up the engine for some time eating all CPU resources.
+...Dar pentru valori mari ale lui `n` este foarte lent. De exemplu, `fib(77)` poate bloca motorul pentru o perioadă de timp, consumând toate resursele CPU.
 
-That's because the function makes too many subcalls. The same values are re-evaluated again and again.
+Asta pentru că funcția face prea multe subapelări. Aceleași valori sunt reevaluate din nou și din nou.
 
-For instance, let's see a piece of calculations for `fib(5)`:
+De exemplu, să vedem o bucată de calcule pentru `fib(5)`:
 
 ```js no-beautify
 ...
@@ -25,68 +25,68 @@ fib(4) = fib(3) + fib(2)
 ...
 ```
 
-Here we can see that the value of `fib(3)` is needed for both `fib(5)` and `fib(4)`. So `fib(3)` will be called and evaluated two times completely independently.
+Aici putem vedea că valoarea lui `fib(3)` este necesară atât pentru `fib(5)` cât și pentru `fib(4)`. Deci `fib(3)` va fi apelat și evaluat de două ori în mod complet independent.
 
-Here's the full recursion tree:
+Iată arborele de recursivitate complet:
 
 ![fibonacci recursion tree](fibonacci-recursion-tree.svg)
 
-We can clearly notice that `fib(3)` is evaluated two times and `fib(2)` is evaluated three times. The total amount of computations grows much faster than `n`, making it enormous even for `n=77`.
+Putem observa în mod clar că `fib(3)` este evaluat de două ori, iar `fib(2)` este evaluat de trei ori. Suma totală a calculelor crește mult mai repede decât `n`, devenind enormă chiar și pentru `n=77`.
 
-We can optimize that by remembering already-evaluated values: if a value of say `fib(3)` is calculated once, then we can just reuse it in future computations.
+Putem optimiza acest lucru prin memorarea valorilor deja evaluate: dacă o valoare de exemplu `fib(3)` este calculată o dată, atunci o putem reutiliza în calculele viitoare.
 
-Another variant would be to give up recursion and use a totally different loop-based algorithm.
+O altă variantă ar fi să renunțăm la recursivitate și să folosim un algoritm complet diferit bazat pe loop.
 
-Instead of going from `n` down to lower values, we can make a loop that starts from `1` and `2`, then gets `fib(3)` as their sum, then `fib(4)` as the sum of two previous values, then `fib(5)` and goes up and up, till it gets to the needed value. On each step we only need to remember two previous values.
+În loc să mergem de la `n` în jos la valori mai mici, putem face un loop care pornește de la `1` și `2`, apoi obține `fib(3)` ca sumă a acestora, apoi `fib(4)` ca sumă a două valori anterioare, apoi `fib(5)` și merge în sus și în sus, până când ajunge la valoarea necesară. La fiecare pas trebuie să ne amintim doar două valori anterioare.
 
-Here are the steps of the new algorithm in details.
+Iată pașii noului algoritm în detaliu.
 
-The start:
+Începutul:
 
 ```js
-// a = fib(1), b = fib(2), these values are by definition 1
+// a = fib(1), b = fib(2), aceste valori sunt prin definiție 1
 let a = 1, b = 1;
 
-// get c = fib(3) as their sum
+// obțineți c = fib(3) ca sumă a acestora
 let c = a + b;
 
-/* we now have fib(1), fib(2), fib(3)
+/* acum avem fib(1), fib(2), fib(3)
 a  b  c
 1, 1, 2
 */
 ```
 
-Now we want to get `fib(4) = fib(2) + fib(3)`.
+Acum dorim să obținem `fib(4) = fib(2) + fib(3)`.
 
-Let's shift the variables: `a,b` will get `fib(2),fib(3)`, and `c` will get their sum:
+Să schimbăm variabilele: `a,b` vor obține `fib(2),fib(3)`, iar `c` va obține suma lor:
 
 ```js no-beautify
-a = b; // now a = fib(2)
-b = c; // now b = fib(3)
+a = b; // acum a = fib(2)
+b = c; // acum b = fib(3)
 c = a + b; // c = fib(4)
 
-/* now we have the sequence:
+/* acum avem secvența:
    a  b  c
 1, 1, 2, 3
 */
 ```
 
-The next step gives another sequence number:
+Următorul pas oferă un alt număr de secvență:
 
 ```js no-beautify
-a = b; // now a = fib(3)
-b = c; // now b = fib(4)
+a = b; // acum a = fib(3)
+b = c; // acum b = fib(4)
 c = a + b; // c = fib(5)
 
-/* now the sequence is (one more number):
+/* acum secvența este (încă un număr):
       a  b  c
 1, 1, 2, 3, 5
 */
 ```
 
-...And so on until we get the needed value. That's much faster than recursion and involves no duplicate computations.
+...Și așa mai departe până când obținem valoarea necesară. Acest lucru este mult mai rapid decât recursivitatea și nu implică calcule duplicate.
 
-The full code:
+Codul complet:
 
 ```js run
 function fib(n) {
@@ -105,6 +105,6 @@ alert( fib(7) ); // 13
 alert( fib(77) ); // 5527939700884757
 ```
 
-The loop starts with `i=3`, because the first and the second sequence values are hard-coded into variables `a=1`, `b=1`.
+Bucla începe cu `i=3`, deoarece prima și a doua valoare a secvenței sunt hard-coded în variabilele `a=1`, `b=1`.
 
-The approach is called [dynamic programming bottom-up](https://en.wikipedia.org/wiki/Dynamic_programming).
+Abordarea se numește [programare dinamică de jos în sus](https://en.wikipedia.org/wiki/Dynamic_programming).
