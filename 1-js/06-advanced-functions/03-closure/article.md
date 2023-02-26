@@ -1,22 +1,22 @@
 
-# Variable scope, closure
+# Sfera variabilei, closure
 
-JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created at any moment, passed as an argument to another function, and then called from a totally different place of code later.
+JavaScript este un limbaj foarte orientat spre funcții. Acesta ne oferă o mare libertate. O funcție poate fi creată în orice moment, transmisă ca argument unei alte funcții, și ulterior apelată dintr-un cu totul alt loc din cod.
 
-We already know that a function can access variables outside of it ("outer" variables).
+Știm deja că o funcție poate accesa variabile din afara ei (variabile "exterioare").
 
-But what happens if outer variables change since a function is created? Will the function get newer values or the old ones?
+Dar ce se întâmplă dacă variabilele exterioare se schimbă de la crearea unei funcții? Va primi funcția valorile mai noi sau pe cele vechi?
 
-And what if a function is passed along as an argument and called from another place of code, will it get access to outer variables at the new place?
+Și dacă o funcție este transmisă ca argument și apelată dintr-un alt loc din cod, va avea acces la variabilele exterioare din noul loc?
 
-Let's expand our knowledge to understand these scenarios and more complex ones.
+Haideți să ne extindem cunoștințele pentru a înțelege aceste scenarii și altele mai complexe.
 
-```smart header="We'll talk about `let/const` variables here"
-In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
+```smart header="Vom vorbi despre variabilele `let/const` aici"
+În JavaScript, există 3 moduri de a declara o variabilă: `let`, `const` (cele moderne) și `var` (rămășița trecutului).
 
-- In this article we'll use `let` variables in examples.
-- Variables, declared with `const`, behave the same, so this article is about `const` too.
-- The old `var` has some notable differences, they will be covered in the article <info:var>.
+- În acest articol vom folosi variabilele `let` în exemple.
+- Variabilele, declarate cu `const`, se comportă la fel, așa că acest articol se referă și la `const`.
+- Vechiul `var` are câteva diferențe notabile, acestea vor fi acoperite în articolul <info:var>.
 ```
 
 ## Code blocks
