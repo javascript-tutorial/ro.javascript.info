@@ -18,7 +18,7 @@ Vedeți <https://javascript.info/translate> pentru mai multe detalii.
 
 Vă rugăm să păstrați liniile și paragrafele "așa cum sunt": nu adăugați linii noi și nu le eliminați pe cele existente. Asta facilitează îmbinarea viitoarelor modificări din versiunea engleză în traducere.
 
-Dacă vedeți că versiunea în limba engleză poate fi îmbunătățită - grozav, vă rugăm să trimiteți un PR pentru asta în [versiunea din limba engleză](https://github.com/javascript-tutorial/en.javascript.info/pulls). Îmbunătătirile vor fi adaudate și în limba română dupa ce este intergrată acolo mai întăi.
+Dacă vedeți că versiunea în limba engleză poate fi îmbunătățită - grozav, vă rugăm să trimiteți un PR pentru asta în [versiunea din limba engleză](https://github.com/javascript-tutorial/en.javascript.info/pulls). Îmbunătățirile vor fi adăugate și în limba română după ce sunt integrate acolo mai întăi.
 
 ## Cum se scriu termenii
 
