@@ -1,6 +1,6 @@
 # The Modern JavaScript Tutorial în limba Română
 
-Acest repository găzduiește conținutul în limba română pentru The Modern JavaScript Tutorial, publicat în [https://javascript.info](https://javascript.info).
+Acest repertoriu găzduiește conținutul în limba română pentru The Modern JavaScript Tutorial, publicat în [https://javascript.info](https://javascript.info).
 
 ### Cum puteți contribui:
 
@@ -12,13 +12,13 @@ Acest repository găzduiește conținutul în limba română pentru The Modern J
   - Bot-ul nostru îl va marca automat în issue pentru ca toată lumea să știe că îl traduceți.
   - Comentariul _trebuie_ să conțină doar titlul.
 - Faceți un fork la repository, traduceți și apoi trimiteți un PR când ați terminat.
-  - Titlul PR trebuie să se potrivească cu titlul articolului, bot-ul va scrie automat numărul acestuia în issue.
+  - Titlul din PR trebuie să se potrivească cu titlul articolului, bot-ul va scrie automat numărul acestuia în issue.
 
 Vedeți <https://javascript.info/translate> pentru mai multe detalii.
 
-Vă rugăm să păstrați salturile de linie și paragrafele "așa cum sunt": nu adăugați linii noi și nu le eliminați pe cele existente. Asta facilitează îmbinarea viitoarelor modificări din versiunea engleză în traducere.
+Vă rugăm să păstrați liniile și paragrafele "așa cum sunt": nu adăugați linii noi și nu le eliminați pe cele existente. Asta facilitează îmbinarea viitoarelor modificări din versiunea engleză în traducere.
 
-Dacă vedeți că versiunea în limba engleză poate fi îmbunătățită - grozav, vă rugăm să trimiteți un PR pentru aceasta.
+Dacă vedeți că versiunea în limba engleză poate fi îmbunătățită - grozav, vă rugăm să trimiteți un PR pentru asta în [versiunea din limba engleză](https://github.com/javascript-tutorial/en.javascript.info/pulls). Îmbunătătirile vor fi adaudate și în limba română dupa ce este intergrată acolo mai întăi.
 
 ## Cum se scriu termenii
 
