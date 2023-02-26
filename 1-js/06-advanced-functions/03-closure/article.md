@@ -19,84 +19,84 @@ Haideți să ne extindem cunoștințele pentru a înțelege aceste scenarii și 
 - Vechiul `var` are câteva diferențe notabile, acestea vor fi acoperite în articolul <info:var>.
 ```
 
-## Code blocks
+## Blocuri de cod
 
-If a variable is declared inside a code block `{...}`, it's only visible inside that block.
+Dacă o variabilă este declarată în interiorul unui bloc de cod `{...}`, ea este vizibilă doar în interiorul acelui bloc.
 
-For example:
+De exemplu:
 
 ```js run
 {
-  // do some job with local variables that should not be seen outside
+  // face o treabă cu variabile locale care nu ar trebui să fie văzute în exterior
 
-  let message = "Hello"; // only visible in this block
+  let message = "Salut"; // vizibil doar în acest bloc
 
-  alert(message); // Hello
+  alert(message); // Salut
 }
 
 alert(message); // Error: message is not defined
 ```
 
-We can use this to isolate a piece of code that does its own task, with variables that only belong to it:
+Putem folosi acest lucru pentru a izola o bucată de cod care își face propria sarcină, cu variabile care îi aparțin doar ei:
 
 ```js run
 {
-  // show message
-  let message = "Hello";
+  // afișează mesajul
+  let message = "Salut";
   alert(message);
 }
 
 {
-  // show another message
-  let message = "Goodbye";
+  // afișează un alt mesaj
+  let message = "La revedere";
   alert(message);
 }
 ```
 
-````smart header="There'd be an error without blocks"
-Please note, without separate blocks there would be an error, if we use `let` with the existing variable name:
+````smart header="Ar exista o eroare fără blocuri"
+Vă rugăm să notați că, fără blocuri separate ar exista o eroare, dacă am folosi `let` cu numele variabilei existente:
 
 ```js run
-// show message
-let message = "Hello";
+// arată mesajul
+let message = "Salut";
 alert(message);
 
-// show another message
+// arată un alt mesaj
 *!*
-let message = "Goodbye"; // Error: variable already declared
+let message = "La revedere"; // Error: variable already declared
 */!*
 alert(message);
 ```
 ````
 
-For `if`, `for`, `while` and so on, variables declared in `{...}` are also only visible inside:
+Pentru `if`, `for`, `while` și așa mai departe, variabilele declarate în `{...}` sunt de asemenea vizibile doar în interior:
 
 ```js run
 if (true) {
-  let phrase = "Hello!";
+  let phrase = "Salut!";
 
-  alert(phrase); // Hello!
+  alert(phrase); // Salut!
 }
 
 alert(phrase); // Error, no such variable!
 ```
 
-Here, after `if` finishes, the `alert` below won't see the `phrase`, hence the error.
+Aici, după ce `if` se termină, `alert` de mai jos nu va vedea `phrase`, de unde și eroarea.
 
-That's great, as it allows us to create block-local variables, specific to an `if` branch.
+Asta este grozav, deoarece ne permite să creăm variabile locale de bloc, specifice unei ramuri `if`.
 
-The similar thing holds true for `for` and `while` loops:
+Același lucru este valabil și pentru buclele `for` și `while`:
 
 ```js run
 for (let i = 0; i < 3; i++) {
-  // the variable i is only visible inside this for
-  alert(i); // 0, then 1, then 2
+  // variabila i este vizibilă doar în interiorul acestui for
+  alert(i); // 0, apoi 1, apoi 2
 }
 
-alert(i); // Error, no such variable
+alert(i); // Eroare, nu există o astfel de variabilă
 ```
 
-Visually, `let i` is outside of `{...}`. But the `for` construct is special here: the variable, declared inside it, is considered a part of the block.
+Vizual, `let i` se află în afara lui `{...}`. Dar construcția `for` este specială aici: variabila, declarată în interiorul ei, este considerată parte a blocului.
 
 ## Nested functions
 
