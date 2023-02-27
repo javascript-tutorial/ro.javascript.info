@@ -29,9 +29,9 @@ De exemplu:
 {
   // face o treabă cu variabile locale care nu ar trebui să fie văzute în exterior
 
-  let message = "Salut"; // vizibil doar în acest bloc
+  let message = "Bună ziua"; // vizibil doar în acest bloc
 
-  alert(message); // Salut
+  alert(message); // Bună ziua
 }
 
 alert(message); // Error: message is not defined
@@ -42,7 +42,7 @@ Putem folosi acest lucru pentru a izola o bucată de cod care își face propria
 ```js run
 {
   // afișează mesajul
-  let message = "Salut";
+  let message = "Bună ziua";
   alert(message);
 }
 
@@ -58,7 +58,7 @@ Vă rugăm să notați că, fără blocuri separate ar exista o eroare, dacă am
 
 ```js run
 // arată mesajul
-let message = "Salut";
+let message = "Bună ziua";
 alert(message);
 
 // arată un alt mesaj
@@ -73,9 +73,9 @@ Pentru `if`, `for`, `while` și așa mai departe, variabilele declarate în `{..
 
 ```js run
 if (true) {
-  let phrase = "Salut!";
+  let phrase = "Bună ziua!";
 
-  alert(phrase); // Salut!
+  alert(phrase); // Bună ziua!
 }
 
 alert(phrase); // Error, no such variable!
@@ -98,33 +98,33 @@ alert(i); // Eroare, nu există o astfel de variabilă
 
 Vizual, `let i` se află în afara lui `{...}`. Dar construcția `for` este specială aici: variabila, declarată în interiorul ei, este considerată parte a blocului.
 
-## Nested functions
+## Funcții nested
 
-A function is called "nested" when it is created inside another function.
+O funcție este numită "nested" atunci când este creată în interiorul altei funcții.
 
-It is easily possible to do this with JavaScript.
+Acest lucru este posibil cu ușurință în JavaScript.
 
-We can use it to organize our code, like this:
+Îl putem folosi pentru a ne organiza codul, astfel:
 
 ```js
 function sayHiBye(firstName, lastName) {
 
-  // helper nested function to use below
+  // funcție helper nested de utilizat mai jos
   function getFullName() {
     return firstName + " " + lastName;
   }
 
-  alert( "Hello, " + getFullName() );
-  alert( "Bye, " + getFullName() );
+  alert( "Bună ziua, " + getFullName() );
+  alert( "La revedere, " + getFullName() );
 
 }
 ```
 
-Here the *nested* function `getFullName()` is made for convenience. It can access the outer variables and so can return the full name. Nested functions are quite common in JavaScript.
+Aici funcția *nested* `getFullName()` este făcută pentru conveniență. Aceasta poate accesa variabilele exterioare și astfel poate returna numele complet. Funcțiile nested sunt destul de frecvente în JavaScript.
 
-What's much more interesting, a nested function can be returned: either as a property of a new object or as a result by itself. It can then be used somewhere else. No matter where, it still has access to the same outer variables.
+Ceea ce este mult mai interesant, o funcție nested poate fi returnată: fie ca o proprietate a unui nou obiect ori ca un rezultat de sine stătător. Acesta poate fi apoi utilizat în altă parte. Indiferent unde, aceasta are în continuare acces la aceleași variabile exterioare.
 
-Below, `makeCounter` creates the "counter" function that returns the next number on each invocation:
+Mai jos, `makeCounter` creează funcția "counter" care returnează următorul număr la fiecare invocare:
 
 ```js run
 function makeCounter() {
@@ -142,11 +142,11 @@ alert( counter() ); // 1
 alert( counter() ); // 2
 ```
 
-Despite being simple, slightly modified variants of that code have practical uses, for instance, as a [random number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) to generate random values for automated tests.
+În ciuda faptului că sunt simple, variantele ușor modificate ale acestui cod au utilizări practice, de exemplu, ca [generator de numere aleatoare](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) pentru a genera valori aleatoare pentru testele automate.
 
-How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
+Cum funcționează acest lucru? Dacă vom crea mai multe counters, vor fi ele independente? Ce se întâmplă cu variabilele aici?
 
-Understanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
+Înțelegerea unor astfel de lucruri este excelentă pentru cunoștințele generale despre JavaScript și benefică pentru scenarii mai complexe. Așadar haideți să aprofundăm puțin.
 
 ## Lexical Environment
 
