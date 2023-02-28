@@ -148,58 +148,58 @@ Cum funcționează acest lucru? Dacă vom crea mai multe counters, vor fi ele in
 
 Înțelegerea unor astfel de lucruri este excelentă pentru cunoștințele generale despre JavaScript și benefică pentru scenarii mai complexe. Așadar haideți să aprofundăm puțin.
 
-## Lexical Environment
+## Mediu Lexical
 
-```warn header="Here be dragons!"
-The in-depth technical explanation lies ahead.
+```warn header="Aici sunt dragoni!"
+Explicația tehnică aprofundată se găsește în cele ce urmează.
 
-As far as I'd like to avoid low-level language details, any understanding without them would be lacking and incomplete, so get ready.
+În măsura în care aș dori să evit detaliile low-level ale limbajului, orice înțelegere fără ele ar fi insuficientă și incompletă, așa că pregătiți-vă.
 ```
 
-For clarity, the explanation is split into multiple steps.
+Pentru claritate, explicația este împărțită în mai mulți pași.
 
-### Step 1. Variables
+### Pasul 1. Variabile
 
-In JavaScript, every running function, code block `{...}`, and the script as a whole have an internal (hidden) associated object known as the *Lexical Environment*.
+În JavaScript, fiecare funcție care rulează, blocul de cod `{...}`, și scriptul ca întreg au un obiect intern (ascuns) asociat, cunoscut sub numele de *Mediu Lexical*.
 
-The Lexical Environment object consists of two parts:
+Obiectul Lexical Environment este constituit din două părți:
 
-1. *Environment Record* -- an object that stores all local variables as its properties (and some other information like the value of `this`).
-2. A reference to the *outer lexical environment*, the one associated with the outer code.
+1. *Environment Record* -- un obiect care stochează toate variabilele locale ca proprietăți ale acestuia (și alte informații, cum ar fi valoarea lui `this`).
+2. O referință la *mediul lexical extern*, cel asociat cu codul extern.
 
-**A "variable" is just a property of the special internal object, `Environment Record`. "To get or change a variable" means "to get or change a property of that object".**
+**O "variabilă" este doar o proprietate a obiectului intern special, `Environment Record`. "A obține sau a modifica o variabilă" înseamnă "a obține sau a modifica o proprietate a acelui obiect".**
 
-In this simple code without functions, there is only one Lexical Environment:
+În acest cod simplu fără funcții, există un singur Mediu Lexical:
 
 ![lexical environment](lexical-environment-global.svg)
 
-This is the so-called *global* Lexical Environment, associated with the whole script.
+Acesta este așa-numitul Mediu Lexical *global*, asociat cu întregul script.
 
-On the picture above, the rectangle means Environment Record (variable store) and the arrow means the outer reference. The global Lexical Environment has no outer reference, that's why the arrow points to `null`.
+În imaginea de mai sus, dreptunghiul reprezintă Environment Record (stocare de variabile) iar săgeata reprezintă referința exterioară. Mediul Lexical global nu are o referință externă, de aceea săgeata indică `null`.
 
-As the code starts executing and goes on, the Lexical Environment changes.
+Pe măsură ce codul începe să se execute și continuă, Mediul Lexical se modifică.
 
-Here's a little bit longer code:
+Iată un cod puțin mai lung:
 
-![lexical environment](closure-variable-phrase.svg)
+![mediu lexical](closure-variable-phrase.svg)
 
-Rectangles on the right-hand side demonstrate how the global Lexical Environment changes during the execution:
+Dreptunghiurile din partea dreaptă demonstrează cum se modifică Mediul Lexical global în timpul execuției:
 
-1. When the script starts, the Lexical Environment is pre-populated with all declared variables.
-    - Initially, they are in the "Uninitialized" state. That's a special internal state, it means that the engine knows about the variable, but it cannot be referenced until it has been declared with `let`. It's almost the same as if the variable didn't exist.
-2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable from this point forward.
-3. `phrase` is assigned a value.
-4. `phrase` changes the value.
+1. La pornirea scriptului, Mediul Lexical este prepopulat cu toate variabilele declarate.
+    - Inițial, acestea se află în starea "Uninitialized". Aceasta este o stare internă specială, ceea ce înseamnă că motorul știe despre variabilă, dar nu poate fi referențiată până când nu este declarată cu `let`. Este aproape la fel ca și cum variabila nu ar exista.
+2. Apoi apare definiția `let phrase`. Nu există încă o atribuire, deci valoarea ei este `undefined`. Putem folosi variabila din acest punct încolo.
+3. Lui `phrase` i se atribuie o valoare.
+4. `phrase` își schimbă valoarea.
 
-Everything looks simple for now, right?
+Totul pare simplu deocamdată, nu?
 
-- A variable is a property of a special internal object, associated with the currently executing block/function/script.
-- Working with variables is actually working with the properties of that object.
+- O variabilă este o proprietate a unui obiect intern special, asociată blocului/funcției/scriptului în curs de execuție.
+- Lucrul cu variabilele înseamnă de fapt lucrul cu proprietățile acelui obiect.
 
-```smart header="Lexical Environment is a specification object"
-"Lexical Environment" is a specification object: it only exists "theoretically" in the [language specification](https://tc39.es/ecma262/#sec-lexical-environments) to describe how things work. We can't get this object in our code and manipulate it directly.
+```smart header="Mediul Lexical este un obiect din specificație"
+"Mediul Lexical" este un obiect din specificație: el există doar "teoretic" în [specificația limbajului](https://tc39.es/ecma262/#sec-lexical-environments) pentru a descrie modul în care funcționează lucrurile. Nu putem obține acest obiect în codul nostru și să-l manipulăm direct.
 
-JavaScript engines also may optimize it, discard variables that are unused to save memory and perform other internal tricks, as long as the visible behavior remains as described.
+De asemenea motoarele JavaScript îl pot optimiza, pot renunța la variabilele nefolosite pentru a economisi memorie și pot efectua alte trucuri interne, atâta timp cât comportamentul vizibil rămâne cel descris.
 ```
 
 ### Step 2. Function Declarations
