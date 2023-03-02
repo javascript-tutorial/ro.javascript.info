@@ -202,56 +202,56 @@ Totul pare simplu deocamdată, nu?
 De asemenea motoarele JavaScript îl pot optimiza, pot renunța la variabilele nefolosite pentru a economisi memorie și pot efectua alte trucuri interne, atâta timp cât comportamentul vizibil rămâne cel descris.
 ```
 
-### Step 2. Function Declarations
+### Pasul 2. Function Declaration
 
-A function is also a value, like a variable.
+O funcție este de asemenea o valoare, la fel ca o variabilă.
 
-**The difference is that a Function Declaration is instantly fully initialized.**
+**Diferența este că o Function Declaration este instantaneu complet inițializată.**
 
-When a Lexical Environment is created, a Function Declaration immediately becomes a ready-to-use function (unlike `let`, that is unusable till the declaration).
+Atunci când este creat un Mediu Lexical, o Function Declaration devine imediat o funcție gata de utilizare (spre deosebire de `let`, care este inutilizabilă până la declarație).
 
-That's why we can use a function, declared as Function Declaration, even before the declaration itself.
+De aceea putem utiliza o funcție, declarată ca Function Declaration, chiar înainte de declarația propriu-zisă.
 
-For example, here's the initial state of the global Lexical Environment when we add a function:
+De exemplu, iată care este starea inițială a mediului lexical global atunci când adăugăm o funcție:
 
 ![](closure-function-declaration.svg)
 
-Naturally, this behavior only applies to Function Declarations, not Function Expressions where we assign a function to a variable, such as `let say = function(name)...`.
+Firește, acest comportament se aplică numai la Function Declaration, nu și la Function Expression în care atribuim o funcție unei variabile, cum ar fi `let say = function(name)...`.
 
-### Step 3. Inner and outer Lexical Environment
+### Pasul 3. Mediul Lexical interior și exterior
 
-When a function runs, at the beginning of the call, a new Lexical Environment is created automatically to store local variables and parameters of the call.
+Atunci când rulează o funcție, la începutul apelului, se creează automat un nou mediu lexical pentru a stoca variabilele locale și parametrii apelului.
 
-For instance, for `say("John")`, it looks like this (the execution is at the line, labelled with an arrow):
+De exemplu, pentru `say("John")`, acesta arată astfel (execuția se află la linia marcată cu o săgeată):
 
 <!--
     ```js
-    let phrase = "Hello";
+    let phrase = "Bună ziua";
 
     function say(name) {
      alert( `${phrase}, ${name}` );
     }
 
-    say("John"); // Hello, John
+    say("John"); // Bună ziua, John
     ```-->
 
 ![](lexical-environment-simple.svg)
 
-During the function call we have two Lexical Environments: the inner one (for the function call) and the outer one (global):
+În timpul apelului funcției avem două medii lexicale: cel intern (pentru apelul funcției) și cel extern (global):
 
-- The inner Lexical Environment corresponds to the current execution of `say`. It has a single property: `name`, the function argument. We called `say("John")`, so the value of the `name` is `"John"`.
-- The outer Lexical Environment is the global Lexical Environment. It has the `phrase` variable and the function itself.
+- Mediul Lexical intern corespunde execuției curente a lui `say`. Acesta are o singură proprietate: `name`, argumentul funcției. Am apelat `say("John")`, deci valoarea lui `name` este `"John"`.
+- Mediul Lexical exterior este Mediul Lexical global. Acesta conține variabila `phrase` și funcția în sine.
 
-The inner Lexical Environment has a reference to the `outer` one.
+Mediul Lexical intern are o referință la cel `extern`.
 
-**When the code wants to access a variable -- the inner Lexical Environment is searched first, then the outer one, then the more outer one and so on until the global one.**
+**Când codul vrea să acceseze o variabilă -- se caută mai întâi Mediul Lexical interior, apoi cel exterior, apoi cel mai exterior și așa mai departe până la cel global.**
 
-If a variable is not found anywhere, that's an error in strict mode (without `use strict`, an assignment to a non-existing variable creates a new global variable, for compatibility with old code).
+Dacă o variabilă nu este găsită nicăieri, este o eroare în modul strict (fără `use strict`, o atribuire la o variabilă inexistentă creează o nouă variabilă globală, pentru compatibilitate cu codul vechi).
 
-In this example the search proceeds as follows:
+În acest exemplu căutarea se desfășoară după cum urmează:
 
-- For the `name` variable, the `alert` inside `say` finds it immediately in the inner Lexical Environment.
-- When it wants to access `phrase`, then there is no `phrase` locally, so it follows the reference to the outer Lexical Environment and finds it there.
+- Pentru variabila `name`, `alert` din `say` o găsește imediat în Mediul Lexical intern.
+- Când vrea să acceseze `phrase`, atunci nu există `phrase` la nivel local, așa că urmărește referința la Mediul Lexical exterior și o găsește acolo.
 
 ![lexical environment lookup](lexical-environment-simple-lookup.svg)
 
