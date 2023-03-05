@@ -98,9 +98,9 @@ alert(i); // Eroare, nu există o astfel de variabilă
 
 Vizual, `let i` se află în afara lui `{...}`. Dar construcția `for` este specială aici: variabila, declarată în interiorul ei, este considerată parte a blocului.
 
-## Funcții nested
+## Funcții imbricate
 
-O funcție este numită "nested" atunci când este creată în interiorul altei funcții.
+O funcție este numită "imbricată" atunci când este creată în interiorul altei funcții.
 
 Acest lucru este posibil cu ușurință în JavaScript.
 
@@ -109,7 +109,7 @@ Acest lucru este posibil cu ușurință în JavaScript.
 ```js
 function sayHiBye(firstName, lastName) {
 
-  // funcție helper nested de utilizat mai jos
+  // funcție helper imbricată pentru utilizat mai jos
   function getFullName() {
     return firstName + " " + lastName;
   }
@@ -120,9 +120,9 @@ function sayHiBye(firstName, lastName) {
 }
 ```
 
-Aici funcția *nested* `getFullName()` este făcută pentru conveniență. Aceasta poate accesa variabilele exterioare și astfel poate returna numele complet. Funcțiile nested sunt destul de frecvente în JavaScript.
+Aici funcția *imbricată* `getFullName()` este făcută pentru conveniență. Aceasta poate accesa variabilele exterioare și astfel poate returna numele complet. Funcțiile imbricate sunt destul de frecvente în JavaScript.
 
-Ceea ce este mult mai interesant, o funcție nested poate fi returnată: fie ca o proprietate a unui nou obiect ori ca un rezultat de sine stătător. Acesta poate fi apoi utilizat în altă parte. Indiferent unde, aceasta are în continuare acces la aceleași variabile exterioare.
+Ceea ce este mult mai interesant, o funcție imbricată poate fi returnată: fie ca o proprietate a unui nou obiect ori ca un rezultat de sine stătător. Acesta poate fi apoi utilizat în altă parte. Indiferent unde, aceasta are în continuare acces la aceleași variabile exterioare.
 
 Mai jos, `makeCounter` creează funcția "counter" care returnează următorul număr la fiecare invocare:
 
@@ -256,9 +256,9 @@ Dacă o variabilă nu este găsită nicăieri, este o eroare în modul strict (f
 ![lexical environment lookup](lexical-environment-simple-lookup.svg)
 
 
-### Step 4. Returning a function
+### Pasul 4. Returnarea unei funcții
 
-Let's return to the `makeCounter` example.
+Să ne întoarcem la exemplul `makeCounter`.
 
 ```js
 function makeCounter() {
@@ -272,42 +272,42 @@ function makeCounter() {
 let counter = makeCounter();
 ```
 
-At the beginning of each `makeCounter()` call, a new Lexical Environment object is created, to store variables for this `makeCounter` run.
+La începutul fiecărui apel `makeCounter()`, se creează un nou obiect Lexical Environment, pentru a stoca variabilele pentru această execuție `makeCounter`.
 
-So we have two nested Lexical Environments, just like in the example above:
+Astfel avem două Medii Lexicale imbricate, la fel ca în exemplul de mai sus:
 
 ![](closure-makecounter.svg)
 
-What's different is that, during the execution of `makeCounter()`, a tiny nested function is created of only one line: `return count++`. We don't run it yet, only create.
+Ceea ce este diferit este că, în timpul execuției `makeCounter()`, este creată o mică funcție imbricată de o singură linie: `return count++`. Nu o executăm încă, ci doar o creăm.
 
-All functions remember the Lexical Environment in which they were made. Technically, there's no magic here: all functions have the hidden property named `[[Environment]]`, that keeps the reference to the Lexical Environment where the function was created:
+Toate funcțiile își amintesc Mediul Lexical în care au fost create. Tehnic, nu există nici o magie aici: toate funcțiile au o proprietate ascunsă numită `[[Environment]]`, care păstrează referința spre Mediul Lexical în care a fost creată funcția:
 
 ![](closure-makecounter-environment.svg)
 
-So, `counter.[[Environment]]` has the reference to `{count: 0}` Lexical Environment. That's how the function remembers where it was created, no matter where it's called. The `[[Environment]]` reference is set once and forever at function creation time.
+Astfel, `counter.[[Environment]]` are referință spre Mediul Lexical `{count: 0}`. Așa este cum funcția își amintește unde a fost creată, indiferent unde este apelată. Referința `[[Environment]]` este setată o singură dată și pentru totdeauna la momentul creării funcției.
 
-Later, when `counter()` is called, a new Lexical Environment is created for the call, and its outer Lexical Environment reference is taken from `counter.[[Environment]]`:
+Ulterior, când `counter()` este apelat, un nou Mediu Lexical este creat pentru apel, iar referința exterioară a Mediului său Lexical este preluată din `counter.[[Environment]]`:
 
 ![](closure-makecounter-nested-call.svg)
 
-Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
+Acum, atunci când codul din interiorul lui `counter()` caută variabila `count`, caută mai întâi în propriul său Mediu Lexical (gol, deoarece nu există variabile locale acolo), apoi în Mediul Lexical al apelului exterior `makeCounter()`, unde o găsește și o modifică.
 
-**A variable is updated in the Lexical Environment where it lives.**
+**O variabilă este actualizată în Mediul Lexical în care trăiește.**
 
-Here's the state after the execution:
+Iată care este starea după execuție:
 
 ![](closure-makecounter-nested-call-2.svg)
 
-If we call `counter()` multiple times, the `count` variable will be increased to `2`, `3` and so on, at the same place.
+Dacă apelăm `counter()` de mai multe ori, variabila `count` va fi mărită la `2`, `3` și așa mai departe, în același loc.
 
 ```smart header="Closure"
-There is a general programming term "closure", that developers generally should know.
+Există un termen general de programare "closure", pe care dezvoltatorii ar trebui în general să-l cunoască.
 
-A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible, or a function should be written in a special way to make it happen. But as explained above, in JavaScript, all functions are naturally closures (there is only one exception, to be covered in <info:new-function>).
+Un [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) este o funcție care își amintește variabilele exterioare și le poate accesa. În unele limbaje, acest lucru nu este posibil, sau o funcție trebuie scrisă într-un mod special pentru a face acest lucru să se întâmple. Dar așa cum s-a explicat mai sus, în JavaScript, toate funcțiile sunt în mod natural closures (există o singură excepție, care va fi abordată în <info:new-function>).
 
-That is: they automatically remember where they were created using a hidden `[[Environment]]` property, and then their code can access outer variables.
+Adică: ele își amintesc automat unde au fost create cu ajutorul unei proprietăți ascunse `[[Environment]]`, iar apoi codul lor poate accesa variabilele exterioare.
 
-When on an interview, a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in JavaScript are closures, and maybe a few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
+Atunci când, la un interviu, un dezvoltator frontend primește o întrebare despre "ce este un closure?", un răspuns valid ar fi o definiție a closure-ului și o explicație că toate funcțiile din JavaScript sunt closure-uri, și poate câteva cuvinte în plus despre detalii tehnice: proprietatea `[[Environment]]` și cum funcționează Mediile Lexicale.
 ```
 
 ## Garbage collection
