@@ -310,15 +310,15 @@ Adică: ele își amintesc automat unde au fost create cu ajutorul unei propriet
 Atunci când, la un interviu, un dezvoltator frontend primește o întrebare despre "ce este un closure?", un răspuns valid ar fi o definiție a closure-ului și o explicație că toate funcțiile din JavaScript sunt closure-uri, și poate câteva cuvinte în plus despre detalii tehnice: proprietatea `[[Environment]]` și cum funcționează Mediile Lexicale.
 ```
 
-## Garbage collection
+## Colectarea gunoiului
 
-Usually, a Lexical Environment is removed from memory with all the variables after the function call finishes. That's because there are no references to it. As any JavaScript object, it's only kept in memory while it's reachable.
+De obicei, un Mediu Lexical este eliminat din memorie împreună cu toate variabilele după ce se termină apelul funcției. Acest lucru se datorează faptului că nu mai există referințe la acesta. Ca orice obiect JavaScript, este păstrat în memorie doar atât timp cât este accesibil.
 
-However, if there's a nested function that is still reachable after the end of a function, then it has `[[Environment]]` property that references the lexical environment.
+Cu toate acestea, dacă există o funcție imbricată care este încă accesibilă după terminarea unei funcții, atunci aceasta are proprietatea `[[Environment]]` care face referire la Mediul Lexical.
 
-In that case the Lexical Environment is still reachable even after the completion of the function, so it stays alive.
+În acel caz Mediul Lexical este încă accesibil chiar și după terminarea funcției, deci rămâne în viață.
 
-For example:
+De exemplu:
 
 ```js
 function f() {
@@ -329,11 +329,11 @@ function f() {
   }
 }
 
-let g = f(); // g.[[Environment]] stores a reference to the Lexical Environment
-// of the corresponding f() call
+let g = f(); // g.[[Environment]] stochează o referință la Mediul Lexical
+// al apelului f() corespunzător
 ```
 
-Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. In the code below, all 3 of them:
+Vă rugăm să notați că, dacă `f()` este apelat de multe ori, iar funcțiile rezultate sunt salvate, atunci toate obiectele corespunzătoare Mediului Lexical vor fi de asemenea păstrate în memorie. În codul de mai jos, toate cele 3:
 
 ```js
 function f() {
@@ -342,14 +342,14 @@ function f() {
   return function() { alert(value); };
 }
 
-// 3 functions in array, every one of them links to Lexical Environment
-// from the corresponding f() run
+// 3 funcții în matrice, fiecare dintre ele are legătură cu Mediul Lexical
+// de la execuția corespunzătoare f()
 let arr = [f(), f(), f()];
 ```
 
-A Lexical Environment object dies when it becomes unreachable (just like any other object). In other words, it exists only while there's at least one nested function referencing it.
+Un obiect Lexical Environment moare atunci când devine inaccesibil (la fel ca orice alt obiect). Cu alte cuvinte, acesta există doar atât timp cât există cel puțin o funcție imbricată care face referire la el.
 
-In the code below, after the nested function is removed, its enclosing Lexical Environment (and hence the `value`) is cleaned from memory:
+În codul de mai jos, după ce funcția imbricată este eliminată, Mediul Lexical care o înconjoară (și prin urmare `value`) este curățat din memorie:
 
 ```js
 function f() {
@@ -360,9 +360,9 @@ function f() {
   }
 }
 
-let g = f(); // while g function exists, the value stays in memory
+let g = f(); // cât timp există funcția g, valoarea rămâne în memorie
 
-g = null; // ...and now the memory is cleaned up
+g = null; // ...și acum memoria este curățată
 ```
 
 ### Real-life optimizations
