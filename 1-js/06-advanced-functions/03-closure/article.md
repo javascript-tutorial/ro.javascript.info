@@ -365,24 +365,24 @@ let g = f(); // cât timp există funcția g, valoarea rămâne în memorie
 g = null; // ...și acum memoria este curățată
 ```
 
-### Real-life optimizations
+### Optimizări în viața reală
 
-As we've seen, in theory while a function is alive, all outer variables are also retained.
+După cum am văzut, în teorie cât timp o funcție este activă, toate variabilele exterioare sunt de asemenea păstrate.
 
-But in practice, JavaScript engines try to optimize that. They analyze variable usage and if it's obvious from the code that an outer variable is not used -- it is removed.
+Dar în practică, motoarele JavaScript încearcă să optimizeze acest lucru. Ele analizează utilizarea variabilelor și dacă este evident din cod că o variabilă exterioară nu este utilizată -- aceasta este eliminată.
 
-**An important side effect in V8 (Chrome, Edge, Opera) is that such variable will become unavailable in debugging.**
+**Un efect secundar important în V8 (Chrome, Edge, Opera) este că o astfel de variabilă va deveni indisponibilă în depanare.**
 
-Try running the example below in Chrome with the Developer Tools open.
+Încercați să rulați exemplul de mai jos în Chrome cu Instrumente de dezvoltare deschise.
 
-When it pauses, in the console type `alert(value)`.
+Când se întrerupe, în consolă tastați `alert(value)`.
 
 ```js run
 function f() {
   let value = Math.random();
 
   function g() {
-    debugger; // in console: type alert(value); No such variable!
+    debugger; // în consolă: tastați alert(value); Nu există o astfel de variabilă!
   }
 
   return g;
@@ -392,18 +392,18 @@ let g = f();
 g();
 ```
 
-As you could see -- there is no such variable! In theory, it should be accessible, but the engine optimized it out.
+După cum ați putut vedea -- nu există o astfel de variabilă! În teorie, ar trebui să fie accesibilă, dar motorul a optimizat-o.
 
-That may lead to funny (if not such time-consuming) debugging issues. One of them -- we can see a same-named outer variable instead of the expected one:
+Acest lucru poate duce la probleme de depanare amuzante (dacă nu ar fi atât de consumatoare de timp). Una dintre ele -- putem vedea o variabilă exterioară cu același nume în locul celei așteptate:
 
 ```js run global
-let value = "Surprise!";
+let value = "Surpriză!";
 
 function f() {
-  let value = "the closest value";
+  let value = "cea mai apropiată valoare";
 
   function g() {
-    debugger; // in console: type alert(value); Surprise!
+    debugger; // în consolă: tastați alert(value); Surpriză!
   }
 
   return g;
@@ -413,6 +413,6 @@ let g = f();
 g();
 ```
 
-This feature of V8 is good to know. If you are debugging with Chrome/Edge/Opera, sooner or later you will meet it.
+Această caracteristică a V8 este bine de știut. Dacă faceți depanare cu Chrome/Edge/Opera, mai devreme sau mai târziu o veți întâlni.
 
-That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You can always check for it by running the examples on this page.
+Nu este o eroare a depanatorului, ci mai degrabă o caracteristică specială a V8. Poate că va fi schimbată cândva. Puteți oricând să o verificați rulând exemplele de pe această pagină.
