@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Which variables are available?
+# Ce variabile sunt disponibile?
 
-The function `makeWorker` below makes another function and returns it. That new function can be called from somewhere else.
+Funcția `makeWorker` de mai jos creează o altă funcție și o returnează. Această nouă funcție poate fi apelată din altă parte.
 
-Will it have access to the outer variables from its creation place, or the invocation place, or both?
+Va avea acces la variabilele exterioare de la locul de creare, de la locul de invocare, sau ambele?
 
 ```js
 function makeWorker() {
@@ -19,11 +19,11 @@ function makeWorker() {
 
 let name = "John";
 
-// create a function
+// creați o funcție
 let work = makeWorker();
 
-// call it
-work(); // what will it show?
+// apelați-o
+work(); // ce va arăta?
 ```
 
-Which value it will show? "Pete" or "John"?
+Ce valoare va arăta? "Pete" sau "John"?
