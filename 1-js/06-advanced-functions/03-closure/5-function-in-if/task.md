@@ -1,12 +1,12 @@
 importance: 5
 
 ---
-# Function in if
+# Funcție în if
 
-Look at the code. What will be the result of the call at the last line?
+Priviți codul. Care va fi rezultatul apelului de la ultima linie?
 
 ```js run
-let phrase = "Hello";
+let phrase = "Bună ziua";
 
 if (true) {
   let user = "John";
