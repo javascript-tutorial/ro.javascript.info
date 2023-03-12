@@ -3,8 +3,8 @@ function makeArmy() {
 
   let i = 0;
   while (i < 10) {
-    let shooter = function() { // shooter function
-      alert( i ); // should show its number
+    let shooter = function() { // funcția shooter
+      alert( i ); // ar trebui să arate numărul său
     };
     shooters.push(shooter);
     i++;
@@ -16,7 +16,7 @@ function makeArmy() {
 /*
 let army = makeArmy();
 
-army[0](); // the shooter number 0 shows 10
-army[5](); // and number 5 also outputs 10...
-// ... all shooters show 10 instead of their 0, 1, 2, 3...
+army[0](); // numărul shooter 0 arată 10
+army[5](); // și numărul 5 de asemeni produce 10...
+// ... toți shooters arată 10 în loc de 0, 1, 2, 3...
 */
