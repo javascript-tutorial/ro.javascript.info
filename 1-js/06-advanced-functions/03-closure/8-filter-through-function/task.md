@@ -2,24 +2,24 @@ importance: 5
 
 ---
 
-# Filter through function
+# Filtrează printr-o funcție
 
-We have a built-in method `arr.filter(f)` for arrays. It filters all elements through the function `f`. If it returns `true`, then that element is returned in the resulting array.
+Avem o metodă încorporată `arr.filter(f)` pentru matrici. Aceasta filtrează toate elementele prin intermediul funcției `f`. Dacă returnează `true`, atunci elementul respectiv este returnat în matricea rezultată.
 
-Make a set of "ready to use" filters:
+Creați un set de filtre "gata de utilizare":
 
-- `inBetween(a, b)` -- between `a` and `b` or equal to them (inclusively).
-- `inArray([...])` -- in the given array.
+- `inBetween(a, b)` -- între `a` și `b` sau egal cu ele (inclusiv).
+- `inArray([...])` -- în matricea dată.
 
-The usage must be like this:
+Modul de utilizare trebuie să fie următorul:
 
-- `arr.filter(inBetween(3,6))` -- selects only values between 3 and 6.
-- `arr.filter(inArray([1,2,3]))` -- selects only elements matching with one of the members of `[1,2,3]`.
+- `arr.filter(inBetween(3,6))` -- selectează numai valorile cuprinse între 3 și 6.
+- `arr.filter(inArray([1,2,3]))` -- selectează numai elementele care se potrivesc cu unul dintre membrii din `[1,2,3]`.
 
-For instance:
+De exemplu:
 
 ```js
-/* .. your code for inBetween and inArray */
+/* ... codul dvs. pentru inBetween și inArray */
 let arr = [1, 2, 3, 4, 5, 6, 7];
 
 alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6

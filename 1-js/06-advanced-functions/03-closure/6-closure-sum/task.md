@@ -2,13 +2,13 @@ importance: 4
 
 ---
 
-# Sum with closures
+# Însumare prin closure
 
-Write function `sum` that works like this: `sum(a)(b) = a+b`.
+Scrieți funcția `sum` care funcționează astfel: `sum(a)(b) = a+b`.
 
-Yes, exactly this way, using double parentheses (not a mistype).
+Da, exact în acest fel, folosind paranteze duble (nu este o greșeală de scriere).
 
-For instance:
+De exemplu:
 
 ```js
 sum(1)(2) = 3

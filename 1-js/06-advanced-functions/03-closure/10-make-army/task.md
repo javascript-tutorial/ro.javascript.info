@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Army of functions
+# Armata de funcții
 
-The following code creates an array of `shooters`.
+Următorul cod creează o matrice de `shooters`.
 
-Every function is meant to output its number. But something is wrong...
+Fiecare funcție este menită să emită numărul său. Dar ceva nu este în regulă...
 
 ```js run
 function makeArmy() {
@@ -14,28 +14,28 @@ function makeArmy() {
 
   let i = 0;
   while (i < 10) {
-    let shooter = function() { // create a shooter function,
-      alert( i ); // that should show its number
+    let shooter = function() { // crează o funcție shooter,
+      alert( i ); // care ar trebui să arate numărul său
     };
-    shooters.push(shooter); // and add it to the array
+    shooters.push(shooter); // și adăugați-l la matrice
     i++;
   }
 
-  // ...and return the array of shooters
+  // ...și returnează matricea de shooters
   return shooters;
 }
 
 let army = makeArmy();
 
 *!*
-// all shooters show 10 instead of their numbers 0, 1, 2, 3...
-army[0](); // 10 from the shooter number 0
-army[1](); // 10 from the shooter number 1
-army[2](); // 10 ...and so on.
+// toți shooters arată 10 în loc de numerele lor 0, 1, 2, 3...
+army[0](); // 10 de la shooter cu numărul 0
+army[1](); // 10 de la shooter cu numărul 1
+army[2](); // 10 ...și așa mai departe.
 */!*
 ```
 
-Why do all of the shooters show the same value? 
+De ce toți shooters arată aceeași valoare? 
 
-Fix the code so that they work as intended.
+Remediați codul astfel încât acestea să funcționeze așa cum a fost intenționat.
 

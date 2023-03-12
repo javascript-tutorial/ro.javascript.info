@@ -2,9 +2,9 @@ importance: 4
 
 ---
 
-# Is variable visible?
+# Este variabila vizibilă?
 
-What will be the result of this code?
+Care va fi rezultatul acestui cod?
 
 ```js
 let x = 1;
@@ -18,4 +18,4 @@ function func() {
 func();
 ```
 
-P.S. There's a pitfall in this task. The solution is not obvious.
+P.S. Există o capcană în această sarcină. Soluția nu este evidentă.

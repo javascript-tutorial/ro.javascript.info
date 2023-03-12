@@ -2,22 +2,22 @@ importance: 5
 
 ---
 
-# Does a function pickup latest changes?
+# Preia o funcție ultimele modificări?
 
-The function sayHi uses an external variable name. When the function runs, which value is it going to use?
+Funcția sayHi folosește un nume de variabilă externă. Când funcția se execută, ce valoare va folosi?
 
 ```js
 let name = "John";
 
 function sayHi() {
-  alert("Hi, " + name);
+  alert("Salut, " + name);
 }
 
 name = "Pete";
 
-sayHi(); // what will it show: "John" or "Pete"?
+sayHi(); // ce va afișa: "John" sau "Pete"?
 ```
 
-Such situations are common both in browser and server-side development. A function may be scheduled to execute later than it is created, for instance after a user action or a network request.
+Astfel de situații sunt frecvente atât în browser cât și în dezvoltarea pe partea de server. O funcție poate fi programată pentru a fi executată mai târziu decât este creată, de exemplu după o acțiune a utilizatorului sau după o cerere de rețea.
 
-So, the question is: does it pick up the latest changes?
+Așadar, întrebarea este: preia cele mai recente modificări?

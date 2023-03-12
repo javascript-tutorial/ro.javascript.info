@@ -1,12 +1,12 @@
-For the second parentheses to work, the first ones must return a function.
+Pentru ca a doua paranteză să funcționeze, prima trebuie să returneze o funcție.
 
-Like this:
+Astfel:
 
 ```js run
 function sum(a) {
 
   return function(b) {
-    return a + b; // takes "a" from the outer lexical environment
+    return a + b; // preia "a" din mediul lexical exterior
   };
 
 }

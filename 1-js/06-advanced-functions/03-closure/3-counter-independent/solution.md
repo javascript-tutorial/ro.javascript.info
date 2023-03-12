@@ -1,5 +1,5 @@
-The answer: **0,1.**
+Răspunsul: **0,1.**
 
-Functions `counter` and `counter2` are created by different invocations of `makeCounter`.
+Funcțiile `counter` și `counter2` sunt create prin invocări diferite ale lui `makeCounter`.
 
-So they have independent outer Lexical Environments, each one has its own `count`.
+Deci ele au Medii Lexicale exterioare independente, fiecare având propriul `count`.

@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Counter object
+# Obiect contor
 
-Here a counter object is made with the help of the constructor function.
+Aici se creează un obiect contor cu ajutorul funcției constructor.
 
-Will it work? What will it show?
+Va funcționa? Ce va arăta?
 
 ```js
 function Counter() {

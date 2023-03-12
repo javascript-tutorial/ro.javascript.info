@@ -1,5 +1,5 @@
-The answer is: **Pete**.
+Răspunsul este: **Pete**.
 
-A function gets outer variables as they are now, it uses the most recent values.
+O funcție primește variabilele exterioare așa cum sunt ele acum, folosește cele mai recente valori.
 
-Old variable values are not saved anywhere. When a function wants a variable, it takes the current value from its own Lexical Environment or the outer one.
+Valorile vechi ale variabilelor nu sunt salvate nicăieri. Atunci când o funcție dorește o variabilă, aceasta ia valoarea curentă din propriul mediu lexical sau din cel extern.
