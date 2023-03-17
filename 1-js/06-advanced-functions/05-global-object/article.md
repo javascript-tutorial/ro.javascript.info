@@ -1,61 +1,61 @@
 
-# Global object
+# Obiect global
 
-The global object provides variables and functions that are available anywhere. By default, those that are built into the language or the environment.
+Obiectul global oferă variabile și funcții care sunt disponibile oriunde. În mod implicit, cele care sunt încorporate în limbaj sau în mediu.
 
-In a browser it is named `window`, for Node.js it is `global`, for other environments it may have another name.
+Într-un browser se numește `window`, pentru Node.js este `global`, iar pentru alte medii poate avea un alt nume.
 
-Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major browsers.
+Recent, `globalThis` a fost adăugat în limbaj, ca un nume standardizat pentru un obiect global, care ar trebui să fie acceptat în toate mediile. Este suportat în toate browserele majore.
 
-We'll use `window` here, assuming that our environment is a browser. If your script may run in other environments, it's better to use `globalThis` instead.
+Vom folosi `window` aici, presupunând că mediul nostru este un browser. Dacă scriptul dvs. ar poate rula în alte medii, este mai bine să folosiți `globalThis` în schimb.
 
-All properties of the global object can be accessed directly:
+Toate proprietățile obiectului global pot fi accesate direct:
 
 ```js run
-alert("Hello");
-// is the same as
-window.alert("Hello");
+alert("Bună ziua");
+// este la fel ca
+window.alert("Bună ziua");
 ```
 
-In a browser, global functions and variables declared with `var` (not `let/const`!) become the property of the global object:
+Într-un browser, funcțiile și variabilele globale declarate cu `var` (nu cu `let/const`!) devin proprietatea obiectului global:
 
 ```js run untrusted refresh
 var gVar = 5;
 
-alert(window.gVar); // 5 (became a property of the global object)
+alert(window.gVar); // 5 (a devenit o proprietate a obiectului global)
 ```
 
-Function declarations have the same effect (statements with `function` keyword in the main code flow, not function expressions).
+Declarațiile de funcții au același efect (declarații folosind cuvântul cheie `function` în fluxul principal de cod, nu expresii de funcții).
 
-Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such a thing doesn't happen.
+Vă rugăm să nu vă bazați pe asta! Acest comportament există din motive de compatibilitate. Scripturile moderne folosesc [module JavaScript](info:modules) unde nu se întâmplă așa ceva.
 
-If we used `let` instead, such thing wouldn't happen:
+Dacă am folosi în schimb `let`, un astfel de lucru nu s-ar întâmpla:
 
 ```js run untrusted refresh
 let gLet = 5;
 
-alert(window.gLet); // undefined (doesn't become a property of the global object)
+alert(window.gLet); // undefined (nu devine o proprietate a obiectului global)
 ```
 
-If a value is so important that you'd like to make it available globally, write it directly as a property:
+Dacă o valoare este atât de importantă încât doriți să o faceți disponibilă la nivel global, scrieți-o direct ca o proprietate:
 
 ```js run
 *!*
-// make current user information global, to let all scripts access it
+// face informațiile despre utilizatorul curent globale, pentru a lăsa toate scripturile să le acceseze
 window.currentUser = {
   name: "John"
 };
 */!*
 
-// somewhere else in code
+// în altă parte în cod
 alert(currentUser.name);  // John
 
-// or, if we have a local variable with the name "currentUser"
-// get it from window explicitly (safe!)
+// sau, dacă avem o variabilă locală cu numele "currentUser"
+// luați-o din window în mod explicit (sigur!)
 alert(window.currentUser.name); // John
 ```
 
-That said, using global variables is generally discouraged. There should be as few global variables as possible. The code design where a function gets "input" variables and produces certain "outcome" is clearer, less prone to errors and easier to test than if it uses outer or global variables.
+Acestea fiind spuse, utilizarea variabilelor globale este în general descurajată. Ar trebui să fie cât mai puține variabile globale pe cât posibil. Proiectarea codului în care o funcție primește variabile de "intrare" și produce un anumit "rezultat" este mai clară, mai puțin predispusă la erori și mai ușor de testat decât în cazul în care folosește variabile exterioare sau globale.
 
 ## Using for polyfills
 
