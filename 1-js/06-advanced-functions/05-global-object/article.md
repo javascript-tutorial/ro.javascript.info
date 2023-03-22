@@ -57,33 +57,33 @@ alert(window.currentUser.name); // John
 
 Acestea fiind spuse, utilizarea variabilelor globale este în general descurajată. Ar trebui să fie cât mai puține variabile globale pe cât posibil. Proiectarea codului în care o funcție primește variabile de "intrare" și produce un anumit "rezultat" este mai clară, mai puțin predispusă la erori și mai ușor de testat decât în cazul în care folosește variabile exterioare sau globale.
 
-## Using for polyfills
+## Utilizarea pentru polyfills
 
-We use the global object to test for support of modern language features.
+Utilizăm obiectul global pentru a testa suportul caracteristicilor moderne ale limbajului.
 
-For instance, test if a built-in `Promise` object exists (it doesn't in really old browsers):
+De exemplu, testăm dacă există un obiect `Promise` încorporat (nu există în browserele foarte vechi):
 ```js run
 if (!window.Promise) {
   alert("Your browser is really old!");
 }
 ```
 
-If there's none (say, we're in an old browser), we can create "polyfills": add functions that are not supported by the environment, but exist in the modern standard.
+Dacă nu există (să spunem că ne aflăm într-un browser vechi), putem crea "polyfills": adăugăm funcții care nu sunt acceptate de mediul respectiv, dar care există în standardul modern.
 
 ```js run
 if (!window.Promise) {
-  window.Promise = ... // custom implementation of the modern language feature
+  window.Promise = ... // implementare personalizată a funcției de limbaj modern
 }
 ```
 
-## Summary
+## Sumar
 
-- The global object holds variables that should be available everywhere.
+- Obiectul global deține variabile care ar trebui să fie disponibile peste tot.
 
-    That includes JavaScript built-ins, such as `Array` and environment-specific values, such as `window.innerHeight` -- the window height in the browser.
-- The global object has a universal name `globalThis`.
+    Aceasta include integrări JavaScript, cum ar fi `Array` și valorile specifice mediului, cum ar fi `window.innerHeight` -- înălțimea ferestrei în browser.
+- Obiectul global are un nume universal `globalThis`.
 
-    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js).
-- We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
-- In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
-- To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.
+    ...Dar cel mai adesea este menționat prin nume "old-school" specifice mediului, cum ar fi `window` (browser) și `global` (Node.js).
+- Ar trebui să stocăm valori în obiectul global numai dacă acestea sunt cu adevărat globale pentru proiectul nostru. Și să păstrăm numărul lor la minim.
+- În browser, cu excepția cazului în care folosim [module](info:modules), funcțiile și variabilele globale declarate cu `var` devin o proprietate a obiectului global.
+- Pentru a face codul nostru rezistent pe viitor și mai ușor de înțeles, ar trebui să accesăm direct proprietățile obiectului global, ca `window.x`.
