@@ -77,32 +77,32 @@ setTimeout(sayHi(), 1000);
 Asta nu va funcționa, deoarece `setTimeout` se așteaptă la o referință spre o funcție. Iar aici `sayHi()` rulează funcția, iar *rezultatul execuției sale* este trecut la `setTimeout`. În cazul nostru, rezultatul lui `sayHi()` este `undefined` (funcția nu returnează nimic), deci nu se planifică nimic.
 ````
 
-### Canceling with clearTimeout
+### Anulare cu clearTimeout
 
-A call to `setTimeout` returns a "timer identifier" `timerId` that we can use to cancel the execution.
+Un apel la `setTimeout` returnează un "identificator de temporizator" `timerId` pe care îl putem folosi pentru a anula execuția.
 
-The syntax to cancel:
+Sintaxa de anulare:
 
 ```js
 let timerId = setTimeout(...);
 clearTimeout(timerId);
 ```
 
-In the code below, we schedule the function and then cancel it (changed our mind). As a result, nothing happens:
+În codul de mai jos, planificăm funcția și apoi o anulăm (ne-am răzgândit). Ca urmare, nu se întâmplă nimic:
 
 ```js run no-beautify
-let timerId = setTimeout(() => alert("never happens"), 1000);
-alert(timerId); // timer identifier
+let timerId = setTimeout(() => alert("nu se întâmplă niciodată"), 1000);
+alert(timerId); // identificatorul temporizatorului
 
 clearTimeout(timerId);
-alert(timerId); // same identifier (doesn't become null after canceling)
+alert(timerId); // același identificator (nu devine nul după anulare)
 ```
 
-As we can see from `alert` output, in a browser the timer identifier is a number. In other environments, this can be something else. For instance, Node.js returns a timer object with additional methods.
+După cum se poate observa din ieșirea `alert`, într-un browser identificatorul temporizatorului este un număr. În alte medii, acesta poate fi altceva. De exemplu, Node.js returnează un obiect timer cu metode suplimentare.
 
-Again, there is no universal specification for these methods, so that's fine.
+Din nou, nu există o specificație universală pentru aceste metode, așa că este în regulă.
 
-For browsers, timers are described in the [timers section](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) of HTML Living Standard.
+Pentru browsere, temporizatoarele sunt descrise în [secțiunea timers](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) din HTML Living Standard.
 
 ## setInterval
 
