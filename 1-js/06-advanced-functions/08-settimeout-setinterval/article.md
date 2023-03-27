@@ -106,40 +106,40 @@ Pentru browsere, temporizatoarele sunt descrise în [secțiunea timers](https://
 
 ## setInterval
 
-The `setInterval` method has the same syntax as `setTimeout`:
+Metoda `setInterval` are aceeași sintaxă ca și `setTimeout`:
 
 ```js
-let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)
+let timerId = setInterval(func|cod, [întârziere], [arg1], [arg2], ...)
 ```
 
-All arguments have the same meaning. But unlike `setTimeout` it runs the function not only once, but regularly after the given interval of time.
+Toate argumentele au aceeași semnificație. Dar spre deosebire de `setTimeout` acesta rulează funcția nu doar o singură dată, ci în mod regulat după intervalul de timp dat.
 
-To stop further calls, we should call `clearInterval(timerId)`.
+Pentru a opri apelurile ulterioare, ar trebui să apelăm `clearInterval(timerId)`.
 
-The following example will show the message every 2 seconds. After 5 seconds, the output is stopped:
+Următorul exemplu va afișa mesajul la fiecare 2 secunde. După 5 secunde, ieșirea este oprită:
 
 ```js run
-// repeat with the interval of 2 seconds
-let timerId = setInterval(() => alert('tick'), 2000);
+// se repetă cu intervalul de 2 secunde
+let timerId = setInterval(() => alert('tic'), 2000);
 
-// after 5 seconds stop
+// după 5 secunde se oprește
 setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
 ```
 
-```smart header="Time goes on while `alert` is shown"
-In most browsers, including Chrome and Firefox the internal timer continues "ticking" while showing `alert/confirm/prompt`.
+```smart header="Timpul continuă cât este afișat `alert`"
+În majoritatea browserelor, inclusiv Chrome și Firefox, cronometrul intern continuă să "ticăie" în timp ce se afișează `alert/confirm/prompt`.
 
-So if you run the code above and don't dismiss the `alert` window for some time, then the next `alert` will be shown immediately as you do it. The actual interval between alerts will be shorter than 2 seconds.
+Deci dacă executați codul de mai sus și nu închideți fereastra `alert` pentru o perioadă de timp, atunci următorul `alert` va fi afișat imediat ce o faceți. Intervalul real dintre alerte va fi mai scurt de 2 secunde.
 ```
 
-## Nested setTimeout
+## setTimeout inbricat
 
-There are two ways of running something regularly.
+Există două modalități de a rula ceva în mod regulat.
 
-One is `setInterval`. The other one is a nested `setTimeout`, like this:
+Una dintre ele este `setInterval`. Cealaltă este un `setTimeout` imbricate, ca acesta:
 
 ```js
-/** instead of:
+/** în loc de:
 let timerId = setInterval(() => alert('tick'), 2000);
 */
 
@@ -151,11 +151,11 @@ let timerId = setTimeout(function tick() {
 }, 2000);
 ```
 
-The `setTimeout` above schedules the next call right at the end of the current one `(*)`.
+`setTimeout` de mai sus planifică următorul apel chiar la sfârșitul celui curent `(*)`.
 
-The nested `setTimeout` is a more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
+Metoda imbricată `setTimeout` este mai flexibilă decât `setInterval`. În acest fel următorul apel poate fi planificat diferit, în funcție de rezultatele apelului curent.
 
-For instance, we need to write a service that sends a request to the server every 5 seconds asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
+De exemplu, trebuie să scriem un serviciu care să trimită o solicitare către server la fiecare 5 secunde pentru a cere date, dar în cazul în care serverul este supraîncărcat, ar trebui să crească intervalul la 10, 20, 40 de secunde...
 
 Here's the pseudocode:
 ```js
