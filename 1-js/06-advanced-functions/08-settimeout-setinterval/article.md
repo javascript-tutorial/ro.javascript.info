@@ -157,7 +157,7 @@ Metoda imbricată `setTimeout` este mai flexibilă decât `setInterval`. În ace
 
 De exemplu, trebuie să scriem un serviciu care să trimită o solicitare către server la fiecare 5 secunde pentru a cere date, dar în cazul în care serverul este supraîncărcat, ar trebui să crească intervalul la 10, 20, 40 de secunde...
 
-Here's the pseudocode:
+Iată pseudocodul:
 ```js
 let delay = 5000;
 
@@ -165,7 +165,7 @@ let timerId = setTimeout(function request() {
   ...send request...
 
   if (request failed due to server overload) {
-    // increase the interval to the next run
+    // crește intervalul până la următoarea execuție
     delay *= 2;
   }
 
@@ -175,11 +175,11 @@ let timerId = setTimeout(function request() {
 ```
 
 
-And if the functions that we're scheduling are CPU-hungry, then we can measure the time taken by the execution and plan the next call sooner or later.
+Iar dacă funcțiile pe care le planificăm sunt mari consumatoare de CPU, atunci putem măsura timpul de execuție și putem planifica următorul apel mai devreme sau mai târziu.
 
-**Nested `setTimeout` allows to set the delay between the executions more precisely than `setInterval`.**
+**`setTimeout`-ul imbricat permite stabilirea întârzierii dintre execuții mai precis decât `setInterval`.**
 
-Let's compare two code fragments. The first one uses `setInterval`:
+Să comparăm două fragmente de cod. Primul utilizează `setInterval`:
 
 ```js
 let i = 1;
@@ -188,7 +188,7 @@ setInterval(function() {
 }, 100);
 ```
 
-The second one uses nested `setTimeout`:
+Al doilea utilizează `setTimeout` imbricat:
 
 ```js
 let i = 1;
@@ -198,41 +198,41 @@ setTimeout(function run() {
 }, 100);
 ```
 
-For `setInterval` the internal scheduler will run `func(i++)` every 100ms:
+Pentru `setInterval` planificatorul intern va rula `func(i++)` la fiecare 100 ms:
 
 ![](setinterval-interval.svg)
 
-Did you notice?
+Ați observat?
 
-**The real delay between `func` calls for `setInterval` is less than in the code!**
+**Întârzierea reală între apelurile `func` pentru `setInterval` este mai mică decât în cod!**
 
-That's normal, because the time taken by `func`'s execution "consumes" a part of the interval.
+Este normal, pentru că timpul ocupat de execuția lui `func` "consumă" o parte din interval.
 
-It is possible that `func`'s execution turns out to be longer than we expected and takes more than 100ms.
+Este posibil ca execuția lui `func` să se dovedească a fi mai lungă decât ne așteptam și să dureze mai mult de 100ms.
 
-In this case the engine waits for `func` to complete, then checks the scheduler and if the time is up, runs it again *immediately*.
+În acest caz motorul așteaptă ca `func` să se termine, apoi verifică planificatorul și dacă timpul a expirat, îl rulează din nou *imediat*.
 
-In the edge case, if the function always executes longer than `delay` ms, then the calls will happen without a pause at all.
+În cazul marginal, dacă funcția se execută întotdeauna mai îndelungat decât `delay` ms, atunci apelurile se vor întâmpla fără nicio pauză.
 
-And here is the picture for the nested `setTimeout`:
+Și iată imaginea pentru `setTimeout` imbricat:
 
 ![](settimeout-interval.svg)
 
-**The nested `setTimeout` guarantees the fixed delay (here 100ms).**
+**`setTimeout`-ul imbricat garantează întârzierea fixă (aici 100ms).**
 
-That's because a new call is planned at the end of the previous one.
+Asta pentru că un nou apel este planificat la sfârșitul celui precedent.
 
-````smart header="Garbage collection and setInterval/setTimeout callback"
-When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function from being garbage collected, even if there are no other references to it.
+````smart header="Colectarea gunoiului și callback-ul setInterval/setTimeout"
+Atunci când o funcție este predată în `setInterval/setTimeout`, este creată o referință internă la aceasta și salvată în planificator. Aceasta previne ca funcția să fie colectată la gunoi, chiar dacă nu există alte referințe la ea.
 
 ```js
-// the function stays in memory until the scheduler calls it
+// funcția rămâne în memorie până când planificatorul o apelează
 setTimeout(function() {...}, 100);
 ```
 
-For `setInterval` the function stays in memory until `clearInterval` is called.
+Pentru `setInterval`, funcția rămâne în memorie până când este apelată `clearInterval`.
 
-There's a side effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function anymore, it's better to cancel it, even if it's very small.
+Există un efect secundar. O funcție face referire la mediul lexical extern, astfel încât, în timp ce ea trăiește, trăiesc și variabilele externe. Acestea pot ocupa mult mai multă memorie decât funcția însăși. Deci atunci când nu mai avem nevoie de funcția programată, este mai bine să o anulăm, chiar dacă este foarte mică.
 ````
 
 ## Zero delay setTimeout
