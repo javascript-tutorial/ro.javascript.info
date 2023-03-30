@@ -235,15 +235,15 @@ Pentru `setInterval`, funcția rămâne în memorie până când este apelată `
 Există un efect secundar. O funcție face referire la mediul lexical extern, astfel încât, în timp ce ea trăiește, trăiesc și variabilele externe. Acestea pot ocupa mult mai multă memorie decât funcția însăși. Deci atunci când nu mai avem nevoie de funcția programată, este mai bine să o anulăm, chiar dacă este foarte mică.
 ````
 
-## Zero delay setTimeout
+## setTimeout cu Întârziere zero
 
-There's a special use case: `setTimeout(func, 0)`, or just `setTimeout(func)`.
+Există un caz special de utilizare: `setTimeout(func, 0)`, sau doar `setTimeout(func)`.
 
-This schedules the execution of `func` as soon as possible. But the scheduler will invoke it only after the currently executing script is complete.
+Acest lucru planifică execuția lui `func` cât mai curând posibil. Dar planificatorul îl va invoca numai după ce scriptul în curs de execuție este finalizat.
 
-So the function is scheduled to run "right after" the current script.
+Astfel funcția este planifică să se execute "imediat după" scriptul curent.
 
-For instance, this outputs "Hello", then immediately "World":
+De exemplu, aceasta produce "Hello", apoi imediat "World":
 
 ```js run
 setTimeout(() => alert("World"));
@@ -251,37 +251,37 @@ setTimeout(() => alert("World"));
 alert("Hello");
 ```
 
-The first line "puts the call into calendar after 0ms". But the scheduler will only "check the calendar" after the current script is complete, so `"Hello"` is first, and `"World"` -- after it.
+Prima linie "pune apelul în calendar după 0ms". Dar planificatorul va "verifica calendarul" numai după ce scriptul curent este finalizat, așa că `"Hello"` este primul, iar `"World"` -- după el.
 
-There are also advanced browser-related use cases of zero-delay timeout, that we'll discuss in the chapter <info:event-loop>.
+Există de asemenea cazuri avansate de utilizare a timeout-ului cu întârziere zero legate de browser, pe care le vom discuta în capitolul <info:event-loop>.
 
-````smart header="Zero delay is in fact not zero (in a browser)"
-In the browser, there's a limitation of how often nested timers can run. The [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
+````smart header="Întârzierea zero nu este de fapt zero (într-un browser)"
+În browser, este o limitare pentru cât de des pot rula temporizatoarele imbricate. [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) spune: "după cinci temporizatoare imbricate, intervalul este forțat să fie de cel puțin 4 milisecunde.".
 
-Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
+Să demonstrăm ce înseamnă acest lucru cu exemplul de mai jos. Apelul `setTimeout` cuprins în el se reprogramează singur cu întârziere zero. Fiecare apel reține întârzierea reală din cel precedent în matricea `times`. Cum arată întârzierile reale? Să vedem:
 
 ```js run
 let start = Date.now();
 let times = [];
 
 setTimeout(function run() {
-  times.push(Date.now() - start); // remember delay from the previous call
+  times.push(Date.now() - start); // ține minte întârzierea de la apelul anterior
 
-  if (start + 100 < Date.now()) alert(times); // show the delays after 100ms
-  else setTimeout(run); // else re-schedule
+  if (start + 100 < Date.now()) alert(times); // arată întârzierile după 100ms
+  else setTimeout(run); // else replanifică
 });
 
-// an example of the output:
+// un exemplu de ieșire:
 // 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
 ```
 
-First timers run immediately (just as written in the spec), and then we see `9, 15, 20, 24...`. The 4+ ms obligatory delay between invocations comes into play.
+Primele temporizatoare se execută imediat (așa cum este scris în specificație), iar apoi vedem `9, 15, 20, 24...`. Intră în joc întârzierea obligatorie de 4+ ms între invocări.
 
-The similar thing happens if we use `setInterval` instead of `setTimeout`: `setInterval(f)` runs `f` few times with zero-delay, and afterwards with 4+ ms delay.
+Un lucru similar se întâmplă dacă folosim `setInterval` în loc de `setTimeout`: `setInterval(f)` rulează `f` de câteva ori cu întârziere zero, iar apoi cu întârziere de 4+ ms.
 
-That limitation comes from ancient times and many scripts rely on it, so it exists for historical reasons.
+Această limitare provine din timpuri străvechi și multe scripturi se bazează pe ea, așa că există din motive istorice.
 
-For server-side JavaScript, that limitation does not exist, and there exist other ways to schedule an immediate asynchronous job, like [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) for Node.js. So this note is browser-specific.
+Pentru JavaScript pe server, această limitare nu există și există alte modalități de a programa o sarcină asincronă imediată, cum ar fi [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) pentru Node.js. Deci această notă este specifică browserului.
 ````
 
 ## Summary
