@@ -232,7 +232,7 @@ setTimeout(function() {...}, 100);
 
 Pentru `setInterval`, funcția rămâne în memorie până când este apelată `clearInterval`.
 
-Există un efect secundar. O funcție face referire la mediul lexical extern, astfel încât, în timp ce ea trăiește, trăiesc și variabilele externe. Acestea pot ocupa mult mai multă memorie decât funcția însăși. Deci atunci când nu mai avem nevoie de funcția programată, este mai bine să o anulăm, chiar dacă este foarte mică.
+Există un efect secundar. O funcție face referire la mediul lexical extern, astfel încât, în timp ce ea trăiește, trăiesc și variabilele externe. Acestea pot ocupa mult mai multă memorie decât funcția însăși. Deci atunci când nu mai avem nevoie de funcția planificată, este mai bine să o anulăm, chiar dacă este foarte mică.
 ````
 
 ## setTimeout cu Întârziere zero
@@ -258,7 +258,7 @@ Există de asemenea cazuri avansate de utilizare a timeout-ului cu întârziere 
 ````smart header="Întârzierea zero nu este de fapt zero (într-un browser)"
 În browser, este o limitare pentru cât de des pot rula temporizatoarele imbricate. [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) spune: "după cinci temporizatoare imbricate, intervalul este forțat să fie de cel puțin 4 milisecunde.".
 
-Să demonstrăm ce înseamnă acest lucru cu exemplul de mai jos. Apelul `setTimeout` cuprins în el se reprogramează singur cu întârziere zero. Fiecare apel reține întârzierea reală din cel precedent în matricea `times`. Cum arată întârzierile reale? Să vedem:
+Să demonstrăm ce înseamnă acest lucru cu exemplul de mai jos. Apelul `setTimeout` cuprins în el se replanifică singur cu întârziere zero. Fiecare apel reține întârzierea reală din cel precedent în matricea `times`. Cum arată întârzierile reale? Să vedem:
 
 ```js run
 let start = Date.now();
@@ -281,22 +281,22 @@ Un lucru similar se întâmplă dacă folosim `setInterval` în loc de `setTimeo
 
 Această limitare provine din timpuri străvechi și multe scripturi se bazează pe ea, așa că există din motive istorice.
 
-Pentru JavaScript pe server, această limitare nu există și există alte modalități de a programa o sarcină asincronă imediată, cum ar fi [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) pentru Node.js. Deci această notă este specifică browserului.
+Pentru JavaScript pe server, această limitare nu există și există alte modalități de a planifica o sarcină asincronă imediată, cum ar fi [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) pentru Node.js. Deci această notă este specifică browserului.
 ````
 
-## Summary
+## Sumar
 
-- Methods `setTimeout(func, delay, ...args)` and `setInterval(func, delay, ...args)` allow us to run the `func` once/regularly after `delay` milliseconds.
-- To cancel the execution, we should call `clearTimeout/clearInterval` with the value returned by `setTimeout/setInterval`.
-- Nested `setTimeout` calls are a more flexible alternative to `setInterval`, allowing us to set the time *between* executions more precisely.
-- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current script is complete".
-- The browser limits the minimal delay for five or more nested calls of `setTimeout` or for `setInterval` (after 5th call) to 4ms. That's for historical reasons.
+- Metodele `setTimeout(func, delay, ...args)` și `setInterval(func, delay, ...args)` ne permit să rulăm `func` o dată/regulat după `delay` milisecunde.
+- Pentru a anula execuția, ar trebui să apelăm `clearTimeout/clearInterval` cu valoarea returnată de `setTimeout/setInterval`.
+- Apelurile `setTimeout` imbricate reprezintă o alternativă mai flexibilă la `setInterval`, permițându-ne să setăm mai precis timpul *între* execuții.
+- Planificarea cu întârziere zero prin `setTimeout(func, 0)` (la fel ca `setTimeout(func)`) este utilizată pentru a programa apelul "cât mai curând posibil, dar după ce scriptul curent este finalizat".
+- Browserul limitează întârzierea minimă pentru cinci sau mai multe apeluri imbricate ale `setTimeout` sau pentru `setInterval` (după al cincilea apel) la 4ms. Asta din motive istorice.
 
-Please note that all scheduling methods do not *guarantee* the exact delay.
+Vă rugăm să rețineți că toate metodele de planificare nu *garantează* întârzierea exactă.
 
-For example, the in-browser timer may slow down for a lot of reasons:
-- The CPU is overloaded.
-- The browser tab is in the background mode.
-- The laptop is on battery saving mode.
+De exemplu, temporizatorul din browser poate încetini din multe motive:
+- Procesorul este suprasolicitat.
+- Tab-ul browserului este în fundal.
+- Laptopul este în modul de economisire a bateriei.
 
-All that may increase the minimal timer resolution (the minimal delay) to 300ms or even 1000ms depending on the browser and OS-level performance settings.
+Toate acestea pot crește rezoluția minimă a temporizatorului (întârzierea minimă) la 300ms sau chiar 1000ms în funcție de setările de performanță la nivel de browser și de sistem de operare.
