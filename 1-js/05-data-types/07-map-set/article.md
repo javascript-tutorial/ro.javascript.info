@@ -1,53 +1,53 @@
 
 # Map and Set
 
-Till now, we've learned about the following complex data structures:
+Până acum, am învățat despre următoarele structuri complexe de date:
 
-- Objects are used for storing keyed collections.
-- Arrays are used for storing ordered collections.
+- Obiectele sunt utilizate pentru stocarea colecțiilor cu chei.
+- Array-urile sunt utilizate pentru stocarea colecțiilor ordonate.
 
-But that's not enough for real life. That's why `Map` and `Set` also exist.
+Dar acest lucru nu este suficient pentru viața reală. De aceea există și `Map` și `Set`.
 
 ## Map
 
-[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
+[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) este o colecție de elemente de date cu chei, exact ca un `Object`. Dar diferența principală este că `Map` permite chei de orice tip.
 
-Methods and properties are:
+Metodele și proprietățile sunt:
 
-- [`new Map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map) -- creates the map.
-- [`map.set(key, value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) -- stores the value by the key.
-- [`map.get(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- [`map.has(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
-- [`map.delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) -- removes the element (the key/value pair) by the key.
-- [`map.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) -- removes everything from the map.
-- [`map.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size) -- returns the current element count.
+- [`new Map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map) -- creează map.
+- [`map.set(key, value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) -- stochează valoarea în funcție de cheie.
+- [`map.get(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) -- returnează valoarea în funcție de cheie, `undefined` dacă `key` nu există în map.
+- [`map.has(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has) -- returnează `true` dacă `key` există, `false` în caz contrar.
+- [`map.delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) -- elimină elementul (perechea cheie/valoare) în funcție de cheie.
+- [`map.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) -- elimină totul din map.
+- [`map.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size) -- returnează numărul curent de elemente.
 
-For instance:
+De exemplu:
 
 ```js run
 let map = new Map();
 
-map.set('1', 'str1');   // a string key
-map.set(1, 'num1');     // a numeric key
-map.set(true, 'bool1'); // a boolean key
+map.set('1', 'str1');   // o cheie string
+map.set(1, 'num1');     // o cheie numerică
+map.set(true, 'bool1'); // o cheie boolean
 
-// remember the regular Object? it would convert keys to string
-// Map keeps the type, so these two are different:
+// vă amintiți de obiectul obișnuit Object? acesta ar converti cheile în șiruri de caractere
+// Map păstrează tipul, deci acestea două sunt diferite:
 alert( map.get(1)   ); // 'num1'
 alert( map.get('1') ); // 'str1'
 
 alert( map.size ); // 3
 ```
 
-As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
+După cum putem vedea, spre deosebire de obiecte, cheile nu sunt convertite în șiruri de caractere. Orice tip de cheie este posibilă.
 
-```smart header="`map[key]` isn't the right way to use a `Map`"
-Although `map[key]` also works, e.g. we can set `map[key] = 2`, this is treating `map` as a plain JavaScript object, so it implies all corresponding limitations (only string/symbol keys and so on).
+```smart header="`map[key]` nu este modalitatea corectă de utilizare a unui `Map`"
+Deși `map[key]` funcționează de asemenea, e.g. putem seta `map[key] = 2`, acest lucru tratează `map` ca pe un simplu obiect JavaScript, deci implică toate limitările corespunzătoare (numai chei de tip string/simbol și așa mai departe).
 
-So we should use `map` methods: `set`, `get` and so on.
+Deci ar trebui să folosim metodele `map`: `set`, `get` și așa mai departe.
 ```
 
-**Map can also use objects as keys.**
+**Map poate folosi și obiecte ca și chei.**
 
 For instance:
 
