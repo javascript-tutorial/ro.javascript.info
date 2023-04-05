@@ -49,49 +49,49 @@ Deci ar trebui să folosim metodele `map`: `set`, `get` și așa mai departe.
 
 **Map poate folosi și obiecte ca și chei.**
 
-For instance:
+De exemplu:
 
 ```js run
 let john = { name: "John" };
 
-// for every user, let's store their visits count
+// pentru fiecare utilizator, să stocăm numărul de vizite ale acestuia
 let visitsCountMap = new Map();
 
-// john is the key for the map
+// john este cheia pentru hartă
 visitsCountMap.set(john, 123);
 
 alert( visitsCountMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of the most notable and important `Map` features. The same does not count for `Object`. String as a key in `Object` is fine, but we can't use another `Object` as a key in `Object`.
+Utilizarea obiectelor drept chei este una dintre cele mai notabile și importante caracteristici ale `Map`. Același lucru nu se pune la socoteală pentru `Object`. String ca cheie în `Object` este în regulă, dar nu putem folosi un alt `Object` drept cheie în `Object`.
 
-Let's try:
+Să încercăm:
 
 ```js run
 let john = { name: "John" };
 let ben = { name: "Ben" };
 
-let visitsCountObj = {}; // try to use an object
+let visitsCountObj = {}; // încercați să folosiți un obiect
 
-visitsCountObj[ben] = 234; // try to use ben object as the key
-visitsCountObj[john] = 123; // try to use john object as the key, ben object will get replaced
+visitsCountObj[ben] = 234; // încercați să folosiți obiectul ben ca și cheie
+visitsCountObj[john] = 123; // încercați să utilizați obiectul john ca cheie, obiectul ben va fi înlocuit.
 
 *!*
-// That's what got written!
+// Asta este ceea ce s-a scris!
 alert( visitsCountObj["[object Object]"] ); // 123 
 */!*
 ```
 
-As `visitsCountObj` is an object, it converts all `Object` keys, such as `john` and `ben` above, to same string `"[object Object]"`. Definitely not what we want.
+Deoarece `visitsCountObj` este un obiect, acesta convertește toate cheile `Object`, cum ar fi `john` și `ben` de mai sus, în același șir de caractere `"[object Object]"`. Cu siguranță nu este ceea ce ne dorim.
 
-```smart header="How `Map` compares keys"
-To test keys for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
+```smart header="Cum compară `Map` cheile"
+Pentru a testa echivalența cheilor, `Map` folosește algoritmul [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). Este aproximativ la fel ca egalitatea strictă `===`, dar diferența este că `NaN` este considerat egal cu `NaN`. Astfel `NaN` poate fi folosit și ca cheie de asemenea.
 
-This algorithm can't be changed or customized.
+Acest algoritm nu poate fi modificat sau personalizat.
 ```
 
-````smart header="Chaining"
-Every `map.set` call returns the map itself, so we can "chain" the calls:
+````smart header="Înlănțuire"
+Fiecare apel `map.set` returnează map însăși, astfel încât putem "înlănțui" apelurile:
 
 ```js
 map.set('1', 'str1')
@@ -100,7 +100,7 @@ map.set('1', 'str1')
 ```
 ````
 
-## Iteration over Map
+## Iterare peste Map
 
 For looping over a `map`, there are 3 methods:
 
