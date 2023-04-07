@@ -102,13 +102,13 @@ map.set('1', 'str1')
 
 ## Iterare peste Map
 
-For looping over a `map`, there are 3 methods:
+Pentru a parcurge un `map`, există 3 metode:
 
-- [`map.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys) -- returns an iterable for keys,
-- [`map.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values) -- returns an iterable for values,
-- [`map.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries) -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
+- [`map.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys) -- returnează un iterabil pentru chei,
+- [`map.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values) -- returnează un iterabil pentru valori,
+- [`map.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries) -- returnează un iterabil pentru intrările `[cheie, valoare]`, este utilizat în mod implicit în `for..of`.
 
-For instance:
+De exemplu:
 
 ```js run
 let recipeMap = new Map([
@@ -117,41 +117,41 @@ let recipeMap = new Map([
   ['onion',    50]
 ]);
 
-// iterate over keys (vegetables)
+// iterați peste chei (vegetables)
 for (let vegetable of recipeMap.keys()) {
   alert(vegetable); // cucumber, tomatoes, onion
 }
 
-// iterate over values (amounts)
+// iterați peste valori (amounts)
 for (let amount of recipeMap.values()) {
   alert(amount); // 500, 350, 50
 }
 
-// iterate over [key, value] entries
-for (let entry of recipeMap) { // the same as of recipeMap.entries()
-  alert(entry); // cucumber,500 (and so on)
+// iterați peste intrările [cheie, valoare]
+for (let entry of recipeMap) { // același lucru ca și în recipeMap.entries()
+  alert(entry); // cucumber,500 (și așa mai departe)
 }
 ```
 
-```smart header="The insertion order is used"
-The iteration goes in the same order as the values were inserted. `Map` preserves this order, unlike a regular `Object`.
+```smart header="Se folosește ordinea de inserție"
+Iterația se desfășoară în aceeași ordine în care au fost inserate valorile. `Map` păstrează această ordine, spre deosebire de un `Object` obișnuit.
 ```
 
-Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
+Pe lângă asta, `Map` are o metodă încorporată `forEach`, similară cu `Array`:
 
 ```js
-// runs the function for each (key, value) pair
+// rulează funcția pentru fiecare pereche (cheie, valoare)
 recipeMap.forEach( (value, key, map) => {
   alert(`${key}: ${value}`); // cucumber: 500 etc
 });
 ```
 
-## Object.entries: Map from Object
+## Object.entries: Map din Obiect
 
-When a `Map` is created, we can pass an array (or another iterable) with key/value pairs for initialization, like this:
+Când se creează un `Map`, putem transmite un array (sau un alt iterabil) cu perechi cheie/valoare pentru inițializare, astfel:
 
 ```js run
-// array of [key, value] pairs
+// array de perechi [cheie, valoare].
 let map = new Map([
   ['1',  'str1'],
   [1,    'num1'],
