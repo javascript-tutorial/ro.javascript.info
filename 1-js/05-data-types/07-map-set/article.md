@@ -31,7 +31,7 @@ map.set('1', 'str1');   // o cheie string
 map.set(1, 'num1');     // o cheie numerică
 map.set(true, 'bool1'); // o cheie boolean
 
-// vă amintiți de obiectul obișnuit Object? acesta ar converti cheile în șiruri de caractere
+// vă amintiți de Obiectul obișnuit? acesta ar converti cheile în șiruri de caractere
 // Map păstrează tipul, deci acestea două sunt diferite:
 alert( map.get(1)   ); // 'num1'
 alert( map.get('1') ); // 'str1'
@@ -42,7 +42,7 @@ alert( map.size ); // 3
 După cum putem vedea, spre deosebire de obiecte, cheile nu sunt convertite în șiruri de caractere. Orice tip de cheie este posibilă.
 
 ```smart header="`map[key]` nu este modalitatea corectă de utilizare a unui `Map`"
-Deși `map[key]` funcționează de asemenea, e.g. putem seta `map[key] = 2`, acest lucru tratează `map` ca pe un simplu obiect JavaScript, deci implică toate limitările corespunzătoare (numai chei de tip string/simbol și așa mai departe).
+Deși `map[key]` funcționează de asemenea, e.g. putem seta `map[key] = 2`, acest lucru tratează `map` ca pe un obiect obișnuit JavaScript, deci implică toate limitările corespunzătoare (numai chei de tip string/simbol și așa mai departe).
 
 Deci ar trebui să folosim metodele `map`: `set`, `get` și așa mai departe.
 ```
@@ -161,9 +161,9 @@ let map = new Map([
 alert( map.get('1') ); // str1
 ```
 
-If we have a plain object, and we'd like to create a `Map` from it, then we can use built-in method [Object.entries(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
+Dacă avem un obiect obișnuit, și dorim să creăm un `Map` din el, atunci putem folosi metoda încorporată [Object.entries(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) care returnează o matrice de perechi cheie/valoare pentru un obiect exact în acest format.
 
-So we can create a map from an object like this:
+Astfel putem crea un map dintr-un obiect în felul următor:
 
 ```js run
 let obj = {
@@ -178,14 +178,14 @@ let map = new Map(Object.entries(obj));
 alert( map.get('name') ); // John
 ```
 
-Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"], ["age", 30] ]`. That's what `Map` needs.
+Aici, `Object.entries` returnează matricea de perechi cheie/valoare: `[ ["name","John"], ["age", 30] ]`. De asta are nevoie `Map`.
 
 
-## Object.fromEntries: Object from Map
+## Object.fromEntries: Obiect din Map
 
-We've just seen how to create `Map` from a plain object with `Object.entries(obj)`.
+Tocmai am văzut cum să creăm `Map` dintr-un obiect obișnuit cu `Object.entries(obj)`.
 
-There's `Object.fromEntries` method that does the reverse: given an array of `[key, value]` pairs, it creates an object from them:
+Există metoda `Object.fromEntries` care face invers: primind o matrice de perechi `[key, value]`, aceasta creează un obiect din ele:
 
 ```js run
 let prices = Object.fromEntries([
@@ -194,16 +194,16 @@ let prices = Object.fromEntries([
   ['meat', 4]
 ]);
 
-// now prices = { banana: 1, orange: 2, meat: 4 }
+// acum prices = { banana: 1, orange: 2, meat: 4 }
 
 alert(prices.orange); // 2
 ```
 
-We can use `Object.fromEntries` to get a plain object from `Map`.
+Putem folosi `Object.fromEntries` pentru a obține un obiect obișnuit din `Map`.
 
-E.g. we store the data in a `Map`, but we need to pass it to a 3rd-party code that expects a plain object.
+E.g. stocăm datele într-un `Map`, dar trebuie să le transmitem unui cod terț care așteaptă un obiect obișnuit.
 
-Here we go:
+Iată cum procedăm:
 
 ```js run
 let map = new Map();
@@ -212,23 +212,23 @@ map.set('orange', 2);
 map.set('meat', 4);
 
 *!*
-let obj = Object.fromEntries(map.entries()); // make a plain object (*)
+let obj = Object.fromEntries(map.entries()); // face un obiect obișnuit (*)
 */!*
 
-// done!
+// gata!
 // obj = { banana: 1, orange: 2, meat: 4 }
 
 alert(obj.orange); // 2
 ```
 
-A call to `map.entries()` returns an iterable of key/value pairs, exactly in the right format for `Object.fromEntries`.
+Un apel către `map.entries()` returnează un iterabil de perechi cheie/valoare, exact în formatul corect pentru `Object.fromEntries`.
 
-We could also make line `(*)` shorter:
+Am putea de asemenea să facem linia `(*)` mai scurtă:
 ```js
 let obj = Object.fromEntries(map); // omit .entries()
 ```
 
-That's the same, because `Object.fromEntries` expects an iterable object as the argument. Not necessarily an array. And the standard iteration for `map` returns same key/value pairs as `map.entries()`. So we get a plain object with same key/values as the `map`.
+Este același lucru, deoarece `Object.fromEntries` așteaptă ca argument un obiect iterabil. Nu neapărat o matrice. Iar iterația standard pentru `map` returnează aceleași perechi cheie/valoare ca și `map.entries()`. Deci obținem un obiect obișnuit cu aceleași chei/valori ca și `map`.
 
 ## Set
 
