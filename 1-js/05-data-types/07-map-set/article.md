@@ -232,22 +232,22 @@ Este același lucru, deoarece `Object.fromEntries` așteaptă ca argument un obi
 
 ## Set
 
-A [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) is a special type collection - "set of values" (without keys), where each value may occur only once.
+Un [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) este un tip special de colecție - "set de valori" (fără chei), în care fiecare valoare poate apărea o singură dată.
 
-Its main methods are:
+Principalele sale metode sunt:
 
-- [`new Set([iterable])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set) -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
-- [`set.add(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add) -- adds a value, returns the set itself.
-- [`set.delete(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- [`set.has(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
-- [`set.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear) -- removes everything from the set.
-- [`set.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/size) -- is the elements count.
+- [`new Set([iterable])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set) -- creează setul și, dacă este furnizat un obiect `iterable` (de obicei o matrice), copiază valorile din acesta în set.
+- [`set.add(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add) -- adaugă o valoare, returnează setul însuși.
+- [`set.delete(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete) -- elimină valoarea, returnează `true` dacă `value` a existat la momentul apelului, altfel `false`.
+- [`set.has(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) -- returnează `true` dacă valoarea există în set, altfel `false`.
+- [`set.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear) -- elimină totul din set.
+- [`set.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/size) -- este numărul de elemente.
 
-The main feature is that repeated calls of `set.add(value)` with the same value don't do anything. That's the reason why each value appears in a `Set` only once.
+Caracteristica principală este că apelurile repetate ale `set.add(value)` cu aceeași valoare nu fac nimic. Acesta este motivul pentru care fiecare valoare apare într-un `Set` doar o singură dată.
 
-For example, we have visitors coming, and we'd like to remember everyone. But repeated visits should not lead to duplicates. A visitor must be "counted" only once.
+De exemplu, avem vizitatori care vin și, am dori să ne amintim de toți. Dar vizitele repetate nu ar trebui să ducă la dubluri. Un vizitator trebuie să fie "numărat" o singură dată.
 
-`Set` is just the right thing for that:
+`Set` este exact ceea ce trebuie pentru asta:
 
 ```js run
 let set = new Set();
@@ -256,22 +256,22 @@ let john = { name: "John" };
 let pete = { name: "Pete" };
 let mary = { name: "Mary" };
 
-// visits, some users come multiple times
+// vizite, unii utilizatori vin de mai multe ori
 set.add(john);
 set.add(pete);
 set.add(mary);
 set.add(john);
 set.add(mary);
 
-// set keeps only unique values
+// setul păstrează numai valorile unice
 alert( set.size ); // 3
 
 for (let user of set) {
-  alert(user.name); // John (then Pete and Mary)
+  alert(user.name); // John (apoi Pete și Mary)
 }
 ```
 
-The alternative to `Set` could be an array of users, and the code to check for duplicates on every insertion using [arr.find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find). But the performance would be much worse, because this method walks through the whole array checking every element. `Set` is much better optimized internally for uniqueness checks.
+Alternativa la `Set` ar putea fi o matrice de utilizatori, iar codul să verifice dacă există dubluri la fiecare inserare folosind [arr.find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find). Dar performanța ar fi mult mai slabă, deoarece această metodă parcurge întreaga matrice verificând fiecare element. `Set` este mult mai bine optimizat la nivel intern pentru verificarea unicității.
 
 ## Iteration over Set
 
