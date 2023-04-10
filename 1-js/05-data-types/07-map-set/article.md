@@ -273,30 +273,30 @@ for (let user of set) {
 
 Alternativa la `Set` ar putea fi o matrice de utilizatori, iar codul să verifice dacă există dubluri la fiecare inserare folosind [arr.find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find). Dar performanța ar fi mult mai slabă, deoarece această metodă parcurge întreaga matrice verificând fiecare element. `Set` este mult mai bine optimizat la nivel intern pentru verificarea unicității.
 
-## Iteration over Set
+## Iterare peste Set
 
-We can loop over a set either with `for..of` or using `forEach`:
+Putem face o buclă peste un set fie cu `for..of` ori folosind `forEach`:
 
 ```js run
 let set = new Set(["oranges", "apples", "bananas"]);
 
 for (let value of set) alert(value);
 
-// the same with forEach:
+// același lucru cu forEach:
 set.forEach((value, valueAgain, set) => {
   alert(value);
 });
 ```
 
-Note the funny thing. The callback function passed in `forEach` has 3 arguments: a `value`, then *the same value* `valueAgain`, and then the target object. Indeed, the same value appears in the arguments twice.
+Observați lucrul ciudat. Funcția callback transmisă în `forEach` are 3 argumente: un `value`, apoi *aceeași valoare* `valueAgain`, și apoi obiectul țintă. Într-adevăr, aceeași value apare de două ori în argumente.
 
-That's for compatibility with `Map` where the callback passed `forEach` has three arguments. Looks a bit strange, for sure. But this may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
+Acest lucru este pentru compatibilitate cu `Map` unde funcția callback transmisă către `forEach` are trei argumente. Arată un pic ciudat, cu siguranță. Dar acest lucru poate ajuta la înlocuirea cu ușurință a `Map` cu `Set` în anumite cazuri, și vice versa.
 
-The same methods `Map` has for iterators are also supported:
+Aceleași metode pe care `Map` le are pentru iteratori sunt de asemenea suportate:
 
-- [`set.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys) -- returns an iterable object for values,
-- [`set.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values) -- same as `set.keys()`, for compatibility with `Map`,
-- [`set.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries) -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
+- [`set.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys) -- returnează un obiect iterabil pentru valori,
+- [`set.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values) -- la fel ca `set.keys()`, pentru compatibilitate cu `Map`,
+- [`set.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries) -- returnează un obiect iterabil pentru intrările `[value, value]`, există pentru compatibilitate cu `Map`.
 
 ## Summary
 
