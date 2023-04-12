@@ -4,7 +4,7 @@ function intersection(arr1, arr2) {
 
 describe("aclean", function() {
 
-  it("returns exactly 1 word from each anagram set", function() {
+  it("returnează exact 1 cuvânt din fiecare set de anagrame", function() {
     let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
     let result = aclean(arr);
@@ -16,7 +16,7 @@ describe("aclean", function() {
 
   });
 
-  it("is case-insensitive", function() {
+  it("este case-insensitive", function() {
     let arr = ["era", "EAR"];
     assert.equal(aclean(arr).length, 1);
   });
