@@ -2,17 +2,17 @@ importance: 5
 
 ---
 
-# Filter unique array members
+# Filtrează membrii unici ai matricei
 
-Let `arr` be an array.
+Let `arr` să fie o matrice.
 
-Create a function `unique(arr)` that should return an array with unique items of `arr`.
+Creați o funcție `unique(arr)` care ar trebui să returneze o matrice cu elemente unice ale lui `arr`.
 
-For instance:
+De exemplu:
 
 ```js
 function unique(arr) {
-  /* your code */
+  /* codul dumneavoastră */
 }
 
 let values = ["Hare", "Krishna", "Hare", "Krishna",
@@ -22,6 +22,6 @@ let values = ["Hare", "Krishna", "Hare", "Krishna",
 alert( unique(values) ); // Hare, Krishna, :-O
 ```
 
-P.S. Here strings are used, but can be values of any type.
+P.S. Aici se folosesc șiruri de caractere, dar pot fi valori de orice tip.
 
-P.P.S. Use `Set` to store unique values.
+P.P.S. Utilizați `Set` pentru a stoca valori unice.

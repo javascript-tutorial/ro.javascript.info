@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Iterable keys
+# Chei iterabile
 
-We'd like to get an array of `map.keys()` in a variable and then apply array-specific methods to it, e.g. `.push`.
+Am dori să obținem o matrice de `map.keys()` într-o variabilă și apoi să aplicăm metode specifice matricei, e.g. `.push`.
 
-But that doesn't work:
+Dar acest lucru nu funcționează:
 
 ```js run
 let map = new Map();
@@ -16,9 +16,9 @@ map.set("name", "John");
 let keys = map.keys();
 
 *!*
-// Error: keys.push is not a function
+// Eroare: keys.push nu este o funcție
 keys.push("more");
 */!*
 ```
 
-Why? How can we fix the code to make `keys.push` work?
+De ce? Cum putem corecta codul să facem ca `keys.push` să funcționeze?
