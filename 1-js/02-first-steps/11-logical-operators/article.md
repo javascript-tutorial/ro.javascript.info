@@ -33,14 +33,14 @@ Dacă un operant nu este de tip boolean, acesta este convertit automat într-unu
 De exemplu, numărul „1” este tratat ca fiind „adevărat”, iar numărul „0” este „fals”:
 
 ```js run
-if (1 || 0) { // funcționează asemenea lui if( adevărat || false )
+if (1 || 0) { // funcționează asemenea lui if( adevărat || fals )
   alert( 'efectiv adevărat!' );
 }
 ```
 
-Most of the time, OR `||` is used in an `if` statement to test if *any* of the given conditions is `true`.
+De cele mai multe ori, semnul ORI `||` este folositi într-un if statement pentru a testa dacă vreauna dintre condiții este adevărată.
 
-For example:
+Spre exemplu:
 
 ```js run
 let hour = 9;
@@ -48,61 +48,61 @@ let hour = 9;
 *!*
 if (hour < 10 || hour > 18) {
 */!*
-  alert( 'The office is closed.' );
+  alert( 'Biroul este închis.' );
 }
 ```
 
-We can pass more conditions:
+Putem adăuga mai multe condiții:
 
 ```js run
 let hour = 12;
 let isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'The office is closed.' ); // it is the weekend
+  alert( 'Biroul este închis.' ); // este weekend.
 }
 ```
 
-## OR "||" finds the first truthy value [#or-finds-the-first-truthy-value]
+## ORI "||" identifică prima valoare efectiv adevărată [#or-finds-the-first-truthy-value]
 
-The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
+Logica descrisă mai sus este oarecum clasică. Haideți să discutăm despre calitățile „extra” din JavaScript.  
 
-The extended algorithm works as follows.
+Algoritmul extinds funcționează după cum urmează.
 
-Given multiple OR'ed values:
+Sunt date mai multe valori ale lui ORI.
 
 ```js
 result = value1 || value2 || value3;
 ```
 
-The OR `||` operator does the following:
+Operatorul ORI `||` face următoarele lucruri:
 
-- Evaluates operands from left to right.
-- For each operand, converts it to boolean. If the result is `true`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were `false`), returns the last operand.
+- Evaluzează operanții de la stânga spre dreapta.
+- Fiecare operant este convertit într-o valoare de tip boolean. Dacă rezultatul este „adevărat”, execuția se oprește și valoarea originală a acelui operant este returnată.
+- Dacă toți operanții au fost evaluați (iar toți erau falși), ultimul operant este returnat.
 
-A value is returned in its original form, without the conversion.
+O valoare este returnată în forma ei originală, fără conversiune.
 
-In other words, a chain of OR `||` returns the first truthy value or the last one if no truthy value is found.
+Cu alte cuvinte, într-un lanț de ORI `||` este returnată prima valoare efectiv adevărată sau ultima dacă nicio valoare efectiv adevărată nu este găsită.
 
-For instance:
+Spre exemplu:
 
 ```js run
-alert( 1 || 0 ); // 1 (1 is truthy)
+alert( 1 || 0 ); // 1 (1 este efectiv adevărat)
 
-alert( null || 1 ); // 1 (1 is the first truthy value)
-alert( null || 0 || 1 ); // 1 (the first truthy value)
+alert( null || 1 ); // 1 (1 este prima valoare efectiv adevărată)
+alert( null || 0 || 1 ); // 1 (prima valoare efectiv adevărată)
 
-alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+alert( undefined || null || 0 ); // 0 (toate valorile sunt efectiv false, este returnată ultima valoare)
 ```
 
-This leads to some interesting usage compared to a "pure, classical, boolean-only OR".
+Asta conduce la o utilizate mai interesantă spre deosebire de un boolean clasic de tip ORI.
 
-1. **Getting the first truthy value from a list of variables or expressions.**
+1. **Poate fi obținută prima valoare efectiv adevărată dintr-o listă de variabile sau expresii.**
 
-    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
+    Spre exemplu, avem variabilele `firstName`, `lastName` si `nickName`, toate opționale (adică pot fi undefined sau pot avea valori efectiv false)
 
-    Let's use OR `||` to choose the one that has the data and show it (or `"Anonymous"` if nothing set):
+    Hai să folosim operatorul ORI `||` pentru a selecta variabila care conține date și să le facem să apară (sau `"Anonim"` dacă niciuna nu are nicio valoare):
 
     ```js run
     let firstName = "";
@@ -110,17 +110,20 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
     let nickName = "SuperCoder";
 
     *!*
-    alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
+    alert( firstName || lastName || nickName || "Anonim"); // SuperCoder
     */!*
     ```
 
-    If all variables were falsy, `"Anonymous"` would show up.
+    <!-- If all variables were falsy, `"Anonymous"` would show up. -->
+    Dacă toate variabilele ar fi efectiv false, ar apărea textul `"Anonim"`.
 
-2. **Short-circuit evaluation.**
+2. **Evaulare de tip scurt circuit**
 
-    Another feature of OR `||` operator is the so-called "short-circuit" evaluation.
+    O altă caracteristică a operatorului ORI `||` este așa numita evaluare de tip scurt circuit.
 
-    It means that `||` processes its arguments until the first truthy value is reached, and then the value is returned immediately, without even touching the other argument.
+    <!-- It means that `||` processes its arguments until the first truthy value is reached, and then the value is returned immediately, without even touching the other argument. -->
+    Aceasta înseamnă că `||` își procesează argumentele până când prima valoare efectiv adevărată este întâlnită, iar apoi acea valoare este returnată imediat, fără ca restul argumentelor să mai fie luate în considerate.
+    <!-- Mai îmbunătățește traducere de mai sus! -->
 
     The importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
 
