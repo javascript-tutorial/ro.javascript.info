@@ -121,26 +121,24 @@ Asta conduce la o utilizate mai interesantă spre deosebire de un boolean clasic
 
     O altă caracteristică a operatorului ORI `||` este așa numita evaluare de tip scurt circuit.
 
-    <!-- It means that `||` processes its arguments until the first truthy value is reached, and then the value is returned immediately, without even touching the other argument. -->
-    Aceasta înseamnă că `||` își procesează argumentele până când prima valoare efectiv adevărată este întâlnită, iar apoi acea valoare este returnată imediat, fără ca restul argumentelor să mai fie luate în considerate.
-    <!-- Mai îmbunătățește traducere de mai sus! -->
+    Aceasta înseamnă că `||` își procesează argumentele până când prima valoare efectiv adevărată este întâlnită, iar apoi acea valoare este returnată imediat, fără ca celălalt argument să mai fie luat în considera.
 
-    The importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
+    Importanța acestei caracteristici începe să devina evidentă în momentul în care unul dintre operanți nu reprezintă doar o valoare, ci o expresie care aduce cu sine și un efect advers, cum ar fi atribuirea valorii unei variabile sau apelarea unei funcții. 
 
-    In the example below, only the second message is printed:
+    Pentru exemplul de mai jos, doar al doilea mesaj este printat:
 
     ```js run no-beautify
-    *!*true*/!* || alert("not printed");
-    *!*false*/!* || alert("printed");
+    *!*true*/!* || alert("Acest mesaj nu este printat!");
+    *!*false*/!* || alert("Acest mesaj este printat!");
     ```
 
-    In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
+    În prima linie, operatorul OR `||` imediat ce întâlnește valoarea true oprește evaluarea, astfel încât methoda alert nu este rulată. 
 
-    Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
+    Uneori, oeamni folosesc această funcție pentru a executa comenzi doar dacă condiția din partea stângă este efectiv falsă.
+## && (ȘI)
 
-## && (AND)
-
-The AND operator is represented with two ampersands `&&`:
+Operatorul ȘI este representat de două semne de tip ampersand `&&`:
+<!-- Aici am rămas -->
 
 ```js
 result = a && b;
