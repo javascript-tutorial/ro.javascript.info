@@ -137,14 +137,15 @@ Asta conduce la o utilizate mai interesantă spre deosebire de un boolean clasic
     Uneori, oeamni folosesc această funcție pentru a executa comenzi doar dacă condiția din partea stângă este efectiv falsă.
 ## && (ȘI)
 
-Operatorul ȘI este representat de două semne de tip ampersand `&&`:
-<!-- Aici am rămas -->
+Operatorul ȘI este reprezentat de două semne de tip ampersand `&&`:
 
 ```js
 result = a && b;
 ```
 
-In classical programming, AND returns `true` if both operands are truthy and `false` otherwise:
+<!-- Până aici trebuie înlocuit true, truthy, false, falsey. -->
+
+În programarea clasică, operatorul ȘI are ca rezultat `true` dacă ambii operanți sunt truthy și `false` în caz contrar:
 
 ```js run
 alert( true && true );   // true
@@ -153,41 +154,42 @@ alert( true && false );  // false
 alert( false && false ); // false
 ```
 
-An example with `if`:
+Un exemplu cu `if`:
 
 ```js run
 let hour = 12;
 let minute = 30;
-
+                 
 if (hour == 12 && minute == 30) {
   alert( 'The time is 12:30' );
 }
 ```
 
-Just as with OR, any value is allowed as an operand of AND:
+La fel cum se întâmplă cu operatorul ORI, orice valoare poate fi acceptată ca fiind operantul lui ȘI:
 
 ```js run
-if (1 && 0) { // evaluated as true && false
-  alert( "won't work, because the result is falsy" );
+if (1 && 0) { // evaluat ca true && false
+  alert( "nu va funcționa, din cauză că rezultatul este falsy" );
 }
 ```
 
+## ȘI "&&" identifică prima valoare falsy
 
-## AND "&&" finds the first falsy value
-
-Given multiple AND'ed values:
+Sunt date mai multe valori conectate prin operatorul logic ȘI:
 
 ```js
 result = value1 && value2 && value3;
 ```
 
-The AND `&&` operator does the following:
+Operatorul ȘI `&&` face următoarele lucruri:
 
-- Evaluates operands from left to right.
-- For each operand, converts it to a boolean. If the result is `false`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were truthy), returns the last operand.
+- Evaluează operanții de la stânga la dreapta.
+- Convertește fiecare operant într-un boolean. Dacă rezultatul este `false`, procesul este oprit, iar valoarea originală a operantului este returnată.
+- Dacă toți operanții au fost evaluați (și toți sunt truthy), ultimul operant este returnat.
 
-In other words, AND returns the first falsy value or the last value if none were found.
+<!-- In other words, AND returns the first falsy value or the last value if none were found. -->
+Cu alte cuvinte, operatorul ȘI are ca rezultat prima valoare falsy sau ultima valoare dacă nicuna nu este găsită.
+<!-- Mai verifică încă odată propoziția de mai sus. Aici am rămas -->
 
 The rules above are similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
 
