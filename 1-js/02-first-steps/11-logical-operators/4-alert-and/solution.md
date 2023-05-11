@@ -1,10 +1,9 @@
-The answer: `1`, and then `undefined`.
+Răspunsul: `1`, iar apoi `undefined`.
 
 ```js run
 alert( alert(1) && alert(2) );
 ```
 
-The call to `alert` returns `undefined` (it just shows a message, so there's no meaningful return).
+Metoda `alert` întoarce `undefined` (afișează doar un mesaj, deci nu întoarce nimic semnificativ).
 
-Because of that, `&&` evaluates the left operand (outputs `1`), and immediately stops, because `undefined` is a falsy value. And `&&` looks for a falsy value and returns it, so it's done.
-
+Din cauza aceasta, `&&` evaluează operantul din stânga (output-ul `1`), și oprește imediat evaluarea, deoarece `undefined` este o valoare falsy. `&&` caută o valoare falsy și o întoarce, așadar procesul este finalizat.

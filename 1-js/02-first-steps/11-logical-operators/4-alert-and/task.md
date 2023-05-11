@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# What is the result of AND'ed alerts?
+# Care este rezultatul alertelor combinate cu ȘI?
 
-What will this code show?
+Ce va afișa codul de mai jos?
 
 ```js
 alert( alert(1) && alert(2) );
