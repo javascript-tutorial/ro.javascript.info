@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# The result of OR AND OR
+# Rezultatul lui ORI ȘI ORI
 
-What will the result be?
+Care va fi rezultatul?
 
 ```js
 alert( null || 2 && 3 || 4 );
