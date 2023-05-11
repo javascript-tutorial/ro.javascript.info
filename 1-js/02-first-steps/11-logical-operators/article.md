@@ -245,7 +245,7 @@ Deși, varianta cu `&&` pare a fi mai scurtă, varianta cu `if` statement este m
 ````
 
 
-## ! (NOT)
+## ! (NU)
 
 Operatorul boolean NU este reprezentat printrun semn de exclamare.
 
