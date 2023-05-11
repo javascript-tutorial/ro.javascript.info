@@ -202,87 +202,85 @@ alert( null && 5 ); // null
 alert( 0 && "orice s-ar întâmpla" ); // 0
 ```
 
-<!-- We can also pass several values in a row. See how the first falsy one is returned: -->
-De asemenea, putem oferi mai multe valori în același timp. Observați cum prima valoare falsy este returnată:
-<!-- Mai verifică puțin traducerea de mai sus -->
+De asemenea, pot fi folosite mai multe valori simultan. Observați cum prima valoare falsy este returnată:
 
 ```js run
 alert( 1 && 2 && null && 3 ); // null
 ```
 
-When all values are truthy, the last value is returned:
+Dacă toate valorile sunt truthy, ultima dintre ele este returnată:
 
 ```js run
-alert( 1 && 2 && 3 ); // 3, the last one
+alert( 1 && 2 && 3 ); // 3, ultima
 ```
 
-````smart header="Precedence of AND `&&` is higher than OR `||`"
-The precedence of AND `&&` operator is higher than OR `||`.
+````smart header="Prioritatea lui ȘI `&&` este mai mare decât cea a lui ORI `||`"
+Prioritatea operatorului ȘI `&&` este mai mare față de ce a lui ORI `||`.
 
-So the code `a && b || c && d` is essentially the same as if the `&&` expressions were in parentheses: `(a && b) || (c && d)`.
+Astfel, codul `a && b || c && d` este în esență exact la fel cu folosirea operatorului `&&` între paranteze: `(a && b) || (c && d)`.
 ````
 
-````warn header="Don't replace `if` with `||` or `&&`"
-Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
+````warn header="Nu înlocuiți `if` cu `||` sau `&&`"
+Uneori, oamenii folosesc operatorul ȘI `&&` pentru a scrie o formă mai scurtă de `if` statement.
 
-For instance:
-
-```js run
-let x = 1;
-
-(x > 0) && alert( 'Greater than zero!' );
-```
-
-The action in the right part of `&&` would execute only if the evaluation reaches it. That is, only if `(x > 0)` is true.
-
-So we basically have an analogue for:
+De exemplu:
 
 ```js run
 let x = 1;
 
-if (x > 0) alert( 'Greater than zero!' );
+(x > 0) && alert( 'Mai mare decât zero!' );
 ```
 
-Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want `if` and use `&&` if we want AND.
+Alerta din partea dreaptă a lui `&&` ajugne să fie executată doar dacă evaluarea ajunge până la ea. Adică, doar dacă if `(x > 0)` este true.
+
+Astfel echivalentul este:
+
+```js run
+let x = 1;
+
+if (x > 0) alert( 'Mai mare decât zero!' );
+```
+
+Deși, varianta cu `&&` pare a fi mai scurtă, varianta cu `if` statement este mai evidentă și mai ușor de citit. Așa că, recomandarea noastră este ca fiecare construcție să fie folosită pentru propriul scop: folosim `if` dacă vreum un `if` statement și folosit `&&` dacă avem nevoie de operatorul ȘI.
 ````
 
 
 ## ! (NOT)
 
-The boolean NOT operator is represented with an exclamation sign `!`.
+Operatorul boolean NU este reprezentat printrun semn de exclamare.
 
-The syntax is pretty simple:
+Sintaxa este destul de simplă:
 
 ```js
 result = !value;
 ```
 
-The operator accepts a single argument and does the following:
+Operatorul acceptă un singur argument și face umrătoarele lucruri:
 
-1. Converts the operand to boolean type: `true/false`.
-2. Returns the inverse value.
+1. Convertește operantul într-un boolean de tipul: `true/false`.
+2. Returnează valoarea opusă.
 
-For instance:
+Spre exemplu:
 
 ```js run
 alert( !true ); // false
 alert( !0 ); // true
 ```
 
-A double NOT `!!` is sometimes used for converting a value to boolean type:
+Dublu NU `!!` poate fi folosit uneori pentru a converti o valoare într-un boolean.
 
 ```js run
 alert( !!"non-empty string" ); // true
 alert( !!null ); // false
 ```
 
-That is, the first NOT converts the value to boolean and returns the inverse, and the second NOT inverses it again. In the end, we have a plain value-to-boolean conversion.
+Adică, primul NU convertește valoare într-un boolean și returnează valoarea opusă, iar cel de al doilea NU inversează valoarea din nou. În final, obținem o conversie de la o valoare la un boolean.
 
-There's a little more verbose way to do the same thing -- a built-in `Boolean` function:
+Există o metodă special concepută pentru acest lucru -- o funcție `Boolean` concepută expres pentru acesastă necesitate.
 
 ```js run
 alert( Boolean("non-empty string") ); // true
 alert( Boolean(null) ); // false
 ```
 
-The precedence of NOT `!` is the highest of all logical operators, so it always executes first, before `&&` or `||`.
+Prioritatea lui NU `!` este cea mai mare dintre toți operatorii logici, fiind executat mereu primul, înaintea lui `&&` sau `||`.
