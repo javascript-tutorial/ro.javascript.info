@@ -2,7 +2,7 @@ importance: 3
 
 ---
 
-# Care este rezultatul alertelor combinate prin ORI?
+# Care este rezultatul metodelor de tip alert combinate prin ORI?
 
 Care va vi output-ul codului de mai jos?
 

@@ -2,7 +2,7 @@ importance: 3
 
 ---
 
-# Care este rezultatul alertelor combinate cu ȘI?
+# Care este rezultatul metodelor de tip aler combinate cu ȘI?
 
 Ce va afișa codul de mai jos?
 

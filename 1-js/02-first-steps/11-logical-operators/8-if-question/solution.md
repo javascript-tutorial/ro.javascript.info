@@ -12,7 +12,7 @@ if (-1 || 0) alert( 'primul' );
 if (-1 && 0) alert( 'al doilea' );
 
 // Este executat
-// Oparatorul && are o primoritate mai mare decât ||
+// Oparatorul && are o prioritate mai mare decât ||
 // așadar -1 && 1 este exuctat mai întâi, dând lanțul următor:
 // null || -1 && 1  ->  null || 1  ->  1
 if (null || -1 && 1) alert( 'al treilea' );

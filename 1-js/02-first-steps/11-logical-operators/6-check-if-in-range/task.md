@@ -2,7 +2,7 @@ importance: 3
 
 ---
 
-# Verificați interval dintre
+# Verificați intervalul dintre
 
 Scrie of condiție `if` care verifică dacă `age` se încadrează între valorile `14` și `90`, inclusiv. 
 

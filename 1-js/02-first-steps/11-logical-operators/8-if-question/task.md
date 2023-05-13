@@ -4,7 +4,7 @@ importance: 5
 
 # O întrebare despre "if"
 
-Care dintre următoarele `alert`-uri va fi executată.
+Care dintre următoarele metode `alert` va fi executată.
 
 Care va fi rezultatul expresiei din interiorul lui `if(...)`?
 

@@ -4,9 +4,9 @@ importance: 3
 
 # Verificați login-ul
 
-Scrieți codul care necesită logare cu `prompt`.
+Scrieți un bloc de cod care necesită logare prin `prompt`.
 
-Dacă vizitatorul introduce `"Admin"`, atunci `prompt` pentru o parolă, dacă inputul este gol sau `key:Esc` -- afișați "Anulat", dacă este un alt string -- afișați "Nu te cunosc".
+Dacă vizitatorul introduce `"Admin"`, atunci `prompt` pentru o parolă, dacă inputul este gol sau `key:Esc` -- afișați "Anulat", dacă este un alt string -- afișați "I don't know you".
 
 Parola este verificată după cum umrmează:
 
@@ -14,12 +14,12 @@ Parola este verificată după cum umrmează:
 - Dacă este un alt string -- afișează "Wrong password"
 - Dacă este un string gol sau inputul este anulat, afișează "Canceled"
 
-Schema:
+Schemă:
 
 ![](ifelse_task.svg)
 
-Vă rugăm folosiți blocuri `if` încorporate. Aveți în vedere lizibilitatea generală a codului.
+Vă rugăm folosiți blocuri `if` indentate. Aveți în vedere lizibilitatea generală a codului.
 
-Sugestie: transmiterea unui input gol în timpul unui promt returnează un string gol `''`. Apăsarea tastei `key:ESC` în timpul unui promt returnează `null`.
+Sugestie: transmiterea unui input către un `prompt` returnează un string gol `''`. Apăsarea tastei `key:ESC` returnează `null`.
 
 [demo]

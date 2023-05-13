@@ -22,4 +22,4 @@ if (userName === 'Admin') {
 }
 ```
 
-Observați indentările din interiorul blocului `if`. Acesta nu sunt neapărat necesare, dar fac codul mult mai lizibil.x 
+Observați indentările din interiorul blocului `if`. Acesta nu sunt neapărat necesare, dar fac codul mult mai lizibil.
