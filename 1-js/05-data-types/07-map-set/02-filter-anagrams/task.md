@@ -2,11 +2,11 @@ importance: 4
 
 ---
 
-# Filter anagrams
+# Filtrează anagramele
 
-[Anagrams](https://en.wikipedia.org/wiki/Anagram) are words that have the same number of same letters, but in different order.
+[Anagrame](https://en.wikipedia.org/wiki/Anagram) sunt cuvinte care au același număr de litere identice, dar în ordine diferită.
 
-For instance:
+De exemplu:
 
 ```
 nap - pan
@@ -14,15 +14,15 @@ ear - are - era
 cheaters - hectares - teachers
 ```
 
-Write a function `aclean(arr)` that returns an array cleaned from anagrams.
+Scrieți o funcție `aclean(arr)` care să returneze un tablou curățat de anagrame.
 
-For instance:
+De exemplu:
 
 ```js
 let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 
-alert( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era"
+alert( aclean(arr) ); // "nap,teachers,ear" sau "PAN,cheaters,era"
 ```
 
-From every anagram group should remain only one word, no matter which one.
+Din fiecare grup de anagrame trebuie să rămână un singur cuvânt, indiferent care.
 

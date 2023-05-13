@@ -1,7 +1,7 @@
 
-That's because `map.keys()` returns an iterable, but not an array.
+Acest lucru se datorează faptului că `map.keys()` returnează un iterabil, dar nu o matrice.
 
-We can convert it into an array using `Array.from`:
+Îl putem converti într-un array folosind `Array.from`:
 
 
 ```js run

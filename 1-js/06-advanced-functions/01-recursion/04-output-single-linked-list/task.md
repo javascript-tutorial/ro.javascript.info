@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Output a single-linked list
+# Scoate un singur linked list
 
-Let's say we have a single-linked list (as described in the chapter <info:recursion>):
+Să presupunem că avem un singur linked list (așa cum este descris în capitolul <info:recursion>):
 
 ```js
 let list = {
@@ -22,8 +22,8 @@ let list = {
 };
 ```
 
-Write a function `printList(list)` that outputs list items one-by-one.
+Scrieți o funcție `printList(list)` care scoate elementele din listă unul câte unul.
 
-Make two variants of the solution: using a loop and using recursion.
+Realizați două variante ale soluției: folosind un loop și folosind recursivitatea.
 
-What's better: with recursion or without it?
+Ce este mai bine: cu recursivitate sau fără ea?

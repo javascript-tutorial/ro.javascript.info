@@ -1,6 +1,6 @@
-To find all anagrams, let's split every word to letters and sort them. When letter-sorted, all anagrams are same.
+Pentru a găsi toate anagramele, să împărțim fiecare cuvânt în litere și să le sortăm. Atunci când sunt ordonate pe litere, toate anagramele sunt identice.
 
-For instance:
+De exemplu:
 
 ```
 nap, pan -> anp
@@ -9,14 +9,14 @@ cheaters, hectares, teachers -> aceehrst
 ...
 ```
 
-We'll use the letter-sorted variants as map keys to store only one value per each key:
+Vom folosi variantele sortate pe litere ca chei de map pentru a stoca doar o singură valoare pentru fiecare cheie:
 
 ```js run
 function aclean(arr) {
   let map = new Map();
 
   for (let word of arr) {
-    // split the word by letters, sort them and join back
+    // desparte cuvântul după litere, le sortează și le reunește înapoi
 *!*
     let sorted = word.toLowerCase().split('').sort().join(''); // (*)
 */!*
@@ -31,9 +31,9 @@ let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
 alert( aclean(arr) );
 ```
 
-Letter-sorting is done by the chain of calls in the line `(*)`.
+Sortarea literelor se face prin lanțul de apeluri din linia `(*)`.
 
-For convenience let's split it into multiple lines:
+Pentru conveniență să o împărțim în mai multe linii:
 
 ```js
 let sorted = word // PAN
@@ -43,21 +43,21 @@ let sorted = word // PAN
   .join(''); // anp
 ```
 
-Two different words `'PAN'` and `'nap'` receive the same letter-sorted form `'anp'`.
+Două cuvinte diferite `'PAN'` și `'nap'` primesc aceeași formă sortată pe litere `'anp'`.
 
-The next line put the word into the map:
+Următoarea linie a pus cuvântul în hartă:
 
 ```js
 map.set(sorted, word);
 ```
 
-If we ever meet a word the same letter-sorted form again, then it would overwrite the previous value with the same key in the map. So we'll always have at maximum one word per letter-form.
+Dacă vom mai întâlni vreodată un cuvânt cu aceeași formă sortată pe litere, atunci va suprascrie valoarea anterioară cu aceeași cheie din map. Astfel vom avea întotdeauna maxim un cuvânt per formă de literă.
 
-At the end `Array.from(map.values())` takes an iterable over map values (we don't need keys in the result) and returns an array of them.
+La final `Array.from(map.values())` ia o iterabilă peste valorile din hartă (nu avem nevoie de chei în rezultat) și returnează un array din acestea.
 
-Here we could also use a plain object instead of the `Map`, because keys are strings.
+Aici am putea folosi și un obiect simplu în loc de `Map`, deoarece cheile sunt șiruri de caractere.
 
-That's how the solution can look:
+Iată cum poate arăta soluția:
 
 ```js run demo
 function aclean(arr) {

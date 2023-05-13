@@ -2,17 +2,17 @@ importance: 4
 
 ---
 
-# Calculate factorial
+# Calculează factorialul
 
-The [factorial](https://en.wikipedia.org/wiki/Factorial) of a natural number is a number multiplied by `"number minus one"`, then by `"number minus two"`, and so on till `1`. The factorial of `n` is denoted as `n!`
+[Factorialul](https://en.wikipedia.org/wiki/Factorial) unui număr natural este un număr înmulțit cu `"numărul minus unu"`, apoi cu `"numărul minus doi"`, și așa mai departe până la `1`. Factorialul lui `n` se notează cu `n!`.
 
-We can write a definition of factorial like this:
+Putem scrie o definiție a factorialului în felul următor:
 
 ```js
 n! = n * (n - 1) * (n - 2) * ...*1
 ```
 
-Values of factorials for different `n`:
+Valori ale factorialelor pentru diferite `n`:
 
 ```js
 1! = 1
@@ -22,10 +22,10 @@ Values of factorials for different `n`:
 5! = 5 * 4 * 3 * 2 * 1 = 120
 ```
 
-The task is to write a function `factorial(n)` that calculates `n!` using recursive calls.
+Sarcina este de a scrie o funcție `factorial(n)` care să calculeze `n!` folosind apeluri recursive.
 
 ```js
 alert( factorial(5) ); // 120
 ```
 
-P.S. Hint: `n!` can be written as `n * (n-1)!` For instance: `3! = 3*2! = 3*2*1! = 6`
+P.S. Indiciu: `n!` poate fi scris ca `n * (n-1)!` De exemplu: `3! = 3*2! = 3*2*1! = 6`

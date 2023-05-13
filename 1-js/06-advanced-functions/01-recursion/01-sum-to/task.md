@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Sum all numbers till the given one
+# Însumați toate numerele până la cel dat
 
-Write a function `sumTo(n)` that calculates the sum of numbers `1 + 2 + ... + n`.
+Scrieți o funcție `sumTo(n)` care calculează suma numerelor `1 + 2 + ... + n`.
 
-For instance:
+De exemplu:
 
 ```js no-beautify
 sumTo(1) = 1
@@ -17,20 +17,20 @@ sumTo(4) = 4 + 3 + 2 + 1 = 10
 sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050
 ```
 
-Make 3 solution variants:
+Faceți 3 variante de soluție:
 
-1. Using a for loop.
-2. Using a recursion, cause `sumTo(n) = n + sumTo(n-1)` for `n > 1`.
-3. Using the [arithmetic progression](https://en.wikipedia.org/wiki/Arithmetic_progression) formula.
+1. Folosind un for loop.
+2. Folosind o recursiune, cauza `sumTo(n) = n + sumTo(n-1)` pentru `n > 1`.
+3. Folosind formula de [progresie aritmetică](https://en.wikipedia.org/wiki/Arithmetic_progression).
 
-An example of the result:
+Un exemplu de rezultat:
 
 ```js
-function sumTo(n) { /*... your code ... */ }
+function sumTo(n) { /*... codul tău ... */ }
 
 alert( sumTo(100) ); // 5050
 ```
 
-P.S. Which solution variant is the fastest? The slowest? Why?
+P.S. Care variantă de soluție este cea mai rapidă? Cea mai lentă? De ce?
 
-P.P.S. Can we use recursion to count `sumTo(100000)`? 
+P.P.S. Putem folosi recursivitatea pentru a număra `sumTo(100000)`?

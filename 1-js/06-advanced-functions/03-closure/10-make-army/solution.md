@@ -1,14 +1,14 @@
 
-Let's examine what exactly happens inside `makeArmy`, and the solution will become obvious.
+Să examinăm ce se întâmplă mai exact în `makeArmy`, iar soluția va deveni evidentă.
 
-1. It creates an empty array `shooters`:
+1. Creează o matrice goală `shooters`:
 
     ```js
     let shooters = [];
     ```
-2. Fills it with functions via `shooters.push(function)` in the loop.
+2. O umple cu funcții prin `shooters.push(function)` în buclă.
 
-    Every element is a function, so the resulting array looks like this:
+    Fiecare element este o funcție, astfel încât matricea rezultată arată astfel:
 
     ```js no-beautify
     shooters = [
@@ -25,40 +25,40 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
     ];
     ```
 
-3. The array is returned from the function.
+3. Matricea este returnată din funcție.
     
-    Then, later, the call to any member, e.g. `army[5]()` will get the element `army[5]` from the array (which is a function) and calls it.
+    Apoi, mai târziu, apelarea oricărui membru, e.g. `army[5]()` va obține elementul `army[5]` din matrice (care este o funcție) și îl apelează.
     
-    Now why do all such functions show the same value, `10`?
+    Acum de ce toate aceste funcții arată aceeași valoare, `10`?
     
-    That's because there's no local variable `i` inside `shooter` functions. When such a function is called, it takes `i` from its outer lexical environment.
+    Asta pentru că nu există o variabilă locală `i` în interiorul funcțiilor `shooter`. Atunci când o astfel de funcție este apelată, aceasta preia `i` din mediul său lexical exterior.
     
-    Then, what will be the value of `i`?
+    Atunci, care va fi valoarea lui `i`?
     
-    If we look at the source:
+    Dacă ne uităm la sursă:
     
     ```js
     function makeArmy() {
       ...
       let i = 0;
       while (i < 10) {
-        let shooter = function() { // shooter function
-          alert( i ); // should show its number
+        let shooter = function() { // funcția shooter
+          alert( i ); // ar trebui să arate numărul său
         };
-        shooters.push(shooter); // add function to the array
+        shooters.push(shooter); // adaugă funcția la matrice
         i++;
       }
       ...
     }
     ```
     
-    We can see that all `shooter` functions are created in the lexical environment of `makeArmy()` function. But when `army[5]()` is called, `makeArmy` has already finished its job, and the final value of `i` is `10` (`while` stops at `i=10`).
+    Putem vedea că toate funcțiile `shooter` sunt create în mediul lexical al funcției `makeArmy()`. Dar când este apelată `army[5]()`, `makeArmy` și-a terminat deja treaba, iar valoarea finală a lui `i` este `10` (`while` se oprește la `i=10`).
     
-    As the result, all `shooter` functions get the same value from the outer lexical environment and that is, the last value, `i=10`.
+   Ca și rezultat, toate funcțiile `shooter` obțin aceeași valoare din mediul lexical extern și anume, ultima valoare, `i=10`.
     
     ![](lexenv-makearmy-empty.svg)
     
-    As you can see above, on each iteration of a `while {...}` block, a new lexical environment is created. So, to fix this, we can copy the value of `i` into a variable within the `while {...}` block, like this:
+    După cum puteți vedea mai sus, la fiecare iterație a unui bloc `while {...}`, un nou mediu lexical este creat. Așadar, pentru a remedia acest lucru, putem copia valoarea lui `i` într-o variabilă în cadrul blocului `while {...}`, astfel:
     
     ```js run
     function makeArmy() {
@@ -69,8 +69,8 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
         *!*
           let j = i;
         */!*
-          let shooter = function() { // shooter function
-            alert( *!*j*/!* ); // should show its number
+          let shooter = function() { // funcția shooter
+            alert( *!*j*/!* ); // ar trebui să arate numărul său
           };
         shooters.push(shooter);
         i++;
@@ -81,18 +81,18 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
     
     let army = makeArmy();
     
-    // Now the code works correctly
+    // Acum codul funcționează corect
     army[0](); // 0
     army[5](); // 5
     ```
     
-    Here `let j = i` declares an "iteration-local" variable `j` and copies `i` into it. Primitives are copied "by value", so we actually get an independent copy of `i`, belonging to the current loop iteration.
+    Aici `let j = i` declară o variabilă `j` "de iterație locală" și copiază `i` în ea. Primitivele sunt copiate "după valoare", astfel încât obținem de fapt o copie independentă a lui `i`, aparținând iterației curente a buclei.
     
-    The shooters work correctly, because the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds to the current loop iteration:
+    Shooters funcționează corect, deoarece valoarea lui `i` trăiește acum un pic mai aproape. Nu în mediul lexical `makeArmy()`, ci în Mediul Lexical care corespunde iterației buclei curente:
     
     ![](lexenv-makearmy-while-fixed.svg)
     
-    Such a problem could also be avoided if we used `for` in the beginning, like this:
+    O astfel de problemă ar putea fi evitată și dacă am folosi `for` la început, astfel:
     
     ```js run demo
     function makeArmy() {
@@ -102,8 +102,8 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
     *!*
       for(let i = 0; i < 10; i++) {
     */!*
-        let shooter = function() { // shooter function
-          alert( i ); // should show its number
+        let shooter = function() { // funcția shooter
+          alert( i ); // ar trebui să arate numărul său
         };
         shooters.push(shooter);
       }
@@ -117,13 +117,13 @@ Let's examine what exactly happens inside `makeArmy`, and the solution will beco
     army[5](); // 5
     ```
     
-    That's essentially the same, because `for` on each iteration generates a new lexical environment, with its own variable `i`. So `shooter` generated in every iteration references its own `i`, from that very iteration.
+    În esență, este același lucru, deoarece `for` generează la fiecare iterație un nou mediu lexical, cu propria sa variabilă `i`. Astfel, `shooter` generat în fiecare iterație face referire la propriul `i`, chiar din acea iterație.
     
     ![](lexenv-makearmy-for-fixed.svg)
 
-Now, as you've put so much effort into reading this, and the final recipe is so simple - just use `for`, you may wonder -- was it worth that?
+Acum, având în vedere că ați depus atât de mult efort pentru a citi acest lucru, iar rețeta finală este atât de simplă - folosiți doar `for`, vă puteți întreba -- s-a meritat?
 
-Well, if you could easily answer the question, you wouldn't read the solution. So, hopefully this task must have helped you to understand things a bit better. 
+Ei bine, dacă ați putea răspunde cu ușurință la această întrebare, nu ați citi soluția. Așadar, sperăm că această sarcină să vă fi ajutat să înțelegeți un pic mai bine lucrurile. 
 
-Besides, there are indeed cases when one prefers `while` to `for`, and other scenarios, where such problems are real.
+În rest, există într-adevăr cazuri în care se preferă `while` în locul lui `for`, precum și alte scenarii, în care astfel de probleme sunt reale.S
 
