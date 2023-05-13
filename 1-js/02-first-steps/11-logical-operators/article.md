@@ -13,11 +13,11 @@ Simbolul pentru operatorul „ORI” este reprezentat prin două linii verticale
 ```js
 result = a || b;
 ```
-În programarea clasică, operatorul logic „ORI” este folosit pentru a manipula doar valori de tip boolean. Dacă valoarea unuia dintre argumente este `true`, rezultatul operației va fi `true`, în caz contrar rezultatul va fi `false`.
+În programarea clasică, operatorul logic „ORI” este folosit pentru a manipula doar valori de tip boolean. Dacă valoarea unuia dintre argumentele acestuia este `true`, rezultatul operației va fi `true`, în caz contrar rezultatul va fi `false`.
 
-În JavaScript, acest operator este puțin mai complex, dar mult mai eficient. Pentru început, haideți să vedem ce se întâmplă cu aceste valori de tip boolean. 
+În JavaScript, acest operator este puțin mai complex, dar și mult mai eficient. Pentru început, haideți să vedem ce se întâmplă cu aceste valori de tip boolean. 
 
-Pot fi posibile doar patru combinații logice.
+Pot fi posibile doar patru combinații.
 
 ```js run
 alert( true || true );   // true
@@ -28,9 +28,9 @@ alert( false || false ); // false
 
 După cum putem vedea, rezultat este mereu `true` cu excepția cazului în care ambii operanți au valoarea `false`.
 
-Dacă un operant nu este de tip boolean, acesta este convertit automat pentru evaluare.
+Dacă un operant nu este de tip boolean, acesta este convertit automat pentru a putea fi evaluat.
 
-De exemplu, numărul `1` este tratat ca fiind `true`, iar numărul `0` este `false`:
+De exemplu, numărul `1` este `true`, iar numărul `0` este `false`:
 
 ```js run
 if (1 || 0) { // funcționează asemenea if( true || false )
@@ -38,7 +38,7 @@ if (1 || 0) { // funcționează asemenea if( true || false )
 }
 ```
 
-De cele mai multe ori, semnul ORI `||` este folosit într-un if statement pentru a testa dacă vreauna dintre condiții este `true`.
+De cele mai multe ori, semnul ORI `||` este folosit într-un `if` statement pentru a testa dacă vreauna dintre condiții este `true`.
 
 Spre exemplu:
 
@@ -65,9 +65,9 @@ if (hour < 10 || hour > 18 || isWeekend) {
 
 ## ORI "||" identifică prima valoare truthy [#or-finds-the-first-truthy-value]
 
-Logica descrisă mai sus este oarecum cea basic. Haideți să discutăm despre calitățile „extra” din JavaScript.  
+Logica descrisă mai sus este oarecum una de bază. Haideți să discutăm despre calitățile „extra” din JavaScript.  
 
-Algoritmul extinds funcționează după cum urmează.
+Algoritmul extins funcționează după cum urmează.
 
 Sunt date mai multe valori ale lui ORI.
 
@@ -79,7 +79,7 @@ Operatorul ORI `||` face următoarele lucruri:
 
 - Evaluzează operanții de la stânga spre dreapta.
 - Fiecare operant este convertit într-o valoare boolean. Dacă rezultatul este `true`, execuția este oprită și valoarea originală a acelui operant este returnată.
-- Dacă toți operanții au fost evaluați (iar toți erau falși), ultimul operant este returnat.
+- Dacă toți operanții au fost evaluați (iar toți erau `false`), ultimul operant este returnat.
 
 O valoare este returnată în forma ei originală, fără conversiune.
 
@@ -96,11 +96,11 @@ alert( null || 0 || 1 ); // 1 (prima valoare truthy)
 alert( undefined || null || 0 ); // 0 (toate valorile sunt falsy, ultima valoare este returnată)
 ```
 
-Asta conduce la utilizări mai interesante față de cele calsice în care operatorul ORI compară doar valori pur booleene.
+Asta conduce la utilizări mai interesante față de cele clasice în care operatorul ORI compară doar valori boolean.
 
 1. **Obținerea primei valori truthy dintr-o listă de variabile sau expresii.**
 
-    Spre exemplu, avem variabilele `firstName`, `lastName` si `nickName`, toate opționale (adică valoarea lor poate fi undefined sau falsy)
+    Spre exemplu, avem variabilele `firstName`, `lastName` și `nickName`, toate opționale (adică valoarea lor poate fi undefined sau falsy)
 
     Haideți să folosim operatorul ORI `||` pentru a identifica variabila truthy și să folosim conținutul acesteia (sau `"Anonim"` în caz contrar):
 
@@ -124,7 +124,7 @@ Asta conduce la utilizări mai interesante față de cele calsice în care opera
 
     Importanța acestei caracteristici începe să devină evidentă în momentul în care unul dintre operanți nu conține doar o valoare, ci o expresie care aduce cu sine și un efect advers, cum ar fi atribuirea valorii unei variabile sau invocarea unei funcții. 
 
-    Pentru exemplul de mai jos, doar al doilea mesaj este printat:
+    Pentru exemplul de mai jos, doar al doilea mesaj este afișat:
 
     ```js run no-beautify
     *!*true*/!* || alert("Acest mesaj nu este printat!");
@@ -158,7 +158,7 @@ let hour = 12;
 let minute = 30;
                  
 if (hour == 12 && minute == 30) {
-  alert( 'The time is 12:30' );
+  alert( 'Este ora 12:30' );
 }
 ```
 
@@ -186,7 +186,7 @@ Operatorul ȘI `&&` face următoarele lucruri:
 
 Cu alte cuvinte, operatorul ȘI are ca rezultat prima valoare falsy sau ultima valoare dacă niciuna nu este falsy.
 
-Regulile de mai sus sunt similare și pentru ORI. Diferența constă în faputl că ȘI are ca rezultat prima valoare *falsy* în timp ce ORI are ca rezultat prima valoare *truthy*.
+Regulile de mai sus sunt similare și pentru ORI. Diferența constă în faptul că ȘI are ca rezultat prima valoare *falsy* în timp ce ORI are ca rezultat prima valoare *truthy*.
 
 Exemple:
 
@@ -231,7 +231,7 @@ let x = 1;
 (x > 0) && alert( 'Mai mare decât zero!' );
 ```
 
-Alerta din partea dreaptă a lui `&&` ajugne să fie executată doar dacă evaluarea ajunge până la ea. Adică, doar dacă if `(x > 0)` este true.
+Metoda alert din partea dreaptă a lui `&&` ajugne să fie executată doar dacă evaluarea ajunge până la ea. Adică, doar dacă if `(x > 0)` este true.
 
 Astfel echivalentul este:
 
