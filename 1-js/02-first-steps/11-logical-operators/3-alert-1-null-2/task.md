@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Care este rezultatul lui ȘI?
+# Care este rezultatul lui AND?
 
 Ce va afișa codul de mai jos?
 

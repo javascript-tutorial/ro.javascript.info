@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# Care este rezultatul metodelor de tip aler combinate cu ȘI?
+# Care este rezultatul alertelor combinate cu AND?
 
-Ce va afișa codul de mai jos?
+Ce va afișa acest cod?
 
 ```js
 alert( alert(1) && alert(2) );

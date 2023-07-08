@@ -1,4 +1,4 @@
-Răspuns: primul și al treilea vor fi afișate.
+Răspuns: primul și al treilea se vor executa.
 
 Detalii:
 

@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Rezultatul dintre ORI ȘI ORI
+# Rezultatul lui OR AND OR
 
 Care va fi rezultatul?
 

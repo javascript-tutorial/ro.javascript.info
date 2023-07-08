@@ -1,10 +1,10 @@
-Răspunsul este: `3`
+Răspunsul: `3`.
 
 ```js run
 alert( null || 2 && 3 || 4 );
 ```
 
-Prioritatea lui ȘI `&&` este mai mare decât cea a lui ORI `||`, așa că `&&` executat primul.
+Prioritatea lui AND `&&` este mai mare decât cea a lui OR `||`, așa că se execută primul.
 
 Rezultatul lui `2 && 3 = 3`, așa că expresia devine:
 
@@ -12,4 +12,4 @@ Rezultatul lui `2 && 3 = 3`, așa că expresia devine:
 null || 3 || 4
 ```
 
-În acest caz, rezultatul este prima valoare truthy: `3`.
+Acum rezultatul este prima valoare truthy: `3`.
