@@ -1,19 +1,19 @@
 # Operatori logici
 
-În JavaScript există patru operatori logici: `||` (ORI), `&&` (ȘI), `!` (NU), `??` (Nullish Coalescing). În acest articol vorbim doar despre primi trei, operatorul `??` va fi acoperit în următorul articol.
+În JavaScript există patru operatori logici: `||` (OR), `&&` (ȘI), `!` (NU), `??` (Nullish Coalescing). În acest articol vorbim doar despre primi trei, operatorul `??` va fi acoperit în următorul articol.
 
 Chiar dacă sunt denumiți operatori „logici”, aceștia pot fi folosiți pentru valori de orice tip, nu doar pentru cele de tip boolean. Rezultatul acestora putând fi de orice tip. 
 
 Haideți să aflăm mai multe detalii.
 
-## || (ORI)
+## || (OR)
 
-Simbolul pentru operatorul „ORI” este reprezentat prin două linii verticale.
+Simbolul pentru operatorul „OR” este reprezentat prin două linii verticale.
 
 ```js
 result = a || b;
 ```
-În programarea clasică, operatorul logic „ORI” este folosit pentru a manipula doar valori de tip boolean. Dacă valoarea unuia dintre argumentele acestuia este `true`, rezultatul operației va fi `true`, în caz contrar rezultatul va fi `false`.
+În programarea clasică, operatorul logic „OR” este folosit pentru a manipula doar valori de tip boolean. Dacă valoarea unuia dintre argumentele acestuia este `true`, rezultatul operației va fi `true`, în caz contrar rezultatul va fi `false`.
 
 În JavaScript, acest operator este puțin mai complex, dar și mult mai eficient. Pentru început, haideți să vedem ce se întâmplă cu aceste valori de tip boolean. 
 
@@ -38,7 +38,7 @@ if (1 || 0) { // funcționează asemenea if( true || false )
 }
 ```
 
-De cele mai multe ori, semnul ORI `||` este folosit într-un `if` statement pentru a testa dacă vreauna dintre condiții este `true`.
+De cele mai multe ori, semnul OR `||` este folosit într-un `if` statement pentru a testa dacă vreauna dintre condiții este `true`.
 
 Spre exemplu:
 
@@ -63,19 +63,19 @@ if (hour < 10 || hour > 18 || isWeekend) {
 }
 ```
 
-## ORI "||" identifică prima valoare truthy [#or-finds-the-first-truthy-value]
+## OR "||" identifică prima valoare truthy [#or-finds-the-first-truthy-value]
 
 Logica descrisă mai sus este oarecum una de bază. Haideți să discutăm despre calitățile „extra” din JavaScript.  
 
 Algoritmul extins funcționează după cum urmează.
 
-Sunt date mai multe valori ale lui ORI.
+Sunt date mai multe valori ale lui OR.
 
 ```js
 result = value1 || value2 || value3;
 ```
 
-Operatorul ORI `||` face următoarele lucruri:
+Operatorul OR `||` face următoarele lucruri:
 
 - Evaluzează operanții de la stânga spre dreapta.
 - Fiecare operant este convertit într-o valoare boolean. Dacă rezultatul este `true`, execuția este oprită și valoarea originală a acelui operant este returnată.
@@ -83,7 +83,7 @@ Operatorul ORI `||` face următoarele lucruri:
 
 O valoare este returnată în forma ei originală, fără conversiune.
 
-Cu alte cuvinte, într-un lanț de operatori logici ORI `||` este returnată prima valoare truthy sau ultima dacă nicio valoare truthy nu este identificată.
+Cu alte cuvinte, într-un lanț de operatori logici OR `||` este returnată prima valoare truthy sau ultima dacă nicio valoare truthy nu este identificată.
 
 Spre exemplu:
 
@@ -96,13 +96,13 @@ alert( null || 0 || 1 ); // 1 (prima valoare truthy)
 alert( undefined || null || 0 ); // 0 (toate valorile sunt falsy, ultima valoare este returnată)
 ```
 
-Asta conduce la utilizări mai interesante față de cele clasice în care operatorul ORI compară doar valori boolean.
+Asta conduce la utilizări mai interesante față de cele clasice în care operatorul OR compară doar valori boolean.
 
 1. **Obținerea primei valori truthy dintr-o listă de variabile sau expresii.**
 
     Spre exemplu, avem variabilele `firstName`, `lastName` și `nickName`, toate opționale (adică valoarea lor poate fi undefined sau falsy)
 
-    Haideți să folosim operatorul ORI `||` pentru a identifica variabila truthy și să folosim conținutul acesteia (sau `"Anonim"` în caz contrar):
+    Haideți să folosim operatorul OR `||` pentru a identifica variabila truthy și să folosim conținutul acesteia (sau `"Anonim"` în caz contrar):
 
     ```js run
     let firstName = "";
@@ -118,7 +118,7 @@ Asta conduce la utilizări mai interesante față de cele clasice în care opera
 
 2. **Evaluarea de tip scurt circuit.**
 
-    O altă caracteristică a operatorului ORI `||` este așa numita evaluare de tip scurt circuit.
+    O altă caracteristică a operatorului OR `||` este așa numita evaluare de tip scurt circuit.
 
     Aceasta înseamnă că `||` își procesează argumentele până când prima valoare truthy este întâlnită, iar apoi acea valoare este returnată imediat, fără ca celălalt argument să mai fie luat în considerare.
 
@@ -131,7 +131,7 @@ Asta conduce la utilizări mai interesante față de cele clasice în care opera
     *!*false*/!* || alert("Acest mesaj este printat!");
     ```
 
-    În prima linie, operatorul ORI `||` imediat ce întâlnește valoarea `true` oprește evaluarea, astfel încât metoda `alert` nu este executată. 
+    În prima linie, operatorul OR `||` imediat ce întâlnește valoarea `true` oprește evaluarea, astfel încât metoda `alert` nu este executată. 
 
     Uneori, oamenii folosesc această funcție pentru a executa comenzi doar dacă condiția din partea stângă este falsy.
 ## && (ȘI)
