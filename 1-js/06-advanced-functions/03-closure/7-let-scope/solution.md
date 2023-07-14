@@ -1,6 +1,6 @@
-The result is: **error**.
+Rezultatul este: **eroare**.
 
-Try running it:
+Încercați să o rulați:
 
 ```js run
 let x = 1;
@@ -15,20 +15,20 @@ function func() {
 func();
 ```
 
-In this example we can observe the peculiar difference between a "non-existing" and "uninitialized" variable.
+În acest exemplu putem observa diferența specifică dintre o variabilă "inexistentă" și una "neinițializată".
 
-As you may have read in the article [](info:closure), a variable starts in the "uninitialized" state from the moment when the execution enters a code block (or a function). And it stays uninitalized until the corresponding `let` statement.
+După cum ați putut citi în articolul [](info:closure), o variabilă începe în starea "neinițializată" din momentul în care execuția intră într-un bloc de cod (sau într-o funcție). Și rămâne neinițializată până la instrucțiunea `let` corespunzătoare.
 
-In other words, a variable technically exists, but can't be used before `let`.
+Cu alte cuvinte, o variabilă există din punct de vedere tehnic, dar nu poate fi utilizată înainte de `let`.
 
-The code above demonstrates it.
+Codul de mai sus demonstrează acest lucru.
 
 ```js
 function func() {
 *!*
-  // the local variable x is known to the engine from the beginning of the function,
-  // but "uninitialized" (unusable) until let ("dead zone")
-  // hence the error
+  // variabila locală x este cunoscută de motor din începutul funcției,
+  // dar "neinițializată" (inutilizabilă) până la let ("zona moartă").
+  // de unde și eroarea
 */!*
 
   console.log(x); // ReferenceError: Cannot access 'x' before initialization
@@ -37,4 +37,4 @@ function func() {
 }
 ```
 
-This zone of temporary unusability of a variable (from the beginning of the code block till `let`) is sometimes called the "dead zone".
+Această zonă de neutilizare temporară a unei variabile (de la începutul blocului de cod până la `let`) se numește uneori "zonă moartă".

@@ -1,5 +1,5 @@
 
-Using `setInterval`:
+Folosind `setInterval`:
 
 ```js run
 function printNumbers(from, to) {
@@ -14,11 +14,11 @@ function printNumbers(from, to) {
   }, 1000);
 }
 
-// usage:
+// utilizare:
 printNumbers(5, 10);
 ```
 
-Using nested `setTimeout`:
+Folosind `setTimeout` imbricat:
 
 
 ```js run
@@ -34,13 +34,13 @@ function printNumbers(from, to) {
   }, 1000);
 }
 
-// usage:
+// utilizare:
 printNumbers(5, 10);
 ```
 
-Note that in both solutions, there is an initial delay before the first output. The function is called after `1000ms` the first time.
+Observați că în ambele soluții există o întârziere inițială înainte de prima emitere. Funcția este apelată după `1000ms` pentru prima dată.
 
-If we also want the function to run immediately, then we can add an additional call on a separate line, like this:
+Dacă dorim de asemenea ca funcția să ruleze imediat, atunci putem adăuga un apel suplimentar pe o linie separată, astfel:
 
 ```js run
 function printNumbers(from, to) {

@@ -1,39 +1,39 @@
-# Scheduling: setTimeout and setInterval
+# Planificare: setTimeout și setInterval
 
-We may decide to execute a function not right now, but at a certain time later. That's called "scheduling a call".
+Am putea decide să executăm o funcție nu chiar acum, ci la un anumit moment mai târziu. Acest lucru se numește "planificarea unui apel".
 
-There are two methods for it:
+Există două metode pentru aceasta:
 
-- `setTimeout` allows us to run a function once after the interval of time.
-- `setInterval` allows us to run a function repeatedly, starting after the interval of time, then repeating continuously at that interval.
+- `setTimeout` ne permite să rulăm o funcție o dată după un interval de timp.
+- `setInterval` ne permite să rulăm o funcție în mod repetat, începând după intervalul de timp, apoi repetându-se încontinuu la acel interval.
 
-These methods are not a part of JavaScript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.js.
+Aceste metode nu fac parte din specificația JavaScript. Dar majoritatea mediilor au planificator intern și oferă aceste metode. În particular, ele sunt acceptate în toate browserele și în Node.js.
 
 ## setTimeout
 
-The syntax:
+Sintaxa:
 
 ```js
 let timerId = setTimeout(func|code, [delay], [arg1], [arg2], ...)
 ```
 
-Parameters:
+Parametri:
 
 `func|code`
-: Function or a string of code to execute.
-Usually, that's a function. For historical reasons, a string of code can be passed, but that's not recommended.
+: Funcție sau un șir de cod să fie executat.
+De obicei, este o funcție. Din motive istorice, poate fi trecut un șir de cod, dar nu este recomandat.
 
 `delay`
-: The delay before run, in milliseconds (1000 ms = 1 second), by default 0.
+: Întârzierea înainte de rulare, în milisecunde (1000 ms = 1 secundă), implicit 0.
 
 `arg1`, `arg2`...
-: Arguments for the function
+: Argumente pentru funcție
 
-For instance, this code calls `sayHi()` after one second:
+De exemplu, acest cod apelează `sayHi()` după o secundă:
 
 ```js run
 function sayHi() {
-  alert('Hello');
+  alert('Bună ziua');
 }
 
 *!*
@@ -41,7 +41,7 @@ setTimeout(sayHi, 1000);
 */!*
 ```
 
-With arguments:
+Cu argumente:
 
 ```js run
 function sayHi(phrase, who) {
@@ -49,97 +49,97 @@ function sayHi(phrase, who) {
 }
 
 *!*
-setTimeout(sayHi, 1000, "Hello", "John"); // Hello, John
+setTimeout(sayHi, 1000, "Bună ziua", "John"); // Bună ziua, John
 */!*
 ```
 
-If the first argument is a string, then JavaScript creates a function from it.
+Dacă primul argument este un șir de caractere, atunci JavaScript creează o funcție din acesta.
 
-So, this will also work:
-
-```js run no-beautify
-setTimeout("alert('Hello')", 1000);
-```
-
-But using strings is not recommended, use arrow functions instead of them, like this:
+Așadar, și acest lucru va funcționa:
 
 ```js run no-beautify
-setTimeout(() => alert('Hello'), 1000);
+setTimeout("alert('Bună ziua')", 1000);
 ```
 
-````smart header="Pass a function, but don't run it"
-Novice developers sometimes make a mistake by adding brackets `()` after the function:
+Dar folosirea șirurilor de caractere nu este recomandată, folosiți funcții săgeată în locul lor, astfel:
+
+```js run no-beautify
+setTimeout(() => alert('Bună ziua'), 1000);
+```
+
+````smart header="Treceți o funcție, dar nu o rulați"
+Dezvoltatorii începători fac uneori o greșeală adăugând paranteze `()` după funcție:
 
 ```js
-// wrong!
+// greșit!
 setTimeout(sayHi(), 1000);
 ```
-That doesn't work, because `setTimeout` expects a reference to a function. And here `sayHi()` runs the function, and the *result of its execution* is passed to `setTimeout`. In our case the result of `sayHi()` is `undefined` (the function returns nothing), so nothing is scheduled.
+Asta nu va funcționa, deoarece `setTimeout` se așteaptă la o referință spre o funcție. Iar aici `sayHi()` rulează funcția, iar *rezultatul execuției sale* este trecut la `setTimeout`. În cazul nostru, rezultatul lui `sayHi()` este `undefined` (funcția nu returnează nimic), deci nu se planifică nimic.
 ````
 
-### Canceling with clearTimeout
+### Anulare cu clearTimeout
 
-A call to `setTimeout` returns a "timer identifier" `timerId` that we can use to cancel the execution.
+Un apel la `setTimeout` returnează un "identificator de temporizator" `timerId` pe care îl putem folosi pentru a anula execuția.
 
-The syntax to cancel:
+Sintaxa de anulare:
 
 ```js
 let timerId = setTimeout(...);
 clearTimeout(timerId);
 ```
 
-In the code below, we schedule the function and then cancel it (changed our mind). As a result, nothing happens:
+În codul de mai jos, planificăm funcția și apoi o anulăm (ne-am răzgândit). Ca urmare, nu se întâmplă nimic:
 
 ```js run no-beautify
-let timerId = setTimeout(() => alert("never happens"), 1000);
-alert(timerId); // timer identifier
+let timerId = setTimeout(() => alert("nu se întâmplă niciodată"), 1000);
+alert(timerId); // identificatorul temporizatorului
 
 clearTimeout(timerId);
-alert(timerId); // same identifier (doesn't become null after canceling)
+alert(timerId); // același identificator (nu devine nul după anulare)
 ```
 
-As we can see from `alert` output, in a browser the timer identifier is a number. In other environments, this can be something else. For instance, Node.js returns a timer object with additional methods.
+După cum se poate observa din ieșirea `alert`, într-un browser identificatorul temporizatorului este un număr. În alte medii, acesta poate fi altceva. De exemplu, Node.js returnează un obiect timer cu metode suplimentare.
 
-Again, there is no universal specification for these methods, so that's fine.
+Din nou, nu există o specificație universală pentru aceste metode, așa că este în regulă.
 
-For browsers, timers are described in the [timers section](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) of HTML Living Standard.
+Pentru browsere, temporizatoarele sunt descrise în [secțiunea timers](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) din HTML Living Standard.
 
 ## setInterval
 
-The `setInterval` method has the same syntax as `setTimeout`:
+Metoda `setInterval` are aceeași sintaxă ca și `setTimeout`:
 
 ```js
-let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)
+let timerId = setInterval(func|cod, [întârziere], [arg1], [arg2], ...)
 ```
 
-All arguments have the same meaning. But unlike `setTimeout` it runs the function not only once, but regularly after the given interval of time.
+Toate argumentele au aceeași semnificație. Dar spre deosebire de `setTimeout` acesta rulează funcția nu doar o singură dată, ci în mod regulat după intervalul de timp dat.
 
-To stop further calls, we should call `clearInterval(timerId)`.
+Pentru a opri apelurile ulterioare, ar trebui să apelăm `clearInterval(timerId)`.
 
-The following example will show the message every 2 seconds. After 5 seconds, the output is stopped:
+Următorul exemplu va afișa mesajul la fiecare 2 secunde. După 5 secunde, ieșirea este oprită:
 
 ```js run
-// repeat with the interval of 2 seconds
-let timerId = setInterval(() => alert('tick'), 2000);
+// se repetă cu intervalul de 2 secunde
+let timerId = setInterval(() => alert('tic'), 2000);
 
-// after 5 seconds stop
+// după 5 secunde se oprește
 setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
 ```
 
-```smart header="Time goes on while `alert` is shown"
-In most browsers, including Chrome and Firefox the internal timer continues "ticking" while showing `alert/confirm/prompt`.
+```smart header="Timpul continuă cât este afișat `alert`"
+În majoritatea browserelor, inclusiv Chrome și Firefox, cronometrul intern continuă să "ticăie" în timp ce se afișează `alert/confirm/prompt`.
 
-So if you run the code above and don't dismiss the `alert` window for some time, then the next `alert` will be shown immediately as you do it. The actual interval between alerts will be shorter than 2 seconds.
+Deci dacă executați codul de mai sus și nu închideți fereastra `alert` pentru o perioadă de timp, atunci următorul `alert` va fi afișat imediat ce o faceți. Intervalul real dintre alerte va fi mai scurt de 2 secunde.
 ```
 
-## Nested setTimeout
+## setTimeout inbricat
 
-There are two ways of running something regularly.
+Există două modalități de a rula ceva în mod regulat.
 
-One is `setInterval`. The other one is a nested `setTimeout`, like this:
+Una dintre ele este `setInterval`. Cealaltă este un `setTimeout` imbricate, ca acesta:
 
 ```js
-/** instead of:
+/** în loc de:
 let timerId = setInterval(() => alert('tick'), 2000);
 */
 
@@ -151,13 +151,13 @@ let timerId = setTimeout(function tick() {
 }, 2000);
 ```
 
-The `setTimeout` above schedules the next call right at the end of the current one `(*)`.
+`setTimeout` de mai sus planifică următorul apel chiar la sfârșitul celui curent `(*)`.
 
-The nested `setTimeout` is a more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
+Metoda imbricată `setTimeout` este mai flexibilă decât `setInterval`. În acest fel următorul apel poate fi planificat diferit, în funcție de rezultatele apelului curent.
 
-For instance, we need to write a service that sends a request to the server every 5 seconds asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
+De exemplu, trebuie să scriem un serviciu care să trimită o solicitare către server la fiecare 5 secunde pentru a cere date, dar în cazul în care serverul este supraîncărcat, ar trebui să crească intervalul la 10, 20, 40 de secunde...
 
-Here's the pseudocode:
+Iată pseudocodul:
 ```js
 let delay = 5000;
 
@@ -165,7 +165,7 @@ let timerId = setTimeout(function request() {
   ...send request...
 
   if (request failed due to server overload) {
-    // increase the interval to the next run
+    // crește intervalul până la următoarea execuție
     delay *= 2;
   }
 
@@ -175,11 +175,11 @@ let timerId = setTimeout(function request() {
 ```
 
 
-And if the functions that we're scheduling are CPU-hungry, then we can measure the time taken by the execution and plan the next call sooner or later.
+Iar dacă funcțiile pe care le planificăm sunt mari consumatoare de CPU, atunci putem măsura timpul de execuție și putem planifica următorul apel mai devreme sau mai târziu.
 
-**Nested `setTimeout` allows to set the delay between the executions more precisely than `setInterval`.**
+**`setTimeout`-ul imbricat permite stabilirea întârzierii dintre execuții mai precis decât `setInterval`.**
 
-Let's compare two code fragments. The first one uses `setInterval`:
+Să comparăm două fragmente de cod. Primul utilizează `setInterval`:
 
 ```js
 let i = 1;
@@ -188,7 +188,7 @@ setInterval(function() {
 }, 100);
 ```
 
-The second one uses nested `setTimeout`:
+Al doilea utilizează `setTimeout` imbricat:
 
 ```js
 let i = 1;
@@ -198,52 +198,52 @@ setTimeout(function run() {
 }, 100);
 ```
 
-For `setInterval` the internal scheduler will run `func(i++)` every 100ms:
+Pentru `setInterval` planificatorul intern va rula `func(i++)` la fiecare 100 ms:
 
 ![](setinterval-interval.svg)
 
-Did you notice?
+Ați observat?
 
-**The real delay between `func` calls for `setInterval` is less than in the code!**
+**Întârzierea reală între apelurile `func` pentru `setInterval` este mai mică decât în cod!**
 
-That's normal, because the time taken by `func`'s execution "consumes" a part of the interval.
+Este normal, pentru că timpul ocupat de execuția lui `func` "consumă" o parte din interval.
 
-It is possible that `func`'s execution turns out to be longer than we expected and takes more than 100ms.
+Este posibil ca execuția lui `func` să se dovedească a fi mai lungă decât ne așteptam și să dureze mai mult de 100ms.
 
-In this case the engine waits for `func` to complete, then checks the scheduler and if the time is up, runs it again *immediately*.
+În acest caz motorul așteaptă ca `func` să se termine, apoi verifică planificatorul și dacă timpul a expirat, îl rulează din nou *imediat*.
 
-In the edge case, if the function always executes longer than `delay` ms, then the calls will happen without a pause at all.
+În cazul marginal, dacă funcția se execută întotdeauna mai îndelungat decât `delay` ms, atunci apelurile se vor întâmpla fără nicio pauză.
 
-And here is the picture for the nested `setTimeout`:
+Și iată imaginea pentru `setTimeout` imbricat:
 
 ![](settimeout-interval.svg)
 
-**The nested `setTimeout` guarantees the fixed delay (here 100ms).**
+**`setTimeout`-ul imbricat garantează întârzierea fixă (aici 100ms).**
 
-That's because a new call is planned at the end of the previous one.
+Asta pentru că un nou apel este planificat la sfârșitul celui precedent.
 
-````smart header="Garbage collection and setInterval/setTimeout callback"
-When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function from being garbage collected, even if there are no other references to it.
+````smart header="Colectarea gunoiului și callback-ul setInterval/setTimeout"
+Atunci când o funcție este predată în `setInterval/setTimeout`, este creată o referință internă la aceasta și salvată în planificator. Aceasta previne ca funcția să fie colectată la gunoi, chiar dacă nu există alte referințe la ea.
 
 ```js
-// the function stays in memory until the scheduler calls it
+// funcția rămâne în memorie până când planificatorul o apelează
 setTimeout(function() {...}, 100);
 ```
 
-For `setInterval` the function stays in memory until `clearInterval` is called.
+Pentru `setInterval`, funcția rămâne în memorie până când este apelată `clearInterval`.
 
-There's a side effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function anymore, it's better to cancel it, even if it's very small.
+Există un efect secundar. O funcție face referire la mediul lexical extern, astfel încât, în timp ce ea trăiește, trăiesc și variabilele externe. Acestea pot ocupa mult mai multă memorie decât funcția însăși. Deci atunci când nu mai avem nevoie de funcția planificată, este mai bine să o anulăm, chiar dacă este foarte mică.
 ````
 
-## Zero delay setTimeout
+## setTimeout cu Întârziere zero
 
-There's a special use case: `setTimeout(func, 0)`, or just `setTimeout(func)`.
+Există un caz special de utilizare: `setTimeout(func, 0)`, sau doar `setTimeout(func)`.
 
-This schedules the execution of `func` as soon as possible. But the scheduler will invoke it only after the currently executing script is complete.
+Acest lucru planifică execuția lui `func` cât mai curând posibil. Dar planificatorul îl va invoca numai după ce scriptul în curs de execuție este finalizat.
 
-So the function is scheduled to run "right after" the current script.
+Astfel funcția este planifică să se execute "imediat după" scriptul curent.
 
-For instance, this outputs "Hello", then immediately "World":
+De exemplu, aceasta produce "Hello", apoi imediat "World":
 
 ```js run
 setTimeout(() => alert("World"));
@@ -251,52 +251,52 @@ setTimeout(() => alert("World"));
 alert("Hello");
 ```
 
-The first line "puts the call into calendar after 0ms". But the scheduler will only "check the calendar" after the current script is complete, so `"Hello"` is first, and `"World"` -- after it.
+Prima linie "pune apelul în calendar după 0ms". Dar planificatorul va "verifica calendarul" numai după ce scriptul curent este finalizat, așa că `"Hello"` este primul, iar `"World"` -- după el.
 
-There are also advanced browser-related use cases of zero-delay timeout, that we'll discuss in the chapter <info:event-loop>.
+Există de asemenea cazuri avansate de utilizare a timeout-ului cu întârziere zero legate de browser, pe care le vom discuta în capitolul <info:event-loop>.
 
-````smart header="Zero delay is in fact not zero (in a browser)"
-In the browser, there's a limitation of how often nested timers can run. The [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
+````smart header="Întârzierea zero nu este de fapt zero (într-un browser)"
+În browser, este o limitare pentru cât de des pot rula temporizatoarele imbricate. [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) spune: "după cinci temporizatoare imbricate, intervalul este forțat să fie de cel puțin 4 milisecunde.".
 
-Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
+Să demonstrăm ce înseamnă acest lucru cu exemplul de mai jos. Apelul `setTimeout` cuprins în el se replanifică singur cu întârziere zero. Fiecare apel reține întârzierea reală din cel precedent în matricea `times`. Cum arată întârzierile reale? Să vedem:
 
 ```js run
 let start = Date.now();
 let times = [];
 
 setTimeout(function run() {
-  times.push(Date.now() - start); // remember delay from the previous call
+  times.push(Date.now() - start); // ține minte întârzierea de la apelul anterior
 
-  if (start + 100 < Date.now()) alert(times); // show the delays after 100ms
-  else setTimeout(run); // else re-schedule
+  if (start + 100 < Date.now()) alert(times); // arată întârzierile după 100ms
+  else setTimeout(run); // else replanifică
 });
 
-// an example of the output:
+// un exemplu de ieșire:
 // 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
 ```
 
-First timers run immediately (just as written in the spec), and then we see `9, 15, 20, 24...`. The 4+ ms obligatory delay between invocations comes into play.
+Primele temporizatoare se execută imediat (așa cum este scris în specificație), iar apoi vedem `9, 15, 20, 24...`. Intră în joc întârzierea obligatorie de 4+ ms între invocări.
 
-The similar thing happens if we use `setInterval` instead of `setTimeout`: `setInterval(f)` runs `f` few times with zero-delay, and afterwards with 4+ ms delay.
+Un lucru similar se întâmplă dacă folosim `setInterval` în loc de `setTimeout`: `setInterval(f)` rulează `f` de câteva ori cu întârziere zero, iar apoi cu întârziere de 4+ ms.
 
-That limitation comes from ancient times and many scripts rely on it, so it exists for historical reasons.
+Această limitare provine din timpuri străvechi și multe scripturi se bazează pe ea, așa că există din motive istorice.
 
-For server-side JavaScript, that limitation does not exist, and there exist other ways to schedule an immediate asynchronous job, like [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) for Node.js. So this note is browser-specific.
+Pentru JavaScript pe server, această limitare nu există și există alte modalități de a planifica o sarcină asincronă imediată, cum ar fi [setImmediate](https://nodejs.org/api/timers.html#timers_setimmediate_callback_args) pentru Node.js. Deci această notă este specifică browserului.
 ````
 
-## Summary
+## Sumar
 
-- Methods `setTimeout(func, delay, ...args)` and `setInterval(func, delay, ...args)` allow us to run the `func` once/regularly after `delay` milliseconds.
-- To cancel the execution, we should call `clearTimeout/clearInterval` with the value returned by `setTimeout/setInterval`.
-- Nested `setTimeout` calls are a more flexible alternative to `setInterval`, allowing us to set the time *between* executions more precisely.
-- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current script is complete".
-- The browser limits the minimal delay for five or more nested calls of `setTimeout` or for `setInterval` (after 5th call) to 4ms. That's for historical reasons.
+- Metodele `setTimeout(func, delay, ...args)` și `setInterval(func, delay, ...args)` ne permit să rulăm `func` o dată/regulat după `delay` milisecunde.
+- Pentru a anula execuția, ar trebui să apelăm `clearTimeout/clearInterval` cu valoarea returnată de `setTimeout/setInterval`.
+- Apelurile `setTimeout` imbricate reprezintă o alternativă mai flexibilă la `setInterval`, permițându-ne să setăm mai precis timpul *între* execuții.
+- Planificarea cu întârziere zero prin `setTimeout(func, 0)` (la fel ca `setTimeout(func)`) este utilizată pentru a programa apelul "cât mai curând posibil, dar după ce scriptul curent este finalizat".
+- Browserul limitează întârzierea minimă pentru cinci sau mai multe apeluri imbricate ale `setTimeout` sau pentru `setInterval` (după al cincilea apel) la 4ms. Asta din motive istorice.
 
-Please note that all scheduling methods do not *guarantee* the exact delay.
+Vă rugăm să rețineți că toate metodele de planificare nu *garantează* întârzierea exactă.
 
-For example, the in-browser timer may slow down for a lot of reasons:
-- The CPU is overloaded.
-- The browser tab is in the background mode.
-- The laptop is on battery saving mode.
+De exemplu, temporizatorul din browser poate încetini din multe motive:
+- Procesorul este suprasolicitat.
+- Tab-ul browserului este în fundal.
+- Laptopul este în modul de economisire a bateriei.
 
-All that may increase the minimal timer resolution (the minimal delay) to 300ms or even 1000ms depending on the browser and OS-level performance settings.
+Toate acestea pot crește rezoluția minimă a temporizatorului (întârzierea minimă) la 300ms sau chiar 1000ms în funcție de setările de performanță la nivel de browser și de sistem de operare.

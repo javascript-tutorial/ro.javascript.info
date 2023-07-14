@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Output a single-linked list in the reverse order
+# Scoate un singur linked list în ordine inversă
 
-Output a single-linked list from the previous task <info:task/output-single-linked-list> in the reverse order.
+Scoate un singur linked list din sarcina anterioară <info:task/output-single-linked-list> în ordine inversă.
 
-Make two solutions: using a loop and using a recursion.
+Realizați două soluții: folosind un loop și folosind o recursivitate.

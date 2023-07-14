@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Are counters independent?
+# Sunt contoarele independente?
 
-Here we make two counters: `counter` and `counter2` using the same `makeCounter` function.
+Aici facem două contoare: `counter` și `counter2` folosind aceeași funcție `makeCounter`.
 
-Are they independent? What is the second counter going to show? `0,1` or `2,3` or something else?
+Sunt ele independente? Ce va arăta cel de-al doilea contor? `0,1` sau `2,3` sau altceva?
 
 ```js
 function makeCounter() {

@@ -1,7 +1,7 @@
 
-Surely it will work just fine.
+Cu siguranță că va funcționa foarte bine.
 
-Both nested functions are created within the same outer Lexical Environment, so they share access to the same `count` variable:
+Ambele funcții imbricate sunt create în cadrul aceluiași Mediu Lexical exterior, astfel încât au acces comun la aceeași variabilă `count`:
 
 ```js run
 function Counter() {

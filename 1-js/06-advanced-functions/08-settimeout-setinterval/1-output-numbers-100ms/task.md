@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Output every second
+# Emite în fiecare secundă
 
-Write a function `printNumbers(from, to)` that outputs a number every second, starting from `from` and ending with `to`.
+Scrieți o funcție `printNumbers(from, to)` care emite un număr la fiecare secundă, începând de la `from` și terminând cu `to`.
 
-Make two variants of the solution.
+Creați două variante ale soluției.
 
-1. Using `setInterval`.
-2. Using nested `setTimeout`.
+1. Folosind `setInterval`.
+2. Folosind `setTimeout` imbricat.

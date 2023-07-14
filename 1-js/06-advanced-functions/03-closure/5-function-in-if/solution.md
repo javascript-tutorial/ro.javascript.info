@@ -1,3 +1,3 @@
-The result is **an error**.
+Rezultatul este **o eroare**.
 
-The function `sayHi` is declared inside the `if`, so it only lives inside it. There is no `sayHi` outside.
+Funcția `sayHi` este declarată în interiorul lui `if`, deci trăiește doar în interiorul acestuia. Nu există `sayHi` în exterior.

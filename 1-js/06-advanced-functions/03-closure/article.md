@@ -1,130 +1,130 @@
 
-# Variable scope, closure
+# Sfera variabilei, closure
 
-JavaScript is a very function-oriented language. It gives us a lot of freedom. A function can be created at any moment, passed as an argument to another function, and then called from a totally different place of code later.
+JavaScript este un limbaj foarte orientat spre funcții. Acesta ne oferă o mare libertate. O funcție poate fi creată în orice moment, transmisă ca argument unei alte funcții, și ulterior apelată dintr-un cu totul alt loc din cod.
 
-We already know that a function can access variables outside of it ("outer" variables).
+Știm deja că o funcție poate accesa variabile din afara ei (variabile "exterioare").
 
-But what happens if outer variables change since a function is created? Will the function get newer values or the old ones?
+Dar ce se întâmplă dacă variabilele exterioare se schimbă de la crearea unei funcții? Va primi funcția valorile mai noi sau pe cele vechi?
 
-And what if a function is passed along as an argument and called from another place of code, will it get access to outer variables at the new place?
+Și dacă o funcție este transmisă ca argument și apelată dintr-un alt loc din cod, va avea acces la variabilele exterioare din noul loc?
 
-Let's expand our knowledge to understand these scenarios and more complex ones.
+Haideți să ne extindem cunoștințele pentru a înțelege aceste scenarii și altele mai complexe.
 
-```smart header="We'll talk about `let/const` variables here"
-In JavaScript, there are 3 ways to declare a variable: `let`, `const` (the modern ones), and `var` (the remnant of the past).
+```smart header="Vom vorbi despre variabilele `let/const` aici"
+În JavaScript, există 3 moduri de a declara o variabilă: `let`, `const` (cele moderne) și `var` (rămășița trecutului).
 
-- In this article we'll use `let` variables in examples.
-- Variables, declared with `const`, behave the same, so this article is about `const` too.
-- The old `var` has some notable differences, they will be covered in the article <info:var>.
+- În acest articol vom folosi variabilele `let` în exemple.
+- Variabilele, declarate cu `const`, se comportă la fel, așa că acest articol se referă și la `const`.
+- Vechiul `var` are câteva diferențe notabile, acestea vor fi acoperite în articolul <info:var>.
 ```
 
-## Code blocks
+## Blocuri de cod
 
-If a variable is declared inside a code block `{...}`, it's only visible inside that block.
+Dacă o variabilă este declarată în interiorul unui bloc de cod `{...}`, ea este vizibilă doar în interiorul acelui bloc.
 
-For example:
+De exemplu:
 
 ```js run
 {
-  // do some job with local variables that should not be seen outside
+  // face o treabă cu variabile locale care nu ar trebui să fie văzute în exterior
 
-  let message = "Hello"; // only visible in this block
+  let message = "Bună ziua"; // vizibil doar în acest bloc
 
-  alert(message); // Hello
+  alert(message); // Bună ziua
 }
 
 alert(message); // Error: message is not defined
 ```
 
-We can use this to isolate a piece of code that does its own task, with variables that only belong to it:
+Putem folosi acest lucru pentru a izola o bucată de cod care își face propria sarcină, cu variabile care îi aparțin doar ei:
 
 ```js run
 {
-  // show message
-  let message = "Hello";
+  // afișează mesajul
+  let message = "Bună ziua";
   alert(message);
 }
 
 {
-  // show another message
-  let message = "Goodbye";
+  // afișează un alt mesaj
+  let message = "La revedere";
   alert(message);
 }
 ```
 
-````smart header="There'd be an error without blocks"
-Please note, without separate blocks there would be an error, if we use `let` with the existing variable name:
+````smart header="Ar exista o eroare fără blocuri"
+Vă rugăm să notați că, fără blocuri separate ar exista o eroare, dacă am folosi `let` cu numele variabilei existente:
 
 ```js run
-// show message
-let message = "Hello";
+// arată mesajul
+let message = "Bună ziua";
 alert(message);
 
-// show another message
+// arată un alt mesaj
 *!*
-let message = "Goodbye"; // Error: variable already declared
+let message = "La revedere"; // Error: variable already declared
 */!*
 alert(message);
 ```
 ````
 
-For `if`, `for`, `while` and so on, variables declared in `{...}` are also only visible inside:
+Pentru `if`, `for`, `while` și așa mai departe, variabilele declarate în `{...}` sunt de asemenea vizibile doar în interior:
 
 ```js run
 if (true) {
-  let phrase = "Hello!";
+  let phrase = "Bună ziua!";
 
-  alert(phrase); // Hello!
+  alert(phrase); // Bună ziua!
 }
 
 alert(phrase); // Error, no such variable!
 ```
 
-Here, after `if` finishes, the `alert` below won't see the `phrase`, hence the error.
+Aici, după ce `if` se termină, `alert` de mai jos nu va vedea `phrase`, de unde și eroarea.
 
-That's great, as it allows us to create block-local variables, specific to an `if` branch.
+Asta este grozav, deoarece ne permite să creăm variabile locale de bloc, specifice unei ramuri `if`.
 
-The similar thing holds true for `for` and `while` loops:
+Același lucru este valabil și pentru buclele `for` și `while`:
 
 ```js run
 for (let i = 0; i < 3; i++) {
-  // the variable i is only visible inside this for
-  alert(i); // 0, then 1, then 2
+  // variabila i este vizibilă doar în interiorul acestui for
+  alert(i); // 0, apoi 1, apoi 2
 }
 
-alert(i); // Error, no such variable
+alert(i); // Eroare, nu există o astfel de variabilă
 ```
 
-Visually, `let i` is outside of `{...}`. But the `for` construct is special here: the variable, declared inside it, is considered a part of the block.
+Vizual, `let i` se află în afara lui `{...}`. Dar construcția `for` este specială aici: variabila, declarată în interiorul ei, este considerată parte a blocului.
 
-## Nested functions
+## Funcții imbricate
 
-A function is called "nested" when it is created inside another function.
+O funcție este numită "imbricată" atunci când este creată în interiorul altei funcții.
 
-It is easily possible to do this with JavaScript.
+Acest lucru este posibil cu ușurință în JavaScript.
 
-We can use it to organize our code, like this:
+Îl putem folosi pentru a ne organiza codul, astfel:
 
 ```js
 function sayHiBye(firstName, lastName) {
 
-  // helper nested function to use below
+  // funcție helper imbricată pentru utilizat mai jos
   function getFullName() {
     return firstName + " " + lastName;
   }
 
-  alert( "Hello, " + getFullName() );
-  alert( "Bye, " + getFullName() );
+  alert( "Bună ziua, " + getFullName() );
+  alert( "La revedere, " + getFullName() );
 
 }
 ```
 
-Here the *nested* function `getFullName()` is made for convenience. It can access the outer variables and so can return the full name. Nested functions are quite common in JavaScript.
+Aici funcția *imbricată* `getFullName()` este făcută pentru conveniență. Aceasta poate accesa variabilele exterioare și astfel poate returna numele complet. Funcțiile imbricate sunt destul de frecvente în JavaScript.
 
-What's much more interesting, a nested function can be returned: either as a property of a new object or as a result by itself. It can then be used somewhere else. No matter where, it still has access to the same outer variables.
+Ceea ce este mult mai interesant, o funcție imbricată poate fi returnată: fie ca o proprietate a unui nou obiect ori ca un rezultat de sine stătător. Acesta poate fi apoi utilizat în altă parte. Indiferent unde, aceasta are în continuare acces la aceleași variabile exterioare.
 
-Below, `makeCounter` creates the "counter" function that returns the next number on each invocation:
+Mai jos, `makeCounter` creează funcția "counter" care returnează următorul număr la fiecare invocare:
 
 ```js run
 function makeCounter() {
@@ -142,123 +142,123 @@ alert( counter() ); // 1
 alert( counter() ); // 2
 ```
 
-Despite being simple, slightly modified variants of that code have practical uses, for instance, as a [random number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) to generate random values for automated tests.
+În ciuda faptului că sunt simple, variantele ușor modificate ale acestui cod au utilizări practice, de exemplu, ca [generator de numere aleatoare](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) pentru a genera valori aleatoare pentru testele automate.
 
-How does this work? If we create multiple counters, will they be independent? What's going on with the variables here?
+Cum funcționează acest lucru? Dacă vom crea mai multe counters, vor fi ele independente? Ce se întâmplă cu variabilele aici?
 
-Understanding such things is great for the overall knowledge of JavaScript and beneficial for more complex scenarios. So let's go a bit in-depth.
+Înțelegerea unor astfel de lucruri este excelentă pentru cunoștințele generale despre JavaScript și benefică pentru scenarii mai complexe. Așadar haideți să aprofundăm puțin.
 
-## Lexical Environment
+## Mediu Lexical
 
-```warn header="Here be dragons!"
-The in-depth technical explanation lies ahead.
+```warn header="Aici sunt dragoni!"
+Explicația tehnică aprofundată se găsește în cele ce urmează.
 
-As far as I'd like to avoid low-level language details, any understanding without them would be lacking and incomplete, so get ready.
+În măsura în care aș dori să evit detaliile low-level ale limbajului, orice înțelegere fără ele ar fi insuficientă și incompletă, așa că pregătiți-vă.
 ```
 
-For clarity, the explanation is split into multiple steps.
+Pentru claritate, explicația este împărțită în mai mulți pași.
 
-### Step 1. Variables
+### Pasul 1. Variabile
 
-In JavaScript, every running function, code block `{...}`, and the script as a whole have an internal (hidden) associated object known as the *Lexical Environment*.
+În JavaScript, fiecare funcție care rulează, blocul de cod `{...}`, și scriptul ca întreg au un obiect intern (ascuns) asociat, cunoscut sub numele de *Mediu Lexical*.
 
-The Lexical Environment object consists of two parts:
+Obiectul Lexical Environment este constituit din două părți:
 
-1. *Environment Record* -- an object that stores all local variables as its properties (and some other information like the value of `this`).
-2. A reference to the *outer lexical environment*, the one associated with the outer code.
+1. *Environment Record* -- un obiect care stochează toate variabilele locale ca proprietăți ale acestuia (și alte informații, cum ar fi valoarea lui `this`).
+2. O referință la *mediul lexical extern*, cel asociat cu codul extern.
 
-**A "variable" is just a property of the special internal object, `Environment Record`. "To get or change a variable" means "to get or change a property of that object".**
+**O "variabilă" este doar o proprietate a obiectului intern special, `Environment Record`. "A obține sau a modifica o variabilă" înseamnă "a obține sau a modifica o proprietate a acelui obiect".**
 
-In this simple code without functions, there is only one Lexical Environment:
+În acest cod simplu fără funcții, există un singur Mediu Lexical:
 
 ![lexical environment](lexical-environment-global.svg)
 
-This is the so-called *global* Lexical Environment, associated with the whole script.
+Acesta este așa-numitul Mediu Lexical *global*, asociat cu întregul script.
 
-On the picture above, the rectangle means Environment Record (variable store) and the arrow means the outer reference. The global Lexical Environment has no outer reference, that's why the arrow points to `null`.
+În imaginea de mai sus, dreptunghiul reprezintă Environment Record (stocare de variabile) iar săgeata reprezintă referința exterioară. Mediul Lexical global nu are o referință externă, de aceea săgeata indică `null`.
 
-As the code starts executing and goes on, the Lexical Environment changes.
+Pe măsură ce codul începe să se execute și continuă, Mediul Lexical se modifică.
 
-Here's a little bit longer code:
+Iată un cod puțin mai lung:
 
-![lexical environment](closure-variable-phrase.svg)
+![mediu lexical](closure-variable-phrase.svg)
 
-Rectangles on the right-hand side demonstrate how the global Lexical Environment changes during the execution:
+Dreptunghiurile din partea dreaptă demonstrează cum se modifică Mediul Lexical global în timpul execuției:
 
-1. When the script starts, the Lexical Environment is pre-populated with all declared variables.
-    - Initially, they are in the "Uninitialized" state. That's a special internal state, it means that the engine knows about the variable, but it cannot be referenced until it has been declared with `let`. It's almost the same as if the variable didn't exist.
-2. Then `let phrase` definition appears. There's no assignment yet, so its value is `undefined`. We can use the variable from this point forward.
-3. `phrase` is assigned a value.
-4. `phrase` changes the value.
+1. La pornirea scriptului, Mediul Lexical este prepopulat cu toate variabilele declarate.
+    - Inițial, acestea se află în starea "Uninitialized". Aceasta este o stare internă specială, ceea ce înseamnă că motorul știe despre variabilă, dar nu poate fi referențiată până când nu este declarată cu `let`. Este aproape la fel ca și cum variabila nu ar exista.
+2. Apoi apare definiția `let phrase`. Nu există încă o atribuire, deci valoarea ei este `undefined`. Putem folosi variabila din acest punct încolo.
+3. Lui `phrase` i se atribuie o valoare.
+4. `phrase` își schimbă valoarea.
 
-Everything looks simple for now, right?
+Totul pare simplu deocamdată, nu?
 
-- A variable is a property of a special internal object, associated with the currently executing block/function/script.
-- Working with variables is actually working with the properties of that object.
+- O variabilă este o proprietate a unui obiect intern special, asociată blocului/funcției/scriptului în curs de execuție.
+- Lucrul cu variabilele înseamnă de fapt lucrul cu proprietățile acelui obiect.
 
-```smart header="Lexical Environment is a specification object"
-"Lexical Environment" is a specification object: it only exists "theoretically" in the [language specification](https://tc39.es/ecma262/#sec-lexical-environments) to describe how things work. We can't get this object in our code and manipulate it directly.
+```smart header="Mediul Lexical este un obiect din specificație"
+"Mediul Lexical" este un obiect din specificație: el există doar "teoretic" în [specificația limbajului](https://tc39.es/ecma262/#sec-lexical-environments) pentru a descrie modul în care funcționează lucrurile. Nu putem obține acest obiect în codul nostru și să-l manipulăm direct.
 
-JavaScript engines also may optimize it, discard variables that are unused to save memory and perform other internal tricks, as long as the visible behavior remains as described.
+De asemenea motoarele JavaScript îl pot optimiza, pot renunța la variabilele nefolosite pentru a economisi memorie și pot efectua alte trucuri interne, atâta timp cât comportamentul vizibil rămâne cel descris.
 ```
 
-### Step 2. Function Declarations
+### Pasul 2. Function Declaration
 
-A function is also a value, like a variable.
+O funcție este de asemenea o valoare, la fel ca o variabilă.
 
-**The difference is that a Function Declaration is instantly fully initialized.**
+**Diferența este că o Function Declaration este instantaneu complet inițializată.**
 
-When a Lexical Environment is created, a Function Declaration immediately becomes a ready-to-use function (unlike `let`, that is unusable till the declaration).
+Atunci când este creat un Mediu Lexical, o Function Declaration devine imediat o funcție gata de utilizare (spre deosebire de `let`, care este inutilizabilă până la declarație).
 
-That's why we can use a function, declared as Function Declaration, even before the declaration itself.
+De aceea putem utiliza o funcție, declarată ca Function Declaration, chiar înainte de declarația propriu-zisă.
 
-For example, here's the initial state of the global Lexical Environment when we add a function:
+De exemplu, iată care este starea inițială a mediului lexical global atunci când adăugăm o funcție:
 
 ![](closure-function-declaration.svg)
 
-Naturally, this behavior only applies to Function Declarations, not Function Expressions where we assign a function to a variable, such as `let say = function(name)...`.
+Firește, acest comportament se aplică numai la Function Declaration, nu și la Function Expression în care atribuim o funcție unei variabile, cum ar fi `let say = function(name)...`.
 
-### Step 3. Inner and outer Lexical Environment
+### Pasul 3. Mediul Lexical interior și exterior
 
-When a function runs, at the beginning of the call, a new Lexical Environment is created automatically to store local variables and parameters of the call.
+Atunci când rulează o funcție, la începutul apelului, se creează automat un nou mediu lexical pentru a stoca variabilele locale și parametrii apelului.
 
-For instance, for `say("John")`, it looks like this (the execution is at the line, labelled with an arrow):
+De exemplu, pentru `say("John")`, acesta arată astfel (execuția se află la linia marcată cu o săgeată):
 
 <!--
     ```js
-    let phrase = "Hello";
+    let phrase = "Bună ziua";
 
     function say(name) {
      alert( `${phrase}, ${name}` );
     }
 
-    say("John"); // Hello, John
+    say("John"); // Bună ziua, John
     ```-->
 
 ![](lexical-environment-simple.svg)
 
-During the function call we have two Lexical Environments: the inner one (for the function call) and the outer one (global):
+În timpul apelului funcției avem două medii lexicale: cel intern (pentru apelul funcției) și cel extern (global):
 
-- The inner Lexical Environment corresponds to the current execution of `say`. It has a single property: `name`, the function argument. We called `say("John")`, so the value of the `name` is `"John"`.
-- The outer Lexical Environment is the global Lexical Environment. It has the `phrase` variable and the function itself.
+- Mediul Lexical intern corespunde execuției curente a lui `say`. Acesta are o singură proprietate: `name`, argumentul funcției. Am apelat `say("John")`, deci valoarea lui `name` este `"John"`.
+- Mediul Lexical exterior este Mediul Lexical global. Acesta conține variabila `phrase` și funcția în sine.
 
-The inner Lexical Environment has a reference to the `outer` one.
+Mediul Lexical intern are o referință la cel `extern`.
 
-**When the code wants to access a variable -- the inner Lexical Environment is searched first, then the outer one, then the more outer one and so on until the global one.**
+**Când codul vrea să acceseze o variabilă -- se caută mai întâi Mediul Lexical interior, apoi cel exterior, apoi cel mai exterior și așa mai departe până la cel global.**
 
-If a variable is not found anywhere, that's an error in strict mode (without `use strict`, an assignment to a non-existing variable creates a new global variable, for compatibility with old code).
+Dacă o variabilă nu este găsită nicăieri, este o eroare în modul strict (fără `use strict`, o atribuire la o variabilă inexistentă creează o nouă variabilă globală, pentru compatibilitate cu codul vechi).
 
-In this example the search proceeds as follows:
+În acest exemplu căutarea se desfășoară după cum urmează:
 
-- For the `name` variable, the `alert` inside `say` finds it immediately in the inner Lexical Environment.
-- When it wants to access `phrase`, then there is no `phrase` locally, so it follows the reference to the outer Lexical Environment and finds it there.
+- Pentru variabila `name`, `alert` din `say` o găsește imediat în Mediul Lexical intern.
+- Când vrea să acceseze `phrase`, atunci nu există `phrase` la nivel local, așa că urmărește referința la Mediul Lexical exterior și o găsește acolo.
 
 ![lexical environment lookup](lexical-environment-simple-lookup.svg)
 
 
-### Step 4. Returning a function
+### Pasul 4. Returnarea unei funcții
 
-Let's return to the `makeCounter` example.
+Să ne întoarcem la exemplul `makeCounter`.
 
 ```js
 function makeCounter() {
@@ -272,53 +272,53 @@ function makeCounter() {
 let counter = makeCounter();
 ```
 
-At the beginning of each `makeCounter()` call, a new Lexical Environment object is created, to store variables for this `makeCounter` run.
+La începutul fiecărui apel `makeCounter()`, se creează un nou obiect Lexical Environment, pentru a stoca variabilele pentru această execuție `makeCounter`.
 
-So we have two nested Lexical Environments, just like in the example above:
+Astfel avem două Medii Lexicale imbricate, la fel ca în exemplul de mai sus:
 
 ![](closure-makecounter.svg)
 
-What's different is that, during the execution of `makeCounter()`, a tiny nested function is created of only one line: `return count++`. We don't run it yet, only create.
+Ceea ce este diferit este că, în timpul execuției `makeCounter()`, este creată o mică funcție imbricată de o singură linie: `return count++`. Nu o executăm încă, ci doar o creăm.
 
-All functions remember the Lexical Environment in which they were made. Technically, there's no magic here: all functions have the hidden property named `[[Environment]]`, that keeps the reference to the Lexical Environment where the function was created:
+Toate funcțiile își amintesc Mediul Lexical în care au fost create. Tehnic, nu există nici o magie aici: toate funcțiile au o proprietate ascunsă numită `[[Environment]]`, care păstrează referința spre Mediul Lexical în care a fost creată funcția:
 
 ![](closure-makecounter-environment.svg)
 
-So, `counter.[[Environment]]` has the reference to `{count: 0}` Lexical Environment. That's how the function remembers where it was created, no matter where it's called. The `[[Environment]]` reference is set once and forever at function creation time.
+Astfel, `counter.[[Environment]]` are referință spre Mediul Lexical `{count: 0}`. Așa este cum funcția își amintește unde a fost creată, indiferent unde este apelată. Referința `[[Environment]]` este setată o singură dată și pentru totdeauna la momentul creării funcției.
 
-Later, when `counter()` is called, a new Lexical Environment is created for the call, and its outer Lexical Environment reference is taken from `counter.[[Environment]]`:
+Ulterior, când `counter()` este apelat, un nou Mediu Lexical este creat pentru apel, iar referința exterioară a Mediului său Lexical este preluată din `counter.[[Environment]]`:
 
 ![](closure-makecounter-nested-call.svg)
 
-Now when the code inside `counter()` looks for `count` variable, it first searches its own Lexical Environment (empty, as there are no local variables there), then the Lexical Environment of the outer `makeCounter()` call, where it finds and changes it.
+Acum, atunci când codul din interiorul lui `counter()` caută variabila `count`, caută mai întâi în propriul său Mediu Lexical (gol, deoarece nu există variabile locale acolo), apoi în Mediul Lexical al apelului exterior `makeCounter()`, unde o găsește și o modifică.
 
-**A variable is updated in the Lexical Environment where it lives.**
+**O variabilă este actualizată în Mediul Lexical în care trăiește.**
 
-Here's the state after the execution:
+Iată care este starea după execuție:
 
 ![](closure-makecounter-nested-call-2.svg)
 
-If we call `counter()` multiple times, the `count` variable will be increased to `2`, `3` and so on, at the same place.
+Dacă apelăm `counter()` de mai multe ori, variabila `count` va fi mărită la `2`, `3` și așa mai departe, în același loc.
 
 ```smart header="Closure"
-There is a general programming term "closure", that developers generally should know.
+Există un termen general de programare "closure", pe care dezvoltatorii ar trebui în general să-l cunoască.
 
-A [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) is a function that remembers its outer variables and can access them. In some languages, that's not possible, or a function should be written in a special way to make it happen. But as explained above, in JavaScript, all functions are naturally closures (there is only one exception, to be covered in <info:new-function>).
+Un [closure](https://en.wikipedia.org/wiki/Closure_(computer_programming)) este o funcție care își amintește variabilele exterioare și le poate accesa. În unele limbaje, acest lucru nu este posibil, sau o funcție trebuie scrisă într-un mod special pentru a face acest lucru să se întâmple. Dar așa cum s-a explicat mai sus, în JavaScript, toate funcțiile sunt în mod natural closures (există o singură excepție, care va fi abordată în <info:new-function>).
 
-That is: they automatically remember where they were created using a hidden `[[Environment]]` property, and then their code can access outer variables.
+Adică: ele își amintesc automat unde au fost create cu ajutorul unei proprietăți ascunse `[[Environment]]`, iar apoi codul lor poate accesa variabilele exterioare.
 
-When on an interview, a frontend developer gets a question about "what's a closure?", a valid answer would be a definition of the closure and an explanation that all functions in JavaScript are closures, and maybe a few more words about technical details: the `[[Environment]]` property and how Lexical Environments work.
+Atunci când, la un interviu, un dezvoltator frontend primește o întrebare despre "ce este un closure?", un răspuns valid ar fi o definiție a closure-ului și o explicație că toate funcțiile din JavaScript sunt closure-uri, și poate câteva cuvinte în plus despre detalii tehnice: proprietatea `[[Environment]]` și cum funcționează Mediile Lexicale.
 ```
 
-## Garbage collection
+## Colectarea gunoiului
 
-Usually, a Lexical Environment is removed from memory with all the variables after the function call finishes. That's because there are no references to it. As any JavaScript object, it's only kept in memory while it's reachable.
+De obicei, un Mediu Lexical este eliminat din memorie împreună cu toate variabilele după ce se termină apelul funcției. Acest lucru se datorează faptului că nu mai există referințe la acesta. Ca orice obiect JavaScript, este păstrat în memorie doar atât timp cât este accesibil.
 
-However, if there's a nested function that is still reachable after the end of a function, then it has `[[Environment]]` property that references the lexical environment.
+Cu toate acestea, dacă există o funcție imbricată care este încă accesibilă după terminarea unei funcții, atunci aceasta are proprietatea `[[Environment]]` care face referire la Mediul Lexical.
 
-In that case the Lexical Environment is still reachable even after the completion of the function, so it stays alive.
+În acel caz Mediul Lexical este încă accesibil chiar și după terminarea funcției, deci rămâne în viață.
 
-For example:
+De exemplu:
 
 ```js
 function f() {
@@ -329,11 +329,11 @@ function f() {
   }
 }
 
-let g = f(); // g.[[Environment]] stores a reference to the Lexical Environment
-// of the corresponding f() call
+let g = f(); // g.[[Environment]] stochează o referință la Mediul Lexical
+// al apelului f() corespunzător
 ```
 
-Please note that if `f()` is called many times, and resulting functions are saved, then all corresponding Lexical Environment objects will also be retained in memory. In the code below, all 3 of them:
+Vă rugăm să notați că, dacă `f()` este apelat de multe ori, iar funcțiile rezultate sunt salvate, atunci toate obiectele corespunzătoare Mediului Lexical vor fi de asemenea păstrate în memorie. În codul de mai jos, toate cele 3:
 
 ```js
 function f() {
@@ -342,14 +342,14 @@ function f() {
   return function() { alert(value); };
 }
 
-// 3 functions in array, every one of them links to Lexical Environment
-// from the corresponding f() run
+// 3 funcții în matrice, fiecare dintre ele are legătură cu Mediul Lexical
+// de la execuția corespunzătoare f()
 let arr = [f(), f(), f()];
 ```
 
-A Lexical Environment object dies when it becomes unreachable (just like any other object). In other words, it exists only while there's at least one nested function referencing it.
+Un obiect Lexical Environment moare atunci când devine inaccesibil (la fel ca orice alt obiect). Cu alte cuvinte, acesta există doar atât timp cât există cel puțin o funcție imbricată care face referire la el.
 
-In the code below, after the nested function is removed, its enclosing Lexical Environment (and hence the `value`) is cleaned from memory:
+În codul de mai jos, după ce funcția imbricată este eliminată, Mediul Lexical care o înconjoară (și prin urmare `value`) este curățat din memorie:
 
 ```js
 function f() {
@@ -360,29 +360,29 @@ function f() {
   }
 }
 
-let g = f(); // while g function exists, the value stays in memory
+let g = f(); // cât timp există funcția g, valoarea rămâne în memorie
 
-g = null; // ...and now the memory is cleaned up
+g = null; // ...și acum memoria este curățată
 ```
 
-### Real-life optimizations
+### Optimizări în viața reală
 
-As we've seen, in theory while a function is alive, all outer variables are also retained.
+După cum am văzut, în teorie cât timp o funcție este activă, toate variabilele exterioare sunt de asemenea păstrate.
 
-But in practice, JavaScript engines try to optimize that. They analyze variable usage and if it's obvious from the code that an outer variable is not used -- it is removed.
+Dar în practică, motoarele JavaScript încearcă să optimizeze acest lucru. Ele analizează utilizarea variabilelor și dacă este evident din cod că o variabilă exterioară nu este utilizată -- aceasta este eliminată.
 
-**An important side effect in V8 (Chrome, Edge, Opera) is that such variable will become unavailable in debugging.**
+**Un efect secundar important în V8 (Chrome, Edge, Opera) este că o astfel de variabilă va deveni indisponibilă în depanare.**
 
-Try running the example below in Chrome with the Developer Tools open.
+Încercați să rulați exemplul de mai jos în Chrome cu Instrumente de dezvoltare deschise.
 
-When it pauses, in the console type `alert(value)`.
+Când se întrerupe, în consolă tastați `alert(value)`.
 
 ```js run
 function f() {
   let value = Math.random();
 
   function g() {
-    debugger; // in console: type alert(value); No such variable!
+    debugger; // în consolă: tastați alert(value); Nu există o astfel de variabilă!
   }
 
   return g;
@@ -392,18 +392,18 @@ let g = f();
 g();
 ```
 
-As you could see -- there is no such variable! In theory, it should be accessible, but the engine optimized it out.
+După cum ați putut vedea -- nu există o astfel de variabilă! În teorie, ar trebui să fie accesibilă, dar motorul a optimizat-o.
 
-That may lead to funny (if not such time-consuming) debugging issues. One of them -- we can see a same-named outer variable instead of the expected one:
+Acest lucru poate duce la probleme de depanare amuzante (dacă nu ar fi atât de consumatoare de timp). Una dintre ele -- putem vedea o variabilă exterioară cu același nume în locul celei așteptate:
 
 ```js run global
-let value = "Surprise!";
+let value = "Surpriză!";
 
 function f() {
-  let value = "the closest value";
+  let value = "cea mai apropiată valoare";
 
   function g() {
-    debugger; // in console: type alert(value); Surprise!
+    debugger; // în consolă: tastați alert(value); Surpriză!
   }
 
   return g;
@@ -413,6 +413,6 @@ let g = f();
 g();
 ```
 
-This feature of V8 is good to know. If you are debugging with Chrome/Edge/Opera, sooner or later you will meet it.
+Această caracteristică a V8 este bine de știut. Dacă faceți depanare cu Chrome/Edge/Opera, mai devreme sau mai târziu o veți întâlni.
 
-That is not a bug in the debugger, but rather a special feature of V8. Perhaps it will be changed sometime. You can always check for it by running the examples on this page.
+Nu este o eroare a depanatorului, ci mai degrabă o caracteristică specială a V8. Poate că va fi schimbată cândva. Puteți oricând să o verificați rulând exemplele de pe această pagină.

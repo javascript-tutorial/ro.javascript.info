@@ -2,25 +2,25 @@ importance: 5
 
 ---
 
-# What will setTimeout show?
+# Ce va arăta setTimeout?
 
-In the code below there's a `setTimeout` call scheduled, then a heavy calculation is run, that takes more than 100ms to finish.
+În codul de mai jos este planificat un apel `setTimeout`, apoi se rulează un calcul intensiv, care durează mai mult de 100ms pentru a se termina.
 
-When will the scheduled function run?
+Când se va executa funcția planificată?
 
-1. After the loop.
-2. Before the loop.
-3. In the beginning of the loop.
+1. După buclă.
+2. Înainte de buclă.
+3. La începutul buclei.
 
 
-What is `alert` going to show?
+Ce va arăta `alert`?
 
 ```js
 let i = 0;
 
 setTimeout(() => alert(i), 100); // ?
 
-// assume that the time to execute this function is >100ms
+// să presupunem că timpul de execuție a acestei funcții este >100ms
 for(let j = 0; j < 100000000; j++) {
   i++; 
 }
