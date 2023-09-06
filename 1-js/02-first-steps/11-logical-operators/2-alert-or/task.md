@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# What's the result of OR'ed alerts?
+# Care este rezultatul alertelor combinate prin OR?
 
-What will the code below output?
+Care va vi output-ul codului de mai jos?
 
 ```js
 alert( alert(1) || 2 || alert(3) );

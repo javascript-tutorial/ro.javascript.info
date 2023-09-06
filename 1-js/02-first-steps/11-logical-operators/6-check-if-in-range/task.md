@@ -2,8 +2,8 @@ importance: 3
 
 ---
 
-# Check the range between
+# Verificați intervalul dintre
 
-Write an `if` condition to check that `age` is between `14` and `90` inclusively.
+Scrie o condiție `if` care verifică dacă `age` se încadrează între `14` și `90` inclusiv.
 
-"Inclusively" means that `age` can reach the edges `14` or `90`.
+"Inclusiv" înseamnă că `age` poate fi de asemenea `14` sau `90`.

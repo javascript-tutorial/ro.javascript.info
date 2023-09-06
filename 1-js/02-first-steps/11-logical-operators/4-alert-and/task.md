@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# What is the result of AND'ed alerts?
+# Care este rezultatul alertelor combinate cu AND?
 
-What will this code show?
+Ce va afișa acest cod?
 
 ```js
 alert( alert(1) && alert(2) );

@@ -2,8 +2,8 @@ importance: 3
 
 ---
 
-# Check the range outside
+# Verifică intervalul din afară
 
-Write an `if` condition to check that `age` is NOT between `14` and `90` inclusively.
+Scrie o condiție `if` care verifică dacă `age` NU este cuprins înte `14` și `90` inclusiv.  
 
-Create two variants: the first one using NOT `!`, the second one -- without it.
+Creează două variante: în prima să folosești NOT `!`, iar în ceea de-a doua -- să nu.

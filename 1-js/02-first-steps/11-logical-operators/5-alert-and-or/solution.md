@@ -1,16 +1,15 @@
-The answer: `3`.
+Răspunsul: `3`.
 
 ```js run
 alert( null || 2 && 3 || 4 );
 ```
 
-The precedence of AND `&&` is higher than `||`, so it executes first.
+Prioritatea lui AND `&&` este mai mare decât cea a lui OR `||`, așa că se execută primul.
 
-The result of `2 && 3 = 3`, so the expression becomes:
+Rezultatul lui `2 && 3 = 3`, așa că expresia devine:
 
 ```
 null || 3 || 4
 ```
 
-Now the result is the first truthy value: `3`.
-
+Acum rezultatul este prima valoare truthy: `3`.
