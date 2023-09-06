@@ -1,19 +1,19 @@
 # Operatori logici
 
-În JavaScript există patru operatori logici: `||` (OR), `&&` (ȘI), `!` (NU), `??` (Nullish Coalescing). În acest articol vorbim doar despre primi trei, operatorul `??` va fi acoperit în următorul articol.
+În JavaScript există patru operatori logici: `||` (OR), `&&` (AND), `!` (NOT), `??` (Nullish Coalescing). Aici vorbim doar despre primii trei, operatorul `??` va fi acoperit în următorul articol.
 
-Chiar dacă sunt denumiți operatori „logici”, aceștia pot fi folosiți pentru valori de orice tip, nu doar pentru cele de tip boolean. Rezultatul acestora putând fi de orice tip. 
+Chiar dacă sunt denumiți "logici", aceștia pot fi folosiți pentru valori de orice tip, nu doar pentru cele de tip boolean. Rezultatul acestora putând fi de orice tip. 
 
 Haideți să aflăm mai multe detalii.
 
 ## || (OR)
 
-Simbolul pentru operatorul „OR” este reprezentat prin două linii verticale.
+Simbolul pentru operatorul "OR" este reprezentat prin două linii verticale.
 
 ```js
 result = a || b;
 ```
-În programarea clasică, operatorul logic „OR” este folosit pentru a manipula doar valori de tip boolean. Dacă valoarea unuia dintre argumentele acestuia este `true`, rezultatul operației va fi `true`, în caz contrar rezultatul va fi `false`.
+În programarea clasică, operatorul logic "OR" este folosit pentru a manipula doar valori de tip boolean. Dacă valoarea unuia dintre argumentele acestuia este `true`, rezultatul operației va fi `true`, în caz contrar rezultatul va fi `false`.
 
 În JavaScript, acest operator este puțin mai complex, dar și mult mai eficient. Pentru început, haideți să vedem ce se întâmplă cu aceste valori de tip boolean. 
 
@@ -65,7 +65,7 @@ if (hour < 10 || hour > 18 || isWeekend) {
 
 ## OR "||" identifică prima valoare truthy [#or-finds-the-first-truthy-value]
 
-Logica descrisă mai sus este oarecum una de bază. Haideți să discutăm despre calitățile „extra” din JavaScript.  
+Logica descrisă mai sus este oarecum una de bază. Haideți să discutăm despre calitățile "extra" din JavaScript.  
 
 Algoritmul extins funcționează după cum urmează.
 
