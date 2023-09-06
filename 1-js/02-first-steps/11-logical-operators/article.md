@@ -135,7 +135,8 @@ Asta conduce la utilizări mai interesante față de cele pur clasice în care o
     În prima linie, operatorul OR `||` imediat ce întâlnește valoarea `true` oprește evaluarea, astfel încât metoda `alert` nu este executată. 
 
     Uneori, oamenii folosesc această funcție pentru a executa comenzi doar dacă condiția din partea stângă este falsy.
-## && (ȘI)
+
+## && (AND)
 
 Operatorul ȘI este reprezentat de două semne ampersand `&&`:
 
@@ -171,7 +172,8 @@ if (1 && 0) { // evaluat ca true && false
 }
 ```
 
-## ȘI "&&" identifică prima valoare falsy
+
+## AND "&&" identifică prima valoare falsy
 
 Sunt date mai multe valori conectate prin operatorul logic ȘI:
 
@@ -179,7 +181,7 @@ Sunt date mai multe valori conectate prin operatorul logic ȘI:
 result = value1 && value2 && value3;
 ```
 
-Operatorul ȘI `&&` face următoarele lucruri:
+Operatorul AND `&&` face următoarele lucruri:
 
 - Evaluează operanții de la stânga la dreapta.
 - Convertește fiecare operant într-un boolean. Dacă rezultatul este `false`, procesul este oprit, iar valoarea originală a operantului este returnată.
@@ -215,14 +217,14 @@ Dacă toate valorile sunt truthy, ultima dintre ele este returnată:
 alert( 1 && 2 && 3 ); // 3, ultima
 ```
 
-````smart header="Prioritatea lui ȘI `&&` este mai mare decât cea a lui ORI `||`"
-Prioritatea operatorului ȘI `&&` este mai mare față de ce a lui ORI `||`.
+````smart header="Prioritatea lui AND `&&` este mai mare decât cea a lui ORI `||`"
+Prioritatea operatorului AND `&&` este mai mare față de ce a lui ORI `||`.
 
 Astfel, codul `a && b || c && d` este în esență exact la fel cu folosirea operatorului `&&` între paranteze: `(a && b) || (c && d)`.
 ````
 
 ````warn header="Nu înlocuiți `if` cu `||` sau `&&`"
-Uneori, oamenii folosesc operatorul ȘI `&&` pentru a scrie o formă mai scurtă de `if` statement.
+Uneori, oamenii folosesc operatorul AND `&&` pentru a scrie o formă mai scurtă de `if` statement.
 
 De exemplu:
 
@@ -232,7 +234,7 @@ let x = 1;
 (x > 0) && alert( 'Mai mare decât zero!' );
 ```
 
-Metoda alert din partea dreaptă a lui `&&` ajugne să fie executată doar dacă evaluarea ajunge până la ea. Adică, doar dacă if `(x > 0)` este true.
+Acțiunea din partea dreaptă a lui `&&` ajunge să fie executată doar dacă evaluarea ajunge până la ea. Adică, doar dacă if `(x > 0)` este true.
 
 Astfel echivalentul este:
 
@@ -246,9 +248,9 @@ Deși, varianta cu `&&` pare a fi mai scurtă, varianta cu `if` statement este m
 ````
 
 
-## ! (NU)
+## ! (NOT)
 
-Operatorul boolean NU este reprezentat printrun semn de exclamare.
+Operatorul boolean NOT este reprezentat printrun semn de exclamare.
 
 Sintaxa este destul de simplă:
 
@@ -268,7 +270,7 @@ alert( !true ); // false
 alert( !0 ); // true
 ```
 
-Dublu NU `!!` poate fi folosit uneori pentru a converti o valoare într-un boolean.
+Dublu NOT `!!` poate fi folosit uneori pentru a converti o valoare într-un boolean.
 
 ```js run
 alert( !!"non-empty string" ); // true
@@ -284,4 +286,4 @@ alert( Boolean("non-empty string") ); // true
 alert( Boolean(null) ); // false
 ```
 
-Prioritatea lui NU `!` este cea mai mare dintre toți operatorii logici, fiind executat mereu primul, înaintea lui `&&` sau `||`.
+Prioritatea lui NOT `!` este cea mai mare dintre toți operatorii logici, fiind executat mereu primul, înaintea lui `&&` sau `||`.
