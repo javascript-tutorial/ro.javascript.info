@@ -13,6 +13,7 @@ Simbolul pentru operatorul "OR" este reprezentat prin două linii verticale.
 ```js
 result = a || b;
 ```
+
 În programarea clasică, operatorul logic "OR" este folosit pentru a manipula doar valori de tip boolean. Dacă valoarea unuia dintre argumentele acestuia este `true`, rezultatul operației va fi `true`, în caz contrar rezultatul va fi `false`.
 
 În JavaScript, acest operator este puțin mai complex, dar și mult mai eficient. Pentru început, haideți să vedem ce se întâmplă cu aceste valori de tip boolean. 
@@ -30,15 +31,15 @@ După cum putem vedea, rezultat este mereu `true` cu excepția cazului în care 
 
 Dacă un operant nu este de tip boolean, acesta este convertit automat pentru a putea fi evaluat.
 
-De exemplu, numărul `1` este `true`, iar numărul `0` este `false`:
+De exemplu, numărul `1` este tratat ca `true`, iar numărul `0` ca `false`:
 
 ```js run
-if (1 || 0) { // funcționează asemenea if( true || false )
-  alert( 'truthy' );
+if (1 || 0) { // funcționează exact ca if( true || false )
+  alert( 'truthy!' );
 }
 ```
 
-De cele mai multe ori, semnul OR `||` este folosit într-un `if` statement pentru a testa dacă vreauna dintre condiții este `true`.
+De cele mai multe ori, OR `||` este folosit într-un `if` statement pentru a testa dacă *vreuna* dintre condițiile date este `true`.
 
 Spre exemplu:
 
@@ -59,13 +60,13 @@ let hour = 12;
 let isWeekend = true;
 
 if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'Biroul este închis.' ); // este weekend.
+  alert( 'Biroul este închis.' ); // este weekend
 }
 ```
 
 ## OR "||" identifică prima valoare truthy [#or-finds-the-first-truthy-value]
 
-Logica descrisă mai sus este oarecum una de bază. Haideți să discutăm despre calitățile "extra" din JavaScript.  
+Logica descrisă mai sus este oarecum clasică. Haideți să discutăm despre caracteristicile "extra" din JavaScript.
 
 Algoritmul extins funcționează după cum urmează.
 
@@ -75,11 +76,11 @@ Sunt date mai multe valori ale lui OR.
 result = value1 || value2 || value3;
 ```
 
-Operatorul OR `||` face următoarele lucruri:
+Operatorul OR `||` face următoarele:
 
-- Evaluzează operanții de la stânga spre dreapta.
-- Fiecare operant este convertit într-o valoare boolean. Dacă rezultatul este `true`, execuția este oprită și valoarea originală a acelui operant este returnată.
-- Dacă toți operanții au fost evaluați (iar toți erau `false`), ultimul operant este returnat.
+- Evaluzează operanzii de la stânga spre dreapta.
+- Fiecare operand este convertit într-o valoare boolean. Dacă rezultatul este `true`, execuția este oprită și valoarea originală a acelui operand este returnată.
+- Dacă toți operanzii au fost evaluați (iar toți erau `false`), ultimul operant este returnat.
 
 O valoare este returnată în forma ei originală, fără conversiune.
 
@@ -96,7 +97,7 @@ alert( null || 0 || 1 ); // 1 (prima valoare truthy)
 alert( undefined || null || 0 ); // 0 (toate valorile sunt falsy, ultima valoare este returnată)
 ```
 
-Asta conduce la utilizări mai interesante față de cele clasice în care operatorul OR compară doar valori boolean.
+Asta conduce la utilizări mai interesante față de cele pur clasice în care operatorul OR compară doar valori boolean.
 
 1. **Obținerea primei valori truthy dintr-o listă de variabile sau expresii.**
 
