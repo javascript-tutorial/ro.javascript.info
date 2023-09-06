@@ -4,9 +4,9 @@ importance: 5
 
 # O întrebare despre "if"
 
-Care dintre următoarele metode `alert` va fi executată.
+Care dintre următoarele `alert`e se vor executa?
 
-Care va fi rezultatul expresiei din interiorul lui `if(...)`?
+Care va fi rezultatul expresiilor din interiorul lui `if(...)`?
 
 ```js
 if (-1 || 0) alert( 'primul' );
