@@ -2,19 +2,19 @@ importance: 4
 
 ---
 
-# Which values get shown by the "for" loop?
+# Ce valori se afișează pentru bucla "for"?
 
-For each loop write down which values it is going to show. Then compare with the answer.
+Pentru fiecare buclă, scrie ce valori se vor afișa. Apoi compară-le cu soluția.
 
-Both loops `alert` same values or not?
+Ambele bucle afișează prin funcția `alert` aceleași valori sau nu?
 
-1. The postfix form:
+1. Forma cu sufix:
 
-    ```js
-    for (let i = 0; i < 5; i++) alert( i );
-    ```
-2. The prefix form:
+   ```js
+   for (let i = 0; i < 5; i++) alert( i );
+   ```
+2. Forma cu prefix:
 
-    ```js
-    for (let i = 0; i < 5; ++i) alert( i );
-    ```
+   ```js
+   for (let i = 0; i < 5; ++i) alert( i );
+   ```

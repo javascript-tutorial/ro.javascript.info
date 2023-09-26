@@ -2,9 +2,9 @@ importance: 3
 
 ---
 
-# Last loop value
+# Ultima valoare a buclei
 
-What is the last value alerted by this code? Why?
+Care este ultima valoare afișată de acest cod? De ce?
 
 ```js
 let i = 3;

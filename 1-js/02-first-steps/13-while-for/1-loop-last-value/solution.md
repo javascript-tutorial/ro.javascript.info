@@ -1,4 +1,4 @@
-The answer: `1`.
+Răspunsul: `1`.
 
 ```js run
 let i = 3;
@@ -8,18 +8,18 @@ while (i) {
 }
 ```
 
-Every loop iteration decreases `i` by `1`. The check `while(i)` stops the loop when `i = 0`.
+Fiecare iterație descrește valoarea lui `i` cu `1`. Verificarea `while(i)` oprește iterația atunci când `i = 0`.
 
-Hence, the steps of the loop form the following sequence ("loop unrolled"):
+Așadar, pașii buclei formează următoarea secvență ("buclă desfășurată"):
 
 ```js
 let i = 3;
 
-alert(i--); // shows 3, decreases i to 2
+alert(i--); // afișează 3, descrește valoarea lui i la 2
 
-alert(i--) // shows 2, decreases i to 1
+alert(i--) // afișează 2, descrește valoarea lui i la 1
 
-alert(i--) // shows 1, decreases i to 0
+alert(i--) // afișează 1, descrește valoarea lui i la 0
 
-// done, while(i) check stops the loop
+// gata, verificarea while(i) oprește bucla
 ```

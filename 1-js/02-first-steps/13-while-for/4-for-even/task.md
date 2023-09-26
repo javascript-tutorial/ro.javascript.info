@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Output even numbers in the loop
+# Afișează numerele pare în buclă
 
-Use the `for` loop to output even numbers from `2` to `10`.
+Folosește bucla `for` pentru a afișa numele pare între 2 și 10
 
 [demo]

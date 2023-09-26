@@ -1,30 +1,24 @@
-The task demonstrates how postfix/prefix forms can lead to different results when used in comparisons.
+Acest exercițiu demonstrează cum prefixele/sufixele pot duce la rezultate diferite când sunt comparate.
 
-1. **From 1 to 4**
+1. **De la 1 la 4**
 
-    ```js run
-    let i = 0;
-    while (++i < 5) alert( i );
-    ```
+   ```js run
+   let i = 0;
+   while (++i < 5) alert( i );
+   ```
+   Prima valoare este `i = 1` pentru că `++i` incrementează prima dată `i` și apoi returnează noua valoare. Așadar prima comparație este `1 < 5`  și funcția `alert` afișează `1`.
+2. **De la 1 la 5**
 
-    The first value is `i = 1`, because `++i` first increments `i` and then returns the new value. So the first comparison is `1 < 5` and the `alert` shows `1`.
+   ```js run
+   let i = 0;
+   while (i++ < 5) alert( i );
+   ```
+   Prima valoare este din nou `i = 1`. Forma cu sufix `i++` incrementează `i` și după returnează vechea valoare, deci comparația `i++ < 5` va folosi `i = 0` (față de `++i < 5`).
 
-    Then follow `2, 3, 4…` -- the values show up one after another. The comparison always uses the incremented value, because `++` is before the variable.
+   Dar funcția `alert` se apelează separat. Este altă linie de cod care se execută după incrementare și după comparație. Așadar primește `i = 0`.
 
-    Finally, `i = 4` is incremented to `5`, the comparison `while(5 < 5)` fails, and the loop stops. So `5` is not shown.
-2. **From 1 to 5**
+   Apoi urmând `2, 3, 4...`
 
-    ```js run
-    let i = 0;
-    while (i++ < 5) alert( i );
-    ```
+   Hai să ne oprim la `i = 4`. Forma cu prefix `++i` l-ar incrementa și am folosi `5` pentru comparație. Dar aici avem forma cu sufix `i++`. Astfel îl incrementează pe `i` la `5`, dar returnează vechea valoare. Datorită faptului că comparația e de fapt `while(4 < 5)` - adevărat și execuția codului continuă cu funcția `alert`.
 
-    The first value is again `i = 1`. The postfix form of `i++` increments `i` and then returns the *old* value, so the comparison `i++ < 5` will use `i = 0` (contrary to `++i < 5`).
-
-    But the `alert` call is separate. It's another statement which executes after the increment and the comparison. So it gets the current `i = 1`.
-
-    Then follow `2, 3, 4…`
-
-    Let's stop on `i = 4`. The prefix form `++i` would increment it and use `5` in the comparison. But here we have the postfix form `i++`. So it increments `i` to `5`, but returns the old value. Hence the comparison is actually `while(4 < 5)` -- true, and the control goes on to `alert`.
-
-    The value `i = 5` is the last one, because on the next step `while(5 < 5)` is false.
+   Valoarea `i = 5` esre ultima, deoarece următorul pas `while(5 < 5)` este fals.
