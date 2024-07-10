@@ -1,3 +1,2 @@
-No difference!
-
-In both cases, `return confirm('Did parents allow you?')` executes exactly when the `if` condition is falsy.
+Nicio diferență.
+În ambele cazuri, `return confirmă('Ți-au permis părinții?')` se execută exact când condiția `if` este falsă.

@@ -2,9 +2,9 @@ importance: 4
 
 ---
 
-# Function pow(x,n)
+# Funcţia pow(x,n)
 
-Write a function `pow(x,n)` that returns `x` in power `n`. Or, in other words, multiplies `x` by itself `n` times and returns the result.
+Scrieți o funcție `pow(x,n)` care returnează `x` la puterea `n`. Sau, cu alte cuvinte, se înmulțește `x` cu el însuși de `n` ori și returnează rezultatul.
 
 ```js
 pow(3, 2) = 3 * 3 = 9
@@ -12,8 +12,8 @@ pow(3, 3) = 3 * 3 * 3 = 27
 pow(1, 100) = 1 * 1 * ...* 1 = 1
 ```
 
-Create a web-page that prompts for `x` and `n`, and then shows the result of `pow(x,n)`.
+Creați o pagină web care solicită `x` și `n`, iar apoi arată rezultatul `pow(x,n)`.
 
 [demo]
 
-P.S. In this task the function should support only natural values of `n`: integers up from `1`.
+P.S. În această sarcină, funcția ar trebui să susțină numai valorile naturale ale lui `n`: numere întregi de la `1` în sus.
