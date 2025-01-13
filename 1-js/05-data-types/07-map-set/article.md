@@ -10,10 +10,15 @@ Dar acest lucru nu este suficient pentru viața reală. De aceea există și `Ma
 
 ## Map
 
+<<<<<<< HEAD
 [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) este o colecție de elemente de date cu chei, exact ca un `Object`. Dar diferența principală este că `Map` permite chei de orice tip.
+=======
+[Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) is a collection of keyed data items, just like an `Object`. But the main difference is that `Map` allows keys of any type.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Metodele și proprietățile sunt:
 
+<<<<<<< HEAD
 - [`new Map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map) -- creează map.
 - [`map.set(key, value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) -- stochează valoarea în funcție de cheie.
 - [`map.get(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) -- returnează valoarea în funcție de cheie, `undefined` dacă `key` nu există în map.
@@ -21,6 +26,15 @@ Metodele și proprietățile sunt:
 - [`map.delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) -- elimină elementul (perechea cheie/valoare) în funcție de cheie.
 - [`map.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) -- elimină totul din map.
 - [`map.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size) -- returnează numărul curent de elemente.
+=======
+- [`new Map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map) -- creates the map.
+- [`map.set(key, value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) -- stores the value by the key.
+- [`map.get(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
+- [`map.has(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
+- [`map.delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) -- removes the element (the key/value pair) by the key.
+- [`map.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) -- removes everything from the map.
+- [`map.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size) -- returns the current element count.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 De exemplu:
 
@@ -100,15 +114,27 @@ map.set('1', 'str1')
 ```
 ````
 
+<<<<<<< HEAD
 ## Iterare peste Map
 
 Pentru a parcurge un `map`, există 3 metode:
+=======
+## Iteration over Map
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 - [`map.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys) -- returnează un iterabil pentru chei,
 - [`map.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values) -- returnează un iterabil pentru valori,
 - [`map.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries) -- returnează un iterabil pentru intrările `[cheie, valoare]`, este utilizat în mod implicit în `for..of`.
 
+<<<<<<< HEAD
 De exemplu:
+=======
+- [`map.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/keys) -- returns an iterable for keys,
+- [`map.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/values) -- returns an iterable for values,
+- [`map.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/entries) -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
+
+For instance:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let recipeMap = new Map([
@@ -161,7 +187,11 @@ let map = new Map([
 alert( map.get('1') ); // str1
 ```
 
+<<<<<<< HEAD
 Dacă avem un obiect obișnuit, și dorim să creăm un `Map` din el, atunci putem folosi metoda încorporată [Object.entries(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) care returnează o matrice de perechi cheie/valoare pentru un obiect exact în acest format.
+=======
+If we have a plain object, and we'd like to create a `Map` from it, then we can use built-in method [Object.entries(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries) that returns an array of key/value pairs for an object exactly in that format.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Astfel putem crea un map dintr-un obiect în felul următor:
 
@@ -232,16 +262,29 @@ Este același lucru, deoarece `Object.fromEntries` așteaptă ca argument un obi
 
 ## Set
 
+<<<<<<< HEAD
 Un [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) este un tip special de colecție - "set de valori" (fără chei), în care fiecare valoare poate apărea o singură dată.
+=======
+A [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) is a special type collection - "set of values" (without keys), where each value may occur only once.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Principalele sale metode sunt:
 
+<<<<<<< HEAD
 - [`new Set([iterable])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set) -- creează setul și, dacă este furnizat un obiect `iterable` (de obicei o matrice), copiază valorile din acesta în set.
 - [`set.add(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add) -- adaugă o valoare, returnează setul însuși.
 - [`set.delete(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete) -- elimină valoarea, returnează `true` dacă `value` a existat la momentul apelului, altfel `false`.
 - [`set.has(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) -- returnează `true` dacă valoarea există în set, altfel `false`.
 - [`set.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear) -- elimină totul din set.
 - [`set.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/size) -- este numărul de elemente.
+=======
+- [`new Set([iterable])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set) -- creates the set, and if an `iterable` object is provided (usually an array), copies values from it into the set.
+- [`set.add(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add) -- adds a value, returns the set itself.
+- [`set.delete(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
+- [`set.has(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
+- [`set.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear) -- removes everything from the set.
+- [`set.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/size) -- is the elements count.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Caracteristica principală este că apelurile repetate ale `set.add(value)` cu aceeași valoare nu fac nimic. Acesta este motivul pentru care fiecare valoare apare într-un `Set` doar o singură dată.
 
@@ -271,7 +314,11 @@ for (let user of set) {
 }
 ```
 
+<<<<<<< HEAD
 Alternativa la `Set` ar putea fi o matrice de utilizatori, iar codul să verifice dacă există dubluri la fiecare inserare folosind [arr.find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find). Dar performanța ar fi mult mai slabă, deoarece această metodă parcurge întreaga matrice verificând fiecare element. `Set` este mult mai bine optimizat la nivel intern pentru verificarea unicității.
+=======
+The alternative to `Set` could be an array of users, and the code to check for duplicates on every insertion using [arr.find](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/find). But the performance would be much worse, because this method walks through the whole array checking every element. `Set` is much better optimized internally for uniqueness checks.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## Iterare peste Set
 
@@ -290,20 +337,35 @@ set.forEach((value, valueAgain, set) => {
 
 Observați lucrul ciudat. Funcția callback transmisă în `forEach` are 3 argumente: un `value`, apoi *aceeași valoare* `valueAgain`, și apoi obiectul țintă. Într-adevăr, aceeași value apare de două ori în argumente.
 
+<<<<<<< HEAD
 Acest lucru este pentru compatibilitate cu `Map` unde funcția callback transmisă către `forEach` are trei argumente. Arată un pic ciudat, cu siguranță. Dar acest lucru poate ajuta la înlocuirea cu ușurință a `Map` cu `Set` în anumite cazuri, și vice versa.
+=======
+That's for compatibility with `Map` where the callback passed `forEach` has three arguments. Looks a bit strange, for sure. But this may help to replace `Map` with `Set` in certain cases with ease, and vice versa.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Aceleași metode pe care `Map` le are pentru iteratori sunt de asemenea suportate:
 
+<<<<<<< HEAD
 - [`set.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys) -- returnează un obiect iterabil pentru valori,
 - [`set.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values) -- la fel ca `set.keys()`, pentru compatibilitate cu `Map`,
 - [`set.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries) -- returnează un obiect iterabil pentru intrările `[value, value]`, există pentru compatibilitate cu `Map`.
+=======
+- [`set.keys()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/keys) -- returns an iterable object for values,
+- [`set.values()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/values) -- same as `set.keys()`, for compatibility with `Map`,
+- [`set.entries()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/entries) -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## Sumar
 
+<<<<<<< HEAD
 [`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) -- este o colecție de valori cu cheie.
+=======
+[`Map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) -- is a collection of keyed values.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Metode și proprietăți:
 
+<<<<<<< HEAD
 - [`new Map([iterable])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map) -- creează map-ul, cu `iterable` opțional (e.g. matrice) de perechi `[key,value]` pentru inițializare.
 - [`map.set(key, value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) -- stochează valoarea în funcție de cheie, returnează map-ul însăși.
 - [`map.get(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) -- returnează valoarea în funcție de cheie, `undefined` dacă `key` nu există în map.
@@ -311,21 +373,43 @@ Metode și proprietăți:
 - [`map.delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) -- elimină elementul în funcție de cheie, returnează `true` dacă `key` exista în momentul apelului, altfel `false`.
 - [`map.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) -- șterge tot din map.
 - [`map.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size) -- returnează numărul curent de elemente.
+=======
+- [`new Map([iterable])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/Map) -- creates the map, with optional `iterable` (e.g. array) of `[key,value]` pairs for initialization.
+- [`map.set(key, value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/set) -- stores the value by the key, returns the map itself.
+- [`map.get(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/get) -- returns the value by the key, `undefined` if `key` doesn't exist in map.
+- [`map.has(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/has) -- returns `true` if the `key` exists, `false` otherwise.
+- [`map.delete(key)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/delete) -- removes the element by the key, returns `true` if `key` existed at the moment of the call, otherwise `false`.
+- [`map.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/clear) -- removes everything from the map.
+- [`map.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/size) -- returns the current element count.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Diferențele față de un `Object` obișnuit:
 
 - Orice chei, obiectele pot fi chei.
 - Metode convenabile suplimentare, proprietatea `size`.
 
+<<<<<<< HEAD
 [`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) -- este o colecție de valori unice.
+=======
+[`Set`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) -- is a collection of unique values.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Metode și proprietăți:
 
+<<<<<<< HEAD
 - [`new Set([iterable])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set) -- creează setul, cu un `iterable` (e.g. matrice) de valori opțional pentru inițializare.
 - [`set.add(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add) -- adaugă o valoare (nu face nimic dacă `value` există), returnează setul însuși.
 - [`set.delete(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete) -- elimină valoarea, returnează `true` dacă `valoarea` exista în momentul apelului, altfel `false`.
 - [`set.has(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) -- returnează `true` dacă valoarea există în set, altfel `false`.
 - [`set.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear) -- elimină totul din set.
 - [`set.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/size) -- este numărul de elemente.
+=======
+- [`new Set([iterable])`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/Set) -- creates the set, with optional `iterable` (e.g. array) of values for initialization.
+- [`set.add(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/add) -- adds a value (does nothing if `value` exists), returns the set itself.
+- [`set.delete(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/delete) -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
+- [`set.has(value)`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) -- returns `true` if the value exists in the set, otherwise `false`.
+- [`set.clear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/clear) -- removes everything from the set.
+- [`set.size`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/size) -- is the elements count.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Iterarea peste `Map` și `Set` se face întotdeauna în ordinea de inserție, deci nu putem spune că aceste colecții nu sunt ordonate, dar nu putem reordona elementele sau obține direct un element după numărul său.
