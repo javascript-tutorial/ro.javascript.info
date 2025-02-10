@@ -50,8 +50,13 @@ let user = {
 *!*
 // first, declare
 function sayHi() {
+<<<<<<< HEAD
   alert("Salut!");
 };
+=======
+  alert("Hello!");
+}
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 // then add as a method
 user.sayHi = sayHi;
@@ -90,7 +95,11 @@ user = {
 
 După cum s-a demonstrat, putem omite `"function"` și scriem doar `sayHi()`.
 
+<<<<<<< HEAD
 Să spunem adevărul, notațiile nu sunt complet identice. Există diferențe subtile legate de moștenirea obiectelor (care vor fi acoperite ulterior), dar deocamdată nu contează. În aproape toate cazurile, se preferă sintaxa mai scurtă.
+=======
+To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases, the shorter syntax is preferred.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ## "this" în metode
 

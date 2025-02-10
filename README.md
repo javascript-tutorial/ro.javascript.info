@@ -1,6 +1,10 @@
 # The Modern JavaScript Tutorial în limba Română
 
+<<<<<<< HEAD
 Acest repertoriu găzduiește conținutul în limba română pentru The Modern JavaScript Tutorial, publicat în [https://javascript.info](https://javascript.info).
+=======
+This repository hosts the English content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ### Cum puteți contribui:
 
@@ -18,9 +22,15 @@ Vedeți <https://javascript.info/translate> pentru mai multe detalii.
 
 Vă rugăm să păstrați liniile și paragrafele "așa cum sunt": nu adăugați linii noi și nu le eliminați pe cele existente. Asta facilitează îmbinarea viitoarelor modificări din versiunea engleză în traducere.
 
+<<<<<<< HEAD
 Dacă vedeți că versiunea în limba engleză poate fi îmbunătățită - grozav, vă rugăm să trimiteți un PR pentru asta în [versiunea din limba engleză](https://github.com/javascript-tutorial/en.javascript.info/pulls). Îmbunătățirile vor fi adăugate și în limba română după ce sunt integrate acolo mai întăi.
 
 ## Cum se scriu termenii
+=======
+Something's wrong? A topic is missing? Explain it to people, add it as PR 👏
+
+**You can edit the text in any editor.** The tutorial uses an enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 - Unii termeni din specificații **nu** trebuie traduși, spre exemplu, "Function Declaration" poate fi lăsat "așa cum este".
 - Pentru alți termeni, cum ar fi `resolved promise`, `slash`, `regexp` și așa mai departe căutați un glosar bun.
@@ -28,11 +38,17 @@ Dacă vedeți că versiunea în limba engleză poate fi îmbunătățită - groz
 
 ## Cum traducem un `code block`
 
+<<<<<<< HEAD
 - Traduceți comentariile și mesajele din string.
 - Nu traduceți variabile, clase, identificatori.
 - Verificați dacă funcționează codul după traducere :)
 
 Exemplu de cod:
+=======
+Every chapter, article, or task has its folder.
+
+The folder is named like `N-url`, where `N` is a number for the sorting purposes and `URL` is the URL part with the title of the material.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 ```js
 // Example
