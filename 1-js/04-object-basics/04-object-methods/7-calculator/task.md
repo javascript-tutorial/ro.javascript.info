@@ -6,9 +6,15 @@ importance: 5
 
 Creați un obiect `calculator` cu trei metode:
 
+<<<<<<< HEAD
 - `read()` solicită două valori și le salvează ca proprietăți ale obiectului cu numele `a` respectiv `b`.
 - `sum()` returnează suma valorilor salvate.
 - `mul()` multiplică valorile salvate și returnează rezultatul.
+=======
+- `read()` prompts for two values and saves them as object properties with names `a` and `b` respectively.
+- `sum()` returns the sum of saved values.
+- `mul()` multiplies saved values and returns the result.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js
 let calculator = {

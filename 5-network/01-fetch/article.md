@@ -192,12 +192,21 @@ Aceste anteturi asigură un protocol HTTP corect și sigur, așa că sunt contro
 
 Pentru a face un `POST` request, sau o cerere cu o altă metodă, trebuie să folosim opțiunile `fetch`:
 
+<<<<<<< HEAD
 - **`method`** -- Metoda HTTP e.g. `POST`,
 - **`body`** -- request body, unul dintre:
   - un șir (e.g. codificat JSON),
   - obiect `FormData`, pentru a trimite datele ca `multipart/form-data`,
   - `Blob`/`BufferSource` pentru a trimite date binare,
   - [URLSearchParams](info:url), pentru a trimite datele în codificare `x-www-form-urlencoded`, rar utilizat.
+=======
+- **`method`** -- HTTP-method, e.g. `POST`,
+- **`body`** -- the request body, one of:
+  - a string (e.g. JSON-encoded),
+  - `FormData` object, to submit the data as `multipart/form-data`,
+  - `Blob`/`BufferSource` to send binary data,
+  - [URLSearchParams](info:url), to submit the data in `x-www-form-urlencoded` encoding, rarely used.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Formatul JSON este utilizat de cele mai multe ori.
 
@@ -296,6 +305,7 @@ fetch(url, options)
   .then(result => /* procesează result */)
 ```
 
+<<<<<<< HEAD
 Proprietăți de răspuns:
 - `response.status` -- Codul HTTP al răspunsului,
 - `response.ok` -- `true` dacă status este 200-299.
@@ -307,6 +317,19 @@ Metode de obținere response body:
 - **`response.formData()`** -- returnează răspunsul ca obiect `FormData` (codificare `multipart/form-data`, vezi capitolul următor),
 - **`response.blob()`** -- returnează răspunsul ca [Blob](info:blob) (date binare cu tip),
 - **`response.arrayBuffer()`** -- returnează răspunsul ca [ArrayBuffer](info:arraybuffer-binary-arrays) (date binare low-level),
+=======
+Response properties:
+- `response.status` -- HTTP code of the response,
+- `response.ok` -- `true` if the status is 200-299.
+- `response.headers` -- Map-like object with HTTP headers.
+
+Methods to get response body:
+- **`response.text()`** -- return the response as text,
+- **`response.json()`** -- parse the response as JSON object,
+- **`response.formData()`** -- return the response as `FormData` object (`multipart/form-data` encoding, see the next chapter),
+- **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
+- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (low-level binary data),
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Opțiunile fetch de până acum:
 - `method` -- metodă HTTP,
