@@ -247,8 +247,13 @@ Promise.any([
   new Promise((resolve, reject) => setTimeout(() => reject(new Error("Eroare!")), 2000))
 ]).catch(error => {
   console.log(error.constructor.name); // AggregateError
+<<<<<<< HEAD
   console.log(error.errors[0]); // Error: Au!
   console.log(error.errors[1]); // Error: Eroare!
+=======
+  console.log(error.errors[0]); // Error: Ouch!
+  console.log(error.errors[1]); // Error: Error!
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 });
 ```
 

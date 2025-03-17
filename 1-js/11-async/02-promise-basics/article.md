@@ -35,8 +35,13 @@ Deci, ca să rezumăm: executorul rulează automat și încearcă să îndepline
 
 Obiectul `promise` returnat de constructorul `new Promise` are următoarele proprietăți interne:
 
+<<<<<<< HEAD
 - `state` — inițial `"pending"`, apoi se schimbă fie în `"fulfilled"` când este apelat `resolve` ori în `"rejected"` când este apelat `reject`.
 - `result` — inițial `undefined`, apoi se modifică în `value` atunci când se apelează `resolve(value)` ori `error` atunci când se apelează `reject(error)`.
+=======
+- `state` — initially `"pending"`, then changes to either `"fulfilled"` when `resolve` is called or `"rejected"` when `reject` is called.
+- `result` — initially `undefined`, then changes to `value` when `resolve(value)` is called or `error` when `reject(error)` is called.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Deci, executorul mută în cele din urmă `promise` într-una din aceste stări:
 
@@ -46,7 +51,7 @@ Mai târziu vom vedea cum "fanii" se pot abona la aceste modificări.
 
 Iată un exemplu de constructor de promisiuni și o funcție executor simplă cu "cod de producție" care necesită timp (prin `setTimeout`):
 
-```js run
+```js
 let promise = new Promise(function(resolve, reject) {
   // funcția rulează automat atunci când promisiunea este construită
 
@@ -60,7 +65,11 @@ Putem observa două lucruri prin rularea codului de mai sus:
 1. Executorul este apelat automat și imediat (de către `new Promise`).
 2. Executorul primește două argumente: `resolve` și `reject`. Aceste funcții sunt predefinite de motorul JavaScript, deci nu trebuie să le creăm. Ar trebui să apelăm doar una dintre ele atunci când suntem gata.
 
+<<<<<<< HEAD
     După o secundă de "procesare", executorul apelează `resolve("gata")` pentru a produce rezultatul. Acest lucru schimbă starea obiectului `promise`:
+=======
+    After one second of "processing", the executor calls `resolve("done")` to produce the result. This changes the state of the `promise` object:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
     ![](promise-resolve-1.svg)
 
@@ -127,9 +136,15 @@ Asta este în regulă. Avem imediat o promisiune rezolvată.
 Proprietățile `state` și `result` ale obiectului Promise sunt interne. Nu le putem accesa direct. Pentru aceasta putem folosi metodele `.then`/`.catch`/`.finally`. Acestea sunt descrise mai jos.
 ```
 
+<<<<<<< HEAD
 ## Consumatori: then, catch
 
 Un obiect Promise servește ca o legătură între executor (codul producător ori "cântărețul") și funcțiile consumatoare (fanii), care vor primi rezultatul ori eroarea. Funcțiile consumatoare pot fi înregistrate (abonate) cu ajutorul metodelor `.then` și `.catch`.
+=======
+## Consumers: then, catch
+
+A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using the methods `.then` and `.catch`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ### then
 
@@ -144,9 +159,15 @@ promise.then(
 );
 ```
 
+<<<<<<< HEAD
 Primul argument din `.then` este o funcție care rulează atunci când promisiunea este rezolvată și primește rezultatul.
 
 Al doilea argument al lui `.then` este o funcție care rulează atunci când promisiunea este respinsă și primește eroarea.
+=======
+The first argument of `.then` is a function that runs when the promise is resolved and receives the result.
+
+The second argument of `.then` is a function that runs when the promise is rejected and receives the error.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 De exemplu, iată o reacție la o promisiune rezolvată cu succes:
 
@@ -212,10 +233,15 @@ promise.catch(alert); // afișează "Error: Uuups!" după 1 secundă
 
 Apelul `.catch(f)` este un analog complet al lui `.then(null, f)`, este doar o prescurtare.
 
+<<<<<<< HEAD
 ## Curățare: finally
+=======
+## Cleanup: finally
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 La fel cum există o clauză `finally` într-un obișnuit `try {...} catch {...}`, există `finally` în promisiuni.
 
+<<<<<<< HEAD
 Apelul `.finally(f)` este similar cu `.then(f, f)` în sensul că `f` rulează întotdeauna, atunci când promisiunea este soluționată: fie că este rezolvată sau respinsă.
 
 Ideea lui `finally` este de a stabili un gestionar pentru a efectua curățarea/finalizarea după ce operațiunile anterioare sunt finalizate.
@@ -234,10 +260,31 @@ new Promise((resolve, reject) => {
   // rulează atunci când promisiunea este soluționată, nu contează dacă a fost cu succes sau nu
   .finally(() => oprește indicatorul de încărcare)
   // astfel încât indicatorul de încărcare să fie întotdeauna oprit înainte de a continua
+=======
+The call `.finally(f)` is similar to `.then(f, f)` in the sense that `f` runs always, when the promise is settled: be it resolve or reject.
+
+The idea of `finally` is to set up a handler for performing cleanup/finalizing after the previous operations are complete.
+
+E.g. stopping loading indicators, closing no longer needed connections, etc.
+
+Think of it as a party finisher. Irresepective of whether a party was good or bad, how many friends were in it, we still need (or at least should) do a cleanup after it.
+
+The code may look like this:
+
+```js
+new Promise((resolve, reject) => {
+  /* do something that takes time, and then call resolve or maybe reject */
+})
+*!*
+  // runs when the promise is settled, doesn't matter successfully or not
+  .finally(() => stop loading indicator)
+  // so the loading indicator is always stopped before we go on
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 */!*
   .then(result => afișează rezultatul, err => afișează eroarea)
 ```
 
+<<<<<<< HEAD
 Vă rugăm să rețineți că `finally(f)` nu este chiar un alias al lui `then(f,f)`.
 
 Există diferențe importante:
@@ -248,11 +295,38 @@ Există diferențe importante:
 2. Un gestionar `finally` "trece" rezultatul sau eroarea către următorul gestionar adecvat.
 
     De exemplu, aici rezultatul este trecut prin `finally` către `then`:
+=======
+Please note that `finally(f)` isn't exactly an alias of `then(f,f)` though.
+
+There are important differences:
+
+1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
+
+    Please take a look at the example above: as you can see, the `finally` handler has no arguments, and the promise outcome is handled by the next handler.
+2. A `finally` handler "passes through" the result or error to the next suitable handler.
+
+    For instance, here the result is passed through `finally` to `then`:
+
+    ```js run
+    new Promise((resolve, reject) => {
+      setTimeout(() => resolve("value"), 2000);
+    })
+      .finally(() => alert("Promise ready")) // triggers first
+      .then(result => alert(result)); // <-- .then shows "value"
+    ```
+
+    As you can see, the `value` returned by the first promise is passed through `finally` to the next `then`.
+
+    That's very convenient, because `finally` is not meant to process a promise result. As said, it's a place to do generic cleanup, no matter what the outcome was.
+
+    And here's an example of an error, for us to see how it's passed through `finally` to `catch`:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
     ```js run
     new Promise((resolve, reject) => {
       setTimeout(() => resolve("value")), 2000);
     })
+<<<<<<< HEAD
       .finally(() => alert("Promise ready"))) // se declanșează primul
       .then(result => alert(rezultat)); // <-- .then arată "value"
     ```
@@ -289,6 +363,30 @@ Dacă o promisiune este în așteptare, gestionarii `.then/catch/finally` aștea
 Uneori, se poate întâmpla ca o promisiune să fie deja soluționată atunci când îi adăugăm un gestionar.
 
 Într-un astfel de caz, acești gestionari rulează imediat:
+=======
+      .finally(() => alert("Promise ready")) // triggers first
+      .catch(err => alert(err));  // <-- .catch shows the error
+    ```
+
+3. A `finally` handler also shouldn't return anything. If it does, the returned value is silently ignored.
+
+    The only exception to this rule is when a `finally` handler throws an error. Then this error goes to the next handler, instead of any previous outcome.
+
+To summarize:
+
+- A `finally` handler doesn't get the outcome of the previous handler (it has no arguments). This outcome is passed through instead, to the next suitable handler.
+- If a `finally` handler returns something, it's ignored.
+- When `finally` throws an error, then the execution goes to the nearest error handler.
+
+These features are helpful and make things work just the right way if we use `finally` how it's supposed to be used: for generic cleanup procedures.
+
+````smart header="We can attach handlers to settled promises"
+If a promise is pending, `.then/catch/finally` handlers wait for its outcome.
+
+Sometimes, it might be that a promise is already settled when we add a handler to it.
+
+In such case, these handlers just run immediately:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 // promisiunea devine soluționată imediat după creare
@@ -302,11 +400,19 @@ Notați că acest lucru face ca promisiunile să fie mai puternice decât scenar
 Promisiunile sunt mai flexibile. Putem adăuga gestionari în orice moment: dacă rezultatul este deja acolo, acestea se execută pur și simplu.
 ````
 
+<<<<<<< HEAD
 ## Exemplu: loadScript [#loadscript]
 
 În continuare, să vedem mai multe exemple practice despre cum promisiunile ne pot ajuta să scriem cod asincron.
 
 Avem funcția `loadScript` pentru încărcarea unui script din capitolul anterior.
+=======
+## Example: loadScript [#loadscript]
+
+Next, let's see more practical examples of how promises can help us write asynchronous code.
+
+We've got the `loadScript` function for loading a script from the previous chapter.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Iată varianta bazată pe callback, doar pentru a ne reaminti de ea:
 

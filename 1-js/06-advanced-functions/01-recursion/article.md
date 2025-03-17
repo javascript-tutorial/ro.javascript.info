@@ -285,7 +285,11 @@ Iterativul `pow` utilizează un singur context care schimbă `i` și `result` î
 
 **Orice recursivitate poate fi rescrisă ca un loop. De obicei, varianta loop poate fi făcută mai eficientă.**
 
+<<<<<<< HEAD
 ...Dar uneori rescrierea nu este trivială, în special atunci când o funcție utilizează diferite subapelări recursive în funcție de condiții și fuzionează rezultatele acestora sau când ramificarea este mai complexă. Iar optimizarea poate fi inutilă și nu merită în totalitate eforturile depuse.
+=======
+...But sometimes the rewrite is non-trivial, especially when a function uses different recursive subcalls depending on conditions and merges their results or when the branching is more intricate. And the optimization may be unneeded and totally not worth the efforts.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Recursivitatea poate oferi un cod mai scurt, ușor de înțeles și de susținut. Optimizările nu sunt necesare în orice loc, de cele mai multe ori avem nevoie de un cod bun, de aceea este folosit.
 
@@ -535,7 +539,11 @@ Termeni:
     list = { value, next -> list }
     ```
 
+<<<<<<< HEAD
     Arborii cum ar fi arborele elementelor HTML sau arborele departamentelor din acest capitol sunt de asemenea recursivi în mod natural: au ramuri și fiecare ramură poate avea alte ramuri.
+=======
+    Trees like HTML elements tree or the department tree from this chapter are also naturally recursive: they have branches and every branch can have other branches.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
     Funcțiile recursive pot fi folosite pentru a le parcurge așa cum am văzut în exemplul `sumSalary`.
 

@@ -25,7 +25,11 @@ var gVar = 5;
 alert(window.gVar); // 5 (a devenit o proprietate a obiectului global)
 ```
 
+<<<<<<< HEAD
 Declarațiile de funcții au același efect (declarații folosind cuvântul cheie `function` în fluxul principal de cod, nu expresii de funcții).
+=======
+Function declarations have the same effect (statements with `function` keyword in the main code flow, not function expressions).
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Vă rugăm să nu vă bazați pe asta! Acest comportament există din motive de compatibilitate. Scripturile moderne folosesc [module JavaScript](info:modules) unde nu se întâmplă așa ceva.
 
