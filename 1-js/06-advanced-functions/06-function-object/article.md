@@ -326,7 +326,11 @@ welcome(); // Bună ziua, Guest (apelul nested funcționează)
 
 Acum funcționează, deoarece numele `"func"` este local pentru funcții. Nu este preluat din exterior (și nu este vizibil acolo). Specificația garantează că va face întotdeauna referire la funcția curentă.
 
+<<<<<<< HEAD
 Codul exterior are în continuare variabila `sayHi` sau `welcome`. Iar `func` este un "nume de funcție intern", modul în care funcția se poate apela singură în mod fiabil.
+=======
+The outer code still has its variable `sayHi` or `welcome`. And `func` is an "internal function name", the way for the function to can call itself reliably.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 ```smart header="Nu există așa ceva pentru Function Declaration"
 Caracteristica "nume intern" descrisă aici este disponibilă doar pentru Function Expressions, nu și pentru Function Declarations. Pentru Function Declarations, nu există o sintaxă pentru adăugarea unui nume "intern".
