@@ -63,7 +63,11 @@ let age = 25;
 let message = 'Bună';
 ```
 
+<<<<<<< HEAD
 Unele persoane definesc de asemenea multiple variabile în acest stil multiliniar:
+=======
+Some people also define multiple variables in this multiline style:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```js no-beautify
 let user = 'John',
@@ -88,16 +92,26 @@ Technic, toate aceste variante fac același lucru. Deci, este o problemă de pre
 *!*var*/!* message = 'Bună';
 ```
 
+<<<<<<< HEAD
 Termenul `var` este *aproape* la fel ca și `let`. El declară de asemenea o variabilă, dar într-un mod ușor diferit, de "școală-veche".
 
 Există diferențe subtile între `let` și `var`, dar nu contează pentru noi încă. O să le acoperim în detaliu în capitolul <info:var>.
+=======
+The `var` keyword is *almost* the same as `let`. It also declares a variable but in a slightly different, "old-school" way.
+
+There are subtle differences between `let` and `var`, but they do not matter to us yet. We'll cover them in detail in the chapter <info:var>.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ````
 
 ## O analogie din viața reală
 
 Putem înțelege ușor conceptul de "variabilă" dacă ne-o imaginăm drept o "cutie" pentru date, cu un abțibild cu nume unic pe ea.
 
+<<<<<<< HEAD
 De exemplu, variabila `message` poate fi imaginată drept o cutie cu eticheta `"mesaj"` cu valoarea `"Bună!"` în ea:
+=======
+For instance, the variable `message` can be imagined as a box labelled `"message"` with the value `"Hello!"` in it:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ![](variable.svg)
 
@@ -105,6 +119,11 @@ Putem pune orice valoare în cutie.
 
 De asemenea o putem schimba de câte ori vrem:
 
+<<<<<<< HEAD
+=======
+We can also change it as many times as we want:
+
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ```js run
 let message;
 
@@ -150,12 +169,21 @@ let message = "Acesta"; // SyntaxError: 'message' has already been declared
 Deci, ar trebui să declarăm o variabilă o dată și apoi să ne referim la aceasta fără `let`.
 ````
 
+<<<<<<< HEAD
 ```smart header="Limbaje funcționale"
 Este interesant de notat că există așa-numitele limbaje de programare [pur funcționale](https://en.wikipedia.org/wiki/Purely_functional_programming), cum ar fi [Haskell](https://en.wikipedia.org/wiki/Haskell), care interzic schimbarea valorii variabilelor.
+=======
+```smart header="Functional languages"
+It's interesting to note that there exist so-called [pure functional](https://en.wikipedia.org/wiki/Purely_functional_programming) programming languages, such as [Haskell](https://en.wikipedia.org/wiki/Haskell), that forbid changing variable values.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 În limbaje ca acestea, odată ce valoarea este stocată "în cutie", există acolo pentru totdeauna. Dacă avem nevoie să stocăm altceva, limbajul ne forțează să creăm o nouă cutie (declarăm o nouă variabilă). Nu o putem refolosi pe cea veche.
 
+<<<<<<< HEAD
 Deși pare un pic ciudat la prima vedere, aceste limbaje sunt destul de capabile de dezvoltare serioasă. Mai mult decât atât, sunt zone ca de exemplu calcule paralele unde această limitare conferă beneficii sigure.
+=======
+Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ```
 
 ## Denumirea variabilelor [#variable-naming]
@@ -193,19 +221,32 @@ let 1a; // nu poate începe cu o cifră
 let my-name; // liniuțele '-' nu sunt permise în nume
 ```
 
+<<<<<<< HEAD
 ```smart header="Uscula contează"
 Variabilele numite `apple` și `APPLE` sunt două variabile diferite.
 ```
 
 ````smart header="Literele non-latine sunt permise, dar nu sunt recomandate"
 Este posibil să folosim orice limbă, inclusiv litere chirilice, caractere chinezești și așa mai departe, precum acestea:
+=======
+```smart header="Case matters"
+Variables named `apple` and `APPLE` are two different variables.
+```
+
+````smart header="Non-Latin letters are allowed, but not recommended"
+It is possible to use any language, including Cyrillic letters, Chinese logograms and so on, like this:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```js
 let имя = '...';
 let 我 = '...';
 ```
 
+<<<<<<< HEAD
 Technic, aici nu este nicio eroare. Astfel de nume sunt permise, dar există o convenție internațională de a folosi limba engleză în denumirile variabilelor. Chiar dacă scriem un script mic, poate avea viață lungă. Oamenii din alte țări ar putea avea nevoie să le citescă uneori.
+=======
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it sometime.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ````
 
 ````warn header="Nume rezervate"
@@ -260,13 +301,21 @@ const myBirthday = '18.04.1982';
 myBirthday = '01.01.2001'; // eroare, nu putem realoca constanta!
 ```
 
+<<<<<<< HEAD
 Când un programator este sigur că acea variabilă nu se va schimba niciodată, o poate declara folosind `const` pentru a garanta și a comunica clar acest fapt tuturor.
 
 ### Constante cu majuscule
+=======
+When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and communicate that fact to everyone.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Este o practica răspândită de a folosi constante drept așa-zise valori greu de reținut care sunt cunoscute înainte de execuție.
 
+<<<<<<< HEAD
 Aceste constante sunt denumite folosind majuscule și bară jos.
+=======
+There is a widespread practice to use constants as aliases for difficult-to-remember values that are known before execution.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 De exemplu, să facem o constantă pentru culori în așa-numitul "web" (hexadecimal) format:
 
@@ -289,17 +338,30 @@ Beneficii:
 
 Când ar trebui să folosim majuscule pentru o constantă și când ar trebui să o denumim în mod obișnuit? Haideți să clarificăm asta.
 
+<<<<<<< HEAD
 A fi o "constantă" înseamnă doar a fi o valoare a unei variabile care nu se schimbă. Dar există și constante care sunt cunoscute înainte de execuție (ca de exemplu valoarea hexadecimală pentru roșu) și există constante care sunt *calculate* în timpul execuției, dar nu se schimbă după ce sunt alocate inițial.
 
 De exemplu:
 
+=======
+Being a "constant" just means that a variable's value never changes. But some constants are known before execution (like a hexadecimal value for red) and some constants are *calculated* in run-time, during the execution, but do not change after their initial assignment.
+
+For instance:
+
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ```js
 const pageLoadTime = /* durata timpului de încărcare a unei pagini web */;
 ```
 
+<<<<<<< HEAD
 Valoarea lui `pageLoadTime` nu este cunoscută înainte ca pagina să se încarce, astfel că este denumită obișnuit. Dar este totuși o constantă pentru că nu se schimbă după ce este alocată.
 
 În alte cuvinte, constantele cu majuscule sunt folosite doar ca așa-zise valori "hard-coded".
+=======
+The value of `pageLoadTime` is not known before the page load, so it's named normally. But it's still a constant because it doesn't change after the assignment.
+
+In other words, capital-named constants are only used as aliases for "hard-coded" values.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ## Denumirea corectă a lucrurilor
 
@@ -307,18 +369,31 @@ Vorbind despre variabile, mai este un lucru extrem de important.
 
 Numele unei variabile trebuie să aibă o semnificație clară, evidentă, care să descrie datele pe care le stochează.
 
+<<<<<<< HEAD
 Numirea variabilelor este una dintre cele mai importante și mai complexe abilități în programare. O privire rapidă asupra numelor variabilelor poate dezvălui ce cod a fost scris de un începător față de un programator experimentat.
 
 Într-un proiect real, cea mai mare parte a timpului se petrece modificând și extinzând o bază de cod existentă, mai degrabă decât scriind ceva complet separat de la zero. Atunci când ne întoarcem la un cod după ce am făcut altceva pentru o vreme, este mult mai ușor să găsim informații care sunt bine etichetate. Sau, cu alte cuvinte, când variabilele au nume bune.
+=======
+Variable naming is one of the most important and complex skills in programming. A glance at variable names can reveal which code was written by a beginner versus an experienced developer.
+
+In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely separate from scratch. When we return to some code after doing something else for a while, it's much easier to find information that is well-labelled. Or, in other words, when the variables have good names.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Te rog petrece timp gândindu-te la denumirea corectă pentru o variabilă înainte să o declari. Făcând acest lucru te răsplătești frumos.
 
 Câteva reguli bune de urmat sunt:
 
+<<<<<<< HEAD
 - Folosește nume uman-reproductibile ca `userName` sau `shoppingCart`.
 - Stai departe de abrevieri sau nume scurte ca `a`, `b`, `c`, decât dacă știi cu adevărat ceea ce faci.
 - Fă Fă ca numele să fie cât mai descriptiv și concis. Exemple de nume proaste sunt `data` și `value`. Astfel de nume nu spun nimic. Este în regulă să le folosiți doar dacă contextul codului face extrem de evident la ce date sau valoare face referire variabila.
 - Pune-te de acord cu echipa și ține minte. Dacă vizitatorul unui site este denumit ca "user" atunci ar trebui ca numele variabilelor legate să fie `currentUser` sau `newUser` în loc de `currentVisitor` sau `newManInTown`.
+=======
+- Use human-readable names like `userName` or `shoppingCart`.
+- Stay away from abbreviations or short names like `a`, `b`, and `c`, unless you know what you're doing.
+- Make names maximally descriptive and concise. Examples of bad names are `data` and `value`. Such names say nothing. It's only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.
+- Agree on terms within your team and in your mind. If a site visitor is called a "user" then we should name related variables `currentUser` or `newUser` instead of `currentVisitor` or `newManInTown`.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Sună simplu? Chiar este, dar crearea de variabile descriptive și concise în practică nu este. Încearcă.
 

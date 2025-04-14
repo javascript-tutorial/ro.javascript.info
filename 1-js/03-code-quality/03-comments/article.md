@@ -148,12 +148,16 @@ De ce este rezolvată sarcina în acest mod?
   
     Dacă sunt multe moduri de a rezolva sarcina, de ce tocmai acesta? În special când nu este chiar cel mai evident. 
 
+<<<<<<< HEAD
     Fără asemenea comentarii următoarea situație este posibilă:
     1. Tu (sau colegul tău) deschizi codul scris acum ceva timp, și vezi că este "suboptimizat".
     2. Te gândești: "Ce stupid am fost atunci, și cât de deștept sunt acum", și rescrii codul folosind varianta "mult mai evidentă și corectă".
     3. ...Impulsul de a rescrie codul a fost bun. Dar în continuarea dezvoltării observi că "cea mai evidentă soluție" este defapt insuficientă. Îți amintești cu greu de ce, deoarece ai testat-o acum mult timp. Te întorci la varianta corectă, dar timpul a fost pierdut.
     
     Comentariile care explică soluția sunt foarte importante. Te ajută să continui dezvoltarea în direcția cea bună. 
+=======
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <https://jsdoc.app>.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Orice caracteristici folosite ale codului ? Unde sunt folosite ?
 : În cazul în care codul are ceva subtil sau contraintuitiv, atunci este necesară comentarea.

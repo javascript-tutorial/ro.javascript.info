@@ -72,7 +72,11 @@ promise.then(function(result) {
 });
 ```
 
+<<<<<<< HEAD
 Ceea ce am făcut aici este doar mai mulți gestionari pentru o promisiune. Aceștia nu își transmit rezultatul unul altuia; în schimb îl procesează independent.
+=======
+What we did here is just adding several handlers to one promise. They don't pass the result to each other; instead they process it independently.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Iată imaginea (comparați-o cu înlănțuirea de mai sus):
 
@@ -224,7 +228,11 @@ Această caracteristică ne permite să integrăm obiecte personalizate în lan�
 
 ## Exemplu mai mare: fetch
 
+<<<<<<< HEAD
 În programarea frontend, promisiunile sunt adesea folosite pentru network requests. Să vedem deci un exemplu extins despre asta.
+=======
+In frontend programming, promises are often used for network requests. So let's see an extended example of that.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Vom folosi metoda [fetch](info:fetch) pentru a încărca informațiile despre utilizator de pe remote server. Aceasta are o mulțime de parametri opționali acoperiți în [capitole separate](info:fetch), dar sintaxa de bază este destul de simplă:
 

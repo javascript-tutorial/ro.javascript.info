@@ -80,7 +80,11 @@ Notați că, sunt proprietăți care nu pot fi animate. Cu toate acestea, [major
 
 ## transition-duration
 
+<<<<<<< HEAD
 În `transition-duration` putem specifica cât timp trebuie să dureze animația. Timpul trebuie să fie în [format de timp CSS](https://www.w3.org/TR/css3-values/#time): în secunde `s` sau milisecunde `ms`.
+=======
+In `transition-duration` we can specify how long the animation should take. The time should be in [CSS time format](https://www.w3.org/TR/css3-values/#time): in seconds `s` or milliseconds `ms`.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ## transition-delay
 
@@ -208,8 +212,11 @@ Celelalte denumiri sunt prescurtări pentru următoarele `cubic-bezier`:
 
 `*` -- în mod implicit, dacă nu există un timing function, se utilizează `ease`.
 
+<<<<<<< HEAD
 Deci am putea folosi `ease-out` pentru trenul nostru care încetinește:
 
+=======
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ```css
 .train {
   left: 0;
@@ -226,6 +233,11 @@ Punctele de control de pe curbă pot avea orice coordonate `y`: chiar și negati
 
 În exemplul de mai jos codul animației este:
 
+<<<<<<< HEAD
+=======
+In the example below the animation code is:
+
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ```css
 .train {
   left: 100px;
@@ -263,6 +275,18 @@ Dar cum facem o curbă Bezier pentru o sarcină specifică? Există multe instru
     3. Proprietățile CSS care au cuvântul `cubic-bezier` vor avea o pictogramă înaintea acestui cuvânt.
     4. Apăsați pe această pictogramă pentru a edita curba.
 
+<<<<<<< HEAD
+=======
+But how do we make a Bezier curve for a specific task? There are many tools.
+
+- For instance, we can do it on the site <https://cubic-bezier.com>.
+- Browser developer tools also have special support for Bezier curves in CSS:
+    1. Open the developer tools with `key:F12` (Mac: `key:Cmd+Opt+I`).
+    2. Select the `Elements` tab, then pay attention to the `Styles` sub-panel at the right side.
+    3. CSS properties with a word `cubic-bezier` will have an icon before this word.
+    4. Click this icon to edit the curve.
+
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ### Steps
 
@@ -274,7 +298,23 @@ Iată o listă de cifre, fără nicio animație, doar ca sursă:
 
 [codetabs src="step-list"]
 
+<<<<<<< HEAD
 În HTML, o bandă de cifre este înglobată într-un `<div id="digits">` de lungime fixă:
+=======
+In the HTML, a stripe of digits is enclosed into a fixed-length `<div id="digits">`:
+
+```html
+<div id="digit">
+  <div id="stripe">0123456789</div>
+</div>
+```
+
+The `#digit` div has a fixed width and a border, so it looks like a red window.
+
+We'll make a timer: the digits will appear one by one, in a discrete way.
+
+To achieve that, we'll hide the `#stripe` outside of `#digit` using `overflow: hidden`, and then shift the `#stripe` to the left step-by-step.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```html
 <div id="digit">
@@ -297,6 +337,7 @@ Vor fi 9 pași, câte un pas de deplasare pentru fiecare cifră:
 }
 ```
 
+<<<<<<< HEAD
 Primul argument din `steps(9, start)` este numărul de pași. Transform va fi împărțit în 9 părți (10% fiecare). Intervalul de timp este împărțit automat în 9 părți de asemenea, așa că `transition: 9s` ne oferă 9 secunde pentru întreaga animație – 1 secundă pentru fiecare cifră.
 
 Al doilea argument este unul dintre cele două cuvinte: `start` sau `end`.
@@ -308,9 +349,13 @@ Al doilea argument este unul dintre cele două cuvinte: `start` sau `end`.
 [codetabs src="step"]
 
 Un clic pe cifră o schimbă imediat în `1` (primul pas), iar apoi se schimbă la începutul secundei următoare.
+=======
+The first argument of `steps(9, start)` is the number of steps. The transform will be split into 9 parts (10% each). The time interval is automatically divided into 9 parts as well, so `transition: 9s` gives us 9 seconds for the whole animation – 1 second per digit.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Procesul evoluează astfel:
 
+<<<<<<< HEAD
 - `0s` -- `-10%` (prima schimbare la începutul primei secunde, imediat)
 - `1s` -- `-20%`
 - ...
@@ -318,6 +363,27 @@ Procesul evoluează astfel:
 - (în ultima secundă apare valoarea finală).
 
 Aici, prima schimbare a fost imediată din cauza `start` din `steps`.
+=======
+The `start` means that in the beginning of animation we need to make the first step immediately.
+
+In action:
+
+[codetabs src="step"]
+
+A click on the digit changes it to `1` (the first step) immediately, and then changes in the beginning of the next second.
+
+The process is progressing like this:
+
+- `0s` -- `-10%` (first change in the beginning of the 1st second, immediately)
+- `1s` -- `-20%`
+- ...
+- `8s` -- `-90%`
+- (the last second shows the final value).
+
+Here, the first change was immediate because of `start` in the `steps`.
+
+The alternative value `end` would mean that the change should be applied not in the beginning, but at the end of each second.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Valoarea alternativă `end` ar însemna că modificarea ar trebui aplicată nu la început, ci la sfârșitul fiecărei secunde.
 
@@ -329,20 +395,36 @@ Deci procesul pentru `steps(9, end)` ar merge așa:
 - ...
 - `9s` -- `-90%`
 
+<<<<<<< HEAD
 Iată `steps(9, end)` în acțiune (notați pauza dintre schimbarea primei cifre):
 
 [codetabs src="step-end"]
 
 Sunt de asemenea câteva prescurtări predefinite pentru `steps(...)`:
+=======
+Here's `steps(9, end)` in action (note the pause before the first digit change):
+
+[codetabs src="step-end"]
+
+There are also some pre-defined shorthands for `steps(...)`:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 - `step-start` -- este același lucru cu `steps(1, start)`. Adică, animația începe imediat și face 1 pas. Deci începe și se termină imediat, ca și cum nu ar exista nicio animație.
 - `step-end` -- la fel ca `steps(1, end)`: face animația într-un singur pas la sfârșitul `transition-duration`.
 
+<<<<<<< HEAD
 Aceste valori sunt rareori folosite, deoarece nu reprezintă o animație reală, ci mai degrabă o schimbare într-un singur pas. Le menționăm aici pentru completitudine.
 
 ## Event: "transitionend"
 
 Când animația CSS se termină, se declanșează evenimentul `transitionend`.
+=======
+These values are rarely used, as they represent not a real animation, but rather a single-step change. We mention them here for completeness.
+
+## Event: "transitionend"
+
+When the CSS animation finishes, the `transitionend` event triggers.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Acesta este utilizat pe scară largă pentru a efectua o acțiune după terminarea animației. De asemenea putem uni animațiile.
 
@@ -463,7 +545,11 @@ De asemenea proprietatea `opacity` nu declanșează niciodată Layout (de asemen
 
 Asocierea `transform` cu `opacity` poate rezolva de obicei majoritatea nevoilor noastre, oferind animații fluide și arătoase.
 
+<<<<<<< HEAD
 De exemplu, aici apăsând pe elementul `#boat` adaugă clasa cu `transform: translateX(300)` și `opacity: 0`, făcându-l astfel să se deplaseze `300px` spre dreapta și să dispară:
+=======
+For example, here clicking on the `#boat` element adds the class with `transform: translateX(300px)` and `opacity: 0`, thus making it move `300px` to the right and disappear:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```html run height=260 autorun no-beautify
 <img src="https://js.cx/clipart/boat.png" id="boat">

@@ -22,7 +22,7 @@ Uneltele de dezvoltare se vor deschide cu tabul Console deschis implicit.
 
 Arată similar cu:
 
-![chrome](chrome.png)
+![chrome](chrome.webp)
 
 Aspectul exact al uneltelor de dezvoltare depinde de versiunea de Chrome folosită. Se schimbă din când în când, dar trebuie să fie asemănătoare.
 
@@ -49,7 +49,11 @@ Aspectul și funcționarea lor sunt oarecum similare. Odată ce ați învățat 
 
 Safari (browser pentru Mac, nesuportat pe Windows/Linux) e un pic diferit. Întâi trebuie să activăm meniul de dezvoltare (Develop menu).
 
+<<<<<<< HEAD
 Deschideți preferințele (Preferences) și mergeți în secțiunea de setări avansate (Advanced). În partea de jos se află un checkbox.
+=======
+Open Settings and go to the "Advanced" pane. There's a checkbox at the bottom:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ![safari](safari.png)
 

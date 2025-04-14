@@ -44,7 +44,11 @@ Obiectul rezultat `user` poate fi imaginat ca un sertar cu două dosare marcate 
 
 ![user object](object-user.svg)
 
+<<<<<<< HEAD
 Putem adăuga, șterge sau citi dosare din sertar la orice moment.
+=======
+We can add, remove and read files from it at any time.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Valorile proprietăților sunt accesibile folosind notația cu punct.
 
@@ -62,7 +66,11 @@ user.isAdmin = true;
 
 ![user object 2](object-user-isadmin.svg)
 
+<<<<<<< HEAD
 Pentru a șterge o proprietate, putem folosi operatorul `delete`:
+=======
+To remove a property, we can use the `delete` operator:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```js
 delete user.age;
@@ -201,13 +209,21 @@ let bag = {
 };
 ```
 
+<<<<<<< HEAD
 Parantezele pătrate sunt mult mai puternice decât notația cu punct. Ele permit orice fel de nume și de variabile pentru proprietăți, dar sunt mai dificil de scris.
+=======
+Square brackets are much more powerful than dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Deci, de cele mai multe ori, când numele proprietăților sunt cunoscute și simple se folosește punctul, iar daca avem nevoie de ceva mai complex, trecem la parantezele pătrate.
 
 ## Prescurtare (shorthand) pentru valoarea proprietății
 
+<<<<<<< HEAD
 În cod real folosim des variabile existente ca valori pentru numele proprietăților.
+=======
+In real code, we often use existing variables as values for property names.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 De exemplu:
 
@@ -251,7 +267,7 @@ let user = {
 
 ## Property names limitations
 
-As we already know, a variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
+As we already know, a variable cannot have a name equal to one of the language-reserved words like "for", "let", "return" etc.
 
 But for an object property, there's no such restriction:
 
@@ -324,7 +340,11 @@ alert( "blabla" in user ); // false, user.blabla nu există
 
 Luați aminte că, la stânga operatorului `in` trebuie sa fie un *nume de proprietate*. Uzual numele este un șir de caractere între ghilimele.
 
+<<<<<<< HEAD
 Dacă omitem ghilimelele, adica o variabilă, ar trebui sa conțină numele actual pe care îl testăm. Spre exemplu:
+=======
+If we omit quotes, that means a variable should contain the actual name to be tested. For instance:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```js run
 let user = { age: 30 };
@@ -356,7 +376,11 @@ Situații de genul ăsta apar foarte rar, deoarece `undefined` nu este assigned 
 
 ## Bucla "for..in" [#forin]
 
+<<<<<<< HEAD
 Pentru a traversa toate cheile unui obiect, există o formă specială de buclă: `for..in`. Aceasta este complet diferită de construcția buclei `for(;;)` pe care am studiat-o anterior.
+=======
+## The "for..in" loop [#forin]
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Sintaxa:
 
@@ -411,7 +435,11 @@ for (let code in codes) {
 */!*
 ```
 
+<<<<<<< HEAD
 Obiectul poate fi folosit pentru a sugera o listă de opțiuni utilizatorilor. Dacă construim un site pentru audiență germană, atunci probabil dorim ca `49` să fie primul.
+=======
+The object may be used to suggest a list of options to the user. If we're making a site mainly for a German audience then we probably want `49` to be the first.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Dar dacă rulăm codul, vedem o cu totul altă imagine:
 
@@ -423,6 +451,7 @@ Prefixele sunt sortate in ordine crescătoare, deoarece sunt de tip integer. Dec
 ````smart header="Proprietăți tip Integer? Ce-i aia?"
 Termenul "Proprietate integer" de aici, semnifică un string care poate fi convertit în-și-din integer fără nicio modificare.
 
+<<<<<<< HEAD
 Deci, "49" este un nume de proprietate de tip integer, deoarece când este transformat într-un integer și înapoi, el rămâne neschimbat. Dar "+49" și "1.2" nu:
 
 ```js run
@@ -430,6 +459,16 @@ Deci, "49" este un nume de proprietate de tip integer, deoarece când este trans
 alert( String(Math.trunc(Number("49"))) ); // "49", la fel, proprietate de tip integer
 alert( String(Math.trunc(Number("+49"))) ); // "49", nu este la fel ca "+49" ⇒ proprietatea nu este de tip integer
 alert( String(Math.trunc(Number("1.2"))) ); // "1", nu este la fel ca "1.2" ⇒ proprietatea nu este de tip integer
+=======
+So, `"49"` is an integer property name, because when it's transformed to an integer number and back, it's still the same. But `"+49"` and `"1.2"` are not:
+
+```js run
+// Number(...) explicitly converts to a number
+// Math.trunc is a built-in function that removes the decimal part
+alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
+alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
+alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ```
 ````
 
@@ -478,9 +517,15 @@ Ele stochează proprietăți (perechi cheie-valoare), unde:
 - Proprietățile chei trebuie să fie șiruri sau simboluri (de obicei șiruri).
 - Valorile pot fi de orice tip.
 
+<<<<<<< HEAD
 Pentru a accesa o proprietate putem folosi:
 - Notația cu punct: `obj.property`.
 - Notația cu paranteze pătrate `obj["property"]`. Parantezele pătrate permit preluarea cheii dintr-o variabilă, precum `obj[varWithKey]`.
+=======
+To access a property, we can use:
+- The dot notation: `obj.property`.
+- Square brackets notation `obj["property"]`. Square brackets allow taking the key from a variable, like `obj[varWithKey]`.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Operatori adiționali:
 - Pentru a șterge o proprietate: `delete obj.prop`.
