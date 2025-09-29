@@ -68,7 +68,11 @@ if (cond) {
 
 ## Clauza "else"
 
+<<<<<<< HEAD
 Instrucțiunea `if` poate conține un bloc opțional "else". Acesta se execută atunci când condiția este falsy.
+=======
+The `if` statement may contain an optional `else` block. It executes when the condition is falsy.
+>>>>>>> 51bc6d3cdc16b6eb79cb88820a58c4f037f3bf19
 
 De exemplu:
 ```js run
@@ -180,10 +184,17 @@ alert( message );
 
 Ar putea fi dificil la început să înțelegem ce se întâmplă. Dar după o privire mai atentă, putem vedea că este doar o secvență obișnuită de teste:
 
+<<<<<<< HEAD
 1. Primul semn de întrebare verifică dacă `age < 3`.
 2. Dacă este adevărat -- se returnează `'Bună, puiule!'`. În caz contrar, continuă spre expresia de după două puncte '":"', verificând `age < 18`.
 3. Dacă este adevărat -- returnează `'Bună!'`. În caz contrar, continuă cu expresia de după următoarele două puncte '":"', verificând `age < 100`.
 4. Dacă acest lucru este adevărat -- returnează `'Salutări!'`. În caz contrar, continuă cu expresia de după ultimele două puncte '":"', returnând `'Ce vârstă neobișnuită!'`.
+=======
+1. The first question mark checks whether `age < 3`.
+2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon ":", checking `age < 18`.
+3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon ":", checking `age < 100`.
+4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon ":", returning `'What an unusual age!'`.
+>>>>>>> 51bc6d3cdc16b6eb79cb88820a58c4f037f3bf19
 
 Iată cum arată acest lucru folosind `if..else`:
 

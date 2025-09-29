@@ -77,9 +77,15 @@ function loadScript(src, *!*callback*/!*) {
 }
 ```
 
+<<<<<<< HEAD
 Evenimentul `onload` este descris în articolul <info:onload-onerror#loading-a-script>, practic execută o funcție după ce scriptul este încărcat și executat.
 
 Acum dacă dorim să apelăm funcțiile noi din script, ar trebui să scrim acest lucru în callback:
+=======
+The `onload` event is described in the article <info:onload-onerror#loading-a-script>, it basically executes a function after the script is loaded and executed.
+
+Now if we want to call new functions from the script, we should write that in the callback:
+>>>>>>> 51bc6d3cdc16b6eb79cb88820a58c4f037f3bf19
 
 ```js
 loadScript('/my/script.js', function() {
@@ -103,8 +109,13 @@ function loadScript(src, callback) {
 
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
+<<<<<<< HEAD
   alert(`Cool, scriptul ${script.src} este încărcat`);
   alert( _ ); // funcție declarată în scriptul încărcat
+=======
+  alert(`Cool, the script ${script.src} is loaded`);
+  alert( _ ); // _ is a function declared in the loaded script
+>>>>>>> 51bc6d3cdc16b6eb79cb88820a58c4f037f3bf19
 });
 */!*
 ```
