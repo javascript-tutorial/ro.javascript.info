@@ -7,7 +7,11 @@ JavaScript este un limbaj foarte orientat spre funcții. Acesta ne oferă o mare
 
 Dar ce se întâmplă dacă variabilele exterioare se schimbă de la crearea unei funcții? Va primi funcția valorile mai noi sau pe cele vechi?
 
+<<<<<<< HEAD
 Și dacă o funcție este transmisă ca argument și apelată dintr-un alt loc din cod, va avea acces la variabilele exterioare din noul loc?
+=======
+And what if a function is passed along as an argument and called from another place of code, will it get access to outer variables at the new place?
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 Haideți să ne extindem cunoștințele pentru a înțelege aceste scenarii și altele mai complexe.
 

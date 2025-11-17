@@ -17,7 +17,11 @@ Algoritmul general al motorului:
     - le execută, începând cu cea mai veche sarcină.
 2. Doarme până când apare o sarcină, apoi treceți la 1.
 
+<<<<<<< HEAD
 Aceasta este o formalizare pentru ceea ce vedem atunci când navigăm pe o pagină. Motorul JavaScript nu face nimic în cea mai mare parte a timpului, se execută doar dacă se activează un script/gestionar/eveniment.
+=======
+That's a formalization of what we see when browsing a page. The JavaScript engine does nothing most of the time, it only runs if a script/handler/event activates.
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 Exemple de sarcini:
 
@@ -30,6 +34,7 @@ Sarcinile sunt setate -- motorul le gestionează -- apoi așteaptă mai multe sa
 
 Se poate întâmpla ca o sarcină să vină în timp ce motorul este ocupat, atunci este pusă la coadă.
 
+<<<<<<< HEAD
 Sarcinile formează o coadă, așa-numita "macrotask queue" (termen v8):
 
 ![](eventLoop.svg)
@@ -37,12 +42,27 @@ Sarcinile formează o coadă, așa-numita "macrotask queue" (termen v8):
 De exemplu, în timp ce motorul este ocupat cu execuția unui `script`, un utilizator poate muta mouse-ul provocând `mousemove`, iar `setTimeout` poate fi scadent și așa mai departe, aceste sarcini formează o coadă, așa cum este ilustrat în imaginea de mai sus.
 
 Sarcinile din coadă sunt procesate în baza "primul venit -- primul servit". Atunci când motorul browserului a terminat cu `script`, acesta se ocupă de evenimentul `mousemove`, apoi gestionarul `setTimeout`, și așa mai departe.
+=======
+The tasks form a queue, the so-called "macrotask queue" ([v8](https://v8.dev/) term):
+
+![](eventLoop.svg)
+
+For instance, while the engine is busy executing a `script`, a user may move their mouse causing `mousemove`, and `setTimeout` may be due and so on, these tasks form a queue, as illustrated in the picture above.
+
+Tasks from the queue are processed on a "first come – first served" basis. When the engine browser is done with the `script`, it handles `mousemove` event, then `setTimeout` handler, and so on.
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 Până acum, destul de simplu, nu?
 
+<<<<<<< HEAD
 Încă două detalii:
 1. Randarea nu are loc niciodată în timp ce motorul execută o sarcină. Nu contează dacă sarcina durează mult timp. Modificările aduse la DOM sunt pictate numai după ce sarcina este finalizată.
 2. Dacă o sarcină durează prea mult, browserul nu poate efectua alte sarcini, cum ar fi procesarea evenimentelor utilizatorului. Deci după un timp, acesta lansează o alertă ca "Page Unresponsive", sugerând uciderea sarcinii împreună cu întreaga pagină. Asta se întâmplă atunci când au loc o mulțime de calcule complexe sau când o eroare de programare duce la o buclă infinită.
+=======
+Two more details:
+1. Rendering never happens while the engine executes a task. It doesn't matter if the task takes a long time. Changes to the DOM are painted only after the task is complete.
+2. If a task takes too long, the browser can't do other tasks, such as processing user events. So after some time, it raises an alert like "Page Unresponsive", suggesting killing the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to an infinite loop.
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 Aceasta a fost teoria. Acum să vedem cum putem aplica aceste cunoștințe.
 
@@ -54,7 +74,11 @@ De exemplu, evidențierea sintaxei (utilizată pentru a colora exemplele de cod 
 
 În timp ce motorul este ocupat cu evidențierea sintaxei, nu poate face alte lucruri legate de DOM, procesa evenimentele utilizatorului etc. Poate chiar să provoace browserul să "sughițe" sau chiar să se "blocheze" pentru un timp, ceea ce este inacceptabil.
 
+<<<<<<< HEAD
 Putem evita problemele împărțind sarcina mare în bucăți. Evidențiază primele 100 de rânduri, apoi programa `setTimeout` (cu întârziere zero) pentru următoarele 100 de rânduri, și așa mai departe.
+=======
+We can avoid problems by splitting the big task into pieces. Highlight the first 100 lines, then schedule `setTimeout` (with zero-delay) for the next 100 lines, and so on.
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 
 Pentru a demonstra această abordare, de dragul simplității, în loc de evidențierea textului, să luăm o funcție care numără de la `1` la `1000000000`.
 
