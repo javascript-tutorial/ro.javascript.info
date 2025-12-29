@@ -13,7 +13,11 @@ Un IDE încarcă proiectul (pot fi mai multe fișiere), permite navigarea între
 Dacă nu ai selectat până acum un IDE, uită-te la următoarele variante:
 
 - [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+<<<<<<< HEAD
 - [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, plătit).
+=======
+- [WebStorm](https://www.jetbrains.com/webstorm/) (cross-platform, paid).
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 Pentru Windows există de asemenea un editor "Visual Studio", a nu se confunda cu "Visual Studio Code". "Visual Studio" este un editor doar pentru Windows, plătit dar puternic, foarte potrivit pentru platforma .NET. O versiune gratuită al lui este [Visual Studio Community](https://www.visualstudio.com/vs/community/).
 
@@ -29,11 +33,19 @@ Diferența majoră dintre un editor de "categorie ușoară" și un "IDE" este c�
 
 În practică, editoarele de categorie ușoară pot avea multe plugin-uri, inclusiv analizatoare de sintaxă la nivel de director sau autocompletatoare, așadar nu este o graniță strictă între un editor de categorie ușoară și un IDE.
 
+<<<<<<< HEAD
 Sunt multe opțiuni, spre exemplu:
 
 - [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
 - [Notepad++](https://notepad-plus-plus.org/) (Windows, gratuit).
 - [Vim](http://www.vim.org/) și [Emacs](https://www.gnu.org/software/emacs/) sunt de asemenea utile dacă știi cum să le folosești.
+=======
+There are many options, for instance:
+
+- [Sublime Text](https://www.sublimetext.com/) (cross-platform, shareware).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
+- [Vim](https://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ## Să nu ne certăm
 
@@ -41,7 +53,11 @@ Editoarele din lista de mai sus sunt cele pe care fie eu sau prietenii mei, pe c
 
 Există și alte editoare grozave în lumea asta mare. Te rog alege un editor care îți place cel mai mult.
 
+<<<<<<< HEAD
 Alegerea unui editor, ca a oricărui alt tool, este individuală și depinde de proiectele tale, obiceiurile și preferințele personale.
+=======
+The choice of an editor, like any other tool, is individual and depends on your projects, habits, and personal preferences.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 The author's personal opinion:
 
