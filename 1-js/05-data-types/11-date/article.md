@@ -57,10 +57,17 @@ Pentru a crea un nou obiect `Date` apelați `new Date()` cu unul dintre următoa
 `new Date(an, lună, date, ore, minute, secunde, ms)`
 : Creează data cu componentele date în fusul orar local. Doar primele două argumente sunt obligatorii.
 
+<<<<<<< HEAD
     - Anul `year` trebuie să aibă 4 cifre. Pentru compatibilitate, sunt acceptate și 2 cifre, care sunt considerate `19xx`, e.g.`98` este același lucru cu `1998` aici, dar este întotdeauna puternic încurajată folosirea a 4 cifre.
     - Numărătoarea "lunilor" începe cu `0` (Ian), până la `11` (Dec).
     - Parametrul `date` este de fapt ziua lunii, dacă nu există atunci se presupune `1`.
     - Dacă `ore/minute/secunde/ms` este absent, se presupune că sunt egale cu `0`.
+=======
+    - The `year` should have 4 digits. For compatibility, 2 digits are also accepted and considered `19xx`, e.g. `98` is the same as `1998` here, but always using 4 digits is strongly encouraged.
+    - The `month` count starts with `0` (Jan), up to `11` (Dec).
+    - The `date` parameter is actually the day of month, if absent then `1` is assumed.
+    - If `hours/minutes/seconds/ms` is absent, they are assumed to be equal `0`.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
     De exemplu:
 
@@ -376,7 +383,11 @@ for (let i = 0; i < 10; i++) {
 ```warn header="Aveți grijă când faceți microbenchmarking"
 Motoarele JavaScript moderne efectuează multe optimizări. Acestea ar putea ajusta rezultatele "testelor artificiale" în comparație cu "utilizarea normală", în special atunci când efectuăm benchmark-uri pentru ceva foarte mic, cum ar fi modul în care funcționează un operator sau o funcție încorporată. Deci dacă vreți să înțelegeți în mod serios performanța, atunci vă rugăm să studiați modul în care funcționează motorul JavaScript. Și atunci probabil că nu veți avea nevoie deloc de microbenchmarks.
 
+<<<<<<< HEAD
 Marele pachet de articole despre V8 poate fi găsit la <https://mrale.ph>.
+=======
+The great pack of articles about V8 can be found at <https://mrale.ph>.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 ```
 
 ## Date.parse dintr-un șir
