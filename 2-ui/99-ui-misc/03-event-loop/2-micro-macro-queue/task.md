@@ -2,7 +2,11 @@ importance: 5
 
 ---
 
+<<<<<<< HEAD
 # Care va fi ieșirea acestui cod?
+=======
+# What will be the output of this code?
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ```js
 console.log(1);
