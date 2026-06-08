@@ -27,7 +27,11 @@ De obicei, este o funcție. Din motive istorice, poate fi trecut un șir de cod,
 : Întârzierea înainte de rulare, în milisecunde (1000 ms = 1 secundă), implicit 0.
 
 `arg1`, `arg2`...
+<<<<<<< HEAD
 : Argumente pentru funcție
+=======
+: Arguments for the function
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 De exemplu, acest cod apelează `sayHi()` după o secundă:
 
@@ -102,7 +106,11 @@ După cum se poate observa din ieșirea `alert`, într-un browser identificatoru
 
 Din nou, nu există o specificație universală pentru aceste metode, așa că este în regulă.
 
+<<<<<<< HEAD
 Pentru browsere, temporizatoarele sunt descrise în [secțiunea timers](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) din HTML Living Standard.
+=======
+For browsers, timers are described in the [timers section](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) of HTML Living Standard.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ## setInterval
 
@@ -218,7 +226,11 @@ Este posibil ca execuția lui `func` să se dovedească a fi mai lungă decât n
 
 ![](settimeout-interval.svg)
 
+<<<<<<< HEAD
 **`setTimeout`-ul imbricat garantează întârzierea fixă (aici 100ms).**
+=======
+**The nested `setTimeout` ensures a minimum delay (100ms here) between the end of one call and the beginning of the subsequent one.**
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 Asta pentru că un nou apel este planificat la sfârșitul celui precedent.
 
@@ -232,7 +244,11 @@ setTimeout(function() {...}, 100);
 
 Pentru `setInterval`, funcția rămâne în memorie până când este apelată `clearInterval`.
 
+<<<<<<< HEAD
 Există un efect secundar. O funcție face referire la mediul lexical extern, astfel încât, în timp ce ea trăiește, trăiesc și variabilele externe. Acestea pot ocupa mult mai multă memorie decât funcția însăși. Deci atunci când nu mai avem nevoie de funcția planificată, este mai bine să o anulăm, chiar dacă este foarte mică.
+=======
+There's a side effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function anymore, it's better to cancel it, even if it's very small.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ````
 
 ## setTimeout cu Întârziere zero
@@ -255,8 +271,13 @@ Prima linie "pune apelul în calendar după 0ms". Dar planificatorul va "verific
 
 Există de asemenea cazuri avansate de utilizare a timeout-ului cu întârziere zero legate de browser, pe care le vom discuta în capitolul <info:event-loop>.
 
+<<<<<<< HEAD
 ````smart header="Întârzierea zero nu este de fapt zero (într-un browser)"
 În browser, este o limitare pentru cât de des pot rula temporizatoarele imbricate. [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) spune: "după cinci temporizatoare imbricate, intervalul este forțat să fie de cel puțin 4 milisecunde.".
+=======
+````smart header="Zero delay is in fact not zero (in a browser)"
+In the browser, there's a limitation of how often nested timers can run. The [HTML Living Standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 Să demonstrăm ce înseamnă acest lucru cu exemplul de mai jos. Apelul `setTimeout` cuprins în el se replanifică singur cu întârziere zero. Fiecare apel reține întârzierea reală din cel precedent în matricea `times`. Cum arată întârzierile reale? Să vedem:
 
@@ -294,9 +315,16 @@ Pentru JavaScript pe server, această limitare nu există și există alte modal
 
 Vă rugăm să rețineți că toate metodele de planificare nu *garantează* întârzierea exactă.
 
+<<<<<<< HEAD
 De exemplu, temporizatorul din browser poate încetini din multe motive:
 - Procesorul este suprasolicitat.
 - Tab-ul browserului este în fundal.
 - Laptopul este în modul de economisire a bateriei.
+=======
+For example, the in-browser timer may slow down for a lot of reasons:
+- The CPU is overloaded.
+- The browser tab is in the background mode.
+- The laptop is on battery saving mode.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 Toate acestea pot crește rezoluția minimă a temporizatorului (întârzierea minimă) la 300ms sau chiar 1000ms în funcție de setările de performanță la nivel de browser și de sistem de operare.
