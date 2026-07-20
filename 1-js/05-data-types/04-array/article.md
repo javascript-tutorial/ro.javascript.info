@@ -100,7 +100,11 @@ Let's say we want the last element of the array.
 
 Some programming languages allow the use of negative indexes for the same purpose, like `fruits[-1]`.
 
+<<<<<<< HEAD
 Although, in JavaScript it won't work. The result will be `undefined`, because the index in square brackets is treated literally.
+=======
+However, in JavaScript it won't work. The result will be `undefined`, because the index in square brackets is treated literally.
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 We can explicitly calculate the last element index and then access it: `fruits[fruits.length - 1]`.
 
@@ -426,7 +430,7 @@ let matrix = [
   [7, 8, 9]
 ];
 
-alert( matrix[1][1] ); // 5, the central element
+alert( matrix[0][1] ); // 2, the second value of the first inner array
 ```
 
 ## toString

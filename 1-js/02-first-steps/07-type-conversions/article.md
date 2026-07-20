@@ -6,8 +6,13 @@ De exemplu, `alert` convertește automat orice valoare către un șir pentru a o
 
 De asemenea există și cazuri unde este nevoie să convertim explicit o valoare către tipul așteptat. 
 
+<<<<<<< HEAD
 ```smart header="Nu vorbim despre obiecte încă"
 În acest captiol, nu vom acoperi obiectele. Pentru moment vom vorbi doar despre primitive.
+=======
+```smart header="Not talking about objects yet"
+In this chapter, we won't cover objects. For now, we'll just be talking about primitives.
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 Mai târziu, dupa ce vom învăța despre obiecte, în acest capitol <info:object-toprimitive> vom vedea cum se incadrează obiectele.
 ```
@@ -34,7 +39,11 @@ Conversia unui șir este în mare parte evidentă. Un `false` devine `"false"`, 
 
 ## Conversia Numerică
 
+<<<<<<< HEAD
 Conversia numerică se petrece în funcții și expresii matematice automat.
+=======
+Numeric conversion in mathematical functions and expressions happens automatically.
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 De exemplu, când împărțirea `/` este aplicată non-numerelor:
 
@@ -70,7 +79,11 @@ Regulile conversiei numerice:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;and&nbsp;false</code> | `1` and `0` |
+<<<<<<< HEAD
 | `string` | Spațiile goale de la ïnceput și sfârșit sunt eliminate. Dacă șirul rămas este gol, rezultatul este `0`. Altfel numărul este "citit" din șir. O eroare transmite `NaN`. |
+=======
+| `string` | Whitespaces (includes spaces, tabs `\t`, newlines `\n` etc.) from the start and end are removed. If the remaining string is empty, the result is `0`. Otherwise, the number is "read" from the string. An error gives `NaN`. |
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 Exemple:
 
@@ -131,7 +144,11 @@ Conversia urmează regulile:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
+<<<<<<< HEAD
 | `string` | Șirul este citit "așa cum este", spațiile goale din ambele părți sunt ignorate. Un șir gol devine `0`. O eroare transmite `NaN`. |
+=======
+| `string` | The string is read "as is", whitespaces (includes spaces, tabs `\t`, newlines `\n` etc.) from both sides are ignored. An empty string becomes `0`. An error gives `NaN`. |
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 **`Conversia Boolean`** -- Apare în operațiile logice. Poate fi executată cu `Boolean(value)`.
 
