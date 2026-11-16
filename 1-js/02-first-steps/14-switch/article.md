@@ -139,7 +139,11 @@ switch (a) {
 
 Acum, atât `3` cât și `5` arată același mesaj.
 
+<<<<<<< HEAD
 Posibilitatea de a "grupa" cazuri este un efect secundar al modului în care funcționează `switch/case` fără `break`. Execuția blocului `case 3` începe de la linia marcată `(*)` și continuă în `case 5`, pentru că nu există niciun `break`.
+=======
+The ability to "group" cases is a side effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
 
 ## Tipul contează
 
